@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>MoriyamaKeyboard.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>5D9D80361C2CB02400623AF7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D9D804C1C2D405700623AF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
