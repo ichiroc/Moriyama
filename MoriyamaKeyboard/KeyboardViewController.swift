@@ -1,5 +1,5 @@
 //
-//  KeyboardViewController.swift
+//  KeyboardviewController.swift
 //  MoriyamaKeyboard
 //
 //  Created by Ichiro on 2015/12/25.
@@ -24,26 +24,7 @@ class KeyboardViewController: UIInputViewController {
         MRYTextDocumentPRoxy.proxy = self.textDocumentProxy
         self.layoutSubviews()
     }
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Perform custom UI setup here
-//        MRYTextDocumentPRoxy.proxy = self.textDocumentProxy
-//        self.nextKeyboardButton = UIButton(type: .System)
-//    
-//        self.nextKeyboardButton.setTitle(NSLocalizedString("🌐", comment: "Title for 'Next Keyboard' button"), forState: .Normal)
-//        self.nextKeyboardButton.sizeToFit()
-//        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
-//    
-//        self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-//        
-//        self.view.addSubview(self.nextKeyboardButton)
-//    
-//        let nextKeyboardButtonLeftSideConstraint = NSLayoutConstraint(item: self.nextKeyboardButton, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 0.0)
-//        let nextKeyboardButtonBottomConstraint = NSLayoutConstraint(item: self.nextKeyboardButton, attribute: .Bottom, relatedBy: .Equal, toItem: self.view, attribute: .Bottom, multiplier: 1.0, constant: 0.0)
-//        self.view.addConstraints([nextKeyboardButtonLeftSideConstraint, nextKeyboardButtonBottomConstraint])
-//    }
-//
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated
@@ -74,23 +55,74 @@ class KeyboardViewController: UIInputViewController {
         let spaceKey = MRYKeyboardButton(title: "Space", text: " ")
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
+//        let calendarview = MRYMonthlyCalendarCollectionView(frame: self.view.frame)
+        
         let calendarView = UIView()
         calendarView.translatesAutoresizingMaskIntoConstraints = false
         calendarView.backgroundColor = UIColor.blueColor()
+        let lbl = UILabel()
+        lbl.text = "HELLO WORLD"
+        calendarView.addSubview(lbl)
+        lbl.sizeToFit()
+//
         let views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,
             "return": returnKey ,
             "comma": commaKey,
             "calendar": calendarView]
+        
+// original
         self.view.addSubview(nextKeyboardButton)
         self.view.addSubview(deleteKey)
         self.view.addSubview(spaceKey)
         self.view.addSubview(returnKey)
         self.view.addSubview(commaKey)
         self.view.addSubview(calendarView)
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-[next(45)]-[space]-[comma(45)]-[delete(45)]-[return(45)]-|", options: .AlignAllBottom , metrics: nil, views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[calendar]-[next]-5-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views))
+        
+        self.view.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "H:|-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-|",
+                options: .AlignAllCenterY ,
+                metrics: nil,
+                views: views)
+        )
+
+        self.view.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "H:|-[calendar]-|",
+                options: NSLayoutFormatOptions(rawValue: 0),
+                metrics: nil,
+                views: views)
+        )
+        
+        
+        self.view.addConstraints(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:[calendar(500)]-[space(35)]-10-|",
+                options: NSLayoutFormatOptions(rawValue: 0),
+                metrics: nil,
+                views: views)
+        )
+        
+        print("height = \(self.view.bounds.height)")
+        
+//        self.view.addConstraints(
+//            NSLayoutConstraint.constraintsWithVisualFormat(
+//                "H:|-[next]-|",
+//                options: NSLayoutFormatOptions(rawValue: 0) ,
+//                metrics: nil,
+//                views: views)
+//        )
+//        
+//        self.view.addConstraints(
+//            NSLayoutConstraint.constraintsWithVisualFormat(
+//                "V:|-[calendar]-[next(30)]-5-|",
+//                options: .AlignAllCenterX ,
+//                metrics: nil,
+//                views: views)
+//        )
+        
     }
 
 }
