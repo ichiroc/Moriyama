@@ -25,9 +25,8 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         super.init(frame: frame, collectionViewLayout: layout)
     }
    
-    init(frame: CGRect){
-        super.init(frame: frame, collectionViewLayout: UICollectionViewFlowLayout())
-        
+    init(){
+        super.init(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         self.registerClass(MRYMonthlyCalendarCollectionViewCell.self, forCellWithReuseIdentifier: "monthlyCell")
         self.translatesAutoresizingMaskIntoConstraints = false
         self.delegate = self

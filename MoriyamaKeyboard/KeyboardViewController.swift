@@ -47,7 +47,7 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
     
-    func layoutSubviews(){
+    private func layoutSubviews(){
         // Perform custom UI setup here
         self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", text: nil)
         self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
@@ -55,16 +55,8 @@ class KeyboardViewController: UIInputViewController {
         let spaceKey = MRYKeyboardButton(title: "Space", text: " ")
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
-//        let calendarview = MRYMonthlyCalendarCollectionView(frame: self.view.frame)
+        let calendarView = MRYMonthlyCalendarCollectionView()
         
-        let calendarView = UIView()
-        calendarView.translatesAutoresizingMaskIntoConstraints = false
-        calendarView.backgroundColor = UIColor.blueColor()
-        let lbl = UILabel()
-        lbl.text = "HELLO WORLD"
-        calendarView.addSubview(lbl)
-        lbl.sizeToFit()
-//
         let views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,
@@ -105,23 +97,6 @@ class KeyboardViewController: UIInputViewController {
                 views: views)
         )
         
-        print("height = \(self.view.bounds.height)")
-        
-//        self.view.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat(
-//                "H:|-[next]-|",
-//                options: NSLayoutFormatOptions(rawValue: 0) ,
-//                metrics: nil,
-//                views: views)
-//        )
-//        
-//        self.view.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat(
-//                "V:|-[calendar]-[next(30)]-5-|",
-//                options: .AlignAllCenterX ,
-//                metrics: nil,
-//                views: views)
-//        )
         
     }
 
