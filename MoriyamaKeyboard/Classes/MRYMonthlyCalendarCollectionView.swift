@@ -55,7 +55,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("monthlyCell", forIndexPath: indexPath) as! MRYMonthlyCalendarCollectionViewCell
             
             let cellDate = firstCellDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400))
-            cell.setDate(cellDate)
+            cell.setCellDate(cellDate)
             if cell.isToday() {
                 todayIndexPath = indexPath
             }
