@@ -16,6 +16,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     private var _firstCellDate : NSDate?
     private var cal  = NSCalendar.currentCalendar()
     private var cellSize : CGSize?
+    var todayIndexPath : NSIndexPath?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,14 +35,6 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         self.backgroundColor = UIColor.whiteColor()
     }
     
-//    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        //dummy
-//        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("monthlyCell", forIndexPath: indexPath) as! MRYMonthlyCalendarCollectionViewCell
-//        return cell
-//    }
-
-    
-    
     private func firstCellDate() -> NSDate{
         if self._firstCellDate == nil{
             var comp = cal.components( [.Day, .Month ,.Year, .Weekday], fromDate: NSDate())
@@ -55,15 +48,18 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         }
         return _firstCellDate!
     }
-    
+        
     // MARK: - UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("monthlyCell", forIndexPath: indexPath) as! MRYMonthlyCalendarCollectionViewCell
-        
-        let cellDate = firstCellDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400))
-        cell.setDate(cellDate)
-        return cell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("monthlyCell", forIndexPath: indexPath) as! MRYMonthlyCalendarCollectionViewCell
+            
+            let cellDate = firstCellDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400))
+            cell.setDate(cellDate)
+            if cell.isToday() {
+                todayIndexPath = indexPath
+            }
+            return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -72,17 +68,27 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     
     
     // MARK: - UICollectionViewDelegateFlowLayout methods
-    
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             if( cellSize == nil){
                 let screenRect = collectionView.bounds
-                let screenWidth = screenRect.size.width
-                let cellWidth = floor((screenWidth / 7.0))// - 2
+                let screenWidth = screenRect.size.width - 70
+                let cellWidth = floor((screenWidth / 7.0))
                 cellSize = CGSizeMake(cellWidth, cellWidth * 1.1)
             }
             return cellSize!
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 5
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
     
 }

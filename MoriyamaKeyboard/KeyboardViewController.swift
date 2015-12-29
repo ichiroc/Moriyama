@@ -11,6 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
+    var calendarView : MRYMonthlyCalendarCollectionView!
 
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -28,6 +29,10 @@ class KeyboardViewController: UIInputViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        calendarView.scrollToItemAtIndexPath(calendarView.todayIndexPath!, atScrollPosition: .Top, animated: false)
     }
 
     override func textWillChange(textInput: UITextInput?) {
@@ -55,8 +60,7 @@ class KeyboardViewController: UIInputViewController {
         let spaceKey = MRYKeyboardButton(title: "Space", text: " ")
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
-        let calendarView = MRYMonthlyCalendarCollectionView()
-        
+        calendarView = MRYMonthlyCalendarCollectionView()
         let views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,
@@ -65,14 +69,14 @@ class KeyboardViewController: UIInputViewController {
             "calendar": calendarView]
         
 // original
-        self.view.addSubview(nextKeyboardButton)
-        self.view.addSubview(deleteKey)
-        self.view.addSubview(spaceKey)
-        self.view.addSubview(returnKey)
-        self.view.addSubview(commaKey)
-        self.view.addSubview(calendarView)
+        self.inputView?.addSubview(nextKeyboardButton)
+        self.inputView?.addSubview(deleteKey)
+        self.inputView?.addSubview(spaceKey)
+        self.inputView?.addSubview(returnKey)
+        self.inputView?.addSubview(commaKey)
+        self.inputView?.addSubview(calendarView)
         
-        self.view.addConstraints(
+        self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "H:|-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-|",
                 options: .AlignAllCenterY ,
@@ -80,7 +84,7 @@ class KeyboardViewController: UIInputViewController {
                 views: views)
         )
 
-        self.view.addConstraints(
+        self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "H:|-[calendar]-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
@@ -88,16 +92,14 @@ class KeyboardViewController: UIInputViewController {
                 views: views)
         )
         
-        
-        self.view.addConstraints(
+        self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:[calendar(500)]-[space(35)]-10-|",
+                "V:|-[calendar(>=200@200)]-[space(35)]-10-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views)
         )
         
-        
     }
-
+    
 }

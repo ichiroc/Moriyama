@@ -11,6 +11,7 @@ import UIKit
 class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     var dateLabel:UILabel
     let cal  = NSCalendar.currentCalendar()
+    var _cellDate : NSDate?
     
     override func prepareForReuse() {
         self.dateLabel.backgroundColor = UIColor.whiteColor()
@@ -37,10 +38,24 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         self.addConstraints(c1)
         self.addConstraints(c2)
         self.dateLabel.textAlignment = .Center
-        self.dateLabel.text = "1"
+        self.dateLabel.text = "-"
     }
 
+    func isToday()->Bool{
+        if let _date = _cellDate{
+            let cellDateComp = NSCalendar.currentCalendar().components([.Year,.Month,.Day], fromDate: _date)
+            let today = cal.components([.Year,.Month,.Day], fromDate: NSDate())
+            return(cellDateComp.year == today.year &&
+                cellDateComp.month == today.month &&
+                cellDateComp.day == today.day)
+        }
+        return false
+    }
+    
+        
+        
     func setDate(cellDate: NSDate){
+        _cellDate = cellDate
         let formatter = NSDateFormatter()
         let cellDateComp = NSCalendar.currentCalendar().components([.Year,.Month,.Day], fromDate: cellDate)
         if cellDateComp.day == 1 {
@@ -48,11 +63,8 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         }else{
             formatter.dateFormat = "d"
         }
-        let today = cal.components([.Year,.Month,.Day], fromDate: NSDate())
-        if(cellDateComp.year == today.year &&
-            cellDateComp.month == today.month &&
-            cellDateComp.day == today.day){
-                self.dateLabel.backgroundColor = UIColor.lightGrayColor()
+        if(isToday()){
+            self.dateLabel.backgroundColor = UIColor.lightGrayColor()
         }
         self.dateLabel.text = formatter.stringFromDate(cellDate)
     }
