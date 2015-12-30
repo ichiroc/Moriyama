@@ -19,6 +19,8 @@ class MRYKeyboardButton : UIButton{
         self.backgroundColor = UIColor.whiteColor()
         self.addTarget(self, action: "insertText", forControlEvents: .TouchUpInside)
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.titleLabel?.font = UIFont.systemFontOfSize(16)
+        self.layer.cornerRadius = 3
     }
     
     override init(frame: CGRect) {

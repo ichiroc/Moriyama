@@ -27,7 +27,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         dateLabel = UILabel()
         super.init(frame: frame)
         self.addSubview(dateLabel)
-        dateLabel.font = UIFont.systemFontOfSize(12)
+        dateLabel.font = UIFont.systemFontOfSize(16)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
 
        self.backgroundColor = UIColor.whiteColor()

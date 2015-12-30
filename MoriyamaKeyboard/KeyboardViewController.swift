@@ -57,7 +57,7 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", text: nil)
         self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         let deleteKey = MRYKeyboardButton( title: "⌫", text: nil)
-        let spaceKey = MRYKeyboardButton(title: "Space", text: " ")
+        let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
         calendarView = MRYMonthlyCalendarCollectionView()
@@ -79,7 +79,7 @@ class KeyboardViewController: UIInputViewController {
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "H:|-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-|",
-                options: .AlignAllCenterY ,
+                options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
                 metrics: nil,
                 views: views)
         )
@@ -94,7 +94,7 @@ class KeyboardViewController: UIInputViewController {
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[calendar(>=200@200)]-[space(35)]-10-|",
+                "V:|-[calendar(>=200@200)]-5-[space(30)]-10-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views)

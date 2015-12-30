@@ -33,6 +33,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         self.delegate = self
         self.dataSource = self
         self.backgroundColor = UIColor.whiteColor()
+        self.layer.cornerRadius = 3
     }
     
     private func firstCellDate() -> NSDate{
