@@ -11,7 +11,7 @@ import UIKit
 class MRYKeyboardButton : UIButton{
     var _text: String?
     
-    init( title: String, text: String?){
+    init( title: String, text: String? = nil, backgroundColor : UIColor = UIColor.whiteColor(), titleColor: UIColor = UIColor.blackColor()){
         _text = text
         super.init(frame: CGRectZero)
         self.setTitle(title, forState: .Normal)
@@ -20,6 +20,8 @@ class MRYKeyboardButton : UIButton{
         self.addTarget(self, action: "insertText", forControlEvents: .TouchUpInside)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel?.font = UIFont.systemFontOfSize(16)
+        self.setTitleColor(titleColor, forState: .Normal)
+        self.backgroundColor = backgroundColor
         self.layer.cornerRadius = 3
     }
     

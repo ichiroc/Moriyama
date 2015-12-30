@@ -54,11 +54,11 @@ class KeyboardViewController: UIInputViewController {
     
     private func layoutSubviews(){
         // Perform custom UI setup here
-        self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", text: nil)
+        self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", backgroundColor: UIColor.lightGrayColor())
         self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
-        let deleteKey = MRYKeyboardButton( title: "⌫", text: nil)
+        let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n", backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor())
+        let deleteKey = MRYKeyboardButton( title: "⌫", backgroundColor: UIColor.lightGrayColor() )
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
-        let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
         calendarView = MRYMonthlyCalendarCollectionView()
         let views = [ "next": nextKeyboardButton,
@@ -94,7 +94,7 @@ class KeyboardViewController: UIInputViewController {
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[calendar(>=200@200)]-5-[space(30)]-10-|",
+                "V:|-[calendar(>=200@200)]-5-[space(40)]-5-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: nil,
                 views: views)
