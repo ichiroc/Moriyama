@@ -15,6 +15,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         self.dateLabel.backgroundColor = UIColor.whiteColor()
+        self.dateLabel.layer.cornerRadius = 0
         self.dateLabel.textColor = UIColor.blackColor()
     }
     
@@ -27,7 +28,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         dateLabel = UILabel()
         super.init(frame: frame)
         self.addSubview(dateLabel)
-        dateLabel.font = UIFont.systemFontOfSize(16)
+        dateLabel.font = UIFont.systemFontOfSize(12)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
 
        self.backgroundColor = UIColor.whiteColor()
@@ -54,15 +55,14 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         if let _date = date{
             let cellDateComp = NSCalendar.currentCalendar().components([.Year,.Month,.Day], fromDate: _date)
             let today = cal.components([.Year,.Month,.Day], fromDate: NSDate())
-            return(cellDateComp.year == today.year &&
+            return (cellDateComp.year == today.year &&
                 cellDateComp.month == today.month &&
                 cellDateComp.day == today.day)
         }
         return false
     }
     
-        
-        
+    
     func setCellDate(cellDate: NSDate){
         date = cellDate
         let formatter = NSDateFormatter()
@@ -75,6 +75,8 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         }
         if(isToday()){
             self.dateLabel.backgroundColor = UIColor.lightGrayColor()
+            self.dateLabel.layer.cornerRadius = 13
+            self.dateLabel.layer.masksToBounds = true
         }
         
         let comp = NSCalendar.currentCalendar().components(.Weekday, fromDate: self.date!)
@@ -88,5 +90,10 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     }
     
     
+    private func todayStyle(){
+        self.dateLabel.backgroundColor = UIColor.lightGrayColor()
+        self.dateLabel.layer.cornerRadius = 13
+        self.dateLabel.layer.masksToBounds = true
+    }
     
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class MRYKeyboardButton : UIButton{
     var _text: String?
-    
+    var customAction : (() -> Void)?
     init( title: String, text: String? = nil, backgroundColor : UIColor = UIColor.whiteColor(), titleColor: UIColor = UIColor.blackColor()){
         _text = text
         super.init(frame: CGRectZero)
@@ -33,6 +33,10 @@ class MRYKeyboardButton : UIButton{
     }
     
     func insertText(){
+        if let action = customAction {
+            action()
+            return
+        }
         if let text = _text{
             MRYTextDocumentPRoxy.proxy.insertText(text)
         }

@@ -32,13 +32,17 @@ class KeyboardViewController: UIInputViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        calendarView.scrollToItemAtIndexPath(calendarView.todayIndexPath!, atScrollPosition: .Top, animated: false)
+        if let _todayIndexPath = calendarView.todayIndexPath {
+            calendarView.scrollToItemAtIndexPath( _todayIndexPath, atScrollPosition: .Top, animated: false)
+        }
     }
 
     override func textWillChange(textInput: UITextInput?) {
         // The app is about to change the document's contents. Perform any preparation here.
     }
-
+    override func viewDidLayoutSubviews() {
+        print("view will rotate ?")
+    }
     override func textDidChange(textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
     
@@ -58,6 +62,10 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n", backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor())
         let deleteKey = MRYKeyboardButton( title: "⌫", backgroundColor: UIColor.lightGrayColor() )
+        deleteKey.customAction = { () -> Void in
+            MRYTextDocumentPRoxy.proxy.deleteBackward()
+        }
+
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
         calendarView = MRYMonthlyCalendarCollectionView()

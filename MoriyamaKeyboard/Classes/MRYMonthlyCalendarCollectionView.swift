@@ -16,6 +16,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     private var _firstCellDate : NSDate?
     private var cal  = NSCalendar.currentCalendar()
     private var cellSize : CGSize?
+    private let _isToday = false
     var todayIndexPath : NSIndexPath?
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,7 +33,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         self.translatesAutoresizingMaskIntoConstraints = false
         self.delegate = self
         self.dataSource = self
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = superview?.backgroundColor
         self.layer.cornerRadius = 3
     }
     
@@ -53,7 +54,10 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     // MARK: - UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("monthlyCell", forIndexPath: indexPath) as! MRYMonthlyCalendarCollectionViewCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
+                "monthlyCell",
+                forIndexPath: indexPath
+                ) as! MRYMonthlyCalendarCollectionViewCell
             
             let cellDate = firstCellDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400))
             cell.setCellDate(cellDate)
@@ -74,7 +78,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             if( cellSize == nil){
                 let screenRect = collectionView.bounds
-                let screenWidth = screenRect.size.width - 70
+                let screenWidth = screenRect.size.width - 16 - (1 * 6)
                 let cellWidth = floor((screenWidth / 7.0))
                 cellSize = CGSizeMake(cellWidth, cellWidth * 1.1)
             }
@@ -82,14 +86,14 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 5
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 5
+        return 1
     }
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-    }
+//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+//    }
     
 }
