@@ -61,10 +61,9 @@ class KeyboardViewController: UIInputViewController {
         self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", backgroundColor: UIColor.lightGrayColor())
         self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n", backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor())
-        let deleteKey = MRYKeyboardButton( title: "⌫", backgroundColor: UIColor.lightGrayColor() )
-        deleteKey.customAction = { () -> Void in
-            MRYTextDocumentPRoxy.proxy.deleteBackward()
-        }
+        let deleteKey = MRYKeyboardButton( title: "⌫",
+            backgroundColor: UIColor.lightGrayColor(),
+            action: {() -> Void in MRYTextDocumentPRoxy.proxy.deleteBackward()} )
 
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")

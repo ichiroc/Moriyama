@@ -11,7 +11,12 @@ import UIKit
 class MRYKeyboardButton : UIButton{
     var _text: String?
     var customAction : (() -> Void)?
-    init( title: String, text: String? = nil, backgroundColor : UIColor = UIColor.whiteColor(), titleColor: UIColor = UIColor.blackColor()){
+    init( title: String,
+        text: String? = nil,
+        backgroundColor : UIColor = UIColor.whiteColor(),
+        titleColor: UIColor = UIColor.blackColor(),
+        action: (() -> Void)? = nil){
+        customAction = action
         _text = text
         super.init(frame: CGRectZero)
         self.setTitle(title, forState: .Normal)
