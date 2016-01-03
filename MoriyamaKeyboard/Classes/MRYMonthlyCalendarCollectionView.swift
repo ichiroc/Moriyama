@@ -18,6 +18,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     private var cellSize : CGSize?
     private let _isToday = false
     var todayIndexPath : NSIndexPath?
+    var viewController : UIViewController?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,20 +38,36 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         self.layer.cornerRadius = 3
     }
     
+//    private func firstCellDate() -> NSDate{
+//        if self._firstCellDate == nil{
+//            var currentDateComp = cal.components( [.Day, .Month ,.Year, .Weekday], fromDate: NSDate())
+//            currentDateComp.day = currentDateComp.day - 30
+//            while(currentDateComp.weekday != 1) {
+//                currentDateComp.day = currentDateComp.day - 1
+//                currentDateComp = cal.components([.Year, .Month, .Day, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
+//            }
+//            let ccal = NSCalendar.currentCalendar().dateFromComponents(currentDateComp)
+//            _firstCellDate = ccal!.dateByAddingTimeInterval(0.0)
+//        }
+//        return _firstCellDate!
+//    }
     private func firstCellDate() -> NSDate{
-        if self._firstCellDate == nil{
-            var comp = cal.components( [.Day, .Month ,.Year, .Weekday], fromDate: NSDate())
-            comp.day = comp.day - 30
-            while(comp.weekday != 1) {
-                comp.day = comp.day - 1
-                comp = cal.components([.Year, .Month, .Day, .Weekday], fromDate: cal.dateFromComponents(comp)!)
-            }
-            let ccal = NSCalendar.currentCalendar().dateFromComponents(comp)
-            _firstCellDate = ccal!.dateByAddingTimeInterval(0.0)
+        var currentDateComp = cal.components( [.Day, .Month ,.Year, .Weekday], fromDate: NSDate())
+        currentDateComp.day = currentDateComp.day - 30
+        currentDateComp = cal.components([.Year, .Month, .Day, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
+        while(currentDateComp.weekday != 1) {
+            currentDateComp.day = currentDateComp.day - 1
+            currentDateComp = cal.components([.Year, .Month, .Day, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
         }
-        return _firstCellDate!
+        let ccal = NSCalendar.currentCalendar().dateFromComponents(currentDateComp)
+        return ccal!.dateByAddingTimeInterval(0.0)
     }
-        
+    // MARK: - UICollectionVieDelegate
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+//        viewController?.showViewController(MRYDayViewController(), sender: self)
+        return true
+    }
+    
     // MARK: - UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
