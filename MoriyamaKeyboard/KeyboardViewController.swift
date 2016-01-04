@@ -22,7 +22,7 @@ class KeyboardViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Perform custom UI setup here
-        MRYTextDocumentPRoxy.proxy = self.textDocumentProxy
+        MRYTextDocumentProxy.proxy = self.textDocumentProxy
         self.layoutSubviews()
     }
     
@@ -63,11 +63,11 @@ class KeyboardViewController: UIInputViewController {
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n", backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor())
         let deleteKey = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
-            action: {() -> Void in MRYTextDocumentPRoxy.proxy.deleteBackward()} )
+            action: {() -> Void in MRYTextDocumentProxy.proxy.deleteBackward()} )
 
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
-        calendarView = MRYMonthlyCalendarCollectionView()
+        calendarView = MRYMonthlyCalendarCollectionView(viewController: self)
         let views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,

@@ -8,6 +8,6 @@
 
 import UIKit
 
-class MRYTextDocumentPRoxy: NSObject {
+class MRYTextDocumentProxy: NSObject {
     static var proxy: UITextDocumentProxy!
 }

@@ -43,7 +43,7 @@ class MRYKeyboardButton : UIButton{
             return
         }
         if let text = _text{
-            MRYTextDocumentPRoxy.proxy.insertText(text)
+            MRYTextDocumentProxy.proxy.insertText(text)
         }
     }
 }
