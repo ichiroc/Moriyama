@@ -12,55 +12,51 @@ class MRYDayViewController: UIViewController {
     var views : [String: UIView]!
     var cancelButton : UIButton!
     var insertButton : UIButton!
+    var timelineScrollView : UIScrollView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.lightGrayColor()
-        let dayScrollView = UIScrollView()
-        dayScrollView.translatesAutoresizingMaskIntoConstraints = false
+        timelineScrollView = UIScrollView()
+        timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
         
         let timeLine = UIView(frame: CGRectMake(0,0,self.view.frame.width,240))
         timeLine.backgroundColor = UIColor.whiteColor()
-        dayScrollView.addSubview(timeLine)
-        dayScrollView.contentSize = CGSizeMake(self.view.frame.width,240)
+        timelineScrollView.addSubview(timeLine)
+        timelineScrollView.contentSize = CGSizeMake(self.view.frame.width,240)
         
         cancelButton = MRYKeyboardButton(title: "Cancel", text: nil, backgroundColor: UIColor.whiteColor(), titleColor: UIColor.blueColor(), action: self.closeDayViewController)
-        self.view.addSubview(cancelButton)
         
         insertButton = MRYKeyboardButton(title: "Insert", text: nil, backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor(), action: nil)
-        self.view.addSubview(insertButton)
         
-        views = ["canvas": timeLine,
+        views = ["timeline": timeLine,
             "cancel": cancelButton,
             "insert" : insertButton,
-            "dayView": dayScrollView]
+            "timelineScroll": timelineScrollView]
         
-        let constraints = makeConstraints()
-//        scrollView.addConstraints(constraints)
-        
-        self.view.addSubview(dayScrollView)
-        self.view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat("V:|-[dayView]-3-[cancel]-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views))
-        self.view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat("|-[dayView]-|", options: [.AlignAllCenterX ] , metrics: nil, views: views))
-        self.view.addConstraints( NSLayoutConstraint.constraintsWithVisualFormat("|-[cancel]-[insert(==cancel)]-|", options: [.AlignAllCenterY ] , metrics: nil, views: views))
+        let constraints = self.constraintsSubviews()
+        self.view.addConstraints(constraints)
     }
 
-    func makeConstraints() -> [NSLayoutConstraint]{
+    func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
-        let c1 = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[canvas]-|",
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
-            views: views)
-        constraints.appendContentsOf(c1)
-        let c2 = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[canvas]-|",
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
-            views: views)
-        constraints.appendContentsOf(c2)
+        
+        self.view.addSubview(cancelButton)
+        self.view.addSubview(timelineScrollView)
+        
+        let vertical = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[timelineScroll]-3-[cancel]-|", options: NSLayoutFormatOptions(rawValue: 0) , metrics: nil, views: views)
+        constraints.appendContentsOf(vertical)
+        
+        let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat("|-[timelineScroll]-|", options: [.AlignAllCenterX ] , metrics: nil, views: views)
+        constraints.appendContentsOf(horizonalTimelineBase)
+        
+        self.view.addSubview(insertButton)
+        let horizonalButtons = NSLayoutConstraint.constraintsWithVisualFormat("|-[cancel]-[insert(==cancel)]-|", options: [.AlignAllCenterY ] , metrics: nil, views: views)
+        constraints.appendContentsOf(horizonalButtons)
         return constraints
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
