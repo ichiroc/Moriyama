@@ -75,7 +75,6 @@ class KeyboardViewController: UIInputViewController {
             "comma": commaKey,
             "calendar": calendarView]
         
-// original
         self.inputView?.addSubview(nextKeyboardButton)
         self.inputView?.addSubview(deleteKey)
         self.inputView?.addSubview(spaceKey)

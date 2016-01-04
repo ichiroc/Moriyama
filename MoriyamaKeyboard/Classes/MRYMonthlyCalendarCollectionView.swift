@@ -56,7 +56,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        viewController?.showViewController(MRYDayViewController(), sender: self)
+        viewController?.showViewController(MRYDayViewController(), sender: self)
         return true
     }
     
