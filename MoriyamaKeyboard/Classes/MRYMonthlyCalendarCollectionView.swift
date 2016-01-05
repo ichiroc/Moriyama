@@ -19,6 +19,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     private let _isToday = false
     var todayIndexPath : NSIndexPath?
     var viewController : UIViewController?
+    var dayViewController : MRYDayViewController?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -39,6 +40,10 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         self.layer.cornerRadius = 3
     }
     
+    func dismissDayViewController(){
+        dayViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     private func firstCellDate() -> NSDate{
         if self._firstCellDate == nil{
             var currentDateComp = cal.components( [.Day, .Month ,.Year, .Weekday], fromDate: NSDate())
@@ -56,7 +61,9 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        viewController?.showViewController(MRYDayViewController(), sender: self)
+        dayViewController = MRYDayViewController()
+        viewController?.showViewController(dayViewController!, sender: self)
+        dayViewController?.monthlyView = self
         return true
     }
     

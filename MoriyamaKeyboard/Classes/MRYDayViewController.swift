@@ -12,8 +12,19 @@ class MRYDayViewController: UIViewController {
     var views : [String: UIView]!
     var cancelButton : UIButton!
     var insertButton : UIButton!
+    var monthlyView : MRYMonthlyCalendarCollectionView?
     var timelineScrollView : UIScrollView!
-
+   
+//    init(monthlyView _monthlyView: MRYMonthlyCalendarCollectionView){
+//        monthlyView = _monthlyView
+//        super.init(coder: nil)
+//    }
+//   
+//    required init?(coder aDecoder: NSCoder) {
+//        monthlyView = MRYMonthlyCalendarCollectionView()
+//        super.init(coder: aDecoder)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +37,7 @@ class MRYDayViewController: UIViewController {
         timelineScrollView.addSubview(timeLine)
         timelineScrollView.contentSize = CGSizeMake(self.view.frame.width,240)
         
-        cancelButton = MRYKeyboardButton(title: "Cancel", text: nil, backgroundColor: UIColor.whiteColor(), titleColor: UIColor.blueColor(), action: self.closeDayViewController)
+        cancelButton = MRYKeyboardButton(title: "Cancel", text: nil, backgroundColor: UIColor.whiteColor(), titleColor: UIColor.blueColor(), action: self.dismissSelf)
         
         insertButton = MRYKeyboardButton(title: "Insert", text: nil, backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor(), action: nil)
         
@@ -64,8 +75,10 @@ class MRYDayViewController: UIViewController {
     }
     
 
-    func closeDayViewController(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func dismissSelf(){
+        if let monthlyView0 = self.monthlyView {
+            monthlyView0.dismissDayViewController()
+        }
     }
     /*
     // MARK: - Navigation
