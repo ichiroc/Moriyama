@@ -26,22 +26,22 @@ class MRYDayViewController: UIViewController {
         let width = self.view.frame.width - 32
         let hourlyHeight = 40.0
         let height = CGFloat(24 * hourlyHeight)
-        let timeLine = UIView(frame: CGRectMake(0,0,width,height))
-        timeLine.backgroundColor = UIColor.whiteColor()
-        timelineScrollView.addSubview(timeLine)
+        let timeline = UIView(frame: CGRectMake(0,0,width,height))
+        timeline.backgroundColor = UIColor.whiteColor()
+        timelineScrollView.addSubview(timeline)
         timelineScrollView.contentSize = CGSizeMake(width,height)
         
         for (var i = 0.0 ; i < 24 ; i++) {
             let hour = UIView(frame: CGRectMake(0, CGFloat(i * hourlyHeight), width, 1 ))
             hour.backgroundColor = UIColor.lightGrayColor()
-            timeLine.addSubview(hour)
+            timeline.addSubview(hour)
         }
         
         cancelButton = MRYKeyboardButton(title: "Cancel", text: nil, backgroundColor: UIColor.whiteColor(), titleColor: UIColor.blueColor(), action: self.dismissSelf)
         
         insertButton = MRYKeyboardButton(title: "Insert", text: nil, backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor(), action: nil)
         
-        views = ["timeline": timeLine,
+        views = ["timeline": timeline,
             "cancel": cancelButton,
             "insert" : insertButton,
             "timelineScroll": timelineScrollView]
