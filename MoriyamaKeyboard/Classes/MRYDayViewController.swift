@@ -15,15 +15,6 @@ class MRYDayViewController: UIViewController {
     var monthlyView : MRYMonthlyCalendarCollectionView?
     var timelineScrollView : UIScrollView!
    
-//    init(monthlyView _monthlyView: MRYMonthlyCalendarCollectionView){
-//        monthlyView = _monthlyView
-//        super.init(coder: nil)
-//    }
-//   
-//    required init?(coder aDecoder: NSCoder) {
-//        monthlyView = MRYMonthlyCalendarCollectionView()
-//        super.init(coder: aDecoder)
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +23,19 @@ class MRYDayViewController: UIViewController {
         timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        let timeLine = UIView(frame: CGRectMake(0,0,self.view.frame.width,240))
+        let width = self.view.frame.width - 32
+        let hourlyHeight = 40.0
+        let height = CGFloat(24 * hourlyHeight)
+        let timeLine = UIView(frame: CGRectMake(0,0,width,height))
         timeLine.backgroundColor = UIColor.whiteColor()
         timelineScrollView.addSubview(timeLine)
-        timelineScrollView.contentSize = CGSizeMake(self.view.frame.width,240)
+        timelineScrollView.contentSize = CGSizeMake(width,height)
+        
+        for (var i = 0.0 ; i < 24 ; i++) {
+            let hour = UIView(frame: CGRectMake(0, CGFloat(i * hourlyHeight), width, 1 ))
+            hour.backgroundColor = UIColor.lightGrayColor()
+            timeLine.addSubview(hour)
+        }
         
         cancelButton = MRYKeyboardButton(title: "Cancel", text: nil, backgroundColor: UIColor.whiteColor(), titleColor: UIColor.blueColor(), action: self.dismissSelf)
         
