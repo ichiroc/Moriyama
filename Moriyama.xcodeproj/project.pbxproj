@@ -178,8 +178,8 @@
 			children = (
 				5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */,
 				5D1E8AAD1C2F3B1E0032CCC2 /* MRYMonthlyCalendarCollectionView.swift */,
-				5D3942761C3737D6004B89EF /* MRYDayViewController.swift */,
 				5D1E8AAF1C2F3C270032CCC2 /* MRYMonthlyCalendarCollectionViewCell.swift */,
+				5D3942761C3737D6004B89EF /* MRYDayViewController.swift */,
 				5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentPRoxy.swift */,
 				5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */,
 				5D9D80511C2D405700623AF7 /* Info.plist */,
