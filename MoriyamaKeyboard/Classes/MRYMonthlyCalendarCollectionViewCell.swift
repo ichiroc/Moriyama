@@ -7,16 +7,19 @@
 //
 
 import UIKit
+import EventKit
 
 class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     var dateLabel:UILabel
     let cal  = NSCalendar.currentCalendar()
     var date : NSDate?
-    
+    var events : [EKEvent] = []
+    let eventIndicator = UIView()
     override func prepareForReuse() {
         self.dateLabel.backgroundColor = UIColor.whiteColor()
         self.dateLabel.layer.cornerRadius = 0
         self.dateLabel.textColor = UIColor.blackColor()
+        super.prepareForReuse()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,23 +31,26 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         dateLabel = UILabel()
         super.init(frame: frame)
         self.addSubview(dateLabel)
+        self.addSubview(eventIndicator)
+        eventIndicator.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = UIFont.systemFontOfSize(12)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
 
        self.backgroundColor = UIColor.whiteColor()
         
-        let views = ["date": dateLabel]
+        let views = ["date": dateLabel,
+        "events": eventIndicator]
         let dateWidth = NSLayoutConstraint.constraintsWithVisualFormat(
             "|-[date]-|",
             options: NSLayoutFormatOptions(rawValue: 0) ,
             metrics: nil, views: views
         )
         let dateHeight = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[date]-|",
-            options:NSLayoutFormatOptions(rawValue: 0)  ,
+            "V:|-[date]-[events(5)]-|",
+            options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllTrailing],
             metrics: nil, views: views
         )
-
+        
         self.addConstraints(dateWidth)
         self.addConstraints(dateHeight)
         self.dateLabel.textAlignment = .Center
@@ -85,10 +91,17 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         }else if comp.weekday == 7{
             self.dateLabel.textColor = UIColor.blueColor()
         }
-        
+        events = retriveEvent( cellDate )
+        if events.count > 0 {
+            eventIndicator.backgroundColor = UIColor.greenColor()
+        }
         self.dateLabel.text = formatter.stringFromDate(cellDate)
     }
     
+    private func retriveEvent(date: NSDate) -> [EKEvent]{
+        let store = MRYEventDataStore.singleton()
+        return store.eventWithDate(date)
+    }
     
     private func todayStyle(){
         self.dateLabel.backgroundColor = UIColor.lightGrayColor()

@@ -43,12 +43,17 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     func dismissDayViewController(){
         dayViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+   
+    // コレクションビューで最初に表示すべきセル（日曜日）の NSDate を返す
     private func firstCellDate() -> NSDate{
         if self._firstCellDate == nil{
-            var currentDateComp = cal.components( [.Day, .Month ,.Year, .Weekday], fromDate: NSDate())
+            var currentDateComp = cal.components( [.Day, .Month ,.Year, .Weekday, .Hour, .Minute, .Second], fromDate: NSDate())
+            currentDateComp.hour = 0 // 時間はリセット
+            currentDateComp.minute = 0
+            currentDateComp.second = 0
             currentDateComp.day = currentDateComp.day - 30
-            currentDateComp = cal.components([.Year, .Month, .Day, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
+            
+            currentDateComp = cal.components([.Day, .Month ,.Year, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
             while(currentDateComp.weekday != 1) {
                 currentDateComp.day = currentDateComp.day - 1
                 currentDateComp = cal.components([.Year, .Month, .Day, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)

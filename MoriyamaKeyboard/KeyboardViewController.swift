@@ -41,7 +41,7 @@ class KeyboardViewController: UIInputViewController {
         // The app is about to change the document's contents. Perform any preparation here.
     }
     override func viewDidLayoutSubviews() {
-        print("view will rotate ?")
+        //print("view will rotate ?")
     }
     override func textDidChange(textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
