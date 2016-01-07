@@ -22,6 +22,7 @@ class MRYDayViewController: UIViewController {
     var timelineSideBar : UIView!
     let timelineSidebarWidth : CGFloat = 25.0
     var events : [EKEvent] = []
+    var eventViews : [UIView] = []
     var timelineWidth : CGFloat!
     private var cal  = NSCalendar.currentCalendar()
     
@@ -68,9 +69,16 @@ class MRYDayViewController: UIViewController {
         
         let constraints = self.constraintsSubviews()
         self.view.addConstraints(constraints)
-        
+     
+        moveToInitialPointOnTimeline()
         loadEvents()
 
+    }
+    
+    func moveToInitialPointOnTimeline(){
+        let hour = cal.component(.Hour, fromDate: NSDate() )
+        let initialPoint = CGPointMake(0.0, CGFloat(hour) * CGFloat(hourlyHeight ))
+        timelineScrollView.setContentOffset(initialPoint, animated: false)
     }
     
     func layoutTimeline(){
@@ -96,7 +104,7 @@ class MRYDayViewController: UIViewController {
     }
     
     func loadEvents(){
-
+        eventViews = []
         events.forEach{
             let startDate = $0.startDate
             let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
@@ -108,12 +116,32 @@ class MRYDayViewController: UIViewController {
             let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth,CGFloat(height) ))
             eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
             
+            let color = UIColor(CGColor: $0.calendar.CGColor)
+            var red, green, blue, alpha :CGFloat
+            green = 0
+            red = 0
+            blue = 0
+            alpha = 0
+            color.getRed(&red, green: &green , blue: &blue , alpha: &alpha)
+            let bgDelta = ((red * 255 * 299) + (green * 255 *  587) + (blue * 255 * 114)) / 1000
             let titleLabel = UILabel()
             titleLabel.text = $0.title
+            if bgDelta < 125 {
+                titleLabel.textColor = UIColor.whiteColor()
+            }else{
+                titleLabel.textColor = UIColor.blackColor()
+            }
             eventView.addSubview(titleLabel)
             titleLabel.sizeToFit()
+            eventViews.append(eventView)
             
             timeline.addSubview(eventView)
+        }
+    }
+    
+    func layoutEventView(){
+        eventViews.forEach{
+            $0
         }
     }
     
