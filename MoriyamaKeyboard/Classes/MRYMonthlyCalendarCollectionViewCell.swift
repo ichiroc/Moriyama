@@ -30,8 +30,8 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         dateLabel = UILabel()
         super.init(frame: frame)
-        self.addSubview(dateLabel)
-        self.addSubview(eventIndicator)
+        self.contentView.addSubview(dateLabel)
+        self.contentView.addSubview(eventIndicator)
         eventIndicator.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.font = UIFont.systemFontOfSize(12)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -92,9 +92,10 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
             self.dateLabel.textColor = UIColor.blueColor()
         }
         events = retriveEvent( cellDate )
-        if events.count > 0 {
-            eventIndicator.backgroundColor = UIColor.greenColor()
+        events.map{
+            eventIndicator.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
         }
+        
         self.dateLabel.text = formatter.stringFromDate(cellDate)
     }
     

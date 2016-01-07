@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKit
 
 class MRYDayViewController: UIViewController {
     var views : [String: UIView]!
@@ -20,6 +21,9 @@ class MRYDayViewController: UIViewController {
     var timeline : UIView!
     var timelineSideBar : UIView!
     let timelineSidebarWidth : CGFloat = 25.0
+    var events : [EKEvent] = []
+    var timelineWidth : CGFloat!
+    private var cal  = NSCalendar.currentCalendar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +35,7 @@ class MRYDayViewController: UIViewController {
         timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        let timelineWidth = self.view.frame.width - 32.0 - timelineSidebarWidth
+        timelineWidth = self.view.frame.width - 32.0 - timelineSidebarWidth
         let timelineHeight = CGFloat(24 * hourlyHeight)
         timeline = UIView(frame: CGRectMake(timelineSidebarWidth,0,timelineWidth,timelineHeight))
        
@@ -64,6 +68,9 @@ class MRYDayViewController: UIViewController {
         
         let constraints = self.constraintsSubviews()
         self.view.addConstraints(constraints)
+        
+        loadEvents()
+
     }
     
     func layoutTimeline(){
@@ -86,6 +93,28 @@ class MRYDayViewController: UIViewController {
             timelineSideBar.addSubview(timeLabel)
         }
         
+    }
+    
+    func loadEvents(){
+
+        events.forEach{
+            let startDate = $0.startDate
+            let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
+            let top = Double(dateComp.hour) * hourlyHeight
+            let interval  = $0.endDate.timeIntervalSinceDate(startDate)
+            let height = (interval / 60 / 60) * hourlyHeight
+            print("title=\($0.title) hour=\(dateComp.hour) top= \(top) height=\(height) ")
+
+            let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth,CGFloat(height) ))
+            eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
+            
+            let titleLabel = UILabel()
+            titleLabel.text = $0.title
+            eventView.addSubview(titleLabel)
+            titleLabel.sizeToFit()
+            
+            timeline.addSubview(eventView)
+        }
     }
     
     func constraintsSubviews() -> [NSLayoutConstraint]{
