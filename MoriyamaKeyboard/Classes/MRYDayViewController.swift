@@ -139,13 +139,52 @@ class MRYDayViewController: UIViewController {
             timeline.addSubview(eventView)
             
         }
-//        layoutEventView()
+        layoutEventView()
     }
     
     func layoutEventView(){
-        eventViews.forEach{
-            $0
+        var conflicts: [[UIView]] = []
+        var skipViews : [UIView] = []
+        for(var i = 0; i < eventViews.count; i++){
+            let iEvent = events[i]
+            let iEventStart = iEvent.startDate
+            let iEventEnd = iEvent.endDate
+            var innerConflicts : [UIView] = [eventViews[i]]
+            for(var y = i + 1; y < eventViews.count; y++){
+                if !skipViews.contains(eventViews[y]){
+                    let yEvent = events[y]
+                    let yEventStart = yEvent.startDate
+                    let yEventEnd = yEvent.endDate
+                    
+                    if !((iEventEnd.compare(yEventStart) == NSComparisonResult.OrderedSame ||
+                        iEventEnd.compare(yEventStart) == NSComparisonResult.OrderedAscending)
+                        ||
+                        (iEventStart.compare(yEventEnd) == NSComparisonResult.OrderedDescending ||
+                            iEventStart.compare(yEventEnd) == NSComparisonResult.OrderedSame))
+                    {
+                        skipViews.append(eventViews[y])
+                        innerConflicts.append(eventViews[y])
+                    }
+                }
+            }
+            if innerConflicts.count >= 2 {
+                conflicts.append(innerConflicts)
+            }
         }
+        
+        conflicts.forEach({ conflicts0 in
+            var leftOrder = 0
+            conflicts0.forEach({ view in
+                print("conflicts.count=\(conflicts0.count) ")
+                let width = view.frame.width / CGFloat(conflicts0.count)
+                view.frame = CGRectMake(
+                    CGFloat(leftOrder) * width  ,
+                    view.frame.origin.y ,
+                    view.frame.width / CGFloat(conflicts0.count),
+                    view.frame.height)
+                leftOrder++
+            })
+        })
     }
     
     func constraintsSubviews() -> [NSLayoutConstraint]{
