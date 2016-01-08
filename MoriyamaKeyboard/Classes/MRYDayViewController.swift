@@ -43,7 +43,7 @@ class MRYDayViewController: UIViewController {
         timelineSideBar = UIView(frame: CGRectMake(0,0,25,timelineHeight))
         timelineSideBar.backgroundColor = UIColor.whiteColor()
         
-        layoutTimeline()
+        makeTimelineView()
         
         doneButton = MRYKeyboardButton(title: "Done",
             text: nil,
@@ -81,7 +81,7 @@ class MRYDayViewController: UIViewController {
         timelineScrollView.setContentOffset(initialPoint, animated: false)
     }
     
-    func layoutTimeline(){
+    func makeTimelineView(){
         timeline.backgroundColor = UIColor.whiteColor()
         timelineScrollView.addSubview(timeline)
         timelineScrollView.addSubview(timelineSideBar)
@@ -106,16 +106,17 @@ class MRYDayViewController: UIViewController {
     func loadEvents(){
         eventViews = []
         events.forEach{
+            let ev : EKEvent = $0
             let startDate = $0.startDate
             let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
-            let top = Double(dateComp.hour) * hourlyHeight
+            let top = (Double(dateComp.hour) * hourlyHeight) + ((Double(dateComp.minute) / 60 ) * hourlyHeight)
             let interval  = $0.endDate.timeIntervalSinceDate(startDate)
             let height = (interval / 60 / 60) * hourlyHeight
-            print("title=\($0.title) hour=\(dateComp.hour) top= \(top) height=\(height) ")
 
             let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth,CGFloat(height) ))
             eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
             
+            // make color
             let color = UIColor(CGColor: $0.calendar.CGColor)
             var red, green, blue, alpha :CGFloat
             green = 0
@@ -136,7 +137,9 @@ class MRYDayViewController: UIViewController {
             eventViews.append(eventView)
             
             timeline.addSubview(eventView)
+            
         }
+//        layoutEventView()
     }
     
     func layoutEventView(){
