@@ -18,7 +18,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     private var cellSize : CGSize?
     private let _isToday = false
     var todayIndexPath : NSIndexPath?
-    var viewController : UIViewController?
+    var keyboardViewController : UIViewController?
     var dayViewController : MRYDayViewController?
     
     required init?(coder aDecoder: NSCoder) {
@@ -30,7 +30,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     }
    
     init(viewController vc: UIViewController){
-        self.viewController = vc
+        self.keyboardViewController = vc
         super.init(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         self.registerClass(MRYMonthlyCalendarCollectionViewCell.self, forCellWithReuseIdentifier: "monthlyCell")
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -70,7 +70,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthlyCalendarCollectionViewCell
         dayViewController?.events = cell.events
         dayViewController?.currentDate = cell.date
-        viewController?.showViewController(dayViewController!, sender: self)
+        keyboardViewController?.showViewController(dayViewController!, sender: self)
         dayViewController?.monthlyView = self
         return true
     }
@@ -100,12 +100,14 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            let margins = keyboardViewController?.inputView?.layoutMargins
             if( cellSize == nil){
                 let screenRect = collectionView.bounds
-                let screenWidth = screenRect.size.width - 16 - (1 * 6)
+                let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6) // set 40 in landscape mode.
                 let cellWidth = floor((screenWidth / 7.0))
                 cellSize = CGSizeMake(cellWidth, cellWidth * 1.1)
             }
+            print("sizeForItemAtIndexPath \(margins)")
             return cellSize!
     }
     
