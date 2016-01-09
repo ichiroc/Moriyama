@@ -19,6 +19,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         self.dateLabel.backgroundColor = UIColor.whiteColor()
         self.dateLabel.layer.cornerRadius = 0
         self.dateLabel.textColor = UIColor.blackColor()
+        dateLabel.font = UIFont.systemFontOfSize(12)
         super.prepareForReuse()
     }
     
