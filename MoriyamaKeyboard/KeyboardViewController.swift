@@ -36,7 +36,6 @@ class KeyboardViewController: UIInputViewController {
         if let _todayIndexPath = calendarView.todayIndexPath {
             calendarView.scrollToItemAtIndexPath( _todayIndexPath, atScrollPosition: .Top, animated: false)
         }
-        print("viewWillApper \(self.inputView?.layoutMargins)")
     }
 
     override func textWillChange(textInput: UITextInput?) {
@@ -44,11 +43,9 @@ class KeyboardViewController: UIInputViewController {
     }
     override func viewDidLayoutSubviews() {
         //print("view will rotate ?")
-        print("viewDidLayoutSubviews \(self.inputView?.layoutMargins)")
     }
     
     override func viewWillLayoutSubviews() {
-        print("viewWillLayoutSubviews \(self.inputView?.layoutMargins)")
         self.inputView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     override func textDidChange(textInput: UITextInput?) {

@@ -177,7 +177,6 @@ class MRYDayViewController: UIViewController {
         conflicts.forEach({ conflicts0 in
             var leftOrder = 0
             conflicts0.forEach({ view in
-                print("conflicts.count=\(conflicts0.count) ")
                 let width = view.frame.width / CGFloat(conflicts0.count)
                 view.frame = CGRectMake(
                     CGFloat(leftOrder) * width  ,
