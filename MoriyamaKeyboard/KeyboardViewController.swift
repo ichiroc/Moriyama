@@ -12,7 +12,8 @@ class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
     var calendarView : MRYMonthlyCalendarCollectionView!
-
+    let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    
     override func updateViewConstraints() {
         super.updateViewConstraints()
     
@@ -35,6 +36,7 @@ class KeyboardViewController: UIInputViewController {
         if let _todayIndexPath = calendarView.todayIndexPath {
             calendarView.scrollToItemAtIndexPath( _todayIndexPath, atScrollPosition: .Top, animated: false)
         }
+        print("viewWillApper \(self.inputView?.layoutMargins)")
     }
 
     override func textWillChange(textInput: UITextInput?) {
@@ -42,6 +44,12 @@ class KeyboardViewController: UIInputViewController {
     }
     override func viewDidLayoutSubviews() {
         //print("view will rotate ?")
+        print("viewDidLayoutSubviews \(self.inputView?.layoutMargins)")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        print("viewWillLayoutSubviews \(self.inputView?.layoutMargins)")
+        self.inputView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     override func textDidChange(textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
@@ -82,30 +90,37 @@ class KeyboardViewController: UIInputViewController {
         self.inputView?.addSubview(commaKey)
         self.inputView?.addSubview(calendarView)
         
+        let metrics = [ "left": margins.left, "right": margins.right, "margin": margins.left ]
+        
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-|",
+                "H:|-margin-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-margin-|",
                 options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
-                metrics: nil,
+                metrics: metrics,
                 views: views)
         )
 
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-[calendar]-|",
+                "H:|-margin-[calendar]-margin-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: nil,
+                metrics: metrics,
                 views: views)
         )
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[calendar(>=200@200)]-5-[space(40)]-5-|",
+                "V:|-[calendar(>=220@200)]-5-[space(40)]-5-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: nil,
+                metrics: metrics,
                 views: views)
         )
         
+    }
+    
+    enum Orientation{
+        case Landscape
+        case Portrait
     }
     
 }

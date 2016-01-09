@@ -71,7 +71,7 @@ class MRYDayViewController: UIViewController {
         self.view.addConstraints(constraints)
      
         moveToInitialPointOnTimeline()
-        loadEvents()
+        loadEventViews()
 
     }
     
@@ -103,10 +103,9 @@ class MRYDayViewController: UIViewController {
         
     }
     
-    func loadEvents(){
+    func loadEventViews(){
         eventViews = []
         events.forEach{
-            let ev : EKEvent = $0
             let startDate = $0.startDate
             let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
             let top = (Double(dateComp.hour) * hourlyHeight) + ((Double(dateComp.minute) / 60 ) * hourlyHeight)
@@ -127,17 +126,20 @@ class MRYDayViewController: UIViewController {
             let bgDelta = ((red * 255 * 299) + (green * 255 *  587) + (blue * 255 * 114)) / 1000
             let titleLabel = UILabel()
             titleLabel.text = $0.title
+            titleLabel.font = UIFont.systemFontOfSize(13)
+            titleLabel.adjustsFontSizeToFitWidth = true
+            titleLabel.numberOfLines = 1
+            titleLabel.lineBreakMode = .ByClipping
+            titleLabel.minimumScaleFactor = 0.01
             if bgDelta < 125 {
                 titleLabel.textColor = UIColor.whiteColor()
             }else{
                 titleLabel.textColor = UIColor.blackColor()
             }
             eventView.addSubview(titleLabel)
-            titleLabel.sizeToFit()
+            eventView.layer.borderColor = UIColor.whiteColor().CGColor
+            eventView.layer.borderWidth = 0.5
             eventViews.append(eventView)
-            
-            timeline.addSubview(eventView)
-            
         }
         layoutEventView()
     }
@@ -184,6 +186,12 @@ class MRYDayViewController: UIViewController {
                     view.frame.height)
                 leftOrder++
             })
+        })
+        eventViews.forEach({ view in
+            timeline.addSubview(view)
+            view.subviews.forEach{
+                $0.sizeToFit()
+            }
         })
     }
     
