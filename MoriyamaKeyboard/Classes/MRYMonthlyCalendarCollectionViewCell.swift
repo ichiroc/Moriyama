@@ -79,6 +79,9 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         }else{
             formatter.dateFormat = "d"
         }
+        let cellColor = monthlyColor(cellDate)
+        self.contentView.backgroundColor = cellColor
+        self.dateLabel.backgroundColor = cellColor
         if(isToday()){
             self.dateLabel.backgroundColor = UIColor.lightGrayColor()
             self.dateLabel.layer.cornerRadius = 13
@@ -97,6 +100,16 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         }
         
         self.dateLabel.text = formatter.stringFromDate(cellDate)
+    }
+    
+    private func monthlyColor(date: NSDate) -> UIColor{
+        let thisMonth = cal.component(.Month, fromDate: NSDate())
+        var color = UIColor.whiteColor()
+        let cellMonth = cal.component(.Month, fromDate: date)
+        if ((cellMonth - thisMonth) % 2) != 0 {
+            color = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        }
+        return color
     }
     
     private func retriveEvent(date: NSDate) -> [EKEvent]{

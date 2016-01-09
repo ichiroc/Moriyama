@@ -103,7 +103,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
             let margins = keyboardViewController?.inputView?.layoutMargins
             if( cellSize == nil){
                 let screenRect = collectionView.bounds
-                let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6) // set 40 in landscape mode.
+                let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6)
                 let cellWidth = floor((screenWidth / 7.0))
                 cellSize = CGSizeMake(cellWidth, cellWidth * 1.1)
             }
