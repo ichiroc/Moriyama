@@ -76,6 +76,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
 
         if cellDateComp.day == 1 {
             formatter.dateFormat = "M/d"
+            self.dateLabel.font = UIFont.boldSystemFontOfSize(12)
         }else{
             formatter.dateFormat = "d"
         }
