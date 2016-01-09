@@ -10,20 +10,18 @@ import UIKit
 import EventKit
 
 class MRYDayViewController: UIViewController {
-    var views : [String: UIView]!
-    var doneButton : UIButton!
-    var insertButton : UIButton!
     var monthlyView : MRYMonthlyCalendarCollectionView?
-    var timelineScrollView : UIScrollView!
     var currentDate: NSDate?
-    var formatter  = NSDateFormatter()
-    let hourlyHeight = 40.0
-    var timeline : UIView!
-    var timelineSideBar : UIView!
-    let timelineSidebarWidth : CGFloat = 25.0
     var events : [EKEvent] = []
-    var eventViews : [UIView] = []
-    var timelineWidth : CGFloat!
+    private var views : [String: UIView]!
+    private var doneButton : UIButton!
+    private var insertButton : UIButton!
+    private var timelineScrollView : UIScrollView!
+    private var formatter  = NSDateFormatter()
+    private let hourlyHeight = 40.0
+    private var timeline : UIView!
+    private var eventViews : [UIView] = []
+    private var timelineWidth : CGFloat!
     private var cal  = NSCalendar.currentCalendar()
     
     override func viewDidLoad() {
@@ -33,17 +31,7 @@ class MRYDayViewController: UIViewController {
         formatter.dateFormat = "M/d(E)"
         
         self.view.backgroundColor = UIColor.lightGrayColor()
-        timelineScrollView = UIScrollView()
-        timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        timelineWidth = self.view.frame.width - 32.0 - timelineSidebarWidth
-        let timelineHeight = CGFloat(24 * hourlyHeight)
-        timeline = UIView(frame: CGRectMake(timelineSidebarWidth,0,timelineWidth,timelineHeight))
-       
-        timelineSideBar = UIView(frame: CGRectMake(0,0,25,timelineHeight))
-        timelineSideBar.backgroundColor = UIColor.whiteColor()
-        
-        makeTimelineView()
+        timelineScrollView = timelineView()
         
         doneButton = MRYKeyboardButton(title: "Done",
             text: nil,
@@ -62,7 +50,7 @@ class MRYDayViewController: UIViewController {
             titleColor: UIColor.whiteColor(),
             action: { self.insert()})
         
-        views = ["timeline": timeline,
+        views = [
             "cancel": doneButton,
             "insert" : insertButton,
             "timelineScroll": timelineScrollView]
@@ -81,27 +69,37 @@ class MRYDayViewController: UIViewController {
         timelineScrollView.setContentOffset(initialPoint, animated: false)
     }
     
-    func makeTimelineView(){
+    func timelineView() -> UIScrollView {
+        let sidebarWidth : CGFloat = 25.0
+        let timelineHeight = CGFloat(24 * hourlyHeight)
+        timelineWidth = self.view.frame.width - 32.0 - sidebarWidth
+        timelineScrollView = UIScrollView()
+        timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
+        timeline = UIView(frame: CGRectMake(sidebarWidth,0,timelineWidth,timelineHeight))
         timeline.backgroundColor = UIColor.whiteColor()
         timelineScrollView.addSubview(timeline)
-        timelineScrollView.addSubview(timelineSideBar)
         timelineScrollView.contentSize = CGSizeMake(timeline.frame.width, timeline.frame.height)
         
+        let tlSideBar = UIView(frame: CGRectMake(0,0,25,timelineHeight))
+        tlSideBar.backgroundColor = UIColor.whiteColor()
         for (var i = 1.0 ; i < 24 ; i++) { // 0時の描画はしない
-            let hour = UIView(frame: CGRectMake(0, CGFloat(i * hourlyHeight), timeline.frame.width, 1 ))
-            hour.backgroundColor = UIColor.lightGrayColor()
-            timeline.addSubview(hour)
+            let hourLine = UIView(frame: CGRectMake(0, CGFloat(i * hourlyHeight), timeline.frame.width, 1 ))
+            hourLine.backgroundColor = UIColor.lightGrayColor()
+            timeline.addSubview(hourLine)
             
-            let timeLabel = UILabel(frame: CGRectMake(0, CGFloat(i * hourlyHeight - (hourlyHeight / 2) ), timelineSidebarWidth, CGFloat(hourlyHeight)))
+            let timeLabel = UILabel(frame: CGRectMake(0, CGFloat(i * hourlyHeight - (hourlyHeight / 2) ), sidebarWidth, CGFloat(hourlyHeight)))
             timeLabel.text = "\(Int(i))"
             timeLabel.font.fontWithSize(11.0)
             timeLabel.adjustsFontSizeToFitWidth = true
             timeLabel.textColor = UIColor.grayColor()
             timeLabel.textAlignment = .Center
-            timelineSideBar.addSubview(timeLabel)
+            tlSideBar.addSubview(timeLabel)
         }
+        timelineScrollView.addSubview(tlSideBar)
+        return timelineScrollView
         
     }
+    
     
     func loadEventViews(){
         eventViews = []
@@ -118,10 +116,7 @@ class MRYDayViewController: UIViewController {
             // make color
             let color = UIColor(CGColor: $0.calendar.CGColor)
             var red, green, blue, alpha :CGFloat
-            green = 0
-            red = 0
-            blue = 0
-            alpha = 0
+            green = 0; red = 0; blue = 0; alpha = 0
             color.getRed(&red, green: &green , blue: &blue , alpha: &alpha)
             let bgDelta = ((red * 255 * 299) + (green * 255 *  587) + (blue * 255 * 114)) / 1000
             let titleLabel = UILabel()
@@ -141,10 +136,10 @@ class MRYDayViewController: UIViewController {
             eventView.layer.borderWidth = 0.5
             eventViews.append(eventView)
         }
-        layoutEventView()
+        layoutEventViews()
     }
     
-    func layoutEventView(){
+    func layoutEventViews(){
         var conflicts: [[UIView]] = []
         var skipViews : [UIView] = []
         for(var i = 0; i < eventViews.count; i++){

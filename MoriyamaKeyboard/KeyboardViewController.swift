@@ -107,7 +107,7 @@ class KeyboardViewController: UIInputViewController {
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[calendar(>=220@200)]-5-[space(40)]-5-|",
+                "V:|-[calendar(>=250@200)]-5-[space(40)]-5-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: metrics,
                 views: views)
