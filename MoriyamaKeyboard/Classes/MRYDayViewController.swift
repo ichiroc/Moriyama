@@ -15,7 +15,7 @@ class MRYDayViewController: UIViewController {
     private var events : [EKEvent] {
         get {
             if let date = currentDate{
-                return MRYEventDataStore().eventWithDate(date)
+                return MRYEventDataStore.singleton().eventWithDate(date)
             }
             return []
         }
