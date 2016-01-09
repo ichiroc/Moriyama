@@ -13,7 +13,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     private var dateLabel:UILabel
     private let cal  = NSCalendar.currentCalendar()
     var date : NSDate?
-    var events : [EKEvent] = []
+    private var events : [EKEvent] = []
     private let eventIndicator = UIView()
     private let fontSize : CGFloat = 13.0
     override func prepareForReuse() {
