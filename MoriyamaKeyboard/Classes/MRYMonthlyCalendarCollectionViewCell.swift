@@ -10,16 +10,17 @@ import UIKit
 import EventKit
 
 class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
-    var dateLabel:UILabel
-    let cal  = NSCalendar.currentCalendar()
+    private var dateLabel:UILabel
+    private let cal  = NSCalendar.currentCalendar()
     var date : NSDate?
     var events : [EKEvent] = []
-    let eventIndicator = UIView()
+    private let eventIndicator = UIView()
+    private let fontSize : CGFloat = 13.0
     override func prepareForReuse() {
         self.dateLabel.backgroundColor = UIColor.whiteColor()
         self.dateLabel.layer.cornerRadius = 0
         self.dateLabel.textColor = UIColor.blackColor()
-        dateLabel.font = UIFont.systemFontOfSize(12)
+        dateLabel.font = UIFont.systemFontOfSize(fontSize)
         super.prepareForReuse()
     }
     
@@ -34,7 +35,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(dateLabel)
         self.contentView.addSubview(eventIndicator)
         eventIndicator.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.font = UIFont.systemFontOfSize(12)
+        dateLabel.font = UIFont.systemFontOfSize(fontSize)
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
 
        self.backgroundColor = UIColor.whiteColor()
@@ -77,7 +78,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
 
         if cellDateComp.day == 1 {
             formatter.dateFormat = "M/d"
-            self.dateLabel.font = UIFont.boldSystemFontOfSize(12)
+            self.dateLabel.font = UIFont.boldSystemFontOfSize(fontSize)
         }else{
             formatter.dateFormat = "d"
         }
@@ -97,8 +98,12 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
             self.dateLabel.textColor = UIColor.blueColor()
         }
         events = retriveEvent( cellDate )
-        events.map{
-            eventIndicator.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
+        if events.count == 0 {
+            eventIndicator.backgroundColor = cellColor
+        }else{
+            events.map{
+                eventIndicator.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
+            }
         }
         
         self.dateLabel.text = formatter.stringFromDate(cellDate)

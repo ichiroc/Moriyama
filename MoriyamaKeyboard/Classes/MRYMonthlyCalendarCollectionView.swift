@@ -51,7 +51,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
             currentDateComp.hour = 0 // 時間はリセット
             currentDateComp.minute = 0
             currentDateComp.second = 0
-            currentDateComp.day = currentDateComp.day - 30
+            currentDateComp.day = currentDateComp.day - 60
             
             currentDateComp = cal.components([.Day, .Month ,.Year, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
             while(currentDateComp.weekday != 1) {
@@ -92,7 +92,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return 400
     }
     
     
