@@ -114,8 +114,7 @@ class MRYDayViewController: UIViewController {
             let startDate = $0.startDate
             let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
             let top = (Double(dateComp.hour) * hourlyHeight) + ((Double(dateComp.minute) / 60 ) * hourlyHeight)
-            let interval  = $0.endDate.timeIntervalSinceDate(startDate)
-            let height = (interval / 60 / 60) * hourlyHeight
+            let height = $0.duration * hourlyHeight
 
             let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth,CGFloat(height) ))
             eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )

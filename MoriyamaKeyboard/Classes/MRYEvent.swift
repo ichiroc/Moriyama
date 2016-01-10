@@ -23,6 +23,11 @@ class MRYEvent: NSObject {
     var title : String  {
         get{ return _event.title }
     }
+    var duration : NSTimeInterval {
+        get {
+            return endDate.timeIntervalSinceDate(startDate)
+        }
+    }
     init( event: EKEvent){
         _event = event
     }
