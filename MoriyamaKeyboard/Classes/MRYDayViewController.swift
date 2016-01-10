@@ -12,7 +12,7 @@ import EventKit
 class MRYDayViewController: UIViewController {
     var monthlyView : MRYMonthlyCalendarCollectionView?
     var currentDate: NSDate?
-    private var events : [EKEvent] {
+    private var events : [MRYEvent] {
         get {
             if let date = currentDate{
                 return MRYEventDataStore.singleton().eventWithDate(date)

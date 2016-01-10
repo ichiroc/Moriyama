@@ -29,22 +29,22 @@ class MRYEventDataStore: NSObject {
         return this
     }
     
-    func eventWithDate(date: NSDate) -> [EKEvent]{
-        let startDate = date
-        let endDate = startDate.dateByAddingTimeInterval(86400) // 当日
-        let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-        let events = store.eventsMatchingPredicate(predicate)
-        return events
-    }
-    
-//    func eventWithDate(date: NSDate) -> [MRYEvent]{
+//    func eventWithDate(date: NSDate) -> [EKEvent]{
 //        let startDate = date
 //        let endDate = startDate.dateByAddingTimeInterval(86400) // 当日
 //        let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
 //        let events = store.eventsMatchingPredicate(predicate)
-//        let _events = events.map{ MRYEvent( event: $0) }
-//        return _events
+//        return events
 //    }
+    
+    func eventWithDate(date: NSDate) -> [MRYEvent]{
+        let startDate = date
+        let endDate = startDate.dateByAddingTimeInterval(86400) // 当日
+        let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
+        let events = store.eventsMatchingPredicate(predicate)
+        let _events = events.map{ MRYEvent( event: $0) }
+        return _events
+    }
 
 
 }
