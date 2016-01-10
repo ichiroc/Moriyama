@@ -57,13 +57,12 @@ class MRYEventView: UIView {
         self.layer.borderWidth = 0.5
     }
 
-    func sizeToFitTheEvent(maxWidth: CGFloat){
+    func sizeToFitTheEventWithMaxWidth(maxWidth: CGFloat){
         if let event = _event{
             let dateComp = event.startDateComponent([.Hour, .Minute])
-            let top = ((CGFloat(dateComp.hour) * hourlyHeight) + (CGFloat(dateComp.minute) / 60 )) *
-            hourlyHeight
-            let height = CGFloat(event.duration) / 60 / 60 * hourlyHeight
-            //        let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth, height ))
+            let top = ((CGFloat(dateComp.hour) * hourlyHeight) + (CGFloat(dateComp.minute) / 60 ) * hourlyHeight)
+            let height = (CGFloat(event.duration) / 60 / 60 ) * hourlyHeight
+            frame = CGRectMake(0, CGFloat(top), maxWidth, height )
         }
     }
     

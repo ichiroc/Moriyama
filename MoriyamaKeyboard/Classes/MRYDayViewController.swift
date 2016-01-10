@@ -115,43 +115,9 @@ class MRYDayViewController: UIViewController {
 
     func loadEventViews(){
         events.forEach{
-            let startDate = $0.startDate
-            let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
-            let top : CGFloat = (CGFloat(dateComp.hour) * hourlyHeight) + ((CGFloat(dateComp.minute) / 60 ) * hourlyHeight)
-            let height = CGFloat($0.duration) / 60 / 60 * hourlyHeight
-            let eventView = UIView(frame: CGRectMake(0,top, timelineWidth,height ))
-            eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
-            
-            // make color
-            let color = UIColor(CGColor: $0.calendar.CGColor)
-            var red, green, blue, alpha :CGFloat
-            green = 0; red = 0; blue = 0; alpha = 0
-            color.getRed(&red, green: &green , blue: &blue , alpha: &alpha)
-            let bgDelta = ((red * 255 * 299) + (green * 255 *  587) + (blue * 255 * 114)) / 1000
-            let titleLabel = UILabel()
-            titleLabel.text = $0.title
-            titleLabel.font = UIFont.systemFontOfSize(13)
-            titleLabel.adjustsFontSizeToFitWidth = true
-            titleLabel.numberOfLines = 1
-            titleLabel.lineBreakMode = .ByClipping
-            titleLabel.minimumScaleFactor = 0.01
-            if bgDelta < 125 {
-                titleLabel.textColor = UIColor.whiteColor()
-            }else{
-                titleLabel.textColor = UIColor.blackColor()
-            }
-            eventView.addSubview(titleLabel)
-            eventView.layer.borderColor = UIColor.whiteColor().CGColor
-            eventView.layer.borderWidth = 0.5
+            let eventView = MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: hourlyHeight)
+            eventView.sizeToFitTheEventWithMaxWidth( timelineWidth)
             eventViews.append(eventView)
-        }
-        layoutEventViews()
-    }
-
-    func loadEventViews2(){
-        events.forEach{
-            MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: hourlyHeight)
-//            eventViews.append(eventView)
         }
         layoutEventViews()
     }
