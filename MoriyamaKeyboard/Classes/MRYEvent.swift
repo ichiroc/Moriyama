@@ -29,6 +29,16 @@ class MRYEvent: NSObject {
             return endDate.timeIntervalSinceDate(startDate)
         }
     }
+    
+    func endDateComponent( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
+        return cal.components(unitFlags, fromDate: endDate )
+    }
+    
+    func startDateComponent( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
+        return cal.components(unitFlags, fromDate: startDate )
+    }
+    
+    
     init( event: EKEvent){
         _event = event
     }

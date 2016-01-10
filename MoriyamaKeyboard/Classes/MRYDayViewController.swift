@@ -12,10 +12,14 @@ import EventKit
 class MRYDayViewController: UIViewController {
     var monthlyView : MRYMonthlyCalendarCollectionView?
     var currentDate: NSDate?
+    private var _events : [MRYEvent]?
     private var events : [MRYEvent] {
         get {
+            if _events != nil {
+                return _events!
+            }
             if let date = currentDate{
-                return MRYEventDataStore.singleton().eventWithDate(date)
+                return MRYEventDataStore.instance.eventWithDate(date)
             }
             return []
         }
@@ -25,12 +29,13 @@ class MRYDayViewController: UIViewController {
     private var insertButton : UIButton!
     private var timelineScrollView : UIScrollView!
     private var formatter  = NSDateFormatter()
-    private let hourlyHeight = 40.0
+    private let hourlyHeight : CGFloat = 40.0
     private var timeline : UIView!
     private var eventViews : [UIView] = []
     private var timelineWidth : CGFloat!
     private var cal  = NSCalendar.currentCalendar()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,18 +72,19 @@ class MRYDayViewController: UIViewController {
      
         moveToInitialPointOnTimeline()
         loadEventViews()
-
     }
-    
+
+
     func moveToInitialPointOnTimeline(){
         let hour = cal.component(.Hour, fromDate: NSDate() )
-        let initialPoint = CGPointMake(0.0, CGFloat(hour) * CGFloat(hourlyHeight ))
+        let initialPoint = CGPointMake(0.0, CGFloat(hour) * hourlyHeight )
         timelineScrollView.setContentOffset(initialPoint, animated: false)
     }
-    
+
+
     func timelineView() -> UIScrollView {
         let sidebarWidth : CGFloat = 25.0
-        let timelineHeight = CGFloat(24 * hourlyHeight)
+        let timelineHeight = CGFloat(24) * hourlyHeight
         timelineWidth = self.view.frame.width - 32.0 - sidebarWidth
         timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,12 +95,12 @@ class MRYDayViewController: UIViewController {
         
         let tlSideBar = UIView(frame: CGRectMake(0,0,25,timelineHeight))
         tlSideBar.backgroundColor = UIColor.whiteColor()
-        for (var i = 1.0 ; i < 24 ; i++) { // 0時の描画はしない
-            let hourLine = UIView(frame: CGRectMake(0, CGFloat(i * hourlyHeight), timeline.frame.width, 1 ))
+        for (var i = 1 ; i < 24 ; i++) { // 0時の描画はしない
+            let hourLine = UIView(frame: CGRectMake(0, CGFloat(i) * hourlyHeight , timeline.frame.width, 1 ))
             hourLine.backgroundColor = UIColor.lightGrayColor()
             timeline.addSubview(hourLine)
             
-            let timeLabel = UILabel(frame: CGRectMake(0, CGFloat(i * hourlyHeight - (hourlyHeight / 2) ), sidebarWidth, CGFloat(hourlyHeight)))
+            let timeLabel = UILabel(frame: CGRectMake(0, CGFloat(i) * hourlyHeight - (hourlyHeight / CGFloat(2) ), sidebarWidth, hourlyHeight))
             timeLabel.text = "\(Int(i))"
             timeLabel.font.fontWithSize(11.0)
             timeLabel.adjustsFontSizeToFitWidth = true
@@ -106,17 +112,14 @@ class MRYDayViewController: UIViewController {
         return timelineScrollView
         
     }
-    
-    
+
     func loadEventViews(){
-        eventViews = []
         events.forEach{
             let startDate = $0.startDate
             let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
-            let top = (Double(dateComp.hour) * hourlyHeight) + ((Double(dateComp.minute) / 60 ) * hourlyHeight)
-            let height = $0.duration / 60 / 60 * hourlyHeight
-
-            let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth,CGFloat(height) ))
+            let top : CGFloat = (CGFloat(dateComp.hour) * hourlyHeight) + ((CGFloat(dateComp.minute) / 60 ) * hourlyHeight)
+            let height = CGFloat($0.duration) / 60 / 60 * hourlyHeight
+            let eventView = UIView(frame: CGRectMake(0,top, timelineWidth,height ))
             eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
             
             // make color
@@ -144,7 +147,15 @@ class MRYDayViewController: UIViewController {
         }
         layoutEventViews()
     }
-    
+
+    func loadEventViews2(){
+        events.forEach{
+            MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: hourlyHeight)
+//            eventViews.append(eventView)
+        }
+        layoutEventViews()
+    }
+
     func layoutEventViews(){
         var conflicts: [[UIView]] = []
         var skipViews : [UIView] = []
@@ -154,7 +165,6 @@ class MRYDayViewController: UIViewController {
             for(var y = i + 1; y < eventViews.count; y++){
                 if !skipViews.contains(eventViews[y]){
                     let yEvent = events[y]
-                    
                     if iEvent.conflicts(yEvent){
                         skipViews.append(eventViews[y])
                         innerConflicts.append(eventViews[y])
@@ -185,7 +195,7 @@ class MRYDayViewController: UIViewController {
             }
         })
     }
-    
+
     func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
         

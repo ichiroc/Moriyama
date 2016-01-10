@@ -16,7 +16,7 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     private var events : [MRYEvent] {
         get {
             if let _date = date {
-                return MRYEventDataStore.singleton().eventWithDate(_date)
+                return MRYEventDataStore.instance.eventWithDate(_date)
             }
             return []
         }
