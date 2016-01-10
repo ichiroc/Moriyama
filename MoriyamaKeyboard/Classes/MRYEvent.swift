@@ -10,7 +10,8 @@ import UIKit
 import EventKit
 
 class MRYEvent: NSObject {
-    let _event : EKEvent
+    private let _event : EKEvent
+    private let cal = NSCalendar.currentCalendar()
     var calendar : EKCalendar  {
         get{ return _event.calendar }
     }
@@ -30,6 +31,11 @@ class MRYEvent: NSObject {
     }
     init( event: EKEvent){
         _event = event
+    }
+    
+    func conflicts( other: MRYEvent ) -> Bool{
+       return !(self.endDate.compare(other.startDate) != NSComparisonResult.OrderedDescending ||
+        self.startDate.compare(other.endDate)  != NSComparisonResult.OrderedAscending )
     }
     
 }

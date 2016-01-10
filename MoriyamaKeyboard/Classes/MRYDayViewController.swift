@@ -114,7 +114,7 @@ class MRYDayViewController: UIViewController {
             let startDate = $0.startDate
             let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
             let top = (Double(dateComp.hour) * hourlyHeight) + ((Double(dateComp.minute) / 60 ) * hourlyHeight)
-            let height = $0.duration * hourlyHeight
+            let height = $0.duration / 60 / 60 * hourlyHeight
 
             let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth,CGFloat(height) ))
             eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
@@ -150,21 +150,12 @@ class MRYDayViewController: UIViewController {
         var skipViews : [UIView] = []
         for(var i = 0; i < eventViews.count; i++){
             let iEvent = events[i]
-            let iEventStart = iEvent.startDate
-            let iEventEnd = iEvent.endDate
             var innerConflicts : [UIView] = [eventViews[i]]
             for(var y = i + 1; y < eventViews.count; y++){
                 if !skipViews.contains(eventViews[y]){
                     let yEvent = events[y]
-                    let yEventStart = yEvent.startDate
-                    let yEventEnd = yEvent.endDate
                     
-                    if !((iEventEnd.compare(yEventStart) == NSComparisonResult.OrderedSame ||
-                        iEventEnd.compare(yEventStart) == NSComparisonResult.OrderedAscending)
-                        ||
-                        (iEventStart.compare(yEventEnd) == NSComparisonResult.OrderedDescending ||
-                            iEventStart.compare(yEventEnd) == NSComparisonResult.OrderedSame))
-                    {
+                    if iEvent.conflicts(yEvent){
                         skipViews.append(eventViews[y])
                         innerConflicts.append(eventViews[y])
                     }
