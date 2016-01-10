@@ -59,7 +59,7 @@ class MRYEventView: UIView {
 
     func recalculateSizeAndPosition(containerWidth: CGFloat){
         if let event = _event{
-            let dateComp = event.startDateComponent([.Hour, .Minute])
+            let dateComp = event.componentsOnStartDate([.Hour, .Minute])
             let top = ((CGFloat(dateComp.hour) * hourlyHeight) + (CGFloat(dateComp.minute) / 60 ) * hourlyHeight)
             let height = (CGFloat(event.duration) / 60 / 60 ) * hourlyHeight
             let conflicted = MRYEventDataStore.instance.conflictedEventsWith(event)
