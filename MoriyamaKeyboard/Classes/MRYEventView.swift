@@ -57,12 +57,13 @@ class MRYEventView: UIView {
         self.layer.borderWidth = 0.5
     }
 
-    func sizeToFitTheEventWithMaxWidth(maxWidth: CGFloat){
+    func recalculateSizeAndPosition(containerWidth: CGFloat){
         if let event = _event{
             let dateComp = event.startDateComponent([.Hour, .Minute])
             let top = ((CGFloat(dateComp.hour) * hourlyHeight) + (CGFloat(dateComp.minute) / 60 ) * hourlyHeight)
             let height = (CGFloat(event.duration) / 60 / 60 ) * hourlyHeight
-            frame = CGRectMake(0, CGFloat(top), maxWidth, height )
+            let conflicted = MRYEventDataStore.instance.conflictedEventsWith(event)
+            frame = CGRectMake(0, CGFloat(top), containerWidth / CGFloat(conflicted.count) , height )
         }
     }
     

@@ -71,7 +71,7 @@ class MRYDayViewController: UIViewController {
         self.view.addConstraints(constraints)
      
         moveToInitialPointOnTimeline()
-        loadEventViews()
+        layoutEventViews()
     }
 
 
@@ -113,46 +113,29 @@ class MRYDayViewController: UIViewController {
         
     }
 
-    func loadEventViews(){
-        events.forEach{
-            let eventView = MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: hourlyHeight)
-            eventView.sizeToFitTheEventWithMaxWidth( timelineWidth)
-            eventViews.append(eventView)
-        }
-        layoutEventViews()
-    }
-
     func layoutEventViews(){
-        var conflicts: [[UIView]] = []
-        var skipViews : [UIView] = []
-        for(var i = 0; i < eventViews.count; i++){
-            let iEvent = events[i]
-            var innerConflicts : [UIView] = [eventViews[i]]
-            for(var y = i + 1; y < eventViews.count; y++){
-                if !skipViews.contains(eventViews[y]){
-                    let yEvent = events[y]
-                    if iEvent.conflicts(yEvent){
-                        skipViews.append(eventViews[y])
-                        innerConflicts.append(eventViews[y])
+        var doneLayout : [MRYEvent] = []
+        events.forEach({
+            let conflicts = MRYEventDataStore.instance.conflictedEventsWith($0)
+            if conflicts.count == 0 {
+                if !doneLayout.contains($0) {
+                    doneLayout.append($0)
+                    let view = MRYEventView(frame: CGRectZero, event: $0 , hourlyHeight: hourlyHeight)
+                    view.recalculateSizeAndPosition(timelineWidth)
+                    eventViews.append(view)
+                }
+            }else{
+                for( var i = 0; i < conflicts.count; i++){
+                    let conflictedEvent = conflicts[i]
+                    if !doneLayout.contains(conflictedEvent) {
+                        doneLayout.append(conflictedEvent)
+                        let view = MRYEventView(frame: CGRectZero, event: conflictedEvent, hourlyHeight: hourlyHeight)
+                        view.recalculateSizeAndPosition(timelineWidth)
+                        view.frame.origin = CGPointMake(CGFloat(i) * view.frame.width, view.frame.origin.y)
+                        eventViews.append(view)
                     }
                 }
             }
-            if innerConflicts.count >= 2 {
-                conflicts.append(innerConflicts)
-            }
-        }
-        
-        conflicts.forEach({ conflicts0 in
-            var leftOrder = 0
-            conflicts0.forEach({ view in
-                let width = view.frame.width / CGFloat(conflicts0.count)
-                view.frame = CGRectMake(
-                    CGFloat(leftOrder) * width  ,
-                    view.frame.origin.y ,
-                    view.frame.width / CGFloat(conflicts0.count),
-                    view.frame.height)
-                leftOrder++
-            })
         })
         eventViews.forEach({ view in
             timeline.addSubview(view)
