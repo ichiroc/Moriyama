@@ -53,14 +53,13 @@ class MRYDayViewController: UIViewController {
         
         var titleText = "Insert"
         if let date = currentDate{
-            titleText = formatter.stringFromDate(date)
+            //titleText = formatter.stringFromDate(date)
+            titleText = Util.dateString(NSLocale.currentLocale(), format: "MMMddE")
         }
         insertButton = MRYKeyboardButton(
             title: titleText,
-            text: nil,
             backgroundColor: UIColor.blueColor(),
-            titleColor: UIColor.whiteColor(),
-            action: { self.insert()})
+            titleColor: UIColor.whiteColor())
         
         views = [
             "cancel": doneButton,
@@ -177,11 +176,11 @@ class MRYDayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func insert(){
-        if let date = currentDate {
-            MRYTextDocumentProxy.proxy.insertText(formatter.stringFromDate(date))
-        }
-    }
+//    func insert(){
+//        if let date = currentDate {
+//            MRYTextDocumentProxy.proxy.insertText(formatter.stringFromDate(date))
+//        }
+//    }
     
     func dismissSelf(){
         if let monthlyView0 = self.monthlyView {

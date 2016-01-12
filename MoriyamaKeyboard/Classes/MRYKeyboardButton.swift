@@ -19,20 +19,24 @@ class MRYKeyboardButton : UIButton{
         backgroundColor : UIColor? = nil,
         titleColor: UIColor? = nil,
         action: (() -> Void)? = nil){
-        customAction = action
-        _text = text
-        super.init(frame: CGRectZero)
-        backgroundColor.map{ normalBackgroundColor = $0 }
-        titleColor.map{ normalTitleColor = $0 }
-        self.setTitle(title, forState: .Normal)
-        self.titleLabel?.font = UIFont.systemFontOfSize(16)
-        self.setTitleColor(normalTitleColor, forState: .Normal)
-        self.backgroundColor = normalBackgroundColor
-        self.layer.cornerRadius = 3
-        self.addTarget(self, action: "touchUpInside", forControlEvents: .TouchUpInside)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.addTarget(self, action: "touchDown", forControlEvents: .TouchDown)
-        self.addTarget(self, action: "touchUpOutside", forControlEvents: .TouchUpOutside)
+            customAction = action
+            if let txt = text {
+                _text = txt
+            }else{
+                _text = title
+            }
+            super.init(frame: CGRectZero)
+            backgroundColor.map{ normalBackgroundColor = $0 }
+            titleColor.map{ normalTitleColor = $0 }
+            self.setTitle(title, forState: .Normal)
+            self.titleLabel?.font = UIFont.systemFontOfSize(16)
+            self.setTitleColor(normalTitleColor, forState: .Normal)
+            self.backgroundColor = normalBackgroundColor
+            self.layer.cornerRadius = 3
+            self.addTarget(self, action: "touchUpInside", forControlEvents: .TouchUpInside)
+            self.translatesAutoresizingMaskIntoConstraints = false
+            self.addTarget(self, action: "touchDown", forControlEvents: .TouchDown)
+            self.addTarget(self, action: "touchUpOutside", forControlEvents: .TouchUpOutside)
     }
     
     override init(frame: CGRect) {
