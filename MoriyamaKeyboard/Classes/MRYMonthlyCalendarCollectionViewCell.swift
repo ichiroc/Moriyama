@@ -109,6 +109,13 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         if events.count == 0 {
             eventIndicator.backgroundColor = cellColor
         }else{
+//            for(var i = 0 ; i < events.count || i < 3; i++){
+//                let indicator = UIView()
+//                indicator.translatesAutoresizingMaskIntoConstraints = false
+//                indicator.backgroundColor = UIColor(CGColor: events[i].calendar.CGColor)
+//                eventIndicator.addSubview(indicator)
+//                
+//            }
             events.forEach{
                 eventIndicator.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
             }

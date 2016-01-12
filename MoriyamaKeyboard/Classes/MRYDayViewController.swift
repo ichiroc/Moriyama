@@ -120,7 +120,7 @@ class MRYDayViewController: UIViewController {
             if conflicts.count == 0 {
                 if !doneLayout.contains($0) {
                     doneLayout.append($0)
-                    let view = MRYEventView(frame: CGRectZero, event: $0 , hourlyHeight: hourlyHeight)
+                    let view = MRYEventView(frame: CGRectZero, event: $0 , hourlyHeight: hourlyHeight, viewController: self)
                     view.recalculateSizeAndPosition(timelineWidth)
                     eventViews.append(view)
                 }
@@ -129,7 +129,7 @@ class MRYDayViewController: UIViewController {
                     let conflictedEvent = conflicts[i]
                     if !doneLayout.contains(conflictedEvent) {
                         doneLayout.append(conflictedEvent)
-                        let view = MRYEventView(frame: CGRectZero, event: conflictedEvent, hourlyHeight: hourlyHeight)
+                        let view = MRYEventView(frame: CGRectZero, event: conflictedEvent, hourlyHeight: hourlyHeight, viewController: self)
                         view.recalculateSizeAndPosition(timelineWidth)
                         view.frame.origin = CGPointMake(CGFloat(i) * view.frame.width, view.frame.origin.y)
                         eventViews.append(view)
