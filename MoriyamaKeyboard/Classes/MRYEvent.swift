@@ -29,6 +29,7 @@ class MRYEvent: NSObject {
             return endDate.timeIntervalSinceDate(startDate)
         }
     }
+    var data: [String] = []
     
     func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
         return cal.components(unitFlags, fromDate: endDate )
@@ -41,11 +42,13 @@ class MRYEvent: NSObject {
     
     init( event: EKEvent){
         _event = event
+        data.append(_event.title)
+        data.append(_event.startDate.description)
+        data.append(_event.endDate.description)
     }
     
     func conflicts( other: MRYEvent ) -> Bool{
        return !(self.endDate.compare(other.startDate) != NSComparisonResult.OrderedDescending ||
         self.startDate.compare(other.endDate)  != NSComparisonResult.OrderedAscending )
     }
-    
 }
