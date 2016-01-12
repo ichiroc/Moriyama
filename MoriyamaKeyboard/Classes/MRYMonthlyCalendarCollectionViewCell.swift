@@ -13,9 +13,17 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
     private var dateLabel:UILabel
     private let cal  = NSCalendar.currentCalendar()
     var date : NSDate?
-    private var events : [EKEvent] = []
+    private var events : [MRYEvent] {
+        get {
+            if let _date = date {
+                return MRYEventDataStore.instance.eventWithDate(_date)
+            }
+            return []
+        }
+    }
     private let eventIndicator = UIView()
     private let fontSize : CGFloat = 13.0
+    
     override func prepareForReuse() {
         self.dateLabel.backgroundColor = UIColor.whiteColor()
         self.dateLabel.layer.cornerRadius = 0
@@ -97,11 +105,18 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
         }else if comp.weekday == 7{
             self.dateLabel.textColor = UIColor.blueColor()
         }
-        events = retriveEvent( cellDate )
+        
         if events.count == 0 {
             eventIndicator.backgroundColor = cellColor
         }else{
-            events.map{
+//            for(var i = 0 ; i < events.count || i < 3; i++){
+//                let indicator = UIView()
+//                indicator.translatesAutoresizingMaskIntoConstraints = false
+//                indicator.backgroundColor = UIColor(CGColor: events[i].calendar.CGColor)
+//                eventIndicator.addSubview(indicator)
+//                
+//            }
+            events.forEach{
                 eventIndicator.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
             }
         }
@@ -117,11 +132,6 @@ class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
             color = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         }
         return color
-    }
-    
-    private func retriveEvent(date: NSDate) -> [EKEvent]{
-        let store = MRYEventDataStore.singleton()
-        return store.eventWithDate(date)
     }
     
     private func todayStyle(){

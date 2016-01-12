@@ -12,10 +12,14 @@ import EventKit
 class MRYDayViewController: UIViewController {
     var monthlyView : MRYMonthlyCalendarCollectionView?
     var currentDate: NSDate?
-    private var events : [EKEvent] {
+    private var _events : [MRYEvent]?
+    private var events : [MRYEvent] {
         get {
+            if _events != nil {
+                return _events!
+            }
             if let date = currentDate{
-                return MRYEventDataStore.singleton().eventWithDate(date)
+                return MRYEventDataStore.instance.eventWithDate(date)
             }
             return []
         }
@@ -25,12 +29,13 @@ class MRYDayViewController: UIViewController {
     private var insertButton : UIButton!
     private var timelineScrollView : UIScrollView!
     private var formatter  = NSDateFormatter()
-    private let hourlyHeight = 40.0
+    private let hourlyHeight : CGFloat = 40.0
     private var timeline : UIView!
     private var eventViews : [UIView] = []
     private var timelineWidth : CGFloat!
     private var cal  = NSCalendar.currentCalendar()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,19 +71,20 @@ class MRYDayViewController: UIViewController {
         self.view.addConstraints(constraints)
      
         moveToInitialPointOnTimeline()
-        loadEventViews()
-
+        layoutEventViews()
     }
-    
+
+
     func moveToInitialPointOnTimeline(){
         let hour = cal.component(.Hour, fromDate: NSDate() )
-        let initialPoint = CGPointMake(0.0, CGFloat(hour) * CGFloat(hourlyHeight ))
+        let initialPoint = CGPointMake(0.0, CGFloat(hour) * hourlyHeight )
         timelineScrollView.setContentOffset(initialPoint, animated: false)
     }
-    
+
+
     func timelineView() -> UIScrollView {
         let sidebarWidth : CGFloat = 25.0
-        let timelineHeight = CGFloat(24 * hourlyHeight)
+        let timelineHeight = CGFloat(24) * hourlyHeight
         timelineWidth = self.view.frame.width - 32.0 - sidebarWidth
         timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,12 +95,12 @@ class MRYDayViewController: UIViewController {
         
         let tlSideBar = UIView(frame: CGRectMake(0,0,25,timelineHeight))
         tlSideBar.backgroundColor = UIColor.whiteColor()
-        for (var i = 1.0 ; i < 24 ; i++) { // 0時の描画はしない
-            let hourLine = UIView(frame: CGRectMake(0, CGFloat(i * hourlyHeight), timeline.frame.width, 1 ))
+        for (var i = 1 ; i < 24 ; i++) { // 0時の描画はしない
+            let hourLine = UIView(frame: CGRectMake(0, CGFloat(i) * hourlyHeight , timeline.frame.width, 1 ))
             hourLine.backgroundColor = UIColor.lightGrayColor()
             timeline.addSubview(hourLine)
             
-            let timeLabel = UILabel(frame: CGRectMake(0, CGFloat(i * hourlyHeight - (hourlyHeight / 2) ), sidebarWidth, CGFloat(hourlyHeight)))
+            let timeLabel = UILabel(frame: CGRectMake(0, CGFloat(i) * hourlyHeight - (hourlyHeight / CGFloat(2) ), sidebarWidth, hourlyHeight))
             timeLabel.text = "\(Int(i))"
             timeLabel.font.fontWithSize(11.0)
             timeLabel.adjustsFontSizeToFitWidth = true
@@ -106,87 +112,30 @@ class MRYDayViewController: UIViewController {
         return timelineScrollView
         
     }
-    
-    
-    func loadEventViews(){
-        eventViews = []
-        events.forEach{
-            let startDate = $0.startDate
-            let dateComp = cal.components( [.Hour, .Minute] , fromDate: startDate)
-            let top = (Double(dateComp.hour) * hourlyHeight) + ((Double(dateComp.minute) / 60 ) * hourlyHeight)
-            let interval  = $0.endDate.timeIntervalSinceDate(startDate)
-            let height = (interval / 60 / 60) * hourlyHeight
 
-            let eventView = UIView(frame: CGRectMake(0, CGFloat(top), timelineWidth,CGFloat(height) ))
-            eventView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
-            
-            // make color
-            let color = UIColor(CGColor: $0.calendar.CGColor)
-            var red, green, blue, alpha :CGFloat
-            green = 0; red = 0; blue = 0; alpha = 0
-            color.getRed(&red, green: &green , blue: &blue , alpha: &alpha)
-            let bgDelta = ((red * 255 * 299) + (green * 255 *  587) + (blue * 255 * 114)) / 1000
-            let titleLabel = UILabel()
-            titleLabel.text = $0.title
-            titleLabel.font = UIFont.systemFontOfSize(13)
-            titleLabel.adjustsFontSizeToFitWidth = true
-            titleLabel.numberOfLines = 1
-            titleLabel.lineBreakMode = .ByClipping
-            titleLabel.minimumScaleFactor = 0.01
-            if bgDelta < 125 {
-                titleLabel.textColor = UIColor.whiteColor()
-            }else{
-                titleLabel.textColor = UIColor.blackColor()
-            }
-            eventView.addSubview(titleLabel)
-            eventView.layer.borderColor = UIColor.whiteColor().CGColor
-            eventView.layer.borderWidth = 0.5
-            eventViews.append(eventView)
-        }
-        layoutEventViews()
-    }
-    
     func layoutEventViews(){
-        var conflicts: [[UIView]] = []
-        var skipViews : [UIView] = []
-        for(var i = 0; i < eventViews.count; i++){
-            let iEvent = events[i]
-            let iEventStart = iEvent.startDate
-            let iEventEnd = iEvent.endDate
-            var innerConflicts : [UIView] = [eventViews[i]]
-            for(var y = i + 1; y < eventViews.count; y++){
-                if !skipViews.contains(eventViews[y]){
-                    let yEvent = events[y]
-                    let yEventStart = yEvent.startDate
-                    let yEventEnd = yEvent.endDate
-                    
-                    if !((iEventEnd.compare(yEventStart) == NSComparisonResult.OrderedSame ||
-                        iEventEnd.compare(yEventStart) == NSComparisonResult.OrderedAscending)
-                        ||
-                        (iEventStart.compare(yEventEnd) == NSComparisonResult.OrderedDescending ||
-                            iEventStart.compare(yEventEnd) == NSComparisonResult.OrderedSame))
-                    {
-                        skipViews.append(eventViews[y])
-                        innerConflicts.append(eventViews[y])
+        var doneLayout : [MRYEvent] = []
+        events.forEach({
+            let conflicts = MRYEventDataStore.instance.conflictedEventsWith($0)
+            if conflicts.count == 0 {
+                if !doneLayout.contains($0) {
+                    doneLayout.append($0)
+                    let view = MRYEventView(frame: CGRectZero, event: $0 , hourlyHeight: hourlyHeight, viewController: self)
+                    view.recalculateSizeAndPosition(timelineWidth)
+                    eventViews.append(view)
+                }
+            }else{
+                for( var i = 0; i < conflicts.count; i++){
+                    let conflictedEvent = conflicts[i]
+                    if !doneLayout.contains(conflictedEvent) {
+                        doneLayout.append(conflictedEvent)
+                        let view = MRYEventView(frame: CGRectZero, event: conflictedEvent, hourlyHeight: hourlyHeight, viewController: self)
+                        view.recalculateSizeAndPosition(timelineWidth)
+                        view.frame.origin = CGPointMake(CGFloat(i) * view.frame.width, view.frame.origin.y)
+                        eventViews.append(view)
                     }
                 }
             }
-            if innerConflicts.count >= 2 {
-                conflicts.append(innerConflicts)
-            }
-        }
-        
-        conflicts.forEach({ conflicts0 in
-            var leftOrder = 0
-            conflicts0.forEach({ view in
-                let width = view.frame.width / CGFloat(conflicts0.count)
-                view.frame = CGRectMake(
-                    CGFloat(leftOrder) * width  ,
-                    view.frame.origin.y ,
-                    view.frame.width / CGFloat(conflicts0.count),
-                    view.frame.height)
-                leftOrder++
-            })
         })
         eventViews.forEach({ view in
             timeline.addSubview(view)
@@ -195,7 +144,7 @@ class MRYDayViewController: UIViewController {
             }
         })
     }
-    
+
     func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
         

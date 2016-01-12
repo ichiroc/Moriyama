@@ -9,10 +9,10 @@
 import UIKit
 import EventKit
 
-class MRYEventDataStore: NSObject {
+class MRYEventDataStore {
     let store = EKEventStore()
     static let this = MRYEventDataStore()
-    override init(){
+    private init(){
         if EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized {
             // 許可されてないので許可を要求
             store.requestAccessToEntityType(.Event,
@@ -25,26 +25,23 @@ class MRYEventDataStore: NSObject {
             })
         }
     }
-    class func singleton() -> MRYEventDataStore{
-        return this
+    class var instance : MRYEventDataStore{
+        get{ return this }
     }
-    
-    func eventWithDate(date: NSDate) -> [EKEvent]{
+
+    func conflictedEventsWith( event: MRYEvent) -> [MRYEvent]{
+        let predicate = store.predicateForEventsWithStartDate(event.startDate, endDate: event.endDate, calendars: nil)
+        return store.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
+    }
+
+    func eventWithDate(date: NSDate) -> [MRYEvent]{
         let startDate = date
         let endDate = startDate.dateByAddingTimeInterval(86400) // 当日
         let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
         let events = store.eventsMatchingPredicate(predicate)
-        return events
+        let _events = events.map{ MRYEvent( event: $0) }
+        return _events
     }
-    
-//    func eventWithDate(date: NSDate) -> [MRYEvent]{
-//        let startDate = date
-//        let endDate = startDate.dateByAddingTimeInterval(86400) // 当日
-//        let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-//        let events = store.eventsMatchingPredicate(predicate)
-//        let _events = events.map{ MRYEvent( event: $0) }
-//        return _events
-//    }
 
 
 }

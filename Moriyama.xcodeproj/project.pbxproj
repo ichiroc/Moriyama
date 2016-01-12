@@ -22,8 +22,9 @@
 		5D9D803C1C2CB02400623AF7 /* MoriyamaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D803B1C2CB02400623AF7 /* MoriyamaUITests.swift */; };
 		5D9D80501C2D405700623AF7 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */; };
 		5D9D80541C2D405700623AF7 /* MoriyamaKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D9D804D1C2D405700623AF7 /* MoriyamaKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		5DA7D5CF1C2DEA8A0088EF6D /* MRYTextDocumentPRoxy-2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentPRoxy-2.swift */; };
+		5DA7D5CF1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift */; };
 		5DD259841C41BDAC007C61F6 /* MRYEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259831C41BDAC007C61F6 /* MRYEvent.swift */; };
+		5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259851C421C04007C61F6 /* MRYEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,8 +88,9 @@
 		5D9D804D1C2D405700623AF7 /* MoriyamaKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MoriyamaKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		5D9D80511C2D405700623AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentPRoxy-2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "MRYTextDocumentPRoxy-2.swift"; path = "Classes/MRYTextDocumentPRoxy-2.swift"; sourceTree = "<group>"; };
+		5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTextDocumentProxy.swift; path = Classes/MRYTextDocumentProxy.swift; sourceTree = "<group>"; };
 		5DD259831C41BDAC007C61F6 /* MRYEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEvent.swift; path = Classes/MRYEvent.swift; sourceTree = "<group>"; };
+		5DD259851C421C04007C61F6 /* MRYEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventView.swift; path = Classes/MRYEventView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				5D1E8AAD1C2F3B1E0032CCC2 /* MRYMonthlyCalendarCollectionView.swift */,
 				5D1E8AAF1C2F3C270032CCC2 /* MRYMonthlyCalendarCollectionViewCell.swift */,
 				5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */,
+				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -136,7 +139,7 @@
 		5D33D1A71C3DBCAA00576CFA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentPRoxy-2.swift */,
+				5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift */,
 				5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */,
 				5DD259831C41BDAC007C61F6 /* MRYEvent.swift */,
 			);
@@ -405,12 +408,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */,
-				5DA7D5CF1C2DEA8A0088EF6D /* MRYTextDocumentPRoxy-2.swift in Sources */,
+				5DA7D5CF1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift in Sources */,
 				5D1E8AAE1C2F3B1E0032CCC2 /* MRYMonthlyCalendarCollectionView.swift in Sources */,
 				5DD259841C41BDAC007C61F6 /* MRYEvent.swift in Sources */,
 				5D1E8AB01C2F3C270032CCC2 /* MRYMonthlyCalendarCollectionViewCell.swift in Sources */,
 				5D2DB6AD1C2DE0FC00604C0F /* MRYKeyboardButton.swift in Sources */,
 				5D9D80501C2D405700623AF7 /* KeyboardViewController.swift in Sources */,
+				5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */,
 				5D3942771C3737D6004B89EF /* MRYDayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
