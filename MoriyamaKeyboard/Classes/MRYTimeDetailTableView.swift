@@ -33,22 +33,56 @@ class MRYTimeDetailTableView: UITableView,
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return event.data.count
+        switch section{
+        case 0:
+            return 1
+        case 1:
+            return event.data.count
+        default:
+            return 0
+        }
     }
     
-    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var ret = ""
+        switch section {
+        case 0:
+            ret = "General time items"
+        case 1:
+            ret = "Event information"
+        default:
+            break
+        }
+        return ret
+        
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("textCell")
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "textCell")
         }
-        
-        cell!.textLabel!.text =  event.data[indexPath.row].0
-        cell!.detailTextLabel!.text = event.data[indexPath.row].1
+       
+        switch indexPath.section{
+        case 0:
+            switch indexPath.row {
+            case 0:
+                cell!.textLabel!.text = Util.string(NSDate(), format: "MMdd")
+                // TODO: Return time at position tapped in timeline.
+//            case 1:
+//                cell!.textLabel!.text = Util.string(NSDate(), format: "HHmm")
+            default:
+                break
+            }
+        case 1:
+            cell!.textLabel!.text =  event.data[indexPath.row].0
+            cell!.detailTextLabel!.text = event.data[indexPath.row].1
+        default:
+            break
+        }
         
         return cell!
     }
