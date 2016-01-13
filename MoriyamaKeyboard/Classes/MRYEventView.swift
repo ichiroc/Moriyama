@@ -66,7 +66,8 @@ class MRYEventView: UIView {
     }
 
     func tapped(sender: UITapGestureRecognizer){
-        print("tapped")
+        let viewController = MRYTimeDetailViewController(event: _event!)
+        _dayViewController.presentViewController(viewController, animated: true, completion: nil)
     }
 
     func recalculateSizeAndPosition(containerWidth: CGFloat){
