@@ -63,8 +63,7 @@ class KeyboardViewController: UIInputViewController {
     
     private func layoutSubviews(){
         // Perform custom UI setup here
-        self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", backgroundColor: UIColor.lightGrayColor())
-        self.nextKeyboardButton.addTarget(self, action: "advanceToNextInputMode", forControlEvents: .TouchUpInside)
+        self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", backgroundColor: UIColor.lightGrayColor(),action: { self.advanceToNextInputMode() })
         let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n", backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor())
         let deleteKey = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
