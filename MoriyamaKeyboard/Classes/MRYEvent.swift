@@ -29,7 +29,7 @@ class MRYEvent: NSObject {
             return endDate.timeIntervalSinceDate(startDate)
         }
     }
-    var data: [String] = []
+    var data: [(String,String)] = []
     
     func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
         return cal.components(unitFlags, fromDate: endDate )
@@ -42,9 +42,31 @@ class MRYEvent: NSObject {
     
     init( event: EKEvent){
         _event = event
-        data.append(_event.title)
-        data.append(_event.startDate.description)
-        data.append(_event.endDate.description)
+        super.init()
+        data.append((_event.title,"タイトル"))
+        if let location = _event.location{
+            if location != ""{
+                data.append((location,"場所"))
+            }
+        }
+        if let notes = _event.notes {
+            data.append((notes,"メモ"))
+        }
+        if let url = _event.URL{
+            data.append((url.absoluteString,"URL"))
+        }
+        data.append((Util.string(_event.startDate, format: "MMMdEHHmm"),"開始"))
+        data.append((Util.string(_event.endDate, format: "MMMdEHHmm"),"終了"))
+        data.append((Util.string(_event.startDate, format: "HHmm"),"開始"))
+        data.append((Util.string(_event.endDate, format: "HHmm"),"終了"))
+        data.append((Util.string(_event.startDate, format: "dHHmm"),"開始"))
+        data.append((Util.string(_event.endDate, format: "dHHmm"),"終了"))
+        data.append((Util.string(_event.startDate, format: "d"),"開始"))
+        data.append((Util.string(_event.endDate, format: "d"),"終了"))
+        data.append((Util.string(_event.startDate, format: "MMM"),"開始"))
+        data.append((Util.string(_event.endDate, format: "MMM"),"終了"))
+        data.append((Util.string(_event.startDate, format: "YYYY"),"開始"))
+        data.append((Util.string(_event.endDate, format: "YYYY"),"終了"))
     }
     
     func conflicts( other: MRYEvent ) -> Bool{

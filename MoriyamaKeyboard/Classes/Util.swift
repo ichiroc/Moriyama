@@ -10,7 +10,7 @@ import UIKit
 
 class Util: NSObject {
 
-    class func string(date: NSDate, format: String, locale: NSLocale) -> String{
+    class func string(date: NSDate, format: String, locale: NSLocale = NSLocale.currentLocale()) -> String{
         if let formatString = NSDateFormatter.dateFormatFromTemplate(
             format,
             options: 0,

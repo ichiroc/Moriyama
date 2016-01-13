@@ -44,14 +44,17 @@ class MRYTimeDetailTableView: UITableView,
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("cell")
         if cell == nil {
-            cell = UITableViewCell()
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
         }
-        cell!.textLabel!.text =  event.data[indexPath.row]
+        
+        cell!.textLabel!.text =  event.data[indexPath.row].0
+        cell!.detailTextLabel!.text = event.data[indexPath.row].1
+        
         return cell!
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MRYTextDocumentProxy.proxy.insertText(event.data[indexPath.row])
+        MRYTextDocumentProxy.proxy.insertText(event.data[indexPath.row].0)
     }
     
 }
