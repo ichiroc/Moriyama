@@ -54,7 +54,7 @@ class MRYDayViewController: UIViewController {
         var titleText = "Insert"
         if let date = currentDate{
             //titleText = formatter.stringFromDate(date)
-            titleText = Util.dateString(NSLocale.currentLocale(), format: "MMMddE")
+            titleText = Util.string(date, format: "MMMddE", locale: NSLocale.currentLocale())
         }
         insertButton = MRYKeyboardButton(
             title: titleText,
