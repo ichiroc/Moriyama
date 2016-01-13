@@ -31,12 +31,14 @@ class MRYTimeDetailViewController: UIViewController {
         self.view.addSubview(tableView)
         let views = [ "done": doneButton,
         "table": tableView]
+        
         let tableHorizonalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-[table]-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views )
         self.view.addConstraints(tableHorizonalConstraints)
+        
         let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|-[table]-[done]-|",
             options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllTrailing] ,

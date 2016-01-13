@@ -37,7 +37,7 @@ class MRYTimeDetailTableView: UITableView,
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return event.data.count
     }
     
     
@@ -46,7 +46,12 @@ class MRYTimeDetailTableView: UITableView,
         if cell == nil {
             cell = UITableViewCell()
         }
+        cell!.textLabel!.text =  event.data[indexPath.row]
         return cell!
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        MRYTextDocumentProxy.proxy.insertText(event.data[indexPath.row])
+    }
+    
 }
