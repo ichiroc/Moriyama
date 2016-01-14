@@ -10,7 +10,7 @@ import UIKit
 import EventKit
 
 class MRYDayViewController: UIViewController {
-    var monthlyView : MRYMonthlyCalendarCollectionView?
+    var monthlyView : MRYMonthCalendarCollectionView?
     var currentDate: NSDate?
     private var _events : [MRYEvent]?
     private var events : [MRYEvent] {

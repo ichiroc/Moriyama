@@ -1,5 +1,5 @@
 //
-//  MRYMonthlyCalendarCollectionViewCell.swift
+//  MRYMonthCalendarCollectionViewCell.swift
 //  Moriyama
 //
 //  Created by Ichiro on 2015/12/27.
@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class MRYMonthlyCalendarCollectionViewCell: UICollectionViewCell {
+class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
     private var dateLabel:UILabel
     private let cal  = NSCalendar.currentCalendar()
     var date : NSDate?

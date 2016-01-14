@@ -1,5 +1,5 @@
 //
-//  MRYMonthlyCalendarCollectionView.swift
+//  MRYMonthCalendarCollectionView.swift
 //  Moriyama
 //
 //  Created by Ichiro on 2015/12/27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MRYMonthlyCalendarCollectionView: UICollectionView,
+class MRYMonthCalendarCollectionView: UICollectionView,
     UICollectionViewDataSource,
     UICollectionViewDelegate,
     UICollectionViewDelegateFlowLayout{
@@ -32,7 +32,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     init(viewController vc: UIViewController){
         self.keyboardViewController = vc
         super.init(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-        self.registerClass(MRYMonthlyCalendarCollectionViewCell.self, forCellWithReuseIdentifier: "monthlyCell")
+        self.registerClass(MRYMonthCalendarCollectionViewCell.self, forCellWithReuseIdentifier: "monthlyCell")
         self.translatesAutoresizingMaskIntoConstraints = false
         self.delegate = self
         self.dataSource = self
@@ -67,7 +67,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
         dayViewController = MRYDayViewController()
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthlyCalendarCollectionViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
         dayViewController?.currentDate = cell.date
         keyboardViewController?.showViewController(dayViewController!, sender: self)
         dayViewController?.monthlyView = self
@@ -80,13 +80,12 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
                 "monthlyCell",
                 forIndexPath: indexPath
-                ) as! MRYMonthlyCalendarCollectionViewCell
+                ) as! MRYMonthCalendarCollectionViewCell
             let cellDate = firstCellDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400))
             cell.setCellDate(cellDate)
             if cell.isToday() {
                 todayIndexPath = indexPath
             }
-            
             return cell
     }
     

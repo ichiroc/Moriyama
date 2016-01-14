@@ -11,7 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
-    var calendarView : MRYMonthlyCalendarCollectionView!
+    var calendarView : MRYMonthCalendarCollectionView!
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     
     var currentOrientation = Orientation.Portrait
@@ -82,7 +82,7 @@ class KeyboardViewController: UIInputViewController {
 
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
-        calendarView = MRYMonthlyCalendarCollectionView(viewController: self)
+        calendarView = MRYMonthCalendarCollectionView(viewController: self)
         let views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,
