@@ -104,7 +104,7 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
                 let screenRect = collectionView.bounds
                 let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6)
                 let cellWidth = floor((screenWidth / 7.0))
-                cellSize = CGSizeMake(cellWidth, cellWidth * 1.1)
+                cellSize = CGSizeMake(cellWidth, 50)
             }
             return cellSize!
     }
