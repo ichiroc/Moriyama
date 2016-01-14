@@ -14,6 +14,7 @@ class KeyboardViewController: UIInputViewController {
     var calendarView : MRYMonthlyCalendarCollectionView!
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     
+    var currentOrientation = Orientation.Portrait
     override func updateViewConstraints() {
         super.updateViewConstraints()
     
@@ -42,7 +43,17 @@ class KeyboardViewController: UIInputViewController {
         // The app is about to change the document's contents. Perform any preparation here.
     }
     override func viewDidLayoutSubviews() {
-        //print("view will rotate ?")
+        let bounds = UIScreen.mainScreen().bounds
+        let previousOrientation = currentOrientation
+        if bounds.height > bounds.width {
+            currentOrientation = Orientation.Portrait
+        }else{
+            currentOrientation = Orientation.Landscape
+        }
+        if currentOrientation != previousOrientation{
+            calendarView.reloadData()
+            calendarView.performBatchUpdates(nil, completion: nil)
+        }
     }
     
     override func viewWillLayoutSubviews() {

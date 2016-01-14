@@ -81,12 +81,12 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
                 "monthlyCell",
                 forIndexPath: indexPath
                 ) as! MRYMonthlyCalendarCollectionViewCell
-            
             let cellDate = firstCellDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400))
             cell.setCellDate(cellDate)
             if cell.isToday() {
                 todayIndexPath = indexPath
             }
+            
             return cell
     }
     
@@ -100,15 +100,13 @@ class MRYMonthlyCalendarCollectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             let margins = keyboardViewController?.inputView?.layoutMargins
-            if( cellSize == nil){
-                let screenRect = collectionView.bounds
-                let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6)
-                let cellWidth = floor((screenWidth / 7.0))
-                cellSize = CGSizeMake(cellWidth, 50)
-            }
+            let screenRect = collectionView.bounds
+            let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6)
+            let cellWidth = floor((screenWidth / 7.0))
+            cellSize = CGSizeMake(cellWidth, 50)
             return cellSize!
     }
-    
+   
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1
     }
