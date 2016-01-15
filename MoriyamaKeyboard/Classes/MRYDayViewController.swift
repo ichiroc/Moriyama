@@ -176,16 +176,9 @@ class MRYDayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    func insert(){
-//        if let date = currentDate {
-//            MRYTextDocumentProxy.proxy.insertText(formatter.stringFromDate(date))
-//        }
-//    }
     
     func dismissSelf(){
-        if let monthlyView0 = self.monthlyView {
-            monthlyView0.dismissDayViewController()
-        }
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     /*
     // MARK: - Navigation

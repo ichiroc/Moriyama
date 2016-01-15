@@ -12,6 +12,7 @@ class KeyboardViewController: UIInputViewController {
 
     @IBOutlet var nextKeyboardButton: UIButton!
     var calendarView : MRYMonthCalendarCollectionView!
+    let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     
     var currentOrientation = Orientation.Portrait
@@ -34,7 +35,7 @@ class KeyboardViewController: UIInputViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if let _todayIndexPath = calendarView.todayIndexPath {
+        if let _todayIndexPath = monthCalendarCollectionViewDataSource.todayIndexPath {
             calendarView.scrollToItemAtIndexPath( _todayIndexPath, atScrollPosition: .Top, animated: false)
         }
     }
@@ -83,6 +84,7 @@ class KeyboardViewController: UIInputViewController {
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
         calendarView = MRYMonthCalendarCollectionView(viewController: self)
+        calendarView.dataSource = monthCalendarCollectionViewDataSource
         let views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,
