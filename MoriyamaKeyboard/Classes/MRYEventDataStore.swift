@@ -30,7 +30,9 @@ class MRYEventDataStore {
     }
 
     func conflictedEventsWith( event: MRYEvent) -> [MRYEvent]{
-        let predicate = store.predicateForEventsWithStartDate(event.startDate, endDate: event.endDate, calendars: nil)
+        let startDate = event.startDate.dateByAddingTimeInterval(1)
+        let endDate = event.endDate.dateByAddingTimeInterval(-1)
+        let predicate = store.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
         return store.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
     }
 
