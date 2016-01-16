@@ -10,7 +10,7 @@ import UIKit
 import EventKit
 
 class MRYDayViewController: UIViewController {
-    var monthlyView : MRYMonthCalendarCollectionView?
+//    var monthlyView : MRYMonthCalendarCollectionView?
     var currentDate: NSDate?
     private var _events : [MRYEvent]?
     private var events : [MRYEvent] {
@@ -69,6 +69,7 @@ class MRYDayViewController: UIViewController {
         let constraints = self.constraintsSubviews()
         self.view.addConstraints(constraints)
      
+        
         moveToInitialPointOnTimeline()
         layoutEventViews()
     }

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class KeyboardViewController: UIInputViewController {
+class KeyboardViewController: UIInputViewController ,
+    UICollectionViewDelegate{
 
     @IBOutlet var nextKeyboardButton: UIButton!
     var calendarView : MRYMonthCalendarCollectionView!
@@ -52,7 +53,6 @@ class KeyboardViewController: UIInputViewController {
             currentOrientation = Orientation.Landscape
         }
         if currentOrientation != previousOrientation{
-            calendarView.reloadData()
             calendarView.performBatchUpdates(nil, completion: nil)
         }
     }
@@ -85,6 +85,7 @@ class KeyboardViewController: UIInputViewController {
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
         calendarView = MRYMonthCalendarCollectionView(viewController: self)
         calendarView.dataSource = monthCalendarCollectionViewDataSource
+        calendarView.delegate = self
         let views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,
@@ -127,6 +128,34 @@ class KeyboardViewController: UIInputViewController {
         
     }
     
+    // MARK: - UICollectionVieDelegate
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        let dayViewController = MRYDayViewController()
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
+        dayViewController.currentDate = cell.date
+        self.showViewController(dayViewController, sender: self)
+        return true
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout methods
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            let margins = self.inputView?.layoutMargins
+            let screenRect = collectionView.bounds
+            let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6)
+            let cellWidth = floor((screenWidth / 7.0))
+            let cellSize = CGSizeMake(cellWidth, 50)
+            return cellSize
+    }
+   
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return 1
+    }
     enum Orientation{
         case Landscape
         case Portrait
