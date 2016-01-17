@@ -28,6 +28,12 @@ class KeyboardViewController: UIInputViewController ,
         // Perform custom UI setup here
         MRYTextDocumentProxy.proxy = self.textDocumentProxy
         self.layoutSubviews()
+//        if let calView = calendarView{
+//            if let flowLayout = calView.collectionViewLayout as? UICollectionViewFlowLayout{
+//                flowLayout.estimatedItemSize = self.collectionView(calView, layout: calView.collectionViewLayout, sizeForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
+//                
+//            }
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -148,7 +154,7 @@ class KeyboardViewController: UIInputViewController ,
             let cellSize = CGSizeMake(cellWidth, 50)
             return cellSize
     }
-   
+
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1
     }

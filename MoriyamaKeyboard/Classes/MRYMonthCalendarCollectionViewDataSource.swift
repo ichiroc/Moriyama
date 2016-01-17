@@ -34,7 +34,6 @@ class MRYMonthCalendarCollectionViewDataSource: NSObject,
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        print("number of sections")
         return 1
     }
     
