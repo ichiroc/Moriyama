@@ -10,12 +10,21 @@ import UIKit
 
 class MRYMonthCalendarViewController: UIViewController ,
     UICollectionViewDelegate{
-    var collectionView : MRYMonthCalendarCollectionView!
+    let collectionView :MRYMonthCalendarCollectionView
     let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     var constraints : [NSLayoutConstraint]!
+    
+    init(){
+        collectionView = MRYMonthCalendarCollectionView()
+        super.init(nibName: nil, bundle: nil)
+    }
+   
+    required init?(coder aDecoder: NSCoder) {
+        collectionView = MRYMonthCalendarCollectionView()
+        super.init(coder: aDecoder)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView = MRYMonthCalendarCollectionView(viewController: self)
         self.view.addSubview(collectionView)
        
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("|-[col]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["col": collectionView])

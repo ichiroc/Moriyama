@@ -12,7 +12,6 @@ class MRYMonthCalendarCollectionView: UICollectionView,
     UICollectionViewDelegate,
     UICollectionViewDelegateFlowLayout{
    
-    var keyboardViewController : UIViewController?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -22,8 +21,7 @@ class MRYMonthCalendarCollectionView: UICollectionView,
         super.init(frame: frame, collectionViewLayout: layout)
     }
    
-    init(viewController vc: UIViewController){
-        self.keyboardViewController = vc
+    init(){
         super.init(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
         self.registerClass(MRYMonthCalendarCollectionViewCell.self, forCellWithReuseIdentifier: "monthlyCell")
         self.translatesAutoresizingMaskIntoConstraints = false

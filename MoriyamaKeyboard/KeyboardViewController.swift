@@ -13,6 +13,7 @@ class KeyboardViewController: UIInputViewController ,
 
     @IBOutlet var nextKeyboardButton: UIButton!
     var calendarView : MRYMonthCalendarCollectionView!
+    var mainViewController : UIViewController = MRYMonthCalendarViewController()
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     
@@ -28,12 +29,6 @@ class KeyboardViewController: UIInputViewController ,
         // Perform custom UI setup here
         MRYTextDocumentProxy.proxy = self.textDocumentProxy
         self.layoutSubviews()
-//        if let calView = calendarView{
-//            if let flowLayout = calView.collectionViewLayout as? UICollectionViewFlowLayout{
-//                flowLayout.estimatedItemSize = self.collectionView(calView, layout: calView.collectionViewLayout, sizeForItemAtIndexPath: NSIndexPath(forRow: 0, inSection: 0))
-//                
-//            }
-//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +84,7 @@ class KeyboardViewController: UIInputViewController ,
 
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
-        calendarView = MRYMonthCalendarCollectionView(viewController: self)
+        calendarView = MRYMonthCalendarCollectionView()
         calendarView.dataSource = monthCalendarCollectionViewDataSource
         calendarView.delegate = self
         let views = [ "next": nextKeyboardButton,
@@ -131,6 +126,10 @@ class KeyboardViewController: UIInputViewController ,
                 metrics: metrics,
                 views: views)
         )
+        
+    }
+    
+    private func transitToNewVC(newVC : UIViewController){
         
     }
     
