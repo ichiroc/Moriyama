@@ -75,14 +75,14 @@ class MRYDayViewController: UIViewController {
     }
 
 
-    func moveToInitialPointOnTimeline(){
+    private func moveToInitialPointOnTimeline(){
         let hour = cal.component(.Hour, fromDate: NSDate() )
         let initialPoint = CGPointMake(0.0, CGFloat(hour) * hourlyHeight )
         timelineScrollView.setContentOffset(initialPoint, animated: false)
     }
 
 
-    func timelineView() -> UIScrollView {
+    private func timelineView() -> UIScrollView {
         let sidebarWidth : CGFloat = 25.0
         let timelineHeight = CGFloat(24) * hourlyHeight
         timelineWidth = self.view.frame.width - 32.0 - sidebarWidth
@@ -113,7 +113,7 @@ class MRYDayViewController: UIViewController {
         
     }
 
-    func layoutEventViews(){
+    private func layoutEventViews(){
         var doneLayout : [MRYEvent] = []
         events.forEach({
             let conflicts = MRYEventDataStore.instance.conflictedEventsWith($0)
@@ -145,7 +145,7 @@ class MRYDayViewController: UIViewController {
         })
     }
 
-    func constraintsSubviews() -> [NSLayoutConstraint]{
+    private func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
         
         self.view.addSubview(doneButton)
