@@ -25,11 +25,22 @@ class MRYMonthCalendarViewController: UIViewController ,
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.view.addSubview(collectionView)
-       
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("|-[col]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["col": collectionView])
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["col": collectionView]
+        let noOption = NSLayoutFormatOptions(rawValue: 0)
+        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|-[col]-|",
+            options: noOption,
+            metrics: nil,
+            views: views)
         self.view.addConstraints(hConstraints)
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[col]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: ["col": collectionView])
+        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:|-[col]-|",
+            options: noOption,
+            metrics: nil,
+            views: views)
         self.view.addConstraints(vConstraints)
         // Do any additional setup after loading the view.
 
@@ -99,9 +110,9 @@ class MRYMonthCalendarViewController: UIViewController ,
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            let margins = self.inputView?.layoutMargins
+            let margins = self.view.layoutMargins
             let screenRect = collectionView.bounds
-            let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6)
+            let screenWidth = screenRect.size.width - (margins.left + margins.right) - (1 * 6)
             let cellWidth = floor((screenWidth / 7.0))
             let cellSize = CGSizeMake(cellWidth, 50)
             return cellSize
