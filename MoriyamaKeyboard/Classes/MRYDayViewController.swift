@@ -175,7 +175,9 @@ class MRYDayViewController: UIViewController {
     
     
     func dismissSelf(){
-        self.dismissViewControllerAnimated(true, completion: nil)
+        if let keyboardVC = self.parentViewController as? KeyboardViewController {
+            keyboardVC.transientToViewController(keyboardVC.prevViewController!)
+        }
     }
     /*
     // MARK: - Navigation
