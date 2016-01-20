@@ -82,7 +82,7 @@ class MRYMonthCalendarViewController: UIViewController ,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             let margins = self.view.layoutMargins
             let screenRect = collectionView.bounds
-            let screenWidth = screenRect.size.width - (margins.left + margins.right) - (1 * 6)
+            let screenWidth = screenRect.size.width - (margins.left + margins.right) //- (1 * 6)
             let cellWidth = floor((screenWidth / 7.0))
             let cellSize = CGSizeMake(cellWidth, 50)
             return cellSize
