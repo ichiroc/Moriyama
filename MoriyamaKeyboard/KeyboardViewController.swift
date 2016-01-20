@@ -13,6 +13,7 @@ class KeyboardViewController: UIInputViewController ,
 
     @IBOutlet var nextKeyboardButton: UIButton!
     var calendarView : MRYMonthCalendarCollectionView!
+    var prevViewController : UIViewController?
     var mainViewController : UIViewController = MRYMonthCalendarViewController()
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
@@ -79,6 +80,7 @@ class KeyboardViewController: UIInputViewController ,
     }
 
     private func initUIParts(){
+        
         self.nextKeyboardButton = MRYKeyboardButton(
             title: "🌐",
             backgroundColor: UIColor.lightGrayColor(),
@@ -114,23 +116,23 @@ class KeyboardViewController: UIInputViewController ,
         self.addChildViewController(newMainVC)
         self.inputView?.addSubview(newMainVC.view)
         views["main"] = newMainVC.view
-        if !initialized {
-            mainViewController = newMainVC
+        prevViewController = mainViewController
+        mainViewController = newMainVC
+        
+        if let prev = prevViewController {
+            prev.willMoveToParentViewController(nil)
+            prev.view.removeFromSuperview()
+            
             self.rebuildConstraints()
             newMainVC.didMoveToParentViewController(self)
-            return
+            prev.removeFromParentViewController()
+            prev.didMoveToParentViewController(nil)
+            
+        }else{
+            // Initial layouting.
+            self.rebuildConstraints()
+            newMainVC.didMoveToParentViewController(self)
         }
-        
-        let oldVC = mainViewController
-        mainViewController = newMainVC
-        oldVC.willMoveToParentViewController(nil)
-        oldVC.view.removeFromSuperview()
-        
-        self.rebuildConstraints()
-        newMainVC.didMoveToParentViewController(self)
-        oldVC.removeFromParentViewController()
-        oldVC.didMoveToParentViewController(nil)
-        self.inputView?.layoutIfNeeded()
     }
 
     private func rebuildConstraints(){
@@ -160,6 +162,7 @@ class KeyboardViewController: UIInputViewController ,
                 metrics: metrics,
                 views: views)
         )
+        self.inputView?.setNeedsLayout()
         self.inputView?.layoutIfNeeded()
         
     }
