@@ -70,36 +70,9 @@ class MRYMonthCalendarViewController: UIViewController ,
             let dayViewController = MRYDayViewController()
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
             dayViewController.currentDate = cell.date
-            print("parent i")
             if let keyboard = self.parentViewController as? KeyboardViewController{
                 keyboard.transientToViewController(dayViewController)
             }
-//            self.parentViewController?.transitionFromViewController(self,
-//                toViewController: dayViewController,
-//                duration: 0.25,
-//                options: UIViewAnimationOptions(rawValue: 0),
-//                animations: {
-//                    dayViewController.view.frame = self.view.frame
-////                    parent.view.frame = parent.view.frame
-//////                    dayViewController.view.addConstraints(self.view.constraints)
-////                    parent.view.removeConstraints(self.constraints)
-////                    parent.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-////                        "|-[dayVC]-|",
-////                        options: NSLayoutFormatOptions(rawValue: 0),
-////                        metrics: nil,
-////                        views: ["dayVC":self.view]))
-////                    parent.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-////                        "V:|-[dayVC(>=250@200)]-[next]-|",
-////                        options: NSLayoutFormatOptions(rawValue: 0),
-////                        metrics: nil,
-////                        views: ["dayVC":self.view, "next": parent.nextKeyboardButton!]))
-//                },
-//                completion: { (bool: Bool) -> Void in
-//                    print("dayview \(dayViewController.view.frame)")
-//                    dayViewController.didMoveToParentViewController(parent)
-//                    self.didMoveToParentViewController(nil)
-//            })
-//            //        self.showViewController(dayViewController, sender: self)
             return true
     }
     
