@@ -32,7 +32,7 @@ class KeyboardViewController: UIInputViewController ,
         // Perform custom UI setup here
         MRYTextDocumentProxy.proxy = self.textDocumentProxy
         initUIParts()
-        transientToViewController(mainViewController)
+        initLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -111,33 +111,40 @@ class KeyboardViewController: UIInputViewController ,
         self.inputView?.addSubview(commaKey)
     }
     
+    private func initLayout(){
+        mainViewController.willMoveToParentViewController(self)
+        self.addChildViewController(mainViewController)
+        self.inputView?.addSubview(mainViewController.view)
+        
+        views["main"] = mainViewController.view
+        // Initial layouting.
+        self.rebuildConstraints()
+        mainViewController.didMoveToParentViewController(self)
+    }
+    
     func transientToViewController(newMainVC : UIViewController){
+        let currentVC = mainViewController
+        currentVC.willMoveToParentViewController(nil)
+        currentVC.view.removeFromSuperview()
+        
         newMainVC.willMoveToParentViewController(self)
         self.addChildViewController(newMainVC)
         self.inputView?.addSubview(newMainVC.view)
         views["main"] = newMainVC.view
-        prevViewController = mainViewController
+        
         mainViewController = newMainVC
         
-        if let prev = prevViewController {
-            prev.willMoveToParentViewController(nil)
-            prev.view.removeFromSuperview()
-            
-            self.rebuildConstraints()
-            newMainVC.didMoveToParentViewController(self)
-            prev.removeFromParentViewController()
-            prev.didMoveToParentViewController(nil)
-            
-        }else{
-            // Initial layouting.
-            self.rebuildConstraints()
-            newMainVC.didMoveToParentViewController(self)
-        }
+        self.rebuildConstraints()
+        newMainVC.didMoveToParentViewController(self)
+        currentVC.removeFromParentViewController()
+        currentVC.didMoveToParentViewController(nil)
+        prevViewController = currentVC
     }
 
     private func rebuildConstraints(){
         
         let metrics = [ "left": margins.left, "right": margins.right, "margin": margins.left ]
+//        self.inputView?.constraints.forEach({ $0.active = false })
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
@@ -162,8 +169,8 @@ class KeyboardViewController: UIInputViewController ,
                 metrics: metrics,
                 views: views)
         )
-        self.inputView?.setNeedsLayout()
-        self.inputView?.layoutIfNeeded()
+//        self.inputView?.setNeedsLayout()
+//        self.inputView?.layoutIfNeeded()
         
     }
     
