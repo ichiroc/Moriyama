@@ -122,7 +122,85 @@ class KeyboardViewController: UIInputViewController ,
         mainViewController.didMoveToParentViewController(self)
     }
     
+//    private func performTransitionFromViewController(toViewController newMainVC: UIViewController) {
+    func transientToViewController3(newMainVC : UIViewController){
+        let currentVC = mainViewController
+        currentVC.willMoveToParentViewController(nil)
+        self.addChildViewController(newMainVC)
+        self.inputView?.addSubview(newMainVC.view)
+        // TODO: set initial layout constraints here
+        
+        let width = currentVC.view.bounds.size.width
+        let height = currentVC.view.bounds.size.height
+        newMainVC.view.frame = CGRectMake(0,height,width,height)
+        
+
+        self.inputView?.layoutIfNeeded()
+        UIView.animateWithDuration(0.25,
+            delay: 0,
+            options: UIViewAnimationOptions.TransitionCurlUp ,
+            animations: {() -> Void in
+                // TODO: set final layout constraints here
+                self.views["main"] = newMainVC.view
+                self.mainViewController = newMainVC
+                self.rebuildConstraints()
+                self.inputView?.layoutIfNeeded()
+            }, completion: {(finished: Bool) -> Void in
+                newMainVC.didMoveToParentViewController(self)
+                currentVC.view.removeFromSuperview()
+                currentVC.removeFromParentViewController()
+                self.prevViewController = currentVC
+        })
+    }
+    
     func transientToViewController(newMainVC : UIViewController){
+//        let currentVC = mainViewController
+//        currentVC.willMoveToParentViewController(nil)
+//        views["main"] = newMainVC.view
+//        newMainVC.willMoveToParentViewController(self)
+//        self.addChildViewController(newMainVC)
+//        let width = currentVC.view.bounds.size.width
+//        let height = currentVC.view.bounds.size.height
+//        self.inputView?.addSubview(newMainVC.view)
+//        newMainVC.view.frame = CGRectMake(0,height,width,height)
+        let currentVC = mainViewController
+        currentVC.willMoveToParentViewController(nil)
+        self.addChildViewController(newMainVC)
+        self.inputView?.addSubview(newMainVC.view)
+        // TODO: set initial layout constraints here
+        
+        let width = currentVC.view.bounds.size.width
+        let height = currentVC.view.bounds.size.height
+        newMainVC.view.frame = CGRectMake(0,height,width,height)
+        self.transitionFromViewController(
+            currentVC,
+            toViewController: newMainVC,
+            duration: 1.0,
+            options: UIViewAnimationOptions(rawValue: 0) ,
+            animations: {
+                self.views["main"] = newMainVC.view
+                self.mainViewController = newMainVC
+                self.rebuildConstraints()
+                self.inputView?.layoutIfNeeded()
+//                self.rebuildConstraints()
+            },
+            completion: { (success : Bool) in
+//                print("OK")
+//                newMainVC.didMoveToParentViewController(self)
+//                currentVC.view.removeFromSuperview()
+//                currentVC.removeFromParentViewController()
+//                currentVC.didMoveToParentViewController(nil)
+                
+                currentVC.view.removeFromSuperview()
+                currentVC.removeFromParentViewController()
+                self.prevViewController = currentVC
+                
+        })
+        
+    }
+    
+
+    func transientToViewController2(newMainVC : UIViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         currentVC.view.removeFromSuperview()
