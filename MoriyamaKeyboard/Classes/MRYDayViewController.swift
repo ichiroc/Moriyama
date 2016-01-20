@@ -39,17 +39,12 @@ class MRYDayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.translatesAutoresizingMaskIntoConstraints = false
 //        formatter.dateStyle = .ShortStyle
         formatter.dateFormat = "M/d(E)"
         
         self.view.backgroundColor = UIColor.lightGrayColor()
         timelineScrollView = timelineView()
-        
-        doneButton = MRYKeyboardButton(title: "Done",
-            text: nil,
-            backgroundColor: UIColor.whiteColor(),
-            titleColor: UIColor.blueColor(),
-            action: self.dismissSelf)
         
         var titleText = "Insert"
         if let date = currentDate{
@@ -60,6 +55,7 @@ class MRYDayViewController: UIViewController {
             title: titleText,
             backgroundColor: UIColor.blueColor(),
             titleColor: UIColor.whiteColor())
+        doneButton = MRYKeyboardButton(title: "DONE", text: nil, action: { self.dismissSelf()})
         
         views = [
             "cancel": doneButton,

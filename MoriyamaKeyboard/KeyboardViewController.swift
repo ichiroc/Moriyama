@@ -17,6 +17,7 @@ class KeyboardViewController: UIInputViewController ,
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     private var views : Dictionary<String,UIView> = [:]
+    private var initialized : Bool = false
     
     var currentOrientation = Orientation.Portrait
     override func updateViewConstraints() {
@@ -30,7 +31,7 @@ class KeyboardViewController: UIInputViewController ,
         // Perform custom UI setup here
         MRYTextDocumentProxy.proxy = self.textDocumentProxy
         initUIParts()
-        layoutWithContentViewController(mainViewController)
+        transientToViewController(mainViewController)
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,39 +109,31 @@ class KeyboardViewController: UIInputViewController ,
         self.inputView?.addSubview(commaKey)
     }
     
-    private func layoutWithContentViewController(newMainVC : UIViewController){
-        if mainViewController.parentViewController == nil {
-            newMainVC.willMoveToParentViewController(self)
-            self.inputView?.addSubview(newMainVC.view)
+    func transientToViewController(newMainVC : UIViewController){
+        newMainVC.willMoveToParentViewController(self)
+        self.addChildViewController(newMainVC)
+        self.inputView?.addSubview(newMainVC.view)
+        views["main"] = newMainVC.view
+        if !initialized {
+            mainViewController = newMainVC
             self.rebuildConstraints()
+            newMainVC.didMoveToParentViewController(self)
             return
         }
-        mainViewController.willMoveToParentViewController(nil)
-        mainViewController.view.removeFromSuperview()
-        mainViewController.removeFromParentViewController() // didMoveToParentViewController will called automated.
-        newMainVC.willMoveToParentViewController(self)
-        self.inputView?.addSubview(newMainVC.view)
-        self.transitionFromViewController(
-            mainViewController,
-            toViewController: newMainVC,
-            duration: 0.25,
-            options: UIViewAnimationOptions.CurveEaseIn ,
-            animations: {
-                self.rebuildConstraints()
-            },
-            completion: {
-                (success: Bool) -> Void in
-                if success{
-                    self.mainViewController = newMainVC
-                }
-        })
+        
+        let oldVC = mainViewController
+        mainViewController = newMainVC
+        oldVC.willMoveToParentViewController(nil)
+        oldVC.view.removeFromSuperview()
+        
+        self.rebuildConstraints()
+        newMainVC.didMoveToParentViewController(self)
+        oldVC.removeFromParentViewController()
+        oldVC.didMoveToParentViewController(nil)
+        self.inputView?.layoutIfNeeded()
     }
 
     private func rebuildConstraints(){
-        
-        if let constraints = self.inputView?.constraints{
-            self.inputView?.removeConstraints(constraints)
-        }
         
         let metrics = [ "left": margins.left, "right": margins.right, "margin": margins.left ]
         
@@ -167,6 +160,7 @@ class KeyboardViewController: UIInputViewController ,
                 metrics: metrics,
                 views: views)
         )
+        self.inputView?.layoutIfNeeded()
         
     }
     
