@@ -26,6 +26,7 @@ class MRYMonthCalendarViewController: UIViewController ,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(collectionView)
         self.view.translatesAutoresizingMaskIntoConstraints = false
         let views = ["col": collectionView]
