@@ -40,7 +40,6 @@ class MRYDayViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.translatesAutoresizingMaskIntoConstraints = false
-//        formatter.dateStyle = .ShortStyle
         formatter.dateFormat = "M/d(E)"
         
         self.view.backgroundColor = UIColor.lightGrayColor()
@@ -82,6 +81,7 @@ class MRYDayViewController: UIViewController {
         let sidebarWidth : CGFloat = 25.0
         let timelineHeight = CGFloat(24) * hourlyHeight
         timelineWidth = self.view.frame.width - 32.0 - sidebarWidth
+//        timelineWidth = UIScreen.mainScreen().bounds.width - 32.0 - sidebarWidth
         timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
         timeline = UIView(frame: CGRectMake(sidebarWidth,0,timelineWidth,timelineHeight))
@@ -140,7 +140,7 @@ class MRYDayViewController: UIViewController {
             }
         })
     }
-
+  
     private func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
         
@@ -166,7 +166,37 @@ class MRYDayViewController: UIViewController {
         constraints.appendContentsOf(horizonalButtons)
         return constraints
     }
-    
+//
+//    private func constraintsSubviews() -> [NSLayoutConstraint]{
+//        var constraints : [NSLayoutConstraint] = []
+//        
+////        self.view.addSubview(doneButton)
+//        self.view.addSubview(timelineScrollView)
+//        
+//        let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
+//            "V:|-[timelineScroll]-|",
+//            options: NSLayoutFormatOptions(rawValue: 0),
+//            metrics: nil,
+//            views: views)
+////        let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
+////            "V:|-[timelineScroll]-3-[cancel]-|",
+////            options: NSLayoutFormatOptions(rawValue: 0),
+////            metrics: nil,
+////            views: views)
+//        constraints.appendContentsOf(vertical)
+//        
+//        let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
+//            "|-[timelineScroll]-|",
+//            options: NSLayoutFormatOptions(rawValue: 0) ,
+//            metrics: nil,
+//            views: views)
+//        constraints.appendContentsOf(horizonalTimelineBase)
+//        
+////        self.view.addSubview(insertButton)
+////        let horizonalButtons = NSLayoutConstraint.constraintsWithVisualFormat("|-[cancel]-[insert(==cancel)]-|", options: [.AlignAllCenterY ] , metrics: nil, views: views)
+////        constraints.appendContentsOf(horizonalButtons)
+//        return constraints
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
