@@ -32,7 +32,7 @@ class KeyboardViewController: UIInputViewController ,
         // Perform custom UI setup here
         MRYTextDocumentProxy.proxy = self.textDocumentProxy
         initUIParts()
-        initLayout()
+//        initLayout()
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,6 +44,7 @@ class KeyboardViewController: UIInputViewController ,
         if let _todayIndexPath = monthCalendarCollectionViewDataSource.todayIndexPath {
             calendarView.scrollToItemAtIndexPath( _todayIndexPath, atScrollPosition: .Top, animated: false)
         }
+        initLayout()
     }
 
     override func textWillChange(textInput: UITextInput?) {
@@ -226,15 +227,29 @@ class KeyboardViewController: UIInputViewController ,
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[main(>=250@200)]-5-[space(40)]-5-|",
+                "V:|-[main(>=250@999)]-5-[space(40)]-5-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: metrics,
                 views: views)
         )
+
+//        self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.width, 500)
+//        let cn = NSLayoutConstraint.init(
+//            item: mainViewController.inputView!,
+//            attribute: .Height,
+//            relatedBy: .Equal,
+//            toItem: nil,
+//            attribute: NSLayoutAttribute.NotAnAttribute ,
+//            multiplier: 1,
+//            constant: 250.0)
+//
+//        self.inputView?.addConstraint(cn)
 //        self.inputView?.setNeedsLayout()
 //        self.inputView?.layoutIfNeeded()
         
     }
+
+    
     
 //    private func layoutSubviews(){
 //        // Perform custom UI setup here

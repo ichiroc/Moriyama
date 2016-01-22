@@ -27,6 +27,7 @@ class MRYDayViewController: UIViewController {
     private var views : [String: UIView]!
     private var doneButton : UIButton!
     private var insertButton : UIButton!
+    private var accessoryView : UIView!
     private var timelineScrollView : UIScrollView!
     private var formatter  = NSDateFormatter()
     private let hourlyHeight : CGFloat = 40.0
@@ -55,8 +56,11 @@ class MRYDayViewController: UIViewController {
             backgroundColor: UIColor.blueColor(),
             titleColor: UIColor.whiteColor())
         doneButton = MRYKeyboardButton(title: "DONE", text: nil, action: { self.dismissSelf()})
-        
+       
+        accessoryView = UIView()
+        accessoryView.translatesAutoresizingMaskIntoConstraints = false
         views = [
+            "accessory" : accessoryView,
             "cancel": doneButton,
             "insert" : insertButton,
             "timelineScroll": timelineScrollView]
@@ -146,14 +150,21 @@ class MRYDayViewController: UIViewController {
         
         self.view.addSubview(doneButton)
         self.view.addSubview(timelineScrollView)
+//        self.view.addSubview(accessoryView)
+        
+//        let vertical1 = NSLayoutConstraint.constraintsWithVisualFormat(
+//            "V:|-[accessory(30)]-[timelineScroll(>=200)]",
+//            options: [ .AlignAllLeading, .AlignAllTrailing ],
+//            metrics: nil,
+//            views: views)
+//        constraints.appendContentsOf(vertical1)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[timelineScroll]-3-[cancel]-|",
+            "V:|-[timelineScroll(>=250@999)]-3-[cancel(30)]-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views)
         constraints.appendContentsOf(vertical)
-        
         let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
             "|-[timelineScroll]-|",
             options: [.AlignAllCenterX ] ,
@@ -162,7 +173,11 @@ class MRYDayViewController: UIViewController {
         constraints.appendContentsOf(horizonalTimelineBase)
         
         self.view.addSubview(insertButton)
-        let horizonalButtons = NSLayoutConstraint.constraintsWithVisualFormat("|-[cancel]-[insert(==cancel)]-|", options: [.AlignAllCenterY ] , metrics: nil, views: views)
+        let horizonalButtons = NSLayoutConstraint.constraintsWithVisualFormat(
+            "|-[cancel]-[insert(==cancel)]-|",
+            options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom ] ,
+            metrics: nil,
+            views: views)
         constraints.appendContentsOf(horizonalButtons)
         return constraints
     }
