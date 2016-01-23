@@ -204,7 +204,6 @@ class KeyboardViewController: UIInputViewController ,
     private func rebuildConstraints(){
         
         let metrics = [ "left": margins.left, "right": margins.right, "margin": margins.left ]
-//        self.inputView?.constraints.forEach({ $0.active = false })
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
@@ -229,108 +228,9 @@ class KeyboardViewController: UIInputViewController ,
                 metrics: metrics,
                 views: views)
         )
-
-//        self.view.bounds.size = CGSizeMake(UIScreen.mainScreen().bounds.width, 500)
-//        let cn = NSLayoutConstraint.init(
-//            item: mainViewController.inputView!,
-//            attribute: .Height,
-//            relatedBy: .Equal,
-//            toItem: nil,
-//            attribute: NSLayoutAttribute.NotAnAttribute ,
-//            multiplier: 1,
-//            constant: 250.0)
-//
-//        self.inputView?.addConstraint(cn)
-//        self.inputView?.setNeedsLayout()
-//        self.inputView?.layoutIfNeeded()
         
     }
 
-    
-    
-//    private func layoutSubviews(){
-//        // Perform custom UI setup here
-//        self.nextKeyboardButton = MRYKeyboardButton(title: "🌐", backgroundColor: UIColor.lightGrayColor(),action: { self.advanceToNextInputMode() })
-//        let returnKey = MRYKeyboardButton(title: "↩︎", text: "\n", backgroundColor: UIColor.blueColor(), titleColor: UIColor.whiteColor())
-//        let deleteKey = MRYKeyboardButton( title: "⌫",
-//            backgroundColor: UIColor.lightGrayColor(),
-//            action: {() -> Void in MRYTextDocumentProxy.proxy.deleteBackward()} )
-//
-//        let spaceKey = MRYKeyboardButton(title: "space", text: " ")
-//        let commaKey = MRYKeyboardButton(title: ",", text: ",")
-//        calendarView = MRYMonthCalendarCollectionView()
-//        calendarView.dataSource = monthCalendarCollectionViewDataSource
-//        calendarView.delegate = self
-//        let views = [ "next": nextKeyboardButton,
-//            "delete": deleteKey,
-//            "space": spaceKey,
-//            "return": returnKey ,
-//            "comma": commaKey,
-//            "calendar": calendarView]
-//        
-//        self.inputView?.addSubview(nextKeyboardButton)
-//        self.inputView?.addSubview(deleteKey)
-//        self.inputView?.addSubview(spaceKey)
-//        self.inputView?.addSubview(returnKey)
-//        self.inputView?.addSubview(commaKey)
-//        self.inputView?.addSubview(calendarView)
-//        
-//        let metrics = [ "left": margins.left, "right": margins.right, "margin": margins.left ]
-//        
-//        self.inputView?.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat(
-//                "H:|-margin-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-margin-|",
-//                options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
-//                metrics: metrics,
-//                views: views)
-//        )
-//
-//        self.inputView?.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat(
-//                "H:|-margin-[calendar]-margin-|",
-//                options: NSLayoutFormatOptions(rawValue: 0),
-//                metrics: metrics,
-//                views: views)
-//        )
-//        
-//        self.inputView?.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat(
-//                "V:|-[calendar(>=250@200)]-5-[space(40)]-5-|",
-//                options: NSLayoutFormatOptions(rawValue: 0),
-//                metrics: metrics,
-//                views: views)
-//        )
-//        
-//    }
-//    
-//    // MARK: - UICollectionVieDelegate
-//    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        let dayViewController = MRYDayViewController()
-//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
-//        dayViewController.currentDate = cell.date
-//        self.showViewController(dayViewController, sender: self)
-//        return true
-//    }
-//    
-//    // MARK: - UICollectionViewDelegateFlowLayout methods
-//    func collectionView(collectionView: UICollectionView,
-//        layout collectionViewLayout: UICollectionViewLayout,
-//        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//            let margins = self.inputView?.layoutMargins
-//            let screenRect = collectionView.bounds
-//            let screenWidth = screenRect.size.width - (margins!.left + margins!.right) - (1 * 6)
-//            let cellWidth = floor((screenWidth / 7.0))
-//            let cellSize = CGSizeMake(cellWidth, 50)
-//            return cellSize
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 1
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-//        return 1
-//    }
     enum Orientation{
         case Landscape
         case Portrait
