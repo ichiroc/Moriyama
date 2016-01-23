@@ -10,26 +10,26 @@ import UIKit
 
 class MRYMonthCalendarViewController: UIViewController ,
     UICollectionViewDelegate{
-    let collectionView :MRYMonthCalendarCollectionView
+    let calendarCollectionView :MRYMonthCalendarCollectionView
     let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     var constraints : [NSLayoutConstraint]!
     
     init(){
-        collectionView = MRYMonthCalendarCollectionView()
+        calendarCollectionView = MRYMonthCalendarCollectionView()
         super.init(nibName: nil, bundle: nil)
     }
    
     required init?(coder aDecoder: NSCoder) {
-        collectionView = MRYMonthCalendarCollectionView()
+        calendarCollectionView = MRYMonthCalendarCollectionView()
         super.init(coder: aDecoder)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.lightGrayColor()
-        self.view.addSubview(collectionView)
+        self.view.addSubview(calendarCollectionView)
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        let views = ["col": collectionView]
+        let views = ["col": calendarCollectionView]
         let noOption = NSLayoutFormatOptions(rawValue: 0)
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-[col]-|",
@@ -45,26 +45,25 @@ class MRYMonthCalendarViewController: UIViewController ,
         self.view.addConstraints(vConstraints)
         // Do any additional setup after loading the view.
 
-        collectionView.dataSource = collectionViewDataSource
-        collectionView.delegate = self
+        calendarCollectionView.dataSource = collectionViewDataSource
+        calendarCollectionView.delegate = self
+        
+        moveToAtIndexPath(calendarCollectionView.todayIndexPath)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        self.moveToAtIndexPath(calendarCollectionView.todayIndexPath)
+    }
+    private func moveToAtIndexPath( indexPath : NSIndexPath  ){
+        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .Top, animated: false)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView,
         shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {

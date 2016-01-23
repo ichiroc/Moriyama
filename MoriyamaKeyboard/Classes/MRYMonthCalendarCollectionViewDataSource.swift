@@ -10,7 +10,6 @@ import UIKit
 
 class MRYMonthCalendarCollectionViewDataSource: NSObject,
     UICollectionViewDataSource{
-    var todayIndexPath : NSIndexPath?
     private var cal  = NSCalendar.currentCalendar()
     private var _firstCellDate : NSDate?
     
@@ -24,7 +23,7 @@ class MRYMonthCalendarCollectionViewDataSource: NSObject,
             let cellDate = firstCellDate().dateByAddingTimeInterval(NSTimeInterval(indexPath.row * 86400))
             cell.setCellDate(cellDate)
             if cell.isToday() {
-                todayIndexPath = indexPath
+                (collectionView as! MRYMonthCalendarCollectionView ).todayIndexPath = indexPath
             }
             return cell
     }

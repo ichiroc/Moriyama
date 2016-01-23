@@ -41,9 +41,6 @@ class KeyboardViewController: UIInputViewController ,
     }
     
     override func viewWillAppear(animated: Bool) {
-        if let _todayIndexPath = monthCalendarCollectionViewDataSource.todayIndexPath {
-            calendarView.scrollToItemAtIndexPath( _todayIndexPath, atScrollPosition: .Top, animated: false)
-        }
         initLayout()
     }
 

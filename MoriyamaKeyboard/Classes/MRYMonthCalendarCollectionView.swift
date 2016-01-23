@@ -9,9 +9,9 @@
 import UIKit
 
 class MRYMonthCalendarCollectionView: UICollectionView,
-    UICollectionViewDelegate,
     UICollectionViewDelegateFlowLayout{
    
+    var todayIndexPath : NSIndexPath = NSIndexPath(forItem: 60, inSection: 0)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

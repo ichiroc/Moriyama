@@ -150,14 +150,6 @@ class MRYDayViewController: UIViewController {
         
         self.view.addSubview(doneButton)
         self.view.addSubview(timelineScrollView)
-//        self.view.addSubview(accessoryView)
-        
-//        let vertical1 = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "V:|-[accessory(30)]-[timelineScroll(>=200)]",
-//            options: [ .AlignAllLeading, .AlignAllTrailing ],
-//            metrics: nil,
-//            views: views)
-//        constraints.appendContentsOf(vertical1)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|-[timelineScroll(>=250@999)]-3-[cancel(30)]-|",
@@ -181,37 +173,6 @@ class MRYDayViewController: UIViewController {
         constraints.appendContentsOf(horizonalButtons)
         return constraints
     }
-//
-//    private func constraintsSubviews() -> [NSLayoutConstraint]{
-//        var constraints : [NSLayoutConstraint] = []
-//        
-////        self.view.addSubview(doneButton)
-//        self.view.addSubview(timelineScrollView)
-//        
-//        let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "V:|-[timelineScroll]-|",
-//            options: NSLayoutFormatOptions(rawValue: 0),
-//            metrics: nil,
-//            views: views)
-////        let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-////            "V:|-[timelineScroll]-3-[cancel]-|",
-////            options: NSLayoutFormatOptions(rawValue: 0),
-////            metrics: nil,
-////            views: views)
-//        constraints.appendContentsOf(vertical)
-//        
-//        let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
-//            "|-[timelineScroll]-|",
-//            options: NSLayoutFormatOptions(rawValue: 0) ,
-//            metrics: nil,
-//            views: views)
-//        constraints.appendContentsOf(horizonalTimelineBase)
-//        
-////        self.view.addSubview(insertButton)
-////        let horizonalButtons = NSLayoutConstraint.constraintsWithVisualFormat("|-[cancel]-[insert(==cancel)]-|", options: [.AlignAllCenterY ] , metrics: nil, views: views)
-////        constraints.appendContentsOf(horizonalButtons)
-//        return constraints
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
