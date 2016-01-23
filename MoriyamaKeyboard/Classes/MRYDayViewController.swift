@@ -152,7 +152,7 @@ class MRYDayViewController: UIViewController {
         self.view.addSubview(timelineScrollView)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[timelineScroll(>=250@999)]-3-[cancel(30)]-|",
+            "V:|-[timelineScroll]-3-[cancel(30)]-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views)

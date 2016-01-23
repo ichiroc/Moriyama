@@ -44,7 +44,7 @@ class MRYMonthCalendarCollectionViewDataSource: NSObject,
             currentDateComp.hour = 0 // 時間はリセット
             currentDateComp.minute = 0
             currentDateComp.second = 0
-            currentDateComp.day = currentDateComp.day - 60
+            currentDateComp.day = currentDateComp.day - 60 // TODO: Use calendarCollectionView.todayIndexPath.
             
             currentDateComp = cal.components([.Day, .Month ,.Year, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
             while(currentDateComp.weekday != 1) {
