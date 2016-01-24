@@ -18,7 +18,8 @@ class MRYKeyboardButton : UIButton{
         text: String? = nil,
         backgroundColor : UIColor? = nil,
         titleColor: UIColor? = nil,
-        action: (() -> Void)? = nil){
+        action: (() -> Void)? = nil,
+        round: Bool = true){
             customAction = action
             if let txt = text {
                 _text = txt
@@ -32,7 +33,9 @@ class MRYKeyboardButton : UIButton{
             self.titleLabel?.font = UIFont.systemFontOfSize(16)
             self.setTitleColor(normalTitleColor, forState: .Normal)
             self.backgroundColor = normalBackgroundColor
-            self.layer.cornerRadius = 3
+            if round{
+                self.layer.cornerRadius = 3
+            }
             self.addTarget(self, action: "touchUpInside", forControlEvents: .TouchUpInside)
             self.translatesAutoresizingMaskIntoConstraints = false
             self.addTarget(self, action: "touchDown", forControlEvents: .TouchDown)

@@ -29,7 +29,11 @@ class MRYMonthCalendarViewController: UIViewController ,
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(calendarCollectionView)
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        let views = ["col": calendarCollectionView]
+        let _numberPad = numberPad()
+        self.view.addSubview(_numberPad)
+        let views = ["col": calendarCollectionView,
+            "numberPad" : _numberPad]
+        
         let noOption = NSLayoutFormatOptions(rawValue: 0)
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-[col]-|",
@@ -38,8 +42,8 @@ class MRYMonthCalendarViewController: UIViewController ,
             views: views)
         self.view.addConstraints(hConstraints)
         let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[col]-|",
-            options: noOption,
+            "V:|-[numberPad(40)][col]-|",
+            options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllLeading],
             metrics: nil,
             views: views)
         self.view.addConstraints(vConstraints)
@@ -49,6 +53,30 @@ class MRYMonthCalendarViewController: UIViewController ,
         calendarCollectionView.delegate = self
         
         moveToAtIndexPath(calendarCollectionView.todayIndexPath)
+    }
+    
+    private func numberPad() -> UIView {
+        let numberPad = UIView()
+        numberPad.backgroundColor = UIColor.lightGrayColor()
+        numberPad.layoutMargins = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
+        numberPad.translatesAutoresizingMaskIntoConstraints = false
+        var views : [String : UIView] = [:]
+        for(var i = 0 ; i < 10; i++){
+            let button = MRYKeyboardButton(title: "\(i)", round: false)
+            numberPad.addSubview(button)
+            views["b\(i)"] = button
+        }
+        numberPad.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            "V:|-[b0]-|",
+            options: NSLayoutFormatOptions(rawValue: 0),
+            metrics: nil,
+            views: views ))
+        numberPad.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
+            "|[b0]-1-[b1(==b0)]-1-[b2(==b0)]-1-[b3(==b0)]-1-[b4(==b0)]-1-[b5(==b0)]-1-[b6(==b0)]-1-[b7(==b0)]-1-[b8(==b0)]-1-[b9(==b0)]|",
+            options: [ NSLayoutFormatOptions.AlignAllCenterY, .AlignAllTop, .AlignAllBottom],
+            metrics: nil,
+            views: views ))
+        return numberPad
     }
 
     override func viewDidAppear(animated: Bool) {
