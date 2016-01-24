@@ -13,6 +13,7 @@ class MRYMonthCalendarViewController: UIViewController ,
     let calendarCollectionView :MRYMonthCalendarCollectionView
     let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     var constraints : [NSLayoutConstraint]!
+    var cellSize : CGSize?
     
     init(){
         calendarCollectionView = MRYMonthCalendarCollectionView()
@@ -36,7 +37,7 @@ class MRYMonthCalendarViewController: UIViewController ,
         
         let noOption = NSLayoutFormatOptions(rawValue: 0)
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[col]-|",
+            "H:|-1-[col]-1-|",
             options: noOption,
             metrics: nil,
             views: views)
@@ -108,12 +109,15 @@ class MRYMonthCalendarViewController: UIViewController ,
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            if cellSize != nil {
+                return cellSize!
+            }
             let margins = self.view.layoutMargins
             let screenRect = collectionView.bounds
             let screenWidth = screenRect.size.width - (margins.left + margins.right) - (1 * 6)
             let cellWidth = floor((screenWidth / 7.0))
-            let cellSize = CGSizeMake(cellWidth, 50)
-            return cellSize
+            cellSize = CGSizeMake(cellWidth, 50)
+            return cellSize!
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
