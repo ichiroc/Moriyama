@@ -130,7 +130,7 @@ class KeyboardViewController: UIInputViewController ,
         
         let width = currentVC.view.bounds.size.width
         let height = currentVC.view.bounds.size.height
-        newMainVC.view.frame = CGRectMake(16,height+100,width,height)
+        newMainVC.view.frame = CGRectMake(MARGIN_LEFT,height+100,width,height)
         
 
         self.inputView?.layoutIfNeeded()
@@ -202,30 +202,29 @@ class KeyboardViewController: UIInputViewController ,
     }
 
     private func rebuildConstraints(){
-        
-        let metrics = [ "left": margins.left, "right": margins.right, "margin": margins.left ]
+
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-margin-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-margin-|",
+                "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
                 options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
-                metrics: metrics,
+                metrics: METRICS,
                 views: views)
         )
 
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-margin-[main]-margin-|",
+                "H:|-m_left-[main]-m_right-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
+                metrics: METRICS,
                 views: views)
         )
         
         self.inputView?.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-[main(>=250@999)]-5-[space(40)]-5-|",
+                "V:|-m_top-[main(>=250@999)]-3-[space(40)]-m_bottom-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: metrics,
+                metrics: METRICS,
                 views: views)
         )
         

@@ -12,6 +12,7 @@
 		5D1E8AB01C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */; };
 		5D2DB6AD1C2DE0FC00604C0F /* MRYKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */; };
 		5D3942771C3737D6004B89EF /* MRYDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3942761C3737D6004B89EF /* MRYDayViewController.swift */; };
+		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
 		5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */; };
 		5D9D801E1C2CB02400623AF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D801D1C2CB02400623AF7 /* ViewController.swift */; };
@@ -76,6 +77,7 @@
 		5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYMonthCalendarCollectionViewCell.swift; path = Classes/MRYMonthCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYKeyboardButton.swift; path = Classes/MRYKeyboardButton.swift; sourceTree = "<group>"; };
 		5D3942761C3737D6004B89EF /* MRYDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYDayViewController.swift; path = Classes/MRYDayViewController.swift; sourceTree = "<group>"; };
+		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
 		5D9D80181C2CB02400623AF7 /* Moriyama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moriyama.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		5D9D804E1C2D405700623AF7 /* MoriyamaKeyboard */ = {
 			isa = PBXGroup;
 			children = (
+				5D6A28F21C55899B003A522F /* Globals.swift */,
 				5DD05EAD1C459F0C00938176 /* Util.swift */,
 				5DC19C4F1C485D5B0030B282 /* DataSource */,
 				5DD259821C40B56D007C61F6 /* Controller */,
@@ -438,6 +441,7 @@
 				5DC19C511C485F250030B282 /* MRYMonthCalendarCollectionViewDataSource.swift in Sources */,
 				5D1E8AB01C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift in Sources */,
 				5D2DB6AD1C2DE0FC00604C0F /* MRYKeyboardButton.swift in Sources */,
+				5D6A28F31C55899B003A522F /* Globals.swift in Sources */,
 				5D9D80501C2D405700623AF7 /* KeyboardViewController.swift in Sources */,
 				5DD05EB21C45A78B00938176 /* MRYTimeDetailTableView.swift in Sources */,
 				5DC19C8F1C4C35710030B282 /* MRYMonthCalendarViewController.swift in Sources */,

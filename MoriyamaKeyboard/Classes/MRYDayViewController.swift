@@ -84,7 +84,7 @@ class MRYDayViewController: UIViewController {
     private func timelineView() -> UIScrollView {
         let sidebarWidth : CGFloat = 25.0
         let timelineHeight = CGFloat(24) * hourlyHeight
-        timelineWidth = self.view.frame.width - 32.0 - sidebarWidth
+        timelineWidth = self.view.frame.width - MARGIN_LEFT - MARGIN_RIGHT - sidebarWidth
 //        timelineWidth = UIScreen.mainScreen().bounds.width - 32.0 - sidebarWidth
         timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -152,23 +152,23 @@ class MRYDayViewController: UIViewController {
         self.view.addSubview(timelineScrollView)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[timelineScroll]-3-[cancel(30)]-|",
+            "V:|-m_top-[timelineScroll]-3-[cancel(30)]-m_bottom-|",
             options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
+            metrics: METRICS,
             views: views)
         constraints.appendContentsOf(vertical)
         let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
-            "|-[timelineScroll]-|",
+            "|-m_left-[timelineScroll]-m_right-|",
             options: [.AlignAllCenterX ] ,
-            metrics: nil,
+            metrics: METRICS,
             views: views)
         constraints.appendContentsOf(horizonalTimelineBase)
         
         self.view.addSubview(insertButton)
         let horizonalButtons = NSLayoutConstraint.constraintsWithVisualFormat(
-            "|-[cancel]-[insert(==cancel)]-|",
+            "|-m_left-[cancel]-[insert(==cancel)]-m_right-|",
             options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom ] ,
-            metrics: nil,
+            metrics: METRICS,
             views: views)
         constraints.appendContentsOf(horizonalButtons)
         return constraints
