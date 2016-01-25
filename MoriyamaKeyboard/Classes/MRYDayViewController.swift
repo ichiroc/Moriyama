@@ -154,14 +154,15 @@ class MRYDayViewController: UIViewController {
         
         _accessoryView.addSubview(timelineScrollView)
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "|-m_left-[back]-1-[insert(==back)]-m_right-|",
+//            "|-m_left-[back]-1-[insert(==back)]-m_right-|",
+            "|[back]-1-[insert(==back)]|",
             options: [ .AlignAllTop, .AlignAllBottom ] ,
             metrics: METRICS,
             views: ["back" : backButton,  "insert" : insertButton])
         _accessoryView.addConstraints(hConstraints)
         
         let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-m_top-[back]-m_bottom-|",
+            "V:|[back]|",
             options: NSLayoutFormatOptions(rawValue: 0) ,
             metrics: METRICS,
             views: ["back" : backButton,  "insert" : insertButton])
@@ -176,14 +177,16 @@ class MRYDayViewController: UIViewController {
         self.view.addSubview(timelineScrollView)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-m_top-[accessory(40)]-1-[timelineScroll]-m_bottom-|",
+//            "V:|-m_top-[accessory(40)]-1-[timelineScroll]-m_bottom-|",
+            "V:|[accessory(40)]-1-[timelineScroll]|",
             options: [.AlignAllLeading, .AlignAllTrailing],
             metrics: METRICS,
             views: views)
         constraints.appendContentsOf(vertical)
         
         let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
-            "|-m_left-[timelineScroll]-m_right-|",
+//            "|-m_left-[timelineScroll]-m_right-|",
+            "|[timelineScroll]|",
             options: [.AlignAllCenterX ] ,
             metrics: METRICS,
             views: views)

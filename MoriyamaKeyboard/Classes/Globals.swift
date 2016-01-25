@@ -6,10 +6,10 @@
 //  Copyright © 2016年 Ichiro. All rights reserved.
 //
 import UIKit
-let MARGIN_LEFT : CGFloat = 1.0
-let MARGIN_RIGHT : CGFloat = 1.0
+let MARGIN_LEFT : CGFloat = 5.0
+let MARGIN_RIGHT : CGFloat = 5.0
 let MARGIN_TOP : CGFloat = 1.0
-let MARGIN_BOTTOM : CGFloat = 1.0
+let MARGIN_BOTTOM : CGFloat = 5.0
 
 let METRICS = ["m_left": MARGIN_LEFT,
     "m_right": MARGIN_RIGHT,
