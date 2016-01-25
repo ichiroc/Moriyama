@@ -68,13 +68,22 @@ class MRYMonthCalendarViewController: UIViewController ,
             numberPad.addSubview(button)
             views["b\(i)"] = button
         }
+        
+        let colonButton = MRYKeyboardButton(title: ":", round: 0)
+        numberPad.addSubview(colonButton)
+        views["colon"] = colonButton
+        
+        let slashButton = MRYKeyboardButton(title: "/", round: 0)
+        numberPad.addSubview(slashButton)
+        views["slash"] = slashButton
+        
         numberPad.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|-1-[b0]-1-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views ))
         numberPad.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "|[b0]-1-[b1(==b0)]-1-[b2(==b0)]-1-[b3(==b0)]-1-[b4(==b0)]-1-[b5(==b0)]-1-[b6(==b0)]-1-[b7(==b0)]-1-[b8(==b0)]-1-[b9(==b0)]|",
+            "|[b0]-1-[b1(==b0)]-1-[b2(==b0)]-1-[b3(==b0)]-1-[b4(==b0)]-1-[b5(==b0)]-1-[b6(==b0)]-1-[b7(==b0)]-1-[b8(==b0)]-1-[b9(==b0)]-1-[colon(==b0)]-1-[slash(==b0)]|",
             options: [ NSLayoutFormatOptions.AlignAllCenterY, .AlignAllTop, .AlignAllBottom],
             metrics: nil,
             views: views ))
