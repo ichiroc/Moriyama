@@ -47,9 +47,9 @@ class MRYDayViewController: UIViewController {
         let constraints = self.constraintsSubviews()
         self.view.addConstraints(constraints)
         
-        moveToInitialPointOnTimeline()
         layoutEventViews()
         
+        moveToInitialPointOnTimeline()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,17 +142,19 @@ class MRYDayViewController: UIViewController {
             titleText = Util.string(date, format: "MMMddE", locale: NSLocale.currentLocale())
         }
         insertButton = MRYKeyboardButton(
-            title: titleText,
-            backgroundColor: UIColor.blueColor(),
-            titleColor: UIColor.whiteColor())
+            title: titleText)
         _accessoryView.addSubview(insertButton)
         
-        backButton = MRYKeyboardButton(title: "Back", text: nil, action: { self.dismissSelf()})
+        backButton = MRYKeyboardButton(title: "Back",
+            backgroundColor: UIColor.blueColor(),
+            titleColor: UIColor.whiteColor(),
+            action: {self.dismissSelf()},
+            round: false)
         _accessoryView.addSubview(backButton)
         
         _accessoryView.addSubview(timelineScrollView)
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "|-m_left-[back]-[insert(==back)]-m_right-|",
+            "|-m_left-[back]-1-[insert(==back)]-m_right-|",
             options: [ .AlignAllTop, .AlignAllBottom ] ,
             metrics: METRICS,
             views: ["back" : backButton,  "insert" : insertButton])
@@ -174,7 +176,7 @@ class MRYDayViewController: UIViewController {
         self.view.addSubview(timelineScrollView)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-m_top-[accessory(40)]-[timelineScroll]-m_bottom-|",
+            "V:|-m_top-[accessory(40)]-1-[timelineScroll]-m_bottom-|",
             options: [.AlignAllLeading, .AlignAllTrailing],
             metrics: METRICS,
             views: views)

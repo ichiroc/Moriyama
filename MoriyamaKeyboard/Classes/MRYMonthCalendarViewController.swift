@@ -26,6 +26,7 @@ class MRYMonthCalendarViewController: UIViewController ,
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(calendarCollectionView)
@@ -68,7 +69,7 @@ class MRYMonthCalendarViewController: UIViewController ,
             views["b\(i)"] = button
         }
         numberPad.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[b0]-|",
+            "V:|-1-[b0]-1-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: views ))
@@ -113,8 +114,9 @@ class MRYMonthCalendarViewController: UIViewController ,
                 return cellSize!
             }
             let margins = self.view.layoutMargins
+            print("\(margins)")
             let screenRect = collectionView.bounds
-            let screenWidth = screenRect.size.width - (margins.left + margins.right) - (1 * 6)
+            let screenWidth = screenRect.size.width - (margins.left + margins.right) //- (1 * 6)
             let cellWidth = floor((screenWidth / 7.0))
             cellSize = CGSizeMake(cellWidth, 50)
             return cellSize!
