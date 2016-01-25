@@ -64,7 +64,7 @@ class MRYMonthCalendarViewController: UIViewController ,
         numberPad.translatesAutoresizingMaskIntoConstraints = false
         var views : [String : UIView] = [:]
         for(var i = 0 ; i < 10; i++){
-            let button = MRYKeyboardButton(title: "\(i)", round: false)
+            let button = MRYKeyboardButton(title: "\(i)", round: 0)
             numberPad.addSubview(button)
             views["b\(i)"] = button
         }

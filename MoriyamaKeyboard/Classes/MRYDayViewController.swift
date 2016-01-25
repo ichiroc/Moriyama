@@ -149,7 +149,7 @@ class MRYDayViewController: UIViewController {
             backgroundColor: UIColor.blueColor(),
             titleColor: UIColor.whiteColor(),
             action: {self.dismissSelf()},
-            round: false)
+            round: 0)
         _accessoryView.addSubview(backButton)
         
         _accessoryView.addSubview(timelineScrollView)
