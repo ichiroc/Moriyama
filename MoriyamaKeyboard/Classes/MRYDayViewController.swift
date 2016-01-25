@@ -27,7 +27,8 @@ class MRYDayViewController: UIViewController {
     private var views : [String: UIView]!
     private var backButton : UIButton!
     private var insertButton : UIButton!
-    private var _accessoryView : UIView!
+    private var accessoryKeyView : UIView!
+    private var accessoryKeyViews : [String:UIView] = [:]
     private var timelineScrollView : UIScrollView!
     private var formatter  = NSDateFormatter()
     private let hourlyHeight : CGFloat = 40.0
@@ -39,9 +40,9 @@ class MRYDayViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         timelineScrollView = timelineView()
         
-        _accessoryView = accessoryView()
+        accessoryKeyView = accessoryView()
         views = [
-            "accessory" : _accessoryView,
+            "accessory" : accessoryKeyView,
             "timelineScroll": timelineScrollView]
         
         let constraints = self.constraintsSubviews()
@@ -133,51 +134,58 @@ class MRYDayViewController: UIViewController {
     }
     
     private func accessoryView() -> UIView{
-        _accessoryView = UIView()
-        _accessoryView.translatesAutoresizingMaskIntoConstraints = false
+        accessoryKeyView = UIView()
+        accessoryKeyView.translatesAutoresizingMaskIntoConstraints = false
         
-        var titleText = "Insert"
+        let dateFromats = ["MMMdE", "MMMd","d","EEE", "YYYYMMdd"]
         if let date = currentDate{
-            //titleText = formatter.stringFromDate(date)
-            titleText = Util.string(date, format: "MMMddE", locale: NSLocale.currentLocale())
+            dateFromats.forEach({
+                let text = Util.string(date, format: $0 )
+                let button = MRYKeyboardButton(title: text)
+                accessoryKeyViews[$0] = button
+                accessoryKeyView.addSubview(button)
+            })
         }
-        insertButton = MRYKeyboardButton(
-            title: titleText)
-        _accessoryView.addSubview(insertButton)
+        
         
         backButton = MRYKeyboardButton(title: "Back",
             backgroundColor: UIColor.blueColor(),
             titleColor: UIColor.whiteColor(),
             action: {self.dismissSelf()},
-            round: 0)
-        _accessoryView.addSubview(backButton)
+            round: 5)
+        accessoryKeyView.addSubview(backButton)
+        accessoryKeyViews["back"] = backButton
         
-        _accessoryView.addSubview(timelineScrollView)
+        var vfl = "|[back]"
+        dateFromats.forEach({
+            vfl += "-1-[\($0)]"
+        })
+        vfl += "-1-|"
+        
+        accessoryKeyView.addSubview(timelineScrollView)
         let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "|-m_left-[back]-1-[insert(==back)]-m_right-|",
-            "|[back]-1-[insert(==back)]|",
+            vfl,
             options: [ .AlignAllTop, .AlignAllBottom ] ,
             metrics: METRICS,
-            views: ["back" : backButton,  "insert" : insertButton])
-        _accessoryView.addConstraints(hConstraints)
+            views: accessoryKeyViews)
+        accessoryKeyView.addConstraints(hConstraints)
         
         let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|[back]|",
             options: NSLayoutFormatOptions(rawValue: 0) ,
             metrics: METRICS,
-            views: ["back" : backButton,  "insert" : insertButton])
-        _accessoryView.addConstraints(vConstraints)
-        return _accessoryView
+            views: accessoryKeyViews)
+        accessoryKeyView.addConstraints(vConstraints)
+        return accessoryKeyView
     }
   
     private func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
         
-        self.view.addSubview(_accessoryView)
+        self.view.addSubview(accessoryKeyView)
         self.view.addSubview(timelineScrollView)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-//            "V:|-m_top-[accessory(40)]-1-[timelineScroll]-m_bottom-|",
             "V:|[accessory(40)]-1-[timelineScroll]|",
             options: [.AlignAllLeading, .AlignAllTrailing],
             metrics: METRICS,
