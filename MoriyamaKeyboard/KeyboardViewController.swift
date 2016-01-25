@@ -160,7 +160,7 @@ class KeyboardViewController: UIInputViewController ,
         
         let width = currentVC.view.bounds.size.width
         let height = currentVC.view.bounds.size.height
-        newMainVC.view.frame = CGRectMake(16 , -height ,width,height)
+        newMainVC.view.frame = CGRectMake(0 , -height ,width,height)
         self.transitionFromViewController(
             currentVC,
             toViewController: newMainVC,
