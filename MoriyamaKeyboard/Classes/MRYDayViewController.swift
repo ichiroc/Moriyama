@@ -137,9 +137,9 @@ class MRYDayViewController: UIViewController {
         accessoryKeyView = UIView()
         accessoryKeyView.translatesAutoresizingMaskIntoConstraints = false
         
-        let dateFromats = ["MMMdE", "MMMd","d","EEE", "YYYYMMdd"]
+        let dateFormats = ["MMMdE", "MMM","d","EEEE", "YYYYMMdd"]
         if let date = currentDate{
-            dateFromats.forEach({
+            dateFormats.forEach({
                 let text = Util.string(date, format: $0 )
                 let button = MRYKeyboardButton(title: text)
                 accessoryKeyViews[$0] = button
