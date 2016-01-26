@@ -149,15 +149,15 @@ class MRYDayViewController: UIViewController {
         
         
         backButton = MRYKeyboardButton(title: "Back",
-            backgroundColor: UIColor.blueColor(),
-            titleColor: UIColor.whiteColor(),
+            backgroundColor: UIColor.whiteColor(),
+            titleColor: UIColor.blueColor(),
             action: {self.dismissSelf()},
-            round: 5)
+            round: 0)
         accessoryKeyView.addSubview(backButton)
         accessoryKeyViews["back"] = backButton
         
-        var vfl = "|[back]"
-        dateFromats.forEach({
+        var vfl = "|[back(45)]"
+        dateFormats.forEach({
             vfl += "-1-[\($0)]"
         })
         vfl += "-1-|"
