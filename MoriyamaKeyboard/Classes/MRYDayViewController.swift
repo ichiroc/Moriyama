@@ -19,7 +19,8 @@ class MRYDayViewController: UIViewController {
                 return _events!
             }
             if let date = currentDate{
-                return MRYEventDataStore.instance.eventWithDate(date)
+                _events = MRYEventDataStore.instance.eventWithDate(date)
+                return _events!
             }
             return []
         }
@@ -63,7 +64,11 @@ class MRYDayViewController: UIViewController {
 
 
     private func moveToInitialPointOnTimeline(){
-        let hour = cal.component(.Hour, fromDate: NSDate() )
+        var date = NSDate()
+        if let firstEvent =  _events?.first{
+            date = firstEvent.startDate
+        }
+        let hour = cal.component(.Hour, fromDate: date )
         let initialPoint = CGPointMake(0.0, CGFloat(hour) * hourlyHeight )
         timelineScrollView.setContentOffset(initialPoint, animated: false)
     }

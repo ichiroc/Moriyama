@@ -42,7 +42,9 @@ class MRYEventDataStore {
         let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
         let events = store.eventsMatchingPredicate(predicate)
         let _events = events.map{ MRYEvent( event: $0) }
-        return _events
+        return _events.sort({ x , y in
+            return x.startDate.compare(y.startDate) == NSComparisonResult.OrderedAscending
+        })
     }
 
 
