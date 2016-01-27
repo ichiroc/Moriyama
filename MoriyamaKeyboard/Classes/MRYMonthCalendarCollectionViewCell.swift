@@ -137,7 +137,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         eventIndicatorViewsMap["rightSpacer"] = rightSpacer
         
         let _events = events
-        var max = 3
+        var max = 4
         if _events.count < max {
             max = _events.count
         }

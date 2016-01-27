@@ -16,7 +16,6 @@ class KeyboardViewController: UIInputViewController ,
     var prevViewController : UIViewController?
     var mainViewController : UIViewController = MRYMonthCalendarViewController()
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
-    let margins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     private var views : Dictionary<String,UIView> = [:]
     private var initialized : Bool = false
     
@@ -32,7 +31,6 @@ class KeyboardViewController: UIInputViewController ,
         // Perform custom UI setup here
         MRYTextDocumentProxy.proxy = self.textDocumentProxy
         initUIParts()
-//        initLayout()
     }
     
     override func didReceiveMemoryWarning() {
