@@ -114,12 +114,15 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             // Saturday
             self.dateLabel.textColor = UIColor.blueColor()
         }
-        
-        eventIndicator.backgroundColor = cellColor
         self.dateLabel.text = formatter.stringFromDate(cellDate)
+        buildEventIndicatorView(cellColor)
+    }
+   
+    private func buildEventIndicatorView(cellColor: UIColor) -> UIView{
+        eventIndicator.backgroundColor = cellColor
         
         if events.count == 0 {
-            return
+            return eventIndicator
         }
         
         let leftSpacer = UIView()
@@ -167,9 +170,9 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
                 metrics: nil,
                 views: eventIndicatorViewsMap ))
         
-        
+        return eventIndicator
     }
-    
+
     private func monthlyColor(date: NSDate) -> UIColor{
         let thisMonth = cal.component(.Month, fromDate: NSDate())
         var color = UIColor.whiteColor()
