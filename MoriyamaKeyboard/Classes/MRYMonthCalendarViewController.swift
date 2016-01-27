@@ -12,6 +12,7 @@ class MRYMonthCalendarViewController: UIViewController ,
     UICollectionViewDelegate{
     let calendarCollectionView :MRYMonthCalendarCollectionView
     let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
+    var currentIndexPath: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     var constraints : [NSLayoutConstraint]!
     var cellSize : CGSize?
     
@@ -53,8 +54,8 @@ class MRYMonthCalendarViewController: UIViewController ,
 
         calendarCollectionView.dataSource = collectionViewDataSource
         calendarCollectionView.delegate = self
-        
-        moveToAtIndexPath(calendarCollectionView.todayIndexPath)
+        currentIndexPath = calendarCollectionView.todayIndexPath
+//        moveToAtIndexPath(currentPosition)
     }
     
     private func numberPad() -> UIView {
@@ -91,10 +92,11 @@ class MRYMonthCalendarViewController: UIViewController ,
     }
 
     override func viewDidAppear(animated: Bool) {
-        self.moveToAtIndexPath(calendarCollectionView.todayIndexPath)
+        self.moveToAtIndexPath(currentIndexPath)
+        super.viewDidAppear(animated)
     }
     private func moveToAtIndexPath( indexPath : NSIndexPath  ){
-        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .Top, animated: false)
+        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .CenteredVertically, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -106,6 +108,7 @@ class MRYMonthCalendarViewController: UIViewController ,
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView,
         shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+            currentIndexPath = indexPath
             let dayViewController = MRYDayViewController()
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
             dayViewController.currentDate = cell.date
