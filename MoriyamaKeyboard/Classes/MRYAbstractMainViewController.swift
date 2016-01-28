@@ -29,7 +29,7 @@ class MRYAbstractMainViewController: UIViewController {
     
     func popViewController(){
         if let prev = previousViewController{
-            KeyboardViewController.instance.transientToViewController(prev)
+            KeyboardViewController.instance.transientToViewController(prev, back: true)
         }
     }
 }

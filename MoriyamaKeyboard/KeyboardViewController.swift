@@ -160,32 +160,39 @@ class KeyboardViewController: UIInputViewController ,
         })
     }
     
-    func transientToViewController(newMainVC : MRYAbstractMainViewController){
+    func transientToViewController(newMainVC : MRYAbstractMainViewController, back: Bool = false){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         self.addChildViewController(newMainVC)
         self.inputView?.addSubview(newMainVC.view)
-        // TODO: set initial layout constraints here
         
-        let width = currentVC.view.bounds.size.width
-        let height = currentVC.view.bounds.size.height
-        newMainVC.view.frame = CGRectMake(0 , -height ,width,height)
+        // set initial layout constraints here
+        let width = newMainVC.view.frame.width
+        let height = newMainVC.view.frame.height
+        if !back {
+            newMainVC.view.frame = CGRectMake(MARGIN_LEFT , -height, width, height)
+        }
+        self.inputView?.layoutIfNeeded()
         self.transitionFromViewController(
             currentVC,
             toViewController: newMainVC,
-            duration: 0.25,
+            duration: 0,
             options: [ UIViewAnimationOptions.TransitionNone ],
             animations: {
                 self.views["main"] = newMainVC.view
                 self.mainViewController = newMainVC
                 self.rebuildConstraints()
+                if back{
+                    currentVC.view.frame = CGRectMake( MARGIN_LEFT , -height ,width,height)
+                }
                 self.inputView?.layoutIfNeeded()
             },
             completion: { (success : Bool) in
-                currentVC.view.removeFromSuperview()
-                currentVC.removeFromParentViewController()
-                self.prevViewController = currentVC
-                
+                if success{
+                    currentVC.view.removeFromSuperview()
+                    currentVC.removeFromParentViewController()
+                    self.prevViewController = currentVC
+                }
         })
         
     }
