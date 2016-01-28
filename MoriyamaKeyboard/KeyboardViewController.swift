@@ -12,13 +12,24 @@ class KeyboardViewController: UIInputViewController ,
     UICollectionViewDelegate{
 
     @IBOutlet var nextKeyboardButton: UIButton!
+    static var instance : KeyboardViewController!
     var calendarView : MRYMonthCalendarCollectionView!
     var prevViewController : UIViewController?
-    var mainViewController : UIViewController = MRYMonthCalendarViewController()
+    var mainViewController : MRYAbstractMainViewController
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     private var views : Dictionary<String,UIView> = [:]
     private var initialized : Bool = false
     
+    init(){
+        mainViewController  = MRYMonthCalendarViewController()
+        super.init(nibName: nil, bundle: nil)
+        KeyboardViewController.instance = self
+    }
+    required init?(coder aDecoder: NSCoder) {
+        mainViewController  = MRYMonthCalendarViewController()
+        super.init(coder : aDecoder)
+        KeyboardViewController.instance = self
+    }
     var currentOrientation = Orientation.Portrait
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -119,7 +130,7 @@ class KeyboardViewController: UIInputViewController ,
     }
     
 //    private func performTransitionFromViewController(toViewController newMainVC: UIViewController) {
-    func transientToViewController3(newMainVC : UIViewController){
+    func transientToViewController3(newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         self.addChildViewController(newMainVC)
@@ -149,7 +160,7 @@ class KeyboardViewController: UIInputViewController ,
         })
     }
     
-    func transientToViewController(newMainVC : UIViewController){
+    func transientToViewController(newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         self.addChildViewController(newMainVC)
@@ -180,7 +191,7 @@ class KeyboardViewController: UIInputViewController ,
     }
     
 
-    private func transientToViewControllerWithNoAnimation(newMainVC : UIViewController){
+    private func transientToViewControllerWithNoAnimation(newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         currentVC.view.removeFromSuperview()

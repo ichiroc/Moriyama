@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MRYMonthCalendarViewController: UIViewController ,
+class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     UICollectionViewDelegate{
     let calendarCollectionView :MRYMonthCalendarCollectionView
     let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
@@ -16,9 +16,9 @@ class MRYMonthCalendarViewController: UIViewController ,
     var constraints : [NSLayoutConstraint]!
     var cellSize : CGSize?
     
-    init(){
+    override init(fromViewController: MRYAbstractMainViewController?){
         calendarCollectionView = MRYMonthCalendarCollectionView()
-        super.init(nibName: nil, bundle: nil)
+        super.init(fromViewController: fromViewController)
     }
    
     required init?(coder aDecoder: NSCoder) {
@@ -109,12 +109,10 @@ class MRYMonthCalendarViewController: UIViewController ,
     func collectionView(collectionView: UICollectionView,
         shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
             currentIndexPath = indexPath
-            let dayViewController = MRYDayViewController()
+            let dayViewController = MRYDayViewController(fromViewController: self)
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
             dayViewController.currentDate = cell.date
-            if let keyboard = self.parentViewController as? KeyboardViewController{
-                keyboard.transientToViewController(dayViewController)
-            }
+            self.pushViewController(dayViewController)
             return true
     }
     

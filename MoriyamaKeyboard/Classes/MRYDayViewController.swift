@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class MRYDayViewController: UIViewController {
+class MRYDayViewController: MRYAbstractMainViewController {
 //    var monthlyView : MRYMonthCalendarCollectionView?
     var currentDate: NSDate?
     private var _events : [MRYEvent]?
@@ -31,7 +31,6 @@ class MRYDayViewController: UIViewController {
     private var accessoryKeyView : UIView!
     private var accessoryKeyViews : [String:UIView] = [:]
     private var timelineScrollView : UIScrollView!
-    private var formatter  = NSDateFormatter()
     private let hourlyHeight : CGFloat = 40.0
     private var timeline : UIView!
     private var eventViews : [UIView] = []
@@ -57,7 +56,6 @@ class MRYDayViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        formatter.dateFormat = "M/d(E)"
         
         self.view.backgroundColor = UIColor.lightGrayColor()
     }
@@ -78,7 +76,6 @@ class MRYDayViewController: UIViewController {
         let sidebarWidth : CGFloat = 25.0
         let timelineHeight = CGFloat(24) * hourlyHeight
         timelineWidth = self.view.frame.width - MARGIN_LEFT - MARGIN_RIGHT - sidebarWidth
-//        timelineWidth = UIScreen.mainScreen().bounds.width - 32.0 - sidebarWidth
         timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
         timeline = UIView(frame: CGRectMake(sidebarWidth,0,timelineWidth,timelineHeight))
@@ -156,7 +153,7 @@ class MRYDayViewController: UIViewController {
         backButton = MRYKeyboardButton(title: "Back",
             backgroundColor: UIColor.whiteColor(),
             titleColor: UIColor.blueColor(),
-            action: {self.dismissSelf()},
+            action: {self.popViewController()},
             round: 0)
         accessoryKeyView.addSubview(backButton)
         accessoryKeyViews["back"] = backButton
@@ -198,7 +195,6 @@ class MRYDayViewController: UIViewController {
         constraints.appendContentsOf(vertical)
         
         let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
-//            "|-m_left-[timelineScroll]-m_right-|",
             "|[timelineScroll]|",
             options: [.AlignAllCenterX ] ,
             metrics: METRICS,
@@ -213,12 +209,6 @@ class MRYDayViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func dismissSelf(){
-        if let keyboardVC = self.parentViewController as? KeyboardViewController {
-            keyboardVC.transientToViewController(keyboardVC.prevViewController!)
-        }
-    }
     /*
     // MARK: - Navigation
 
