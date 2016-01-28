@@ -13,8 +13,8 @@ class KeyboardViewController: UIInputViewController ,
 
     @IBOutlet var nextKeyboardButton: UIButton!
     static var instance : KeyboardViewController!
-    var calendarView : MRYMonthCalendarCollectionView!
-    var prevViewController : UIViewController?
+//    private var calendarView : MRYMonthCalendarCollectionView!
+//    var prevViewController : UIViewController?
     var mainViewController : MRYAbstractMainViewController
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     private var views : Dictionary<String,UIView> = [:]
@@ -65,7 +65,7 @@ class KeyboardViewController: UIInputViewController ,
             currentOrientation = Orientation.Landscape
         }
         if currentOrientation != previousOrientation{
-            calendarView.performBatchUpdates(nil, completion: nil)
+//            calendarView.performBatchUpdates(nil, completion: nil)
         }
     }
 
@@ -156,7 +156,7 @@ class KeyboardViewController: UIInputViewController ,
                 newMainVC.didMoveToParentViewController(self)
                 currentVC.view.removeFromSuperview()
                 currentVC.removeFromParentViewController()
-                self.prevViewController = currentVC
+//                self.preinstalvViewController = currentVC
         })
     }
     
@@ -191,7 +191,6 @@ class KeyboardViewController: UIInputViewController ,
                 if success{
                     currentVC.view.removeFromSuperview()
                     currentVC.removeFromParentViewController()
-                    self.prevViewController = currentVC
                 }
         })
         
@@ -214,7 +213,7 @@ class KeyboardViewController: UIInputViewController ,
         newMainVC.didMoveToParentViewController(self)
         currentVC.removeFromParentViewController()
         currentVC.didMoveToParentViewController(nil)
-        prevViewController = currentVC
+//        prevViewController = currentVC
     }
 
     private func rebuildConstraints(){
