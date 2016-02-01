@@ -67,6 +67,7 @@ class KeyboardViewController: UIInputViewController ,
         }
         if currentOrientation != previousOrientation{
             // TODO: Add orientation changing.
+            rebuildMainView()
             mainViewController.viewDidChangeOrientation(currentOrientation)
         }
     }
@@ -213,13 +214,14 @@ class KeyboardViewController: UIInputViewController ,
                 views: views)
         mainViewConstraints.appendContentsOf(c2)
         
+        let height = UIScreen.mainScreen().bounds.height * 0.6
         let heightConstraint = NSLayoutConstraint(item: self.inputView!,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
             toItem: nil,
             attribute: NSLayoutAttribute.NotAnAttribute,
             multiplier: 1.0,
-            constant: 300.0)
+            constant: height)
         heightConstraint.priority = 999.0
         mainViewConstraints.append(heightConstraint)
         self.inputView?.addConstraints( mainViewConstraints )

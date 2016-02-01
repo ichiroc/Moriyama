@@ -61,9 +61,9 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     }
     
     override func viewDidChangeOrientation(orientation: KeyboardViewController.Orientation) {
-        print("Orientation changed")
         cellSize = nil
         calendarCollectionView.performBatchUpdates(nil, completion: nil)
+        calendarCollectionView.reloadData()
     }
     
     private func numberPad() -> UIView {
@@ -132,8 +132,8 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
                 return cellSize!
             }
             let margins = calendarCollectionView.layoutMargins
-            let screenRect = calendarCollectionView.bounds
-            let screenWidth = screenRect.size.width - (margins.left + margins.right) // - (MARGIN_LEFT + MARGIN_RIGHT) // - (1 * 6)
+            let screenRect = UIScreen.mainScreen().bounds //calendarCollectionView.bounds
+            let screenWidth = screenRect.size.width - (margins.left + margins.right) - (MARGIN_LEFT + MARGIN_RIGHT) // - (1 * 6)
             let cellWidth = floor((screenWidth / 7.0))
             cellSize = CGSizeMake(cellWidth, 50)
             return cellSize!
