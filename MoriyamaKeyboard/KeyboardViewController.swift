@@ -17,6 +17,13 @@ class KeyboardViewController: UIInputViewController ,
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     private var views : Dictionary<String,UIView> = [:]
     private var initialized : Bool = false
+    private var mainViewConstraints :[NSLayoutConstraint] = []
+    var currentOrientation = Orientation.Portrait
+ 
+    enum Orientation{
+        case Landscape
+        case Portrait
+    }
     
     init(){
         mainViewController  = MRYMonthCalendarViewController()
@@ -28,10 +35,8 @@ class KeyboardViewController: UIInputViewController ,
         super.init(coder : aDecoder)
         KeyboardViewController.instance = self
     }
-    var currentOrientation = Orientation.Portrait
     override func updateViewConstraints() {
         super.updateViewConstraints()
-    
         // Add custom view sizing constraints here
     }
 
@@ -52,9 +57,6 @@ class KeyboardViewController: UIInputViewController ,
         initLayout()
     }
 
-    override func textWillChange(textInput: UITextInput?) {
-        // The app is about to change the document's contents. Perform any preparation here.
-    }
     override func viewDidLayoutSubviews() {
         let bounds = UIScreen.mainScreen().bounds
         let previousOrientation = currentOrientation
@@ -65,12 +67,9 @@ class KeyboardViewController: UIInputViewController ,
         }
         if currentOrientation != previousOrientation{
             // TODO: Add orientation changing.
+            mainViewController.viewDidChangeOrientation(currentOrientation)
         }
     }
-//
-//    override func viewWillLayoutSubviews() {
-//        self.inputView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
 
     override func textDidChange(textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
@@ -129,7 +128,6 @@ class KeyboardViewController: UIInputViewController ,
         mainViewController.didMoveToParentViewController(self)
     }
     
-//    private func performTransitionFromViewController(toViewController newMainVC: UIViewController) {
     func transientToViewController(newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
@@ -155,45 +153,8 @@ class KeyboardViewController: UIInputViewController ,
                 newMainVC.didMoveToParentViewController(self)
                 currentVC.view.removeFromSuperview()
                 currentVC.removeFromParentViewController()
-//                self.preinstalvViewController = currentVC
         })
     }
-    
-//    func transientToViewControllerOld(newMainVC : MRYAbstractMainViewController){
-//        let currentVC = mainViewController
-//        currentVC.willMoveToParentViewController(nil)
-//        self.addChildViewController(newMainVC)
-//        self.inputView?.addSubview(newMainVC.view)
-//        
-//        // set initial layout constraints here
-////        let width = newMainVC.view.frame.width
-////        let height = newMainVC.view.frame.height
-////        if !back {
-////            newMainVC.view.frame = CGRectMake(MARGIN_LEFT , -height, width, height)
-////        }
-//        self.inputView?.layoutIfNeeded()
-//        self.transitionFromViewController(
-//            currentVC,
-//            toViewController: newMainVC,
-//            duration: 0,
-//            options: [ UIViewAnimationOptions.TransitionNone ],
-//            animations: {
-//                self.views["main"] = newMainVC.view
-//                self.mainViewController = newMainVC
-//                self.rebuildConstraints()
-////                if back{
-////                    currentVC.view.frame = CGRectMake( MARGIN_LEFT , -height ,width,height)
-////                }
-//                self.inputView?.layoutIfNeeded()
-//            },
-//            completion: { (success : Bool) in
-//                if success{
-//                    currentVC.view.removeFromSuperview()
-//                    currentVC.removeFromParentViewController()
-//                }
-//        })
-//        
-//    }
     
 
     func transientToViewControllerWithNoAnimation(newMainVC : MRYAbstractMainViewController){
@@ -218,7 +179,6 @@ class KeyboardViewController: UIInputViewController ,
     private var allConstraints : [NSLayoutConstraint] = []
     private func rebuildConstraints(){
         NSLayoutConstraint.deactivateConstraints(allConstraints)
-//        allConstraints.forEach({$0.active = false })
         allConstraints = []
         
         allConstraints.appendContentsOf(
@@ -231,32 +191,11 @@ class KeyboardViewController: UIInputViewController ,
         self.inputView?.addConstraints( allConstraints )
 
         rebuildMainView()
-//        self.inputView?.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat(
-//                "H:|-m_left-[main]-m_right-|",
-//                options: NSLayoutFormatOptions(rawValue: 0),
-//                metrics: METRICS,
-//                views: views)
-//        )
-//        
-//        self.inputView?.addConstraints(
-//            NSLayoutConstraint.constraintsWithVisualFormat(
-//                "V:|-m_top-[main(>=250@999)]-3-[space(40)]-m_bottom-|",
-//                options: NSLayoutFormatOptions(rawValue: 0),
-//                metrics: METRICS,
-//                views: views)
-//        )
         
     }
     
-    private func buildConstraints(){
-    }
-    
-    private var mainViewConstraints :[NSLayoutConstraint] = []
     private func rebuildMainView(){
         
-//        mainViewConstraints.forEach({ $0.active = false})
-//        self.inputView?.removeConstraints(mainViewConstraints)
         NSLayoutConstraint.deactivateConstraints(mainViewConstraints)
         mainViewConstraints = []
         
@@ -288,9 +227,4 @@ class KeyboardViewController: UIInputViewController ,
         self.inputView?.layoutIfNeeded()
     }
 
-    enum Orientation{
-        case Landscape
-        case Portrait
-    }
-    
 }

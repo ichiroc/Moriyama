@@ -34,4 +34,10 @@ class MRYAbstractMainViewController: UIViewController {
             KeyboardViewController.instance.transientToViewControllerWithNoAnimation(prev)
         }
     }
+    
+    func viewDidChangeOrientation( orientation: KeyboardViewController.Orientation ){
+       // Default behavior is nothign, implement in subclass.
+    }
+    
+    
 }
