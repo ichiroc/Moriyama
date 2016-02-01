@@ -18,6 +18,7 @@ class KeyboardViewController: UIInputViewController ,
     private var views : Dictionary<String,UIView> = [:]
     private var initialized : Bool = false
     private var mainViewConstraints :[NSLayoutConstraint] = []
+    private var constraintsInitialized = false
     var currentOrientation = Orientation.Portrait
  
     enum Orientation{
@@ -67,7 +68,9 @@ class KeyboardViewController: UIInputViewController ,
         }
         if currentOrientation != previousOrientation{
             // TODO: Add orientation changing.
-            rebuildMainView()
+            if constraintsInitialized {
+                rebuildMainView()
+            }
             mainViewController.viewDidChangeOrientation(currentOrientation)
         }
     }
@@ -192,7 +195,7 @@ class KeyboardViewController: UIInputViewController ,
         self.inputView?.addConstraints( allConstraints )
 
         rebuildMainView()
-        
+        constraintsInitialized = true
     }
     
     private func rebuildMainView(){
