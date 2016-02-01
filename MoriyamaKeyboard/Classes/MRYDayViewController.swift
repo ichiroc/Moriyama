@@ -38,6 +38,15 @@ class MRYDayViewController: MRYAbstractMainViewController {
     private var cal  = NSCalendar.currentCalendar()
     
     override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.backgroundColor = UIColor.lightGrayColor()
         timelineScrollView = timelineView()
         
         accessoryKeyView = accessoryView()
@@ -51,15 +60,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
         layoutEventViews()
         
         moveToInitialPointOnTimeline()
-        
-        super.viewWillAppear(animated)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        self.view.backgroundColor = UIColor.lightGrayColor()
     }
 
 
