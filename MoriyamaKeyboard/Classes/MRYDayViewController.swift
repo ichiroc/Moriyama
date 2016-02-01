@@ -197,13 +197,18 @@ class MRYDayViewController: MRYAbstractMainViewController {
         constraints.appendContentsOf(vertical)
         
         let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
-            "|[timelineScroll]|",
+            "H:|[timelineScroll]|",
             options: [.AlignAllCenterX ] ,
             metrics: METRICS,
             views: views)
         constraints.appendContentsOf(horizonalTimelineBase)
         
         return constraints
+    }
+    
+    func tappedEventView( event: MRYEvent){
+        let detailViewController = MRYTimeDetailTableViewController(event: event, fromViewController: self)
+        self.pushViewController(detailViewController)
     }
     
     override func didReceiveMemoryWarning() {

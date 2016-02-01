@@ -13,8 +13,6 @@ class KeyboardViewController: UIInputViewController ,
 
     @IBOutlet var nextKeyboardButton: UIButton!
     static var instance : KeyboardViewController!
-//    private var calendarView : MRYMonthCalendarCollectionView!
-//    var prevViewController : UIViewController?
     var mainViewController : MRYAbstractMainViewController
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     private var views : Dictionary<String,UIView> = [:]
@@ -50,6 +48,7 @@ class KeyboardViewController: UIInputViewController ,
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.inputView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         initLayout()
     }
 
@@ -65,13 +64,13 @@ class KeyboardViewController: UIInputViewController ,
             currentOrientation = Orientation.Landscape
         }
         if currentOrientation != previousOrientation{
-//            calendarView.performBatchUpdates(nil, completion: nil)
+            // TODO: Add orientation changing.
         }
     }
-
-    override func viewWillLayoutSubviews() {
-        self.inputView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
+//
+//    override func viewWillLayoutSubviews() {
+//        self.inputView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//    }
 
     override func textDidChange(textInput: UITextInput?) {
         // The app has just changed the document's contents, the document context has been updated.
@@ -118,6 +117,7 @@ class KeyboardViewController: UIInputViewController ,
         self.inputView?.addSubview(commaKey)
     }
     
+    
     private func initLayout(){
         mainViewController.willMoveToParentViewController(self)
         self.addChildViewController(mainViewController)
@@ -130,7 +130,7 @@ class KeyboardViewController: UIInputViewController ,
     }
     
 //    private func performTransitionFromViewController(toViewController newMainVC: UIViewController) {
-    func transientToViewController3(newMainVC : MRYAbstractMainViewController){
+    func transientToViewController(newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         self.addChildViewController(newMainVC)
@@ -139,9 +139,8 @@ class KeyboardViewController: UIInputViewController ,
         
         let width = currentVC.view.bounds.size.width
         let height = currentVC.view.bounds.size.height
-        newMainVC.view.frame = CGRectMake(MARGIN_LEFT,height+100,width,height)
+        newMainVC.view.frame = CGRectMake(MARGIN_LEFT,-height,width,height)
         
-
         self.inputView?.layoutIfNeeded()
         UIView.animateWithDuration(0.25,
             delay: 0,
@@ -150,7 +149,7 @@ class KeyboardViewController: UIInputViewController ,
                 // TODO: set final layout constraints here
                 self.views["main"] = newMainVC.view
                 self.mainViewController = newMainVC
-                self.rebuildConstraints()
+                self.rebuildMainView()
                 self.inputView?.layoutIfNeeded()
             }, completion: {(finished: Bool) -> Void in
                 newMainVC.didMoveToParentViewController(self)
@@ -160,48 +159,49 @@ class KeyboardViewController: UIInputViewController ,
         })
     }
     
-    func transientToViewController(newMainVC : MRYAbstractMainViewController, back: Bool = false){
-        let currentVC = mainViewController
-        currentVC.willMoveToParentViewController(nil)
-        self.addChildViewController(newMainVC)
-        self.inputView?.addSubview(newMainVC.view)
-        
-        // set initial layout constraints here
-        let width = newMainVC.view.frame.width
-        let height = newMainVC.view.frame.height
-        if !back {
-            newMainVC.view.frame = CGRectMake(MARGIN_LEFT , -height, width, height)
-        }
-        self.inputView?.layoutIfNeeded()
-        self.transitionFromViewController(
-            currentVC,
-            toViewController: newMainVC,
-            duration: 0,
-            options: [ UIViewAnimationOptions.TransitionNone ],
-            animations: {
-                self.views["main"] = newMainVC.view
-                self.mainViewController = newMainVC
-                self.rebuildConstraints()
-                if back{
-                    currentVC.view.frame = CGRectMake( MARGIN_LEFT , -height ,width,height)
-                }
-                self.inputView?.layoutIfNeeded()
-            },
-            completion: { (success : Bool) in
-                if success{
-                    currentVC.view.removeFromSuperview()
-                    currentVC.removeFromParentViewController()
-                }
-        })
-        
-    }
+//    func transientToViewControllerOld(newMainVC : MRYAbstractMainViewController){
+//        let currentVC = mainViewController
+//        currentVC.willMoveToParentViewController(nil)
+//        self.addChildViewController(newMainVC)
+//        self.inputView?.addSubview(newMainVC.view)
+//        
+//        // set initial layout constraints here
+////        let width = newMainVC.view.frame.width
+////        let height = newMainVC.view.frame.height
+////        if !back {
+////            newMainVC.view.frame = CGRectMake(MARGIN_LEFT , -height, width, height)
+////        }
+//        self.inputView?.layoutIfNeeded()
+//        self.transitionFromViewController(
+//            currentVC,
+//            toViewController: newMainVC,
+//            duration: 0,
+//            options: [ UIViewAnimationOptions.TransitionNone ],
+//            animations: {
+//                self.views["main"] = newMainVC.view
+//                self.mainViewController = newMainVC
+//                self.rebuildConstraints()
+////                if back{
+////                    currentVC.view.frame = CGRectMake( MARGIN_LEFT , -height ,width,height)
+////                }
+//                self.inputView?.layoutIfNeeded()
+//            },
+//            completion: { (success : Bool) in
+//                if success{
+//                    currentVC.view.removeFromSuperview()
+//                    currentVC.removeFromParentViewController()
+//                }
+//        })
+//        
+//    }
     
 
-    private func transientToViewControllerWithNoAnimation(newMainVC : MRYAbstractMainViewController){
+    func transientToViewControllerWithNoAnimation(newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         currentVC.view.removeFromSuperview()
-        
+        currentVC.removeFromParentViewController()
+        currentVC.didMoveToParentViewController(nil)
         newMainVC.willMoveToParentViewController(self)
         self.addChildViewController(newMainVC)
         self.inputView?.addSubview(newMainVC.view)
@@ -209,40 +209,83 @@ class KeyboardViewController: UIInputViewController ,
         
         mainViewController = newMainVC
         
-        self.rebuildConstraints()
+        self.rebuildMainView()
+        self.inputView?.layoutIfNeeded()
         newMainVC.didMoveToParentViewController(self)
-        currentVC.removeFromParentViewController()
-        currentVC.didMoveToParentViewController(nil)
 //        prevViewController = currentVC
     }
-
+    
+    private var allConstraints : [NSLayoutConstraint] = []
     private func rebuildConstraints(){
-
+        NSLayoutConstraint.deactivateConstraints(allConstraints)
+//        allConstraints.forEach({$0.active = false })
+        allConstraints = []
         
-        self.inputView?.addConstraints(
+        allConstraints.appendContentsOf(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
                 options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
                 metrics: METRICS,
                 views: views)
         )
+        self.inputView?.addConstraints( allConstraints )
 
-        self.inputView?.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-m_left-[main]-m_right-|",
+        rebuildMainView()
+//        self.inputView?.addConstraints(
+//            NSLayoutConstraint.constraintsWithVisualFormat(
+//                "H:|-m_left-[main]-m_right-|",
+//                options: NSLayoutFormatOptions(rawValue: 0),
+//                metrics: METRICS,
+//                views: views)
+//        )
+//        
+//        self.inputView?.addConstraints(
+//            NSLayoutConstraint.constraintsWithVisualFormat(
+//                "V:|-m_top-[main(>=250@999)]-3-[space(40)]-m_bottom-|",
+//                options: NSLayoutFormatOptions(rawValue: 0),
+//                metrics: METRICS,
+//                views: views)
+//        )
+        
+    }
+    
+    private func buildConstraints(){
+    }
+    
+    private var mainViewConstraints :[NSLayoutConstraint] = []
+    private func rebuildMainView(){
+        
+//        mainViewConstraints.forEach({ $0.active = false})
+//        self.inputView?.removeConstraints(mainViewConstraints)
+        NSLayoutConstraint.deactivateConstraints(mainViewConstraints)
+        mainViewConstraints = []
+        
+        let c = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:|-m_left-[main]-m_right-|",
+            options: NSLayoutFormatOptions(rawValue: 0),
+            metrics: METRICS,
+            views: views)
+        mainViewConstraints.appendContentsOf(c)
+        
+        let c2 = NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:|-m_top-[main]-3-[space(40)]-m_bottom-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: METRICS,
                 views: views)
-        )
+        mainViewConstraints.appendContentsOf(c2)
         
-        self.inputView?.addConstraints(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-m_top-[main(>=250@999)]-3-[space(40)]-m_bottom-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
-                metrics: METRICS,
-                views: views)
-        )
+        let heightConstraint = NSLayoutConstraint(item: self.inputView!,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: nil,
+            attribute: NSLayoutAttribute.NotAnAttribute,
+            multiplier: 1.0,
+            constant: 300.0)
+        heightConstraint.priority = 999.0
+        mainViewConstraints.append(heightConstraint)
+        self.inputView?.addConstraints( mainViewConstraints )
         
+        self.inputView?.layoutIfNeeded()
     }
 
     enum Orientation{

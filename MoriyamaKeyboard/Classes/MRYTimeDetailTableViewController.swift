@@ -8,51 +8,48 @@
 
 import UIKit
 
-class MRYTimeDetailViewController: UIViewController {
+class MRYTimeDetailTableViewController: MRYAbstractMainViewController {
     var _event: MRYEvent?
-    
-    init( event: MRYEvent){
+    var views : [String: UIView] = [:]
+    init( event: MRYEvent, fromViewController: MRYAbstractMainViewController){
         _event = event
-        super.init(nibName: nil, bundle: nil)
+        super.init(fromViewController: fromViewController)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let doneButton = MRYKeyboardButton(title: "Done",  action:  { () -> Void in
-            self.dissmissSelf() } )
+        let doneButton = MRYKeyboardButton(title: "Done",  action:  { self.popViewController() } )
         self.view.addSubview(doneButton)
         let tableView = MRYTimeDetailTableView(event: _event! )
         self.view.addSubview(tableView)
-        let views = [ "done": doneButton,
-        "table": tableView]
-        
+        views = [ "done": doneButton,
+            "table": tableView]
         let tableHorizonalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-[table]-|",
+            "H:|[table]|",
             options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil,
+            metrics: METRICS,
             views: views )
         self.view.addConstraints(tableHorizonalConstraints)
         
         let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[table]-[done]-|",
+            "V:|[done(35)]-[table]|",
             options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllTrailing] ,
-            metrics: nil,
+            metrics: METRICS,
             views: views)
         self.view.addConstraints(verticalConstraints)
+        
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func dissmissSelf(){
-        self.dismissViewControllerAnimated(true, completion: nil )
     }
     
 

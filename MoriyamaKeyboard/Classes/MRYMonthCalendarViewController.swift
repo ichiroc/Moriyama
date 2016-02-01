@@ -15,6 +15,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     var currentIndexPath: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     var constraints : [NSLayoutConstraint]!
     var cellSize : CGSize?
+    var views : [String:UIView] = [:]
     
     override init(fromViewController: MRYAbstractMainViewController?){
         calendarCollectionView = MRYMonthCalendarCollectionView()
@@ -25,6 +26,8 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         calendarCollectionView = MRYMonthCalendarCollectionView()
         super.init(coder: aDecoder)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -34,7 +37,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         self.view.translatesAutoresizingMaskIntoConstraints = false
         let _numberPad = numberPad()
         self.view.addSubview(_numberPad)
-        let views = ["col": calendarCollectionView,
+        views = ["col": calendarCollectionView,
             "numberPad" : _numberPad]
         
         let noOption = NSLayoutFormatOptions(rawValue: 0)

@@ -45,7 +45,8 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         dateLabel = UILabel()
         super.init(frame: frame)
 //        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        
+       let defaultMargin = self.contentView.layoutMargins
+       self.contentView.layoutMargins = UIEdgeInsets(top: defaultMargin.top, left: 0, bottom: defaultMargin.bottom, right: 0)
         eventIndicator.translatesAutoresizingMaskIntoConstraints = false
         eventIndicator.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.contentView.addSubview(eventIndicator)
@@ -120,6 +121,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
    
     private func buildEventIndicatorView(cellColor: UIColor) -> UIView{
         eventIndicator.backgroundColor = cellColor
+//        eventIndicator.backgroundColor = UIColor.blueColor()
         
         if events.count == 0 {
             return eventIndicator
@@ -149,7 +151,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             let eventIndicationPartView = UIView()
             eventIndicationPartView.translatesAutoresizingMaskIntoConstraints = false
             eventIndicationPartView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
-            vflArray.append("[e\(i)(5)]")
+            vflArray.append("[e\(i)(4)]")
             eventIndicatorViewsMap["e\(i)"] = eventIndicationPartView
             eventIndicator.addSubview(eventIndicationPartView)
             i++

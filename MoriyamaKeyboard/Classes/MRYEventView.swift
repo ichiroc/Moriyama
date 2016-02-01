@@ -17,24 +17,23 @@ class MRYEventView: UIView {
         // Drawing code
     }
     */
-   
+    private let mainViewController : MRYDayViewController
     var _event : MRYEvent?
-//    private let _dayViewController : MRYDayViewController
     private var hourlyHeight : CGFloat = 40.0
     
-    override init(frame: CGRect) {
-//        _dayViewController = MRYDayViewController()
+    private override init(frame: CGRect) {
+        mainViewController = MRYDayViewController()
         super.init(frame: frame)
     }
     required init?(coder aDecoder: NSCoder) {
-//        _dayViewController = MRYDayViewController()
+        mainViewController = MRYDayViewController()
         super.init(coder: aDecoder)
     }
     
     init(frame: CGRect, event: MRYEvent, hourlyHeight height : CGFloat, viewController: MRYDayViewController){
         _event = event
-//        _dayViewController = viewController
         hourlyHeight = height
+        mainViewController = viewController
         super.init(frame: frame)
         self.backgroundColor = UIColor(CGColor: event.calendar.CGColor )
         
@@ -66,8 +65,7 @@ class MRYEventView: UIView {
     }
 
     func tapped(sender: UITapGestureRecognizer){
-        let viewController = MRYTimeDetailViewController(event: _event!)
-//        _dayViewController.presentViewController(viewController, animated: true, completion: nil)
+        mainViewController.tappedEventView(_event!)
     }
 
     func recalculateSizeAndPosition(containerWidth: CGFloat){
