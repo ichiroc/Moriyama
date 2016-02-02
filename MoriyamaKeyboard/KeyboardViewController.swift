@@ -103,14 +103,17 @@ class KeyboardViewController: UIInputViewController ,
             backgroundColor: UIColor.lightGrayColor(),
             action: {() -> Void in MRYTextDocumentProxy.proxy.deleteBackward()} )
 
+        
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
+        let hyphenKey = MRYKeyboardButton(title: "-", text: "-")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
         
         views = [ "next": nextKeyboardButton,
             "delete": deleteKey,
             "space": spaceKey,
-            "return": returnKey ,
+            "return": returnKey,
             "comma": commaKey,
+            "hyphen": hyphenKey,
             "main": mainViewController.view]
         
         self.inputView?.addSubview(nextKeyboardButton)
@@ -118,6 +121,7 @@ class KeyboardViewController: UIInputViewController ,
         self.inputView?.addSubview(spaceKey)
         self.inputView?.addSubview(returnKey)
         self.inputView?.addSubview(commaKey)
+        self.inputView?.addSubview(hyphenKey)
     }
     
     
@@ -187,7 +191,7 @@ class KeyboardViewController: UIInputViewController ,
         
         allConstraints.appendContentsOf(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
+                "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
                 options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
                 metrics: METRICS,
                 views: views)
@@ -217,7 +221,7 @@ class KeyboardViewController: UIInputViewController ,
                 views: views)
         mainViewConstraints.appendContentsOf(c2)
         
-        let height = UIScreen.mainScreen().bounds.height * 0.6
+        let height = UIScreen.mainScreen().bounds.height * 0.55
         let heightConstraint = NSLayoutConstraint(item: self.inputView!,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
