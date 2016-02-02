@@ -37,10 +37,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
     private var timelineWidth : CGFloat!
     private var cal  = NSCalendar.currentCalendar()
     
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

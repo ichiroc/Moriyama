@@ -33,28 +33,29 @@ class MRYTimeDetailTableView: UITableView,
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return event.datasource.count
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return event.data.count
+        return event.datasource[section].data.count
     }
-    
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return event.datasource[section].title
+    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("textCell")
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "textCell")
         }
-       
-        cell!.textLabel!.text =  event.data[indexPath.row].0
-        cell!.detailTextLabel!.text = event.data[indexPath.row].1
         
+        cell!.textLabel!.text = event.datasource[indexPath.section].data[indexPath.row]
         return cell!
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MRYTextDocumentProxy.proxy.insertText(event.data[indexPath.row].0)
+        MRYTextDocumentProxy.proxy.insertText(event.datasource[indexPath.section].data[indexPath.row])
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
 }
