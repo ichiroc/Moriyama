@@ -58,6 +58,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         calendarCollectionView.dataSource = collectionViewDataSource
         calendarCollectionView.delegate = self
         currentIndexPath = calendarCollectionView.todayIndexPath
+        self.moveToAtIndexPath(currentIndexPath)
     }
     
     override func viewDidChangeOrientation(orientation: KeyboardViewController.Orientation) {
@@ -100,11 +101,10 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     }
 
     override func viewDidAppear(animated: Bool) {
-        self.moveToAtIndexPath(currentIndexPath)
         super.viewDidAppear(animated)
     }
     private func moveToAtIndexPath( indexPath : NSIndexPath  ){
-        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .CenteredVertically, animated: false)
+        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .Top , animated: false)
     }
     
     override func didReceiveMemoryWarning() {
