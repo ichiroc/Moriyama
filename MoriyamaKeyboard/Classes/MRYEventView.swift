@@ -35,26 +35,18 @@ class MRYEventView: UIView {
         hourlyHeight = height
         mainViewController = viewController
         super.init(frame: frame)
-        self.backgroundColor = UIColor(CGColor: event.calendar.CGColor )
         
         // make color
-        let color = UIColor(CGColor: event.calendar.CGColor)
-        var red, green, blue, alpha :CGFloat
-        green = 0; red = 0; blue = 0; alpha = 0
-        color.getRed(&red, green: &green , blue: &blue , alpha: &alpha)
-        let bgDelta = ((red * 255 * 299) + (green * 255 *  587) + (blue * 255 * 114)) / 1000
+        let backgroundColor = UIColor(CGColor: event.calendar.CGColor)
+        self.backgroundColor = backgroundColor
         let titleLabel = UILabel()
+        titleLabel.textColor = titleColorFromBackgroundColor(backgroundColor)
         titleLabel.text = event.title
         titleLabel.font = UIFont.systemFontOfSize(13)
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .ByClipping
         titleLabel.minimumScaleFactor = 0.01
-        if bgDelta < 125 {
-            titleLabel.textColor = UIColor.whiteColor()
-        }else{
-            titleLabel.textColor = UIColor.blackColor()
-        }
         
         self.addSubview(titleLabel)
         self.layer.borderColor = UIColor.whiteColor().CGColor
@@ -63,7 +55,19 @@ class MRYEventView: UIView {
         let gesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.addGestureRecognizer(gesture)
     }
-
+    
+    private func titleColorFromBackgroundColor( backgroundColor: UIColor) -> UIColor {
+        var red, green, blue, alpha :CGFloat
+        green = 0; red = 0; blue = 0; alpha = 0
+          backgroundColor.getRed(&red, green: &green , blue: &blue , alpha: &alpha)
+        let bgDelta = ((red * 255 * 299) + (green * 255 *  587) + (blue * 255 * 114)) / 1000
+        if bgDelta < 125 {
+            return UIColor.whiteColor()
+        }else{
+            return UIColor.blackColor()
+        }
+    }
+    
     func tapped(sender: UITapGestureRecognizer){
         mainViewController.tappedEventView(_event!)
     }
