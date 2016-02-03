@@ -58,6 +58,12 @@ class KeyboardViewController: UIInputViewController ,
         initLayout()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        if let calendarCollectionViewController = self.mainViewController as? MRYMonthCalendarViewController {
+            calendarCollectionViewController.moveToAtIndexPath(calendarCollectionViewController.calendarCollectionView.todayIndexPath)
+        }
+        super.viewDidAppear(animated)
+    }
     override func viewDidLayoutSubviews() {
         let bounds = UIScreen.mainScreen().bounds
         let previousOrientation = currentOrientation

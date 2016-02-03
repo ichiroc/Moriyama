@@ -12,7 +12,6 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     UICollectionViewDelegate{
     let calendarCollectionView :MRYMonthCalendarCollectionView
     let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
-    var currentIndexPath: NSIndexPath = NSIndexPath(forRow: 0, inSection: 0)
     var constraints : [NSLayoutConstraint]!
     var cellSize : CGSize?
     var views : [String:UIView] = [:]
@@ -57,8 +56,6 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
 
         calendarCollectionView.dataSource = collectionViewDataSource
         calendarCollectionView.delegate = self
-        currentIndexPath = calendarCollectionView.todayIndexPath
-        self.moveToAtIndexPath(currentIndexPath)
     }
     
     override func viewDidChangeOrientation(orientation: KeyboardViewController.Orientation) {
@@ -67,6 +64,13 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         calendarCollectionView.reloadData()
     }
     
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    func moveToAtIndexPath( indexPath : NSIndexPath  ){
+        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .Top , animated: false)
+    }
     private func numberPad() -> UIView {
         let numberPad = UIView()
         numberPad.backgroundColor = UIColor.lightGrayColor()
@@ -99,13 +103,6 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
             views: views ))
         return numberPad
     }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    private func moveToAtIndexPath( indexPath : NSIndexPath  ){
-        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .Top , animated: false)
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,7 +113,6 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView,
         shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-            currentIndexPath = indexPath
             let dayViewController = MRYDayViewController(fromViewController: self)
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
             dayViewController.currentDate = cell.date

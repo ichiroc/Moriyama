@@ -11,7 +11,7 @@ import UIKit
 class MRYMonthCalendarCollectionView: UICollectionView,
     UICollectionViewDelegateFlowLayout{
    
-    var todayIndexPath : NSIndexPath = NSIndexPath(forItem: 60, inSection: 0)
+    var todayIndexPath : NSIndexPath = NSIndexPath(forRow: 60, inSection: 0)
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
