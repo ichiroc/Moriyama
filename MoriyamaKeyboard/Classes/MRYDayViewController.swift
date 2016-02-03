@@ -25,7 +25,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
             return []
         }
     }
-    private var views : [String: UIView]!
+    private var views : [String: UIView] = [:]
     private var backButton : UIButton!
     private var insertButton : UIButton!
     private var accessoryKeyView : UIView!
