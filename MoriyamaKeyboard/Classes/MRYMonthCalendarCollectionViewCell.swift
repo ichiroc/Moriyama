@@ -164,7 +164,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
                 metrics: nil,
                 views: eventIndicatorViewsMap ))
         
-        let vfl = "|-[leftSpacer]-\(vflArray.joinWithSeparator("-1-"))-[rightSpacer(==leftSpacer)]-|"
+        let vfl = "|-[leftSpacer]-\(vflArray.joinWithSeparator("-2-"))-[rightSpacer(==leftSpacer)]-|"
         eventIndicator.addConstraints(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 vfl,
@@ -180,7 +180,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         var color = UIColor.whiteColor()
         let cellMonth = cal.component(.Month, fromDate: date)
         if ((cellMonth - thisMonth) % 2) != 0 {
-            color = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+            color = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0)
         }
         return color
     }
