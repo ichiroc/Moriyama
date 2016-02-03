@@ -151,6 +151,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             let eventIndicationPartView = UIView()
             eventIndicationPartView.translatesAutoresizingMaskIntoConstraints = false
             eventIndicationPartView.backgroundColor = UIColor(CGColor: $0.calendar.CGColor )
+            eventIndicationPartView.layer.cornerRadius = 2.5
             vflArray.append("[e\(i)(4)]")
             eventIndicatorViewsMap["e\(i)"] = eventIndicationPartView
             eventIndicator.addSubview(eventIndicationPartView)
