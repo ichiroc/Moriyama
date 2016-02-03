@@ -93,11 +93,13 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         let cellDateComp = NSCalendar.currentCalendar().components([.Year,.Month,.Day], fromDate: cellDate)
 
         if cellDateComp.day == 1 {
-            formatter.dateFormat = "M/d"
             self.dateLabel.font = UIFont.boldSystemFontOfSize(fontSize)
+            self.dateLabel.text = Util.string(cellDate, format: "Md")
         }else{
             formatter.dateFormat = "d"
+            self.dateLabel.text = formatter.stringFromDate(cellDate)
         }
+        
         let cellColor = monthlyColor(cellDate)
         self.contentView.backgroundColor = cellColor
         self.dateLabel.backgroundColor = cellColor
@@ -115,7 +117,6 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             // Saturday
             self.dateLabel.textColor = UIColor.blueColor()
         }
-        self.dateLabel.text = formatter.stringFromDate(cellDate)
         buildEventIndicatorView(cellColor)
     }
    
