@@ -13,6 +13,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
 //    var monthlyView : MRYMonthCalendarCollectionView?
     var currentDate: NSDate?
     private var _events : [MRYEvent]?
+    private var _allDayEvents : [MRYEvent]?
     private var events : [MRYEvent] {
         get {
             if _events != nil {
@@ -21,6 +22,18 @@ class MRYDayViewController: MRYAbstractMainViewController {
             if let date = currentDate{
                 _events = MRYEventDataStore.instance.eventWithDate(date)
                 return _events!
+            }
+            return []
+        }
+    }
+    private var allDayEvents: [MRYEvent] {
+        get {
+            if _allDayEvents != nil {
+                return _allDayEvents!
+            }
+            if let date = currentDate{
+                _allDayEvents = MRYEventDataStore.instance.allDayEvents(date)
+                return _allDayEvents!
             }
             return []
         }
@@ -129,7 +142,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
         allDayViews = ["sidebar" : sidebarView,
         "allDayEventContainer": allDayEventContainerView]
         
-        let allDayEvents = events.filter({ return $0.allDay })
         var vfl = "|"
         var i = 0
         allDayEvents.forEach({
