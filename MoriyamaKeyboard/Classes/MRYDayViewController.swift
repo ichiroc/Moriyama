@@ -172,7 +172,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
     
     private func layoutEventViews(){
         var doneLayout : [MRYEvent] = []
-        events.forEach({
+        events.filter({ return !$0.allDay }).forEach({
             let conflicts = MRYEventDataStore.instance.conflictedEventsWith($0)
             if conflicts.count == 0 {
                 if !doneLayout.contains($0) {

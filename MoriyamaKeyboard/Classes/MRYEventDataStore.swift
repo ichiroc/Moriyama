@@ -28,12 +28,16 @@ class MRYEventDataStore {
     class var instance : MRYEventDataStore{
         get{ return this }
     }
-
+    
+    /**
+     Return conflicted events exclude all day events.
+     */
     func conflictedEventsWith( event: MRYEvent) -> [MRYEvent]{
         let startDate = event.startDate.dateByAddingTimeInterval(1)
         let endDate = event.endDate.dateByAddingTimeInterval(-1)
         let predicate = store.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
-        return store.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
+        let events = store.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
+        return events.filter{ return !$0.allDay }
     }
 
     func eventWithDate(date: NSDate) -> [MRYEvent]{
@@ -46,6 +50,18 @@ class MRYEventDataStore {
             return x.startDate.compare(y.startDate) == NSComparisonResult.OrderedAscending
         })
     }
+    
+    func events(date :NSDate, includeAllDay : Bool) -> [MRYEvent]{
+        let events = self.eventWithDate(date)
+        if( !includeAllDay ){
+            return events.filter({ return !$0.allDay })
+        }
+        return events
+    }
 
+    func allDayEvents(date: NSDate) -> [MRYEvent]{
+        let events = self.eventWithDate(date)
+        return events.filter{ return $0.allDay }
+    }
 
 }
