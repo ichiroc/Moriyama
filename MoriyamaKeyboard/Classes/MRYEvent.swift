@@ -29,7 +29,9 @@ class MRYEvent: NSObject {
             return endDate.timeIntervalSinceDate(startDate)
         }
     }
-   
+    var allDay: Bool{
+        get { return _event.allDay }
+    }
     struct TextInfo {
         var title : String
         var data: [String]
@@ -50,7 +52,7 @@ class MRYEvent: NSObject {
         _event = event
         super.init()
        
-        var basicInfo = TextInfo(title: "Basic information", data: [])
+        var basicInfo = TextInfo(title: "Basic", data: [])
         basicInfo.data.append(_event.title)
         if let location = _event.location{
             if location != ""{
@@ -64,7 +66,7 @@ class MRYEvent: NSObject {
             basicInfo.data.append(url.absoluteString)
         }
         
-        var startDateInfo = TextInfo(title: "Start date information", data: [])
+        var startDateInfo = TextInfo(title: "Start date", data: [])
         startDateInfo.data.append(Util.string(_event.startDate, format: "MMMdEHHmm"))
         startDateInfo.data.append(Util.string(_event.startDate, format: "HHmm"))
         startDateInfo.data.append(Util.string(_event.startDate, format: "m"))
@@ -73,7 +75,7 @@ class MRYEvent: NSObject {
         startDateInfo.data.append(Util.string(_event.startDate, format: "M"))
         startDateInfo.data.append(Util.string(_event.startDate, format: "Y"))
         
-        var endDateInfo = TextInfo(title: "End date information", data: [])
+        var endDateInfo = TextInfo(title: "End date", data: [])
         endDateInfo.data.append(Util.string(_event.endDate, format: "MMMdEHHmm"))
         endDateInfo.data.append(Util.string(_event.endDate, format: "HHmm"))
         endDateInfo.data.append(Util.string(_event.endDate, format: "m"))

@@ -49,6 +49,7 @@ class MRYEventView: UIView {
         titleLabel.minimumScaleFactor = 0.01
         
         self.addSubview(titleLabel)
+        titleLabel.sizeToFit()
         self.layer.borderColor = UIColor.whiteColor().CGColor
         self.layer.borderWidth = 0.5
         

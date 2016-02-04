@@ -25,7 +25,10 @@ class MRYDayViewController: MRYAbstractMainViewController {
             return []
         }
     }
+    private var allDayEventView : UIView!
     private var views : [String: UIView] = [:]
+    private var allDayViews : [String: UIView] = [:]
+    private var allDayEventViews : [String: UIView] = [:]
     private var backButton : UIButton!
     private var insertButton : UIButton!
     private var accessoryKeyView : UIView!
@@ -45,10 +48,13 @@ class MRYDayViewController: MRYAbstractMainViewController {
         self.view.backgroundColor = UIColor.lightGrayColor()
         timelineScrollView = timelineView()
         
+        allDayEventView = buildAllDayEventView()
         accessoryKeyView = accessoryView()
+        self.view.addSubview(allDayEventView)
         views = [
             "accessory" : accessoryKeyView,
-            "timelineScroll": timelineScrollView]
+            "timelineScroll": timelineScrollView,
+            "allDayEvent": allDayEventView]
         
         let constraints = self.constraintsSubviews()
         self.view.addConstraints(constraints)
@@ -71,17 +77,17 @@ class MRYDayViewController: MRYAbstractMainViewController {
 
 
     private func timelineView() -> UIScrollView {
-        let sidebarWidth : CGFloat = 25.0
+        let sidebarWidth : CGFloat = 30.0
         let timelineHeight = CGFloat(24) * hourlyHeight
         timelineWidth = self.view.frame.width - MARGIN_LEFT - MARGIN_RIGHT - sidebarWidth
-        timelineScrollView = UIScrollView()
+        let timelineScrollView = UIScrollView()
         timelineScrollView.translatesAutoresizingMaskIntoConstraints = false
         timeline = UIView(frame: CGRectMake(sidebarWidth,0,timelineWidth,timelineHeight))
         timeline.backgroundColor = UIColor.whiteColor()
         timelineScrollView.addSubview(timeline)
         timelineScrollView.contentSize = CGSizeMake(timeline.frame.width, timeline.frame.height)
         
-        let tlSideBar = UIView(frame: CGRectMake(0,0,25,timelineHeight))
+        let tlSideBar = UIView(frame: CGRectMake(0,0,30,timelineHeight))
         tlSideBar.backgroundColor = UIColor.whiteColor()
         for (var i = 1 ; i < 24 ; i++) { // 0時の描画はしない
             let hourLine = UIView(frame: CGRectMake(0, CGFloat(i) * hourlyHeight , timeline.frame.width, 1 ))
@@ -101,6 +107,69 @@ class MRYDayViewController: MRYAbstractMainViewController {
         
     }
 
+    private func buildAllDayEventView() -> UIView{
+        let allDayView = UIView()
+        allDayView.translatesAutoresizingMaskIntoConstraints = false
+        let sidebarView = UIView()
+        sidebarView.translatesAutoresizingMaskIntoConstraints = false
+        sidebarView.backgroundColor = UIColor.whiteColor()
+        let allDayEventContainerView = UIView()
+        allDayEventContainerView.translatesAutoresizingMaskIntoConstraints = false
+        allDayEventContainerView.backgroundColor = UIColor.whiteColor()
+        allDayView.addSubview(allDayEventContainerView)
+        
+        let allDayLabel = UILabel()
+        allDayLabel.text = "AllDay"
+        allDayLabel.textColor = UIColor.grayColor()
+        sidebarView.addSubview(allDayLabel)
+        allDayLabel.sizeToFit()
+        allDayLabel.font = allDayLabel.font.fontWithSize(10)
+        allDayView.addSubview(sidebarView)
+        
+        allDayViews = ["sidebar" : sidebarView,
+        "allDayEventContainer": allDayEventContainerView]
+        
+        let allDayEvents = events.filter({ return $0.allDay })
+        var vfl = "|"
+        var i = 0
+        allDayEvents.forEach({
+            let eventView = MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: hourlyHeight, viewController: self)
+            eventView.translatesAutoresizingMaskIntoConstraints = false
+            allDayEventContainerView.addSubview(eventView)
+            allDayEventViews["e\(i)"] = eventView
+            if(i == 0 ){
+                vfl += "[e\(i)]"
+            }else{
+                vfl += "[e\(i)(==e0)]"
+            }
+            i++
+        })
+        vfl += "|"
+       
+        if(allDayEventViews.count > 0){
+            allDayEventContainerView.addConstraints(
+                NSLayoutConstraint.constraintsWithVisualFormat(
+                    "V:|[e0]|",
+                    options: NSLayoutFormatOptions(rawValue: 0),
+                    metrics: nil,
+                    views: allDayEventViews)
+            )
+            allDayEventContainerView.addConstraints(
+                NSLayoutConstraint.constraintsWithVisualFormat(
+                    vfl,
+                    options: [.AlignAllBottom, .AlignAllTop],
+                    metrics: nil,
+                    views: allDayEventViews)
+            )
+        }
+        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[sidebar(30)][allDayEventContainer]|", options: [.AlignAllTop, .AlignAllBottom], metrics: nil, views: allDayViews)
+        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[sidebar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: allDayViews)
+        allDayView.addConstraints(hConstraints)
+        allDayView.addConstraints(vConstraints)
+        
+        return allDayView
+    }
+    
     private func layoutEventViews(){
         var doneLayout : [MRYEvent] = []
         events.forEach({
@@ -127,9 +196,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
         })
         eventViews.forEach({ view in
             timeline.addSubview(view)
-            view.subviews.forEach{
-                $0.sizeToFit()
-            }
         })
     }
     
@@ -141,7 +207,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         if let date = currentDate{
             dateFormats.forEach({
                 let text = Util.string(date, format: $0 )
-                let button = MRYKeyboardButton(title: text)
+                let button = MRYKeyboardButton(title: text, round: 0)
                 accessoryKeyViews[$0] = button
                 accessoryKeyView.addSubview(button)
             })
@@ -158,7 +224,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         
         var vfl = "|[back(45)]"
         dateFormats.forEach({
-            vfl += "-1-[\($0)]"
+            vfl += "-1-[\($0)(>=40)]"
         })
         vfl += "-1-|"
         
@@ -186,7 +252,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         self.view.addSubview(timelineScrollView)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[accessory(40)]-1-[timelineScroll]|",
+            "V:|[accessory(40)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
             options: [.AlignAllLeading, .AlignAllTrailing],
             metrics: METRICS,
             views: views)
