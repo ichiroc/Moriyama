@@ -20,7 +20,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
                 return _events!
             }
             if let date = currentDate{
-                _events = MRYEventDataStore.instance.eventWithDate(date)
+                _events = MRYEventDataStore.instance.eventsWithDate(date)
                 return _events!
             }
             return []
