@@ -77,7 +77,10 @@ class MRYEventView: UIView {
         if let event = _event{
             let dateComp = event.componentsOnStartDate([.Hour, .Minute])
             let top = ((CGFloat(dateComp.hour) * hourlyHeight) + (CGFloat(dateComp.minute) / 60 ) * hourlyHeight)
-            let height = (CGFloat(event.duration) / 60 / 60 ) * hourlyHeight
+            var height = (CGFloat(event.duration) / 60 / 60 ) * hourlyHeight
+            if height < (hourlyHeight / 2){
+                height = hourlyHeight / 2
+            }
             let conflicted = MRYEventDataStore.instance.conflictedEventsWith(event)
             frame = CGRectMake(0, CGFloat(top), containerWidth / CGFloat(conflicted.count) , height )
         }
