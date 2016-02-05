@@ -51,6 +51,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
     private var timeline : UIView!
     private var eventViews : [UIView] = []
     private var timelineWidth : CGFloat!
+    private let timelineSidebarWidth : CGFloat = 45.0
     private var cal  = NSCalendar.currentCalendar()
     
     override func viewDidLoad() {
@@ -90,7 +91,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
 
 
     private func timelineView() -> UIScrollView {
-        let sidebarWidth : CGFloat = 30.0
+        let sidebarWidth : CGFloat = timelineSidebarWidth
         let timelineHeight = CGFloat(24) * hourlyHeight
         timelineWidth = self.view.frame.width - MARGIN_LEFT - MARGIN_RIGHT - sidebarWidth
         let timelineScrollView = UIScrollView()
@@ -100,7 +101,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         timelineScrollView.addSubview(timeline)
         timelineScrollView.contentSize = CGSizeMake(timeline.frame.width, timeline.frame.height)
         
-        let tlSideBar = UIView(frame: CGRectMake(0,0,30,timelineHeight))
+        let tlSideBar = UIView(frame: CGRectMake(0,0,timelineSidebarWidth,timelineHeight))
         tlSideBar.backgroundColor = UIColor.whiteColor()
         for (var i = 1 ; i < 24 ; i++) { // 0時の描画はしない
             let hourLine = UIView(frame: CGRectMake(0, CGFloat(i) * hourlyHeight , timeline.frame.width, 1 ))
@@ -132,11 +133,12 @@ class MRYDayViewController: MRYAbstractMainViewController {
         allDayView.addSubview(allDayEventContainerView)
         
         let allDayLabel = UILabel()
-        allDayLabel.text = "AllDay"
+        allDayLabel.text = "All Day"
+        allDayLabel.textAlignment = .Center
         allDayLabel.textColor = UIColor.grayColor()
         sidebarView.addSubview(allDayLabel)
         allDayLabel.sizeToFit()
-        allDayLabel.font = allDayLabel.font.fontWithSize(10)
+        allDayLabel.font = allDayLabel.font.fontWithSize(11)
         allDayView.addSubview(sidebarView)
         
         allDayViews = ["sidebar" : sidebarView,
@@ -174,7 +176,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
                     views: allDayEventViews)
             )
         }
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[sidebar(30)][allDayEventContainer]|", options: [.AlignAllTop, .AlignAllBottom], metrics: nil, views: allDayViews)
+        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[sidebar(\(timelineSidebarWidth))][allDayEventContainer]|", options: [.AlignAllTop, .AlignAllBottom], metrics: nil, views: allDayViews)
         let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[sidebar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: allDayViews)
         allDayView.addConstraints(hConstraints)
         allDayView.addConstraints(vConstraints)
