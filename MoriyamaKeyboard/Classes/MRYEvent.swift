@@ -36,7 +36,16 @@ class MRYEvent: NSObject {
         var title : String
         var data: [String]
     }
-    var datasource : [TextInfo] = []
+    struct TextData {
+        var title : String
+        var data: [SubText]
+    }
+    struct SubText {
+        var title: String
+        var text : String
+    }
+    var datasource : [TextData] = []
+//    var datasource : [TextInfo] = []
     
     
     func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
@@ -52,42 +61,42 @@ class MRYEvent: NSObject {
         _event = event
         super.init()
        
-        var basicInfo = TextInfo(title: "Basic", data: [])
-        basicInfo.data.append(_event.title)
+        var basicData = TextData(title: "Basic", data: [])
+        basicData.data.append(SubText( title: "Title", text: _event.title))
         if let location = _event.location{
             if location != ""{
-                basicInfo.data.append(location)
+                basicData.data.append(SubText( title: "Location", text: location))
             }
         }
         if let notes = _event.notes {
-            basicInfo.data.append(notes)
+            basicData.data.append(SubText( title: "Notes", text: notes))
         }
         if let url = _event.URL{
-            basicInfo.data.append(url.absoluteString)
+            basicData.data.append(SubText( title: "URL", text: url.absoluteString))
         }
         
-        var startDateInfo = TextInfo(title: "Start date", data: [])
-        startDateInfo.data.append(Util.string(_event.startDate, format: "MMMdEHHmm"))
-        startDateInfo.data.append(Util.string(_event.startDate, format: "HHmm"))
-        startDateInfo.data.append(Util.string(_event.startDate, format: "m"))
-        startDateInfo.data.append(Util.string(_event.startDate, format: "H"))
-        startDateInfo.data.append(Util.string(_event.startDate, format: "d"))
-        startDateInfo.data.append(Util.string(_event.startDate, format: "M"))
-        startDateInfo.data.append(Util.string(_event.startDate, format: "Y"))
+        var startData = TextData(title: "Start date", data: [])
         
-        var endDateInfo = TextInfo(title: "End date", data: [])
-        endDateInfo.data.append(Util.string(_event.endDate, format: "MMMdEHHmm"))
-        endDateInfo.data.append(Util.string(_event.endDate, format: "HHmm"))
-        endDateInfo.data.append(Util.string(_event.endDate, format: "m"))
-        endDateInfo.data.append(Util.string(_event.endDate, format: "H"))
-        endDateInfo.data.append(Util.string(_event.endDate, format: "d"))
-        endDateInfo.data.append(Util.string(_event.endDate, format: "M"))
-        endDateInfo.data.append(Util.string(_event.endDate, format: "Y"))
+        startData.data.append(SubText(title: "", text: Util.string(_event.startDate, format: "MMMdEHHmm")))
+        startData.data.append(SubText(title: "", text: Util.string(_event.startDate, format: "HHmm")))
+        startData.data.append(SubText(title: "Minutes", text: Util.string(_event.startDate, format: "m")))
+        startData.data.append(SubText(title: "Hours", text: Util.string(_event.startDate, format: "H")))
+        startData.data.append(SubText(title: "Day", text: Util.string(_event.startDate, format: "d")))
+        startData.data.append(SubText(title: "Month", text: Util.string(_event.startDate, format: "M")))
+        startData.data.append(SubText(title: "Year", text: Util.string(_event.startDate, format: "Y")))
         
-        datasource.append(basicInfo)
-        datasource.append(startDateInfo)
-        datasource.append(endDateInfo)
+        var endData = TextData(title: "End date", data: [])
+        endData.data.append(SubText(title: "", text: Util.string(self._event.endDate, format: "MMMdEHHmm")))
+        endData.data.append(SubText(title: "", text: Util.string(_event.endDate, format: "HHmm")))
+        endData.data.append(SubText(title: "Minutes", text: Util.string(_event.endDate, format: "m")))
+        endData.data.append(SubText(title: "Hours", text: Util.string(_event.endDate, format: "H")))
+        endData.data.append(SubText(title: "Day", text: Util.string(_event.endDate, format: "d")))
+        endData.data.append(SubText(title: "Month", text: Util.string(_event.endDate, format: "M")))
+        endData.data.append(SubText(title: "Year", text: Util.string(_event.endDate, format: "Y")))
         
+        datasource.append(basicData)
+        datasource.append(startData)
+        datasource.append(endData)
     }
     
     func conflicts( other: MRYEvent ) -> Bool{
