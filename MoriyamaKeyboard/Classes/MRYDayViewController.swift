@@ -81,7 +81,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
 
     private func moveToInitialPointOnTimeline(){
         var date = NSDate()
-        if let firstEvent =  _events?.first{
+        if let firstEvent =  events.filter({ return !$0.allDay }).first{
             date = firstEvent.startDate
         }
         let hour = cal.component(.Hour, fromDate: date )

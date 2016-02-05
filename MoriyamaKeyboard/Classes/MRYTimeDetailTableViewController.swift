@@ -35,7 +35,6 @@ class MRYTimeDetailTableViewController: MRYAbstractMainViewController {
             metrics: METRICS,
             views: views)
         self.view.addConstraints(verticalConstraints)
-//        self.view.layoutIfNeeded()
         super.viewWillAppear(animated)
     }
     override func viewDidLoad() {
