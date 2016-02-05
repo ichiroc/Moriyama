@@ -32,7 +32,6 @@
 		5DD05EB21C45A78B00938176 /* MRYTimeDetailTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD05EB11C45A78B00938176 /* MRYTimeDetailTableView.swift */; };
 		5DD259841C41BDAC007C61F6 /* MRYEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259831C41BDAC007C61F6 /* MRYEvent.swift */; };
 		5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259851C421C04007C61F6 /* MRYEventView.swift */; };
-		5DF0ADB91C5EC70000696B01 /* PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF0ADB81C5EC70000696B01 /* PrivateMethods.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,9 +105,6 @@
 		5DD05EB11C45A78B00938176 /* MRYTimeDetailTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTimeDetailTableView.swift; path = Classes/MRYTimeDetailTableView.swift; sourceTree = "<group>"; };
 		5DD259831C41BDAC007C61F6 /* MRYEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEvent.swift; path = Classes/MRYEvent.swift; sourceTree = "<group>"; };
 		5DD259851C421C04007C61F6 /* MRYEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventView.swift; path = Classes/MRYEventView.swift; sourceTree = "<group>"; };
-		5DF0ADB61C5EC70000696B01 /* Moriyama-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Moriyama-Bridging-Header.h"; path = "../Moriyama-Bridging-Header.h"; sourceTree = "<group>"; };
-		5DF0ADB71C5EC70000696B01 /* PrivateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMethods.h; path = Classes/PrivateMethods.h; sourceTree = "<group>"; };
-		5DF0ADB81C5EC70000696B01 /* PrivateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMethods.m; path = Classes/PrivateMethods.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,9 +218,6 @@
 		5D9D804E1C2D405700623AF7 /* MoriyamaKeyboard */ = {
 			isa = PBXGroup;
 			children = (
-				5DF0ADB71C5EC70000696B01 /* PrivateMethods.h */,
-				5DF0ADB81C5EC70000696B01 /* PrivateMethods.m */,
-				5DF0ADB61C5EC70000696B01 /* Moriyama-Bridging-Header.h */,
 				5D6A28F21C55899B003A522F /* Globals.swift */,
 				5DD05EAD1C459F0C00938176 /* Util.swift */,
 				5DC19C4F1C485D5B0030B282 /* DataSource */,
@@ -420,7 +413,6 @@
 			files = (
 				5D9D801E1C2CB02400623AF7 /* ViewController.swift in Sources */,
 				5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */,
-				5DF0ADB91C5EC70000696B01 /* PrivateMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
