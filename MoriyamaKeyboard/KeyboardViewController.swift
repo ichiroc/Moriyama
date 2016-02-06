@@ -109,7 +109,10 @@ class KeyboardViewController: UIInputViewController ,
             backgroundColor: UIColor.lightGrayColor(),
             action: {() -> Void in MRYTextDocumentProxy.proxy.deleteBackward()} )
 
-        
+        if let mainVC = mainViewController as? MRYMonthCalendarViewController{
+            MRYEventDataStore.instance.loadAllEvents()
+            mainVC.calendarCollectionView.reloadData()
+        }
         let spaceKey = MRYKeyboardButton(title: "space", text: " ")
         let hyphenKey = MRYKeyboardButton(title: "-", text: "-")
         let commaKey = MRYKeyboardButton(title: ",", text: ",")
