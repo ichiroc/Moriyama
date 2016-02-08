@@ -87,7 +87,7 @@ class MRYEventView: UIView {
         }
     }
     
-    func bunchOfConflictedViews( eventViews: [MRYEventView]) -> [MRYEventView]{
+    func detectConflictedViews( eventViews: [MRYEventView]) -> [MRYEventView]{
         var allConflicted :[MRYEventView] = []
         eventViews.filter({
             if self.eventIdentifier == $0.eventIdentifier{ return false }

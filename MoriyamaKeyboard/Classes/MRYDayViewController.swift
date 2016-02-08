@@ -200,10 +200,10 @@ class MRYDayViewController: MRYAbstractMainViewController {
             timeline.addSubview(view)
         })
         
-        // update frame size
+        // update frame size in according with conflicted events.
         var doneLayout: [String] = []
         eventViews.forEach({ eventView in
-            let conflictedViews = eventView.bunchOfConflictedViews(eventViews)
+            let conflictedViews = eventView.detectConflictedViews(eventViews)
             var xpos : CGFloat = 0
             if !doneLayout.contains(eventView.eventIdentifier){
                 let frame = eventView.frame
@@ -223,52 +223,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
             })
         })
     }
-    
-    private func conflictedLayout( events: [MRYEventView]) -> [ String: [MRYEventView]]{
-        var conflicted : [String:[MRYEventView]] = [:]
-        events.forEach{ e1 in
-            conflicted[e1.eventIdentifier] = []
-//            conflicted[e1._event!.title] = []
-            events.forEach({ e2 in
-                if CGRectIntersectsRect(e1.frame, e2.frame){
-                    conflicted[e1.eventIdentifier]?.append(e2)
-//                    conflicted[e1._event!.title]?.append(e2)
-                }
-            })
-        }
-        
-        return conflicted
-    }
-    
-//    private func layoutEventViews(){
-//        var doneLayout : [String] = []
-//        events.filter({ return !$0.allDay }).forEach({
-//            let conflicts = MRYEventDataStore.instance.conflictedEventsWith($0)
-////            let conflicts = MRYEventDataStore.instance.bunchOfConflictedEventsWith($0)
-//            if conflicts.count == 0 {
-//                if !doneLayout.contains($0.eventIdentifier) {
-//                    doneLayout.append($0.eventIdentifier)
-//                    let view = MRYEventView(frame: CGRectZero, event: $0 , hourlyHeight: hourlyHeight, viewController: self)
-//                    view.recalculateSizeAndPosition(timelineWidth)
-//                    eventViews.append(view)
-//                }
-//            }else{
-//                for( var i = 0; i < conflicts.count; i++){
-//                    let conflictedEvent = conflicts[i]
-//                    if !doneLayout.contains(conflictedEvent.eventIdentifier) {
-//                        doneLayout.append(conflictedEvent.eventIdentifier)
-//                        let view = MRYEventView(frame: CGRectZero, event: conflictedEvent, hourlyHeight: hourlyHeight, viewController: self)
-//                        view.recalculateSizeAndPosition(timelineWidth)
-//                        view.frame.origin = CGPointMake(CGFloat(i) * view.frame.width, view.frame.origin.y)
-//                        eventViews.append(view)
-//                    }
-//                }
-//            }
-//        })
-//        eventViews.forEach({ view in
-//            timeline.addSubview(view)
-//        })
-//    }
     
     private func accessoryView() -> UIView{
         accessoryKeyView = UIView()
