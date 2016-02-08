@@ -12,6 +12,9 @@ import EventKit
 class MRYEvent: NSObject {
     private let _event : EKEvent
     private let cal = NSCalendar.currentCalendar()
+    var eventIdentifier : String{
+        get {return _event.eventIdentifier }
+    }
     var calendar : EKCalendar  {
         get{ return _event.calendar }
     }

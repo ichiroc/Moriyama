@@ -21,6 +21,14 @@ class MRYEventView: UIView {
     var _event : MRYEvent?
     private var hourlyHeight : CGFloat = 40.0
     
+    var eventIdentifier : String {
+        get{
+            if let e = _event {
+                return e.eventIdentifier
+            }
+            return ""
+        }
+    }
     private override init(frame: CGRect) {
         mainViewController = MRYDayViewController()
         super.init(frame: frame)
@@ -73,6 +81,32 @@ class MRYEventView: UIView {
         mainViewController.tappedEventView(_event!)
     }
 
+    private func appendIfNotContains( eventView: MRYEventView, inout views: [MRYEventView]){
+        if !views.contains({ $0.eventIdentifier == eventView.eventIdentifier }){
+            views.append(eventView)
+        }
+    }
+    
+    func bunchOfConflictedViews( eventViews: [MRYEventView]) -> [MRYEventView]{
+        var allConflicted :[MRYEventView] = []
+        eventViews.filter({
+            if self.eventIdentifier == $0.eventIdentifier{ return false }
+            return $0.isConflicted(self)
+        }).forEach({ e1 in
+            appendIfNotContains(e1, views: &allConflicted)
+            eventViews.forEach({ e2 in
+                if e1.isConflicted(e2) && self.eventIdentifier != e2.eventIdentifier{
+                    appendIfNotContains(e2, views: &allConflicted)
+                }
+            })
+        })
+        return allConflicted
+    }
+    
+    func isConflicted(eventView: MRYEventView) -> Bool{
+        return CGRectIntersectsRect(self.frame, eventView.frame)
+    }
+    
     func recalculateSizeAndPosition(containerWidth: CGFloat){
         if let event = _event{
             let dateComp = event.componentsOnStartDate([.Hour, .Minute])
