@@ -34,7 +34,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.view.addSubview(calendarCollectionView)
         self.view.translatesAutoresizingMaskIntoConstraints = false
-        let _numberPad = MRYNumberPadView()
+        let _numberPad = MRYMonthCalendarAccessoryView()
         self.view.addSubview(_numberPad)
         views = ["col": calendarCollectionView,
             "numberPad" : _numberPad]

@@ -15,7 +15,7 @@
 		5D42D8D51C5980A80071A192 /* MRYAbstractMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D42D8D41C5980A80071A192 /* MRYAbstractMainViewController.swift */; };
 		5D5196D61C69522D0047DD2D /* MRYTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D51C69522D0047DD2D /* MRYTimelineView.swift */; };
 		5D5196D81C6955190047DD2D /* MRYAllDayEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */; };
-		5D5196DA1C69F51F0047DD2D /* MRYNumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D91C69F51F0047DD2D /* MRYNumberPadView.swift */; };
+		5D5196DA1C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */; };
 		5D5196DC1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */; };
 		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
@@ -85,7 +85,7 @@
 		5D42D8D41C5980A80071A192 /* MRYAbstractMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYAbstractMainViewController.swift; path = Classes/MRYAbstractMainViewController.swift; sourceTree = "<group>"; };
 		5D5196D51C69522D0047DD2D /* MRYTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTimelineView.swift; path = Classes/MRYTimelineView.swift; sourceTree = "<group>"; };
 		5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYAllDayEventView.swift; path = Classes/MRYAllDayEventView.swift; sourceTree = "<group>"; };
-		5D5196D91C69F51F0047DD2D /* MRYNumberPadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYNumberPadView.swift; path = Classes/MRYNumberPadView.swift; sourceTree = "<group>"; };
+		5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYMonthCalendarAccessoryView.swift; path = Classes/MRYMonthCalendarAccessoryView.swift; sourceTree = "<group>"; };
 		5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYDayViewAccessoryView.swift; path = Classes/MRYDayViewAccessoryView.swift; sourceTree = "<group>"; };
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
 				5D5196D51C69522D0047DD2D /* MRYTimelineView.swift */,
 				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
-				5D5196D91C69F51F0047DD2D /* MRYNumberPadView.swift */,
+				5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */,
 				5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */,
 			);
 			name = View;
@@ -467,7 +467,7 @@
 				5DD05EAE1C459F0C00938176 /* Util.swift in Sources */,
 				5D5196DC1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift in Sources */,
 				5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */,
-				5D5196DA1C69F51F0047DD2D /* MRYNumberPadView.swift in Sources */,
+				5D5196DA1C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift in Sources */,
 				5D3942771C3737D6004B89EF /* MRYDayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

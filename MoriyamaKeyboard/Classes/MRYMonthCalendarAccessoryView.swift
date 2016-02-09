@@ -1,5 +1,5 @@
 //
-//  MRYNumberPadView.swift
+//  MRYMonthCalendarAccessoryView.swift
 //  Moriyama
 //
 //  Created by Ichiro on 2016/02/09.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MRYNumberPadView: UIView {
+class MRYMonthCalendarAccessoryView : UIView {
 
     /*
     // Only override drawRect: if you perform custom drawing.
