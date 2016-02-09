@@ -13,6 +13,9 @@
 		5D2DB6AD1C2DE0FC00604C0F /* MRYKeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */; };
 		5D3942771C3737D6004B89EF /* MRYDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3942761C3737D6004B89EF /* MRYDayViewController.swift */; };
 		5D42D8D51C5980A80071A192 /* MRYAbstractMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D42D8D41C5980A80071A192 /* MRYAbstractMainViewController.swift */; };
+		5D5196D61C69522D0047DD2D /* MRYTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D51C69522D0047DD2D /* MRYTimelineView.swift */; };
+		5D5196D81C6955190047DD2D /* MRYAllDayEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */; };
+		5D5196DA1C69F51F0047DD2D /* MRYNumberPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D91C69F51F0047DD2D /* MRYNumberPadView.swift */; };
 		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
 		5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */; };
@@ -79,6 +82,9 @@
 		5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYKeyboardButton.swift; path = Classes/MRYKeyboardButton.swift; sourceTree = "<group>"; };
 		5D3942761C3737D6004B89EF /* MRYDayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYDayViewController.swift; path = Classes/MRYDayViewController.swift; sourceTree = "<group>"; };
 		5D42D8D41C5980A80071A192 /* MRYAbstractMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYAbstractMainViewController.swift; path = Classes/MRYAbstractMainViewController.swift; sourceTree = "<group>"; };
+		5D5196D51C69522D0047DD2D /* MRYTimelineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTimelineView.swift; path = Classes/MRYTimelineView.swift; sourceTree = "<group>"; };
+		5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYAllDayEventView.swift; path = Classes/MRYAllDayEventView.swift; sourceTree = "<group>"; };
+		5D5196D91C69F51F0047DD2D /* MRYNumberPadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYNumberPadView.swift; path = Classes/MRYNumberPadView.swift; sourceTree = "<group>"; };
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
 		5D9D80181C2CB02400623AF7 /* Moriyama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moriyama.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,7 +152,10 @@
 				5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */,
 				5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */,
 				5DD05EB11C45A78B00938176 /* MRYTimeDetailTableView.swift */,
+				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
+				5D5196D51C69522D0047DD2D /* MRYTimelineView.swift */,
 				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
+				5D5196D91C69F51F0047DD2D /* MRYNumberPadView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -448,10 +457,13 @@
 				5D6A28F31C55899B003A522F /* Globals.swift in Sources */,
 				5D42D8D51C5980A80071A192 /* MRYAbstractMainViewController.swift in Sources */,
 				5D9D80501C2D405700623AF7 /* KeyboardViewController.swift in Sources */,
+				5D5196D81C6955190047DD2D /* MRYAllDayEventView.swift in Sources */,
+				5D5196D61C69522D0047DD2D /* MRYTimelineView.swift in Sources */,
 				5DD05EB21C45A78B00938176 /* MRYTimeDetailTableView.swift in Sources */,
 				5DC19C8F1C4C35710030B282 /* MRYMonthCalendarCollectionViewController.swift in Sources */,
 				5DD05EAE1C459F0C00938176 /* Util.swift in Sources */,
 				5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */,
+				5D5196DA1C69F51F0047DD2D /* MRYNumberPadView.swift in Sources */,
 				5D3942771C3737D6004B89EF /* MRYDayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
