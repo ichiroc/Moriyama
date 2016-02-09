@@ -11,7 +11,7 @@ import EventKit
 
 class MRYDayViewController: MRYAbstractMainViewController {
 //    var monthlyView : MRYMonthCalendarCollectionView?
-    var currentDate: NSDate?
+    let currentDate: NSDate
     private var _events : [MRYEvent]?
     private var _allDayEvents : [MRYEvent]?
     private var events : [MRYEvent] {
@@ -19,11 +19,8 @@ class MRYDayViewController: MRYAbstractMainViewController {
             if _events != nil {
                 return _events!
             }
-            if let date = currentDate{
-                _events = MRYEventDataStore.instance.eventsWithDate(date)
-                return _events!
-            }
-            return []
+            _events = MRYEventDataStore.instance.eventsWithDate(currentDate)
+            return _events!
         }
     }
     private var allDayEvents: [MRYEvent] {
@@ -31,11 +28,8 @@ class MRYDayViewController: MRYAbstractMainViewController {
             if _allDayEvents != nil {
                 return _allDayEvents!
             }
-            if let date = currentDate{
-                _allDayEvents = MRYEventDataStore.instance.allDayEvents(date)
-                return _allDayEvents!
-            }
-            return []
+            _allDayEvents = MRYEventDataStore.instance.allDayEvents(currentDate)
+            return _allDayEvents!
         }
     }
     private var allDayEventView : UIView!
@@ -54,6 +48,20 @@ class MRYDayViewController: MRYAbstractMainViewController {
     private let timelineSidebarWidth : CGFloat = 45.0
     private var cal  = NSCalendar.currentCalendar()
     
+    override init(fromViewController: MRYAbstractMainViewController?) {
+        currentDate = NSDate()
+        super.init(fromViewController: fromViewController)
+    }
+    
+    init(date: NSDate, fromViewController: MRYAbstractMainViewController?) {
+        currentDate = date
+        super.init(fromViewController: fromViewController)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        currentDate = NSDate()
+        super.init(coder: aDecoder)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,7 +71,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         timelineScrollView = timelineView()
         
         allDayEventView = buildAllDayEventView()
-        accessoryKeyView = accessoryView()
+        accessoryKeyView = MRYDayViewAccessoryView(date: currentDate, viewController: self)
         self.view.addSubview(allDayEventView)
         views = [
             "accessory" : accessoryKeyView,
@@ -224,51 +232,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
         })
     }
     
-    private func accessoryView() -> UIView{
-        accessoryKeyView = UIView()
-        accessoryKeyView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let dateFormats = ["MMMdE", "MMM","d","EEEE", "YYYYMMdd"]
-        if let date = currentDate{
-            dateFormats.forEach({
-                let text = Util.string(date, format: $0 )
-                let button = MRYKeyboardButton(title: text, round: 0)
-                accessoryKeyViews[$0] = button
-                accessoryKeyView.addSubview(button)
-            })
-        }
-        
-        
-        backButton = MRYKeyboardButton(title: "Back",
-            backgroundColor: UIColor.whiteColor(),
-            titleColor: UIColor.blueColor(),
-            action: {self.popViewController()},
-            round: 0)
-        accessoryKeyView.addSubview(backButton)
-        accessoryKeyViews["back"] = backButton
-        
-        var vfl = "|[back(45)]"
-        dateFormats.forEach({
-            vfl += "-1-[\($0)(>=40)]"
-        })
-        vfl += "-1-|"
-        
-        accessoryKeyView.addSubview(timelineScrollView)
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            vfl,
-            options: [ .AlignAllTop, .AlignAllBottom ] ,
-            metrics: METRICS,
-            views: accessoryKeyViews)
-        accessoryKeyView.addConstraints(hConstraints)
-        
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[back]|",
-            options: NSLayoutFormatOptions(rawValue: 0) ,
-            metrics: METRICS,
-            views: accessoryKeyViews)
-        accessoryKeyView.addConstraints(vConstraints)
-        return accessoryKeyView
-    }
   
     private func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []

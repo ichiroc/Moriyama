@@ -81,9 +81,9 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView,
         shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-            let dayViewController = MRYDayViewController(fromViewController: self)
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
-            dayViewController.currentDate = cell.date
+            let dayViewController = MRYDayViewController(date: cell.date!, fromViewController: self)
+//            dayViewController.currentDate = cell.date
             self.pushViewController(dayViewController)
             return true
     }
