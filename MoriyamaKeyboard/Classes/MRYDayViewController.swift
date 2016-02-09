@@ -13,7 +13,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
 //    var monthlyView : MRYMonthCalendarCollectionView?
     let currentDate: NSDate
     private var _events : [MRYEvent]?
-    private var _allDayEvents : [MRYEvent]?
     private var events : [MRYEvent] {
         get {
             if _events != nil {
@@ -23,6 +22,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
             return _events!
         }
     }
+    private var _allDayEvents : [MRYEvent]?
     private var allDayEvents: [MRYEvent] {
         get {
             if _allDayEvents != nil {
@@ -33,13 +33,13 @@ class MRYDayViewController: MRYAbstractMainViewController {
         }
     }
     private var allDayEventView : UIView!
-    private var views : [String: UIView] = [:]
+    private var managedSubViews : [String: UIView] = [:]
     private var allDayViews : [String: UIView] = [:]
     private var allDayEventViews : [String: UIView] = [:]
-    private var backButton : UIButton!
-    private var insertButton : UIButton!
+//    private var backButton : UIButton!
+//    private var insertButton : UIButton!
     private var accessoryKeyView : UIView!
-    private var accessoryKeyViews : [String:UIView] = [:]
+//    private var accessoryKeyViews : [String:UIView] = [:]
     private var timelineScrollView : UIScrollView!
     private let hourlyHeight : CGFloat = 40.0
     private var timeline : UIView!
@@ -73,7 +73,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         allDayEventView = buildAllDayEventView()
         accessoryKeyView = MRYDayViewAccessoryView(date: currentDate, viewController: self)
         self.view.addSubview(allDayEventView)
-        views = [
+        managedSubViews = [
             "accessory" : accessoryKeyView,
             "timelineScroll": timelineScrollView,
             "allDayEvent": allDayEventView]
@@ -243,14 +243,14 @@ class MRYDayViewController: MRYAbstractMainViewController {
             "V:|[accessory(40)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
             options: [.AlignAllLeading, .AlignAllTrailing],
             metrics: METRICS,
-            views: views)
+            views: managedSubViews)
         constraints.appendContentsOf(vertical)
         
         let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|[timelineScroll]|",
             options: [.AlignAllCenterX ] ,
             metrics: METRICS,
-            views: views)
+            views: managedSubViews)
         constraints.appendContentsOf(horizonalTimelineBase)
         
         return constraints
