@@ -10,6 +10,7 @@ import UIKit
 
 class MRYAllDayEventView: UIView {
 
+    private let sidebarWidth : CGFloat = 45.0
     var allDayEventViews : [String: MRYEventView] = [:]
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -18,7 +19,7 @@ class MRYAllDayEventView: UIView {
         // Drawing code
     }
     */
-    init(allDayEvents:[MRYEvent], hourlyHeight: CGFloat, timelineSidebarWidth : CGFloat, viewController: MRYDayViewController){
+    init(allDayEvents:[MRYEvent], viewController: MRYDayViewController){
         super.init(frame: CGRectZero)
         self.translatesAutoresizingMaskIntoConstraints = false
         let sidebarView = UIView()
@@ -44,7 +45,7 @@ class MRYAllDayEventView: UIView {
         var vfl = "|"
         var i = 0
         allDayEvents.filter({ $0.allDay }).forEach({
-            let eventView = MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: hourlyHeight, viewController: viewController)
+            let eventView = MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: 0.0, viewController: viewController)
             eventView.translatesAutoresizingMaskIntoConstraints = false
             allDayEventContainerView.addSubview(eventView)
             allDayEventViews["e\(i)"] = eventView
@@ -73,7 +74,7 @@ class MRYAllDayEventView: UIView {
                     views: allDayEventViews)
             )
         }
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[sidebar(\(timelineSidebarWidth))][allDayEventContainer]|", options: [.AlignAllTop, .AlignAllBottom], metrics: nil, views: allDayViews)
+        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[sidebar(\(sidebarWidth))][allDayEventContainer]|", options: [.AlignAllTop, .AlignAllBottom], metrics: nil, views: allDayViews)
         let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[sidebar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: allDayViews)
         self.addConstraints(hConstraints)
         self.addConstraints(vConstraints)
