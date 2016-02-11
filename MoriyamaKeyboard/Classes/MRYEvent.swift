@@ -78,28 +78,35 @@ class MRYEvent: NSObject {
             basicData.data.append(SubText( title: "URL", text: url.absoluteString))
         }
         
+        // Start date
         var startData = TextData(title: "Start date", data: [])
-        
-        startData.data.append(SubText(title: "", text: Util.string(_event.startDate, format: "MMMdEHHmm")))
-        startData.data.append(SubText(title: "", text: Util.string(_event.startDate, format: "HHmm")))
-        startData.data.append(SubText(title: "Minutes", text: Util.string(_event.startDate, format: "m")))
-        startData.data.append(SubText(title: "Hours", text: Util.string(_event.startDate, format: "H")))
-        startData.data.append(SubText(title: "Day", text: Util.string(_event.startDate, format: "d")))
-        startData.data.append(SubText(title: "Month", text: Util.string(_event.startDate, format: "M")))
-        startData.data.append(SubText(title: "Year", text: Util.string(_event.startDate, format: "Y")))
-        
+        startData.data = subTextsWithDate(_event.startDate)
         var endData = TextData(title: "End date", data: [])
-        endData.data.append(SubText(title: "", text: Util.string(self._event.endDate, format: "MMMdEHHmm")))
-        endData.data.append(SubText(title: "", text: Util.string(_event.endDate, format: "HHmm")))
-        endData.data.append(SubText(title: "Minutes", text: Util.string(_event.endDate, format: "m")))
-        endData.data.append(SubText(title: "Hours", text: Util.string(_event.endDate, format: "H")))
-        endData.data.append(SubText(title: "Day", text: Util.string(_event.endDate, format: "d")))
-        endData.data.append(SubText(title: "Month", text: Util.string(_event.endDate, format: "M")))
-        endData.data.append(SubText(title: "Year", text: Util.string(_event.endDate, format: "Y")))
+        endData.data = subTextsWithDate(_event.endDate)
         
         datasource.append(basicData)
         datasource.append(startData)
         datasource.append(endData)
+    }
+    
+    private func subTextsWithDate(date: NSDate) -> [SubText]{
+        var subTexts : [SubText] = []
+        subTexts.append(SubText(title: "Start date time", text: Util.string(date, format: "MMMdEHHmm")))
+        subTexts.append(SubText(title: "Start date time", text: Util.string(date, format: "MMMdEhm")))
+        subTexts.append(SubText(title: "", text: Util.string(date, format: "MMMd")))
+        subTexts.append(SubText(title: "Day of week (short)", text: "(\(Util.string(date, format: "E")))"))
+        subTexts.append(SubText(title: "Day of week (long)", text: Util.string(date, format: "EEEE")))
+        if self.allDay{
+            subTexts.append(SubText(title: "", text: "all day"))
+        }
+        subTexts.append(SubText(title: "Time", text: Util.string(date, format: "HHmm")))
+        subTexts.append(SubText(title: "Hours(12H)", text: Util.string(date, format: "h")))
+        subTexts.append(SubText(title: "Hours(24H)", text: Util.string(date, format: "H")))
+        subTexts.append(SubText(title: "Minutes", text: Util.string(date, format: "m")))
+        subTexts.append(SubText(title: "Month", text: Util.string(date, format: "M")))
+        subTexts.append(SubText(title: "Day", text: Util.string(date, format: "d")))
+        subTexts.append(SubText(title: "Year", text: Util.string(date, format: "Y")))
+        return subTexts
     }
     
     func conflicts( other: MRYEvent ) -> Bool{
