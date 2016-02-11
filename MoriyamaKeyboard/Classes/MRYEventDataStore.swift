@@ -53,10 +53,7 @@ class MRYEventDataStore : NSObject{
     func conflictedEventsWith( event: MRYEvent) -> [MRYEvent]{
         if granted {
             let startDate = event.startDate.dateByAddingTimeInterval(1)
-            var endDate = event.endDate.dateByAddingTimeInterval(-1)
-//            if( endDate.timeIntervalSinceDate(startDate) < (60 * 30)){
-//                endDate = startDate.dateByAddingTimeInterval(60 * 30)
-//            }
+            let endDate = event.endDate.dateByAddingTimeInterval(-1)
             let predicate = store.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
             let events = store.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
             return events.filter{ return !$0.allDay }
