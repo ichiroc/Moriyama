@@ -1,5 +1,5 @@
 //
-//  MRYTimeDetailTableView.swift
+//  MRYEventContentsTableView.swift
 //  Moriyama
 //
 //  Created by Ichiro on 2016/01/13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MRYTimeDetailTableView: UITableView,
+class MRYEventContentsTableView: UITableView,
     UITableViewDelegate, UITableViewDataSource{
 
     /*

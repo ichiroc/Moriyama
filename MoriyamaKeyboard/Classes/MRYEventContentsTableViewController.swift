@@ -44,7 +44,7 @@ class MRYEventContentsTableViewController: MRYAbstractMainViewController {
         // Do any additional setup after loading the view.
         let backButton = MRYKeyboardButton(title: "Back",titleColor: UIColor.blueColor() , action:  { self.popViewController() } )
         self.view.addSubview(backButton)
-        let tableView = MRYTimeDetailTableView(event: _event! )
+        let tableView = MRYEventContentsTableView(event: _event! )
         self.view.addSubview(tableView)
         views = [ "back": backButton,
             "table": tableView]
