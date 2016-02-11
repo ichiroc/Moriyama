@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MRYTimeDetailTableViewController: MRYAbstractMainViewController {
+class MRYEventContentsTableViewController: MRYAbstractMainViewController {
     var _event: MRYEvent?
     var views : [String: UIView] = [:]
     init( event: MRYEvent, fromViewController: MRYAbstractMainViewController){
