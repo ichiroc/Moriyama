@@ -10,10 +10,13 @@ import UIKit
 
 class MRYEventContentsTableViewController:
     MRYAbstractMainViewController, UITableViewDelegate{
+    var eventContentsDataStore : MRYEventContentsTableDataSource!
     private var event: MRYEvent!
     var views : [String: UIView] = [:]
+    
     init(event _event: MRYEvent, fromViewController: MRYAbstractMainViewController){
         event = _event
+        eventContentsDataStore = MRYEventContentsTableDataSource(event: event)
         super.init(fromViewController: fromViewController)
     }
     
@@ -47,6 +50,7 @@ class MRYEventContentsTableViewController:
         self.view.addSubview(backButton)
         let tableView = MRYEventContentsTableView(event: event! )
         tableView.delegate = self
+        tableView.dataSource = eventContentsDataStore
         self.view.addSubview(tableView)
         views = [ "back": backButton,
             "table": tableView]
