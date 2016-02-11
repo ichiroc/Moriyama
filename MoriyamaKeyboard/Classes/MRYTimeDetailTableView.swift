@@ -50,7 +50,7 @@ class MRYTimeDetailTableView: UITableView,
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "textCell")
         }
         
-        cell!.textLabel!.text = event.datasource[indexPath.section].data[indexPath.row].text
+        cell!.textLabel!.text = event.datasource[indexPath.section].data[indexPath.row].text.stringByReplacingOccurrencesOfString("\n", withString: " ")
         cell!.detailTextLabel?.text = event.datasource[indexPath.section].data[indexPath.row].title
         return cell!
     }

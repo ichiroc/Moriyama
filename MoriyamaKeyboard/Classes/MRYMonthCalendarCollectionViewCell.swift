@@ -105,7 +105,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         self.dateLabel.backgroundColor = cellColor
         if(isToday()){
             self.dateLabel.backgroundColor = UIColor.lightGrayColor()
-            self.dateLabel.layer.cornerRadius = 13
+            self.dateLabel.layer.cornerRadius = self.dateLabel.frame.width / 2
             self.dateLabel.layer.masksToBounds = true
         }
         

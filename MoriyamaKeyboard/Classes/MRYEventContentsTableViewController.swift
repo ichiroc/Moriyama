@@ -20,7 +20,6 @@ class MRYEventContentsTableViewController: MRYAbstractMainViewController {
         super.init(coder: aDecoder)
     }
     
-    
     override func viewWillAppear(animated: Bool) {
         let tableHorizonalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|[table]|",
@@ -37,6 +36,7 @@ class MRYEventContentsTableViewController: MRYAbstractMainViewController {
         self.view.addConstraints(verticalConstraints)
         super.viewWillAppear(animated)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.translatesAutoresizingMaskIntoConstraints = false
