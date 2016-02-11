@@ -150,15 +150,10 @@
 		5D33D1A61C3DBC7300576CFA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5D1E8AAD1C2F3B1E0032CCC2 /* MRYMonthCalendarCollectionView.swift */,
-				5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */,
-				5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */,
-				5DD05EB11C45A78B00938176 /* MRYTimeDetailTableView.swift */,
-				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
-				5D5196D51C69522D0047DD2D /* MRYTimelineContainerView.swift */,
-				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
-				5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */,
 				5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */,
+				5D5196E01C6C2F6C0047DD2D /* DayView */,
+				5D5196DF1C6C2F550047DD2D /* Calendar */,
+				5DD05EB11C45A78B00938176 /* MRYTimeDetailTableView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -171,6 +166,27 @@
 				5DD259831C41BDAC007C61F6 /* MRYEvent.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		5D5196DF1C6C2F550047DD2D /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				5D1E8AAD1C2F3B1E0032CCC2 /* MRYMonthCalendarCollectionView.swift */,
+				5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */,
+				5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
+		5D5196E01C6C2F6C0047DD2D /* DayView */ = {
+			isa = PBXGroup;
+			children = (
+				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
+				5D5196D51C69522D0047DD2D /* MRYTimelineContainerView.swift */,
+				5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */,
+				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
+			);
+			name = DayView;
 			sourceTree = "<group>";
 		};
 		5D9D800F1C2CB02400623AF7 = {
@@ -233,8 +249,8 @@
 				5D6A28F21C55899B003A522F /* Globals.swift */,
 				5DD05EAD1C459F0C00938176 /* Util.swift */,
 				5DC19C4F1C485D5B0030B282 /* DataSource */,
-				5DD259821C40B56D007C61F6 /* Controller */,
 				5D33D1A71C3DBCAA00576CFA /* Model */,
+				5DD259821C40B56D007C61F6 /* Controller */,
 				5D33D1A61C3DBC7300576CFA /* View */,
 				5D9D80511C2D405700623AF7 /* Info.plist */,
 			);

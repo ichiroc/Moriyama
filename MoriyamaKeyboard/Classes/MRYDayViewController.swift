@@ -55,6 +55,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         timelineContainerView = MRYTimelineContainerView(coder: aDecoder)!
         super.init(coder: aDecoder)
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,19 +73,11 @@ class MRYDayViewController: MRYAbstractMainViewController {
         
         let constraints = self.constraintsSubviews()
         self.view.addConstraints(constraints)
-        
-//        layoutEventViews()
-        
-//        moveToInitialPointOnTimeline()
     }
 
     override func viewDidLayoutSubviews() {
         timelineContainerView.moveToInitialPointOnTimeline()
     }
-
-
-
-    
   
     private func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
