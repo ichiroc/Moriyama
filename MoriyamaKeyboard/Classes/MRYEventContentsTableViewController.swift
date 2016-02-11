@@ -8,11 +8,12 @@
 
 import UIKit
 
-class MRYEventContentsTableViewController: MRYAbstractMainViewController {
-    var _event: MRYEvent?
+class MRYEventContentsTableViewController:
+    MRYAbstractMainViewController, UITableViewDelegate{
+    private var event: MRYEvent!
     var views : [String: UIView] = [:]
-    init( event: MRYEvent, fromViewController: MRYAbstractMainViewController){
-        _event = event
+    init(event _event: MRYEvent, fromViewController: MRYAbstractMainViewController){
+        event = _event
         super.init(fromViewController: fromViewController)
     }
     
@@ -44,7 +45,8 @@ class MRYEventContentsTableViewController: MRYAbstractMainViewController {
         // Do any additional setup after loading the view.
         let backButton = MRYKeyboardButton(title: "Back",titleColor: UIColor.blueColor() , action:  { self.popViewController() } )
         self.view.addSubview(backButton)
-        let tableView = MRYEventContentsTableView(event: _event! )
+        let tableView = MRYEventContentsTableView(event: event! )
+        tableView.delegate = self
         self.view.addSubview(tableView)
         views = [ "back": backButton,
             "table": tableView]
@@ -56,6 +58,10 @@ class MRYEventContentsTableViewController: MRYAbstractMainViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        MRYTextDocumentProxy.proxy.insertText(event.datasource[indexPath.section].data[indexPath.row].text)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
 
     /*
     // MARK: - Navigation

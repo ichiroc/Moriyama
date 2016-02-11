@@ -17,6 +17,7 @@
 		5D5196D81C6955190047DD2D /* MRYAllDayEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */; };
 		5D5196DA1C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */; };
 		5D5196DC1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */; };
+		5D5196E21C6C53450047DD2D /* MRYEventContentsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */; };
 		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
 		5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */; };
@@ -87,6 +88,7 @@
 		5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYAllDayEventView.swift; path = Classes/MRYAllDayEventView.swift; sourceTree = "<group>"; };
 		5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYMonthCalendarAccessoryView.swift; path = Classes/MRYMonthCalendarAccessoryView.swift; sourceTree = "<group>"; };
 		5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYDayViewAccessoryView.swift; path = Classes/MRYDayViewAccessoryView.swift; sourceTree = "<group>"; };
+		5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventContentsTableDataSource.swift; path = Classes/MRYEventContentsTableDataSource.swift; sourceTree = "<group>"; };
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
 		5D9D80181C2CB02400623AF7 /* Moriyama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moriyama.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				5DC19C501C485F250030B282 /* MRYMonthCalendarCollectionViewDataSource.swift */,
+				5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */,
 			);
 			name = DataSource;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				5DD05EB01C45A64600938176 /* MRYEventContentsTableViewController.swift in Sources */,
 				5DC19C511C485F250030B282 /* MRYMonthCalendarCollectionViewDataSource.swift in Sources */,
 				5D1E8AB01C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift in Sources */,
+				5D5196E21C6C53450047DD2D /* MRYEventContentsTableDataSource.swift in Sources */,
 				5D2DB6AD1C2DE0FC00604C0F /* MRYKeyboardButton.swift in Sources */,
 				5D6A28F31C55899B003A522F /* Globals.swift in Sources */,
 				5D42D8D51C5980A80071A192 /* MRYAbstractMainViewController.swift in Sources */,

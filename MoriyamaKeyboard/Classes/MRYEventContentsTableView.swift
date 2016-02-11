@@ -23,7 +23,6 @@ class MRYEventContentsTableView: UITableView,
         self.event = _event
         super.init(frame: CGRectZero, style: .Plain)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.delegate = self
         self.dataSource = self
     }
 
@@ -55,8 +54,4 @@ class MRYEventContentsTableView: UITableView,
         return cell!
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MRYTextDocumentProxy.proxy.insertText(event.datasource[indexPath.section].data[indexPath.row].text)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
 }
