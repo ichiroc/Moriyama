@@ -94,6 +94,18 @@ class KeyboardViewController: UIInputViewController ,
         self.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
 
+    func longDelete( recgnizer: UILongPressGestureRecognizer){
+        switch(recgnizer.state){
+        case .Began:
+            let charCount = MRYTextDocumentProxy.proxy.documentContextBeforeInput?.characters.count
+            for(var i = 0 ; i < charCount ; i++){
+                MRYTextDocumentProxy.proxy.deleteBackward()
+            }
+        default:
+            break
+        }
+    }
+
     private func initUIParts(){
         
         self.nextKeyboardButton = MRYKeyboardButton(
@@ -108,6 +120,7 @@ class KeyboardViewController: UIInputViewController ,
         let deleteKey = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
             action: {() -> Void in MRYTextDocumentProxy.proxy.deleteBackward()} )
+        deleteKey.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longDelete:"))
 
         if let mainVC = mainViewController as? MRYMonthCalendarViewController{
             MRYEventDataStore.instance.loadAllEvents()
