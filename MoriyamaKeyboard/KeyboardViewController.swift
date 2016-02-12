@@ -200,7 +200,7 @@ class KeyboardViewController: UIInputViewController ,
         
         allConstraints.appendContentsOf(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
+                "H:|-m_left-[next(30)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
                 options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
                 metrics: METRICS,
                 views: views)
