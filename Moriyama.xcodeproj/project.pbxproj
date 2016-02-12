@@ -18,6 +18,7 @@
 		5D5196DA1C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */; };
 		5D5196DC1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */; };
 		5D5196E21C6C53450047DD2D /* MRYEventContentsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */; };
+		5D5196E51C6DD8820047DD2D /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5196E41C6DD8820047DD2D /* View.xib */; };
 		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
 		5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */; };
@@ -89,6 +90,7 @@
 		5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYMonthCalendarAccessoryView.swift; path = Classes/MRYMonthCalendarAccessoryView.swift; sourceTree = "<group>"; };
 		5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYDayViewAccessoryView.swift; path = Classes/MRYDayViewAccessoryView.swift; sourceTree = "<group>"; };
 		5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventContentsTableDataSource.swift; path = Classes/MRYEventContentsTableDataSource.swift; sourceTree = "<group>"; };
+		5D5196E41C6DD8820047DD2D /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
 		5D9D80181C2CB02400623AF7 /* Moriyama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moriyama.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,7 +157,7 @@
 				5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */,
 				5D5196E01C6C2F6C0047DD2D /* DayView */,
 				5D5196DF1C6C2F550047DD2D /* Calendar */,
-				5DD05EB11C45A78B00938176 /* MRYEventContentsTableView.swift */,
+				5D5196E31C6C685C0047DD2D /* EventContents */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -183,12 +185,20 @@
 		5D5196E01C6C2F6C0047DD2D /* DayView */ = {
 			isa = PBXGroup;
 			children = (
-				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
-				5D5196D51C69522D0047DD2D /* MRYTimelineContainerView.swift */,
 				5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */,
+				5D5196D51C69522D0047DD2D /* MRYTimelineContainerView.swift */,
+				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
 				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
 			);
 			name = DayView;
+			sourceTree = "<group>";
+		};
+		5D5196E31C6C685C0047DD2D /* EventContents */ = {
+			isa = PBXGroup;
+			children = (
+				5DD05EB11C45A78B00938176 /* MRYEventContentsTableView.swift */,
+			);
+			name = EventContents;
 			sourceTree = "<group>";
 		};
 		5D9D800F1C2CB02400623AF7 = {
@@ -220,6 +230,7 @@
 				5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */,
 				5D9D801D1C2CB02400623AF7 /* ViewController.swift */,
 				5D9D801F1C2CB02400623AF7 /* Main.storyboard */,
+				5D5196E41C6DD8820047DD2D /* View.xib */,
 				5D9D80221C2CB02400623AF7 /* Assets.xcassets */,
 				5D9D80241C2CB02400623AF7 /* LaunchScreen.storyboard */,
 				5D9D80271C2CB02400623AF7 /* Info.plist */,
@@ -409,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D1E8AAC1C2F30FE0032CCC2 /* .gitignore in Resources */,
+				5D5196E51C6DD8820047DD2D /* View.xib in Resources */,
 				5D9D80261C2CB02400623AF7 /* LaunchScreen.storyboard in Resources */,
 				5D9D80231C2CB02400623AF7 /* Assets.xcassets in Resources */,
 				5D9D80211C2CB02400623AF7 /* Main.storyboard in Resources */,

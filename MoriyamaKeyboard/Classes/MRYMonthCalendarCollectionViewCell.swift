@@ -13,6 +13,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
     private var dateLabel:UILabel
     private let cal  = NSCalendar.currentCalendar()
     private var eventIndicatorViewsMap : [String: UIView] = [:]
+    private var views : [String:UIView] = [:]
     var date : NSDate?
     private var events : [MRYEvent] {
         get {
@@ -23,12 +24,12 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         }
     }
     private let eventIndicator = UIView()
+    private let circle = UIView()
     private let fontSize : CGFloat = 13.0
     
     override func prepareForReuse() {
-        self.dateLabel.backgroundColor = UIColor.whiteColor()
-        self.dateLabel.layer.cornerRadius = 0
         self.dateLabel.textColor = UIColor.blackColor()
+        circle.removeFromSuperview()
         dateLabel.font = UIFont.systemFontOfSize(fontSize)
         eventIndicator.subviews.forEach{
             $0.removeFromSuperview()
@@ -44,9 +45,10 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         dateLabel = UILabel()
         super.init(frame: frame)
-//        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-       let defaultMargin = self.contentView.layoutMargins
-       self.contentView.layoutMargins = UIEdgeInsets(top: defaultMargin.top, left: 0, bottom: defaultMargin.bottom, right: 0)
+        
+        
+        let defaultMargin = self.contentView.layoutMargins
+        self.contentView.layoutMargins = UIEdgeInsets(top: defaultMargin.top, left: 0, bottom: defaultMargin.bottom, right: 0)
         eventIndicator.translatesAutoresizingMaskIntoConstraints = false
         eventIndicator.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.contentView.addSubview(eventIndicator)
@@ -56,19 +58,26 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         self.contentView.addSubview(dateLabel)
         self.backgroundColor = UIColor.whiteColor()
         
-        let views = ["date": dateLabel,
+        views = ["date": dateLabel,
         "eventIndicator": eventIndicator]
-        let dateWidth = NSLayoutConstraint.constraintsWithVisualFormat(
+        
+        let eventIndicatorWidth = NSLayoutConstraint.constraintsWithVisualFormat(
             "H:|-[eventIndicator]-|",
+            options: NSLayoutFormatOptions(rawValue: 0) ,
+            metrics: nil, views: views
+        )
+        let dateWidth = NSLayoutConstraint.constraintsWithVisualFormat(
+            "H:[date]",
             options: NSLayoutFormatOptions(rawValue: 0) ,
             metrics: nil, views: views
         )
         let dateHeight = NSLayoutConstraint.constraintsWithVisualFormat(
             "V:|-[date]-[eventIndicator(5)]-|",
-            options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllTrailing],
+            options: [.AlignAllCenterX, ],
             metrics: nil, views: views
         )
         
+        self.contentView.addConstraints(eventIndicatorWidth)
         self.contentView.addConstraints(dateWidth)
         self.contentView.addConstraints(dateHeight)
         self.dateLabel.textAlignment = .Center
@@ -103,11 +112,6 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         let cellColor = monthlyColor(cellDate)
         self.contentView.backgroundColor = cellColor
         self.dateLabel.backgroundColor = cellColor
-        if(isToday()){
-            self.dateLabel.backgroundColor = UIColor.lightGrayColor()
-            self.dateLabel.layer.cornerRadius = self.dateLabel.frame.width / 2
-            self.dateLabel.layer.masksToBounds = true
-        }
         
         let comp = NSCalendar.currentCalendar().components(.Weekday, fromDate: self.date!)
         if comp.weekday == 1 {
@@ -118,11 +122,39 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             self.dateLabel.textColor = UIColor.blueColor()
         }
         buildEventIndicatorView(cellColor)
+        
+        if(isToday()){
+            
+            circle.translatesAutoresizingMaskIntoConstraints = false
+            circle.backgroundColor = UIColor.blueColor()
+            self.contentView.addSubview(circle)
+            views["circle"] = circle
+            self.contentView.addConstraints(
+                NSLayoutConstraint.constraintsWithVisualFormat(
+                    "H:[circle(22)]",
+                    options: NSLayoutFormatOptions.AlignAllCenterY,
+                    metrics: nil, views: views
+                )
+            )
+            self.contentView.addConstraints(
+                NSLayoutConstraint.constraintsWithVisualFormat(
+                    "V:[circle(22)]-[eventIndicator]",
+                    options: NSLayoutFormatOptions.AlignAllCenterX,
+                    metrics: nil, views: views
+                )
+            )
+            circle.layer.cornerRadius = 11
+            dateLabel.textColor = UIColor.whiteColor()
+            dateLabel.opaque = false
+            dateLabel.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+            
+            self.contentView.sendSubviewToBack(circle)
+        }
     }
    
     private func buildEventIndicatorView(cellColor: UIColor) -> UIView{
-        eventIndicator.backgroundColor = cellColor
-//        eventIndicator.backgroundColor = UIColor.blueColor()
+        eventIndicator.opaque = false
+        eventIndicator.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
         
         if events.count == 0 {
             return eventIndicator
