@@ -230,7 +230,7 @@ class KeyboardViewController: UIInputViewController ,
                 views: views)
         mainViewConstraints.appendContentsOf(c2)
         
-        let height = UIScreen.mainScreen().bounds.height * 0.55
+        let height = UIScreen.mainScreen().bounds.height * 0.45
         let heightConstraint = NSLayoutConstraint(item: self.inputView!,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,

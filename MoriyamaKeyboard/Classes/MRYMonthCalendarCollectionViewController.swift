@@ -47,7 +47,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
             views: views)
         self.view.addConstraints(hConstraints)
         let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[numberPad(40)][col]-|",
+            "V:|-[numberPad(36)][col]-|",
             options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllLeading],
             metrics: nil,
             views: views)
