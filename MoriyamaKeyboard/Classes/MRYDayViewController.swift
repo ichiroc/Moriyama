@@ -86,7 +86,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         self.view.addSubview(timelineContainerView)
         
         let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[accessory(40)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
+            "V:|[accessory(36)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
             options: [.AlignAllLeading, .AlignAllTrailing],
             metrics: METRICS,
             views: managedSubViews)
