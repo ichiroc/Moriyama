@@ -19,6 +19,7 @@ class KeyboardViewController: UIInputViewController ,
     private var initialized : Bool = false
     private var mainViewConstraints :[NSLayoutConstraint] = []
     private var constraintsInitialized = false
+    private var deleteKeyButton : MRYKeyboardButton!
     var currentOrientation = Orientation.Portrait
  
     enum Orientation{
@@ -94,13 +95,15 @@ class KeyboardViewController: UIInputViewController ,
         self.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
 
-    func longDelete( recgnizer: UILongPressGestureRecognizer){
+    func longPressDeleteButton( recgnizer: UILongPressGestureRecognizer){
         switch(recgnizer.state){
         case .Began:
             let charCount = MRYTextDocumentProxy.proxy.documentContextBeforeInput?.characters.count
             for(var i = 0 ; i < charCount ; i++){
                 MRYTextDocumentProxy.proxy.deleteBackward()
             }
+        case .Ended:
+            deleteKeyButton.resetColor()
         default:
             break
         }
@@ -112,38 +115,38 @@ class KeyboardViewController: UIInputViewController ,
             title: "🌐",
             backgroundColor: UIColor.lightGrayColor(),
             action: { self.advanceToNextInputMode() })
-        let returnKey = MRYKeyboardButton(
+        let returnKeyButton = MRYKeyboardButton(
             title: "↩︎",
             text: "\n",
             backgroundColor: UIColor.blueColor(),
             titleColor: UIColor.whiteColor())
-        let deleteKey = MRYKeyboardButton( title: "⌫",
+        deleteKeyButton = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
             action: {() -> Void in MRYTextDocumentProxy.proxy.deleteBackward()} )
-        deleteKey.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longDelete:"))
+        deleteKeyButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressDeleteButton:"))
 
         if let mainVC = mainViewController as? MRYMonthCalendarViewController{
             MRYEventDataStore.instance.loadAllEvents()
             mainVC.calendarCollectionView.reloadData()
         }
-        let spaceKey = MRYKeyboardButton(title: "space", text: " ")
-        let hyphenKey = MRYKeyboardButton(title: "-", text: "-")
-        let commaKey = MRYKeyboardButton(title: ",", text: ",")
+        let spaceKeyButton = MRYKeyboardButton(title: "space", text: " ")
+        let hyphenKeyButton = MRYKeyboardButton(title: "-", text: "-")
+        let commaKeyButton = MRYKeyboardButton(title: ",", text: ",")
         
         views = [ "next": nextKeyboardButton,
-            "delete": deleteKey,
-            "space": spaceKey,
-            "return": returnKey,
-            "comma": commaKey,
-            "hyphen": hyphenKey,
+            "delete": deleteKeyButton,
+            "space": spaceKeyButton,
+            "return": returnKeyButton,
+            "comma": commaKeyButton,
+            "hyphen": hyphenKeyButton,
             "main": mainViewController.view]
         
         self.inputView?.addSubview(nextKeyboardButton)
-        self.inputView?.addSubview(deleteKey)
-        self.inputView?.addSubview(spaceKey)
-        self.inputView?.addSubview(returnKey)
-        self.inputView?.addSubview(commaKey)
-        self.inputView?.addSubview(hyphenKey)
+        self.inputView?.addSubview(deleteKeyButton)
+        self.inputView?.addSubview(spaceKeyButton)
+        self.inputView?.addSubview(returnKeyButton)
+        self.inputView?.addSubview(commaKeyButton)
+        self.inputView?.addSubview(hyphenKeyButton)
     }
     
     

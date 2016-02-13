@@ -56,7 +56,7 @@ class MRYKeyboardButton : UIButton{
         resetColor()
     }
     
-    private func resetColor(){
+    func resetColor(){
         self.setTitleColor(normalTitleColor, forState: .Normal)
         self.backgroundColor = normalBackgroundColor
     }
