@@ -29,7 +29,7 @@
 		5D9D80311C2CB02400623AF7 /* MoriyamaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D80301C2CB02400623AF7 /* MoriyamaTests.swift */; };
 		5D9D803C1C2CB02400623AF7 /* MoriyamaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D803B1C2CB02400623AF7 /* MoriyamaUITests.swift */; };
 		5D9D80501C2D405700623AF7 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */; };
-		5D9D80541C2D405700623AF7 /* MoriyamaKeyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D9D804D1C2D405700623AF7 /* MoriyamaKeyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5D9D80541C2D405700623AF7 /* ApptBoard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D9D804D1C2D405700623AF7 /* ApptBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5DA7D5CF1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift */; };
 		5DC19C511C485F250030B282 /* MRYMonthCalendarCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC19C501C485F250030B282 /* MRYMonthCalendarCollectionViewDataSource.swift */; };
 		5DC19C8F1C4C35710030B282 /* MRYMonthCalendarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC19C8E1C4C35710030B282 /* MRYMonthCalendarCollectionViewController.swift */; };
@@ -71,7 +71,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				5D9D80541C2D405700623AF7 /* MoriyamaKeyboard.appex in Embed App Extensions */,
+				5D9D80541C2D405700623AF7 /* ApptBoard.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,7 +93,7 @@
 		5D5196E41C6DD8820047DD2D /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
-		5D9D80181C2CB02400623AF7 /* Moriyama.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moriyama.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D9D80181C2CB02400623AF7 /* ApptBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApptBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5D9D801D1C2CB02400623AF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5D9D80201C2CB02400623AF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 		5D9D80371C2CB02400623AF7 /* MoriyamaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoriyamaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9D803B1C2CB02400623AF7 /* MoriyamaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoriyamaUITests.swift; sourceTree = "<group>"; };
 		5D9D803D1C2CB02400623AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D9D804D1C2D405700623AF7 /* MoriyamaKeyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MoriyamaKeyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D9D804D1C2D405700623AF7 /* ApptBoard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ApptBoard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		5D9D80511C2D405700623AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTextDocumentProxy.swift; path = Classes/MRYTextDocumentProxy.swift; sourceTree = "<group>"; };
@@ -216,10 +216,10 @@
 		5D9D80191C2CB02400623AF7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5D9D80181C2CB02400623AF7 /* Moriyama.app */,
+				5D9D80181C2CB02400623AF7 /* ApptBoard.app */,
 				5D9D802C1C2CB02400623AF7 /* MoriyamaTests.xctest */,
 				5D9D80371C2CB02400623AF7 /* MoriyamaUITests.xctest */,
-				5D9D804D1C2D405700623AF7 /* MoriyamaKeyboard.appex */,
+				5D9D804D1C2D405700623AF7 /* ApptBoard.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 			);
 			name = Moriyama;
 			productName = Moriyama;
-			productReference = 5D9D80181C2CB02400623AF7 /* Moriyama.app */;
+			productReference = 5D9D80181C2CB02400623AF7 /* ApptBoard.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5D9D802B1C2CB02400623AF7 /* MoriyamaTests */ = {
@@ -363,7 +363,7 @@
 			);
 			name = MoriyamaKeyboard;
 			productName = MoriyamaKeyboard;
-			productReference = 5D9D804D1C2D405700623AF7 /* MoriyamaKeyboard.appex */;
+			productReference = 5D9D804D1C2D405700623AF7 /* ApptBoard.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -583,6 +583,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Moriyama;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -622,6 +623,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Moriyama;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -637,7 +639,7 @@
 				INFOPLIST_FILE = Moriyama/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ApptBoard;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -652,7 +654,7 @@
 				INFOPLIST_FILE = Moriyama/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ApptBoard;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
@@ -713,7 +715,7 @@
 				INFOPLIST_FILE = MoriyamaKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama.MoriyamaKeyboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ApptBoard;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
@@ -727,7 +729,7 @@
 				INFOPLIST_FILE = MoriyamaKeyboard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama.MoriyamaKeyboard;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ApptBoard;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
