@@ -11,7 +11,7 @@ import UIKit
 class KeyboardViewController: UIInputViewController ,
     UICollectionViewDelegate{
 
-    @IBOutlet var nextKeyboardButton: UIButton!
+    private var nextKeyboardButton: UIButton!
     static var instance : KeyboardViewController!
     var mainViewController : MRYAbstractMainViewController
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
