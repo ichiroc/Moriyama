@@ -38,7 +38,7 @@
 		5DD05EB21C45A78B00938176 /* MRYEventContentsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD05EB11C45A78B00938176 /* MRYEventContentsTableView.swift */; };
 		5DD259841C41BDAC007C61F6 /* MRYEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259831C41BDAC007C61F6 /* MRYEvent.swift */; };
 		5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259851C421C04007C61F6 /* MRYEventView.swift */; };
-		5DE8805E1C6EE0B000EDE4B4 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880601C6EE0B000EDE4B4 /* Localized.strings */; };
+		5DE8805E1C6EE0B000EDE4B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880601C6EE0B000EDE4B4 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,8 +120,9 @@
 		5DD259851C421C04007C61F6 /* MRYEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventView.swift; path = Classes/MRYEventView.swift; sourceTree = "<group>"; };
 		5DE8805C1C6EE0A500EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		5DE8805D1C6EE0A500EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		5DE8805F1C6EE0B000EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localized.strings; sourceTree = "<group>"; };
-		5DE880611C6EE0B400EDE4B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localized.strings; sourceTree = "<group>"; };
+		5DE8805F1C6EE0B000EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5DE880611C6EE0B400EDE4B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5DE880621C71147C00EDE4B4 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,7 +272,7 @@
 				5DD259821C40B56D007C61F6 /* Controller */,
 				5D33D1A61C3DBC7300576CFA /* View */,
 				5D9D80511C2D405700623AF7 /* Info.plist */,
-				5DE880601C6EE0B000EDE4B4 /* Localized.strings */,
+				5DE880601C6EE0B000EDE4B4 /* Localizable.strings */,
 			);
 			path = MoriyamaKeyboard;
 			sourceTree = "<group>";
@@ -451,7 +452,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DE8805E1C6EE0B000EDE4B4 /* Localized.strings in Resources */,
+				5DE8805E1C6EE0B000EDE4B4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,13 +551,14 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		5DE880601C6EE0B000EDE4B4 /* Localized.strings */ = {
+		5DE880601C6EE0B000EDE4B4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5DE8805F1C6EE0B000EDE4B4 /* ja */,
 				5DE880611C6EE0B400EDE4B4 /* en */,
+				5DE880621C71147C00EDE4B4 /* Base */,
 			);
-			name = Localized.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

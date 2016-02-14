@@ -1,0 +1,62 @@
+/*
+ File.strings
+ Moriyama
+ 
+ Created by Ichiro on 2016/02/13.
+ Copyright © 2016年 Ichiro. All rights reserved.
+ */
+
+/* No comment provided by engineer. */
+"all day" = "終日";
+
+/* Basic informations of event. */
+"Basic" = "基本";
+
+/* No comment provided by engineer. */
+"Date time" = "日時";
+
+/* No comment provided by engineer. */
+"Day" = "日";
+
+/* No comment provided by engineer. */
+"Day of week (long)" = "曜日";
+
+/* No comment provided by engineer. */
+"Day of week (short)" = "曜日";
+
+/* End date of event. */
+"End date" = "終了日時";
+
+/* No comment provided by engineer. */
+"Hours(12H)" = "時(12H)";
+
+/* No comment provided by engineer. */
+"Hours(24H)" = "時(24H)";
+
+/* Location of event occured. */
+"Location" = "場所";
+
+/* No comment provided by engineer. */
+"Minutes" = "分";
+
+/* No comment provided by engineer. */
+"Month" = "月";
+
+/* Event notes */
+"Notes" = "メモ";
+
+/* Start date of event. */
+"Start date" = "開始日時";
+
+/* No comment provided by engineer. */
+"Time" = "時間";
+
+/* Event title */
+"Title" = "件名";
+
+/* URL */
+"URL" = "URL";
+
+/* No comment provided by engineer. */
+"Year" = "年";
+

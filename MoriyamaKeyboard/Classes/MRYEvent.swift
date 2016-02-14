@@ -64,24 +64,24 @@ class MRYEvent: NSObject {
         _event = event
         super.init()
        
-        var basicData = TextData(title: "Basic", data: [])
-        basicData.data.append(SubText( title: "Title", text: _event.title))
+        var basicData = TextData(title: NSLocalizedString("Basic", comment : "Basic informations of event."), data: [])
+        basicData.data.append(SubText( title: NSLocalizedString("Title",comment: "Event title"), text: _event.title))
         if let location = _event.location{
             if location != ""{
-                basicData.data.append(SubText( title: "Location", text: location))
+                basicData.data.append(SubText( title: NSLocalizedString("Location",comment:"Location of event occured."), text: location))
             }
         }
         if let notes = _event.notes {
-            basicData.data.append(SubText( title: "Notes", text: notes))
+            basicData.data.append(SubText( title: NSLocalizedString("Notes", comment : "Event notes"), text: notes))
         }
         if let url = _event.URL{
-            basicData.data.append(SubText( title: "URL", text: url.absoluteString))
+            basicData.data.append(SubText( title: NSLocalizedString("URL", comment: "URL"), text: url.absoluteString))
         }
         
         // Start date
-        var startData = TextData(title: "Start date", data: [])
+        var startData = TextData(title: NSLocalizedString( "Start date", comment: "Start date of event."), data: [])
         startData.data = subTextsWithDate(_event.startDate)
-        var endData = TextData(title: "End date", data: [])
+        var endData = TextData(title:  NSLocalizedString("End date",comment: "End date of event."), data: [])
         endData.data = subTextsWithDate(_event.endDate)
         
         datasource.append(basicData)
@@ -91,21 +91,21 @@ class MRYEvent: NSObject {
     
     private func subTextsWithDate(date: NSDate) -> [SubText]{
         var subTexts : [SubText] = []
-        subTexts.append(SubText(title: "Start date time", text: Util.string(date, format: "MMMdEHHmm")))
-        subTexts.append(SubText(title: "Start date time", text: Util.string(date, format: "MMMdEhm")))
-        subTexts.append(SubText(title: "", text: Util.string(date, format: "MMMd")))
-        subTexts.append(SubText(title: "Day of week (short)", text: "(\(Util.string(date, format: "E")))"))
-        subTexts.append(SubText(title: "Day of week (long)", text: Util.string(date, format: "EEEE")))
+        subTexts.append(SubText(title: NSLocalizedString("Date time" , comment: ""), text: Util.string(date, format: "MMMdEHHmm")))
+        subTexts.append(SubText(title: NSLocalizedString("Date time", comment: ""), text: Util.string(date, format: "MMMdEhm")))
+        subTexts.append(SubText(title: NSLocalizedString("Date time",comment: ""), text: Util.string(date, format: "MMMd")))
+        subTexts.append(SubText(title: NSLocalizedString("Day of week (short)", comment: ""), text: "(\(Util.string(date, format: "E")))"))
+        subTexts.append(SubText(title: NSLocalizedString("Day of week (long)", comment: ""), text: Util.string(date, format: "EEEE")))
         if self.allDay{
-            subTexts.append(SubText(title: "", text: "all day"))
+            subTexts.append(SubText(title: "", text: NSLocalizedString("all day", comment: "")))
         }
-        subTexts.append(SubText(title: "Time", text: Util.string(date, format: "HHmm")))
-        subTexts.append(SubText(title: "Hours(12H)", text: Util.string(date, format: "h")))
-        subTexts.append(SubText(title: "Hours(24H)", text: Util.string(date, format: "H")))
-        subTexts.append(SubText(title: "Minutes", text: Util.string(date, format: "m")))
-        subTexts.append(SubText(title: "Month", text: Util.string(date, format: "M")))
-        subTexts.append(SubText(title: "Day", text: Util.string(date, format: "d")))
-        subTexts.append(SubText(title: "Year", text: Util.string(date, format: "Y")))
+        subTexts.append(SubText(title: NSLocalizedString("Time", comment: ""), text: Util.string(date, format: "HHmm")))
+        subTexts.append(SubText(title: NSLocalizedString("Hours(12H)", comment: ""), text: Util.string(date, format: "h")))
+        subTexts.append(SubText(title: NSLocalizedString("Hours(24H)", comment: ""), text: Util.string(date, format: "H")))
+        subTexts.append(SubText(title: NSLocalizedString("Minutes", comment: ""), text: Util.string(date, format: "m")))
+        subTexts.append(SubText(title: NSLocalizedString("Month", comment: ""), text: Util.string(date, format: "M")))
+        subTexts.append(SubText(title: NSLocalizedString("Day", comment: ""), text: Util.string(date, format: "d")))
+        subTexts.append(SubText(title: NSLocalizedString("Year", comment: ""), text: Util.string(date, format: "Y")))
         return subTexts
     }
     
