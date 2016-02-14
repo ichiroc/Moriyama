@@ -29,7 +29,7 @@ class MRYDayViewAccessoryView: UIView {
         })
         
         
-        let backButton = MRYKeyboardButton(title: "Back",
+        let backButton = MRYKeyboardButton(title: NSLocalizedString("Back",comment: "Back"),
             backgroundColor: UIColor.whiteColor(),
             titleColor: UIColor.blueColor(),
             action: {viewController.popViewController()},

@@ -46,7 +46,7 @@ class MRYEventContentsTableViewController:
         self.view.translatesAutoresizingMaskIntoConstraints = false
 
         // Do any additional setup after loading the view.
-        let backButton = MRYKeyboardButton(title: "Back",titleColor: UIColor.blueColor() , action:  { self.popViewController() },round: 0 )
+        let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: "Back"),titleColor: UIColor.blueColor() , action:  { self.popViewController() },round: 0 )
         self.view.addSubview(backButton)
         let tableView = MRYEventContentsTableView(event: event! )
         tableView.delegate = self
