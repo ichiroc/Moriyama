@@ -9,8 +9,8 @@
 /* No comment provided by engineer. */
 "all day" = "終日";
 
-/* Basic informations of event. */
-"Basic" = "基本";
+/* General informations of event. */
+"General" = "基本";
 
 /* No comment provided by engineer. */
 "Date time" = "日時";

@@ -9,8 +9,8 @@
 /* No comment provided by engineer. */
 "all day" = "all day";
 
-/* Basic informations of event. */
-"Basic" = "Basic in .string";
+/* General informations of event. */
+"General" = "General";
 
 /* No comment provided by engineer. */
 "Date time" = "Date time";

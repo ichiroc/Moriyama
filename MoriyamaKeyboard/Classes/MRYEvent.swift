@@ -64,18 +64,18 @@ class MRYEvent: NSObject {
         _event = event
         super.init()
        
-        var basicData = TextData(title: NSLocalizedString("Basic", comment : "Basic informations of event."), data: [])
-        basicData.data.append(SubText( title: NSLocalizedString("Title",comment: "Event title"), text: _event.title))
+        var generalData = TextData(title: NSLocalizedString("General", comment : "General informations of event."), data: [])
+        generalData.data.append(SubText( title: NSLocalizedString("Title",comment: "Event title"), text: _event.title))
         if let location = _event.location{
             if location != ""{
-                basicData.data.append(SubText( title: NSLocalizedString("Location",comment:"Location of event occured."), text: location))
+                generalData.data.append(SubText( title: NSLocalizedString("Location",comment:"Location of event occured."), text: location))
             }
         }
         if let notes = _event.notes {
-            basicData.data.append(SubText( title: NSLocalizedString("Notes", comment : "Event notes"), text: notes))
+            generalData.data.append(SubText( title: NSLocalizedString("Notes", comment : "Event notes"), text: notes))
         }
         if let url = _event.URL{
-            basicData.data.append(SubText( title: NSLocalizedString("URL", comment: "URL"), text: url.absoluteString))
+            generalData.data.append(SubText( title: NSLocalizedString("URL", comment: "URL"), text: url.absoluteString))
         }
         
         // Start date
@@ -84,7 +84,7 @@ class MRYEvent: NSObject {
         var endData = TextData(title:  NSLocalizedString("End date",comment: "End date of event."), data: [])
         endData.data = subTextsWithDate(_event.endDate)
         
-        datasource.append(basicData)
+        datasource.append(generalData)
         datasource.append(startData)
         datasource.append(endData)
     }
