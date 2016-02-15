@@ -9,6 +9,18 @@
 /* No comment provided by engineer. */
 "all day" = "終日";
 
+/* All Day */
+"All Day" = "終日";
+
+/* Splitter symbol between start date and end date.*/
+"-" = "〜";
+
+/* Punctuation symbol */
+"," = "、";
+
+/* Space key on keyboard */
+"space" = "スペース";
+
 /* General informations of event. */
 "General" = "基本";
 
@@ -62,4 +74,5 @@
 
 /* Back */
 "Back" = "戻る";
+
 

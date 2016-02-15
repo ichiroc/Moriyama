@@ -9,6 +9,18 @@
 /* No comment provided by engineer. */
 "all day" = "all day";
 
+/* All Day */
+"All Day" = "All Day";
+
+/* Space key on keyboard */
+"space" = "space";
+
+/* Splitter symbol between start date and end date.*/
+"-" = "〜";
+
+/* Punctuation symbol */
+"," = ",";
+
 /* General informations of event. */
 "General" = "General";
 

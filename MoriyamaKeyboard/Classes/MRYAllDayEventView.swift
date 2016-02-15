@@ -31,7 +31,7 @@ class MRYAllDayEventView: UIView {
         self.addSubview(allDayEventContainerView)
         
         let allDayLabel = UILabel()
-        allDayLabel.text = "All Day"
+        allDayLabel.text = NSLocalizedString("All Day", comment: "All day")
         allDayLabel.textAlignment = .Center
         allDayLabel.textColor = UIColor.grayColor()
         sidebarView.addSubview(allDayLabel)

@@ -132,9 +132,11 @@ class KeyboardViewController: UIInputViewController ,
             MRYEventDataStore.instance.loadAllEvents()
             mainVC.calendarCollectionView.reloadData()
         }
-        let spaceKeyButton = MRYKeyboardButton(title: "space", text: " ")
-        let hyphenKeyButton = MRYKeyboardButton(title: "-", text: "-")
-        let commaKeyButton = MRYKeyboardButton(title: ",", text: ",")
+        let spaceKeyButton = MRYKeyboardButton(title: NSLocalizedString("space", comment: "space key on keyboard"), text: " ")
+        let splitterSymbol = NSLocalizedString("-", comment: "Splitter symbol between start date and end date")
+        let hyphenKeyButton = MRYKeyboardButton(title: splitterSymbol, text: splitterSymbol)
+        let punctuationSymbol = NSLocalizedString(",", comment: "Punctuation symbol")
+        let commaKeyButton = MRYKeyboardButton(title: punctuationSymbol, text: punctuationSymbol)
         
         views = [ "next": nextKeyboardButton,
             "delete": deleteKeyButton,
