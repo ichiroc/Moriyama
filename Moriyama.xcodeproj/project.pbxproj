@@ -18,7 +18,6 @@
 		5D5196DA1C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */; };
 		5D5196DC1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */; };
 		5D5196E21C6C53450047DD2D /* MRYEventContentsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */; };
-		5D5196E51C6DD8820047DD2D /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5196E41C6DD8820047DD2D /* View.xib */; };
 		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
 		5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */; };
@@ -39,7 +38,22 @@
 		5DD259841C41BDAC007C61F6 /* MRYEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259831C41BDAC007C61F6 /* MRYEvent.swift */; };
 		5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259851C421C04007C61F6 /* MRYEventView.swift */; };
 		5DE8805E1C6EE0B000EDE4B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880601C6EE0B000EDE4B4 /* Localizable.strings */; };
+		5DE880B91C73280500EDE4B4 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880B81C73280500EDE4B4 /* iTunesArtwork.png */; };
+		5DE880BC1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */; };
+		5DE880C01C7469E300EDE4B4 /* MRYTutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		5DE880BE1C74698900EDE4B4 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = text.plist;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyPlist\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		5D9D802D1C2CB02400623AF7 /* PBXContainerItemProxy */ = {
@@ -91,7 +105,6 @@
 		5D5196D91C69F51F0047DD2D /* MRYMonthCalendarAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYMonthCalendarAccessoryView.swift; path = Classes/MRYMonthCalendarAccessoryView.swift; sourceTree = "<group>"; };
 		5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYDayViewAccessoryView.swift; path = Classes/MRYDayViewAccessoryView.swift; sourceTree = "<group>"; };
 		5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventContentsTableDataSource.swift; path = Classes/MRYEventContentsTableDataSource.swift; sourceTree = "<group>"; };
-		5D5196E41C6DD8820047DD2D /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
 		5D9D80181C2CB02400623AF7 /* ApptBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApptBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +136,9 @@
 		5DE8805F1C6EE0B000EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		5DE880611C6EE0B400EDE4B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		5DE880621C71147C00EDE4B4 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
+		5DE880B81C73280500EDE4B4 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTutorialPageViewController.swift; path = Classes/MRYTutorialPageViewController.swift; sourceTree = "<group>"; };
+		5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRYTutorialContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,10 +249,12 @@
 		5D9D801A1C2CB02400623AF7 /* Moriyama */ = {
 			isa = PBXGroup;
 			children = (
+				5DE880B71C7327EF00EDE4B4 /* Assets */,
 				5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */,
 				5D9D801D1C2CB02400623AF7 /* ViewController.swift */,
 				5D9D801F1C2CB02400623AF7 /* Main.storyboard */,
-				5D5196E41C6DD8820047DD2D /* View.xib */,
+				5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */,
+				5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */,
 				5D9D80221C2CB02400623AF7 /* Assets.xcassets */,
 				5D9D80241C2CB02400623AF7 /* LaunchScreen.storyboard */,
 				5D9D80271C2CB02400623AF7 /* Info.plist */,
@@ -298,6 +316,14 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		5DE880B71C7327EF00EDE4B4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5DE880B81C73280500EDE4B4 /* iTunesArtwork.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -311,6 +337,7 @@
 				5D9D80581C2D405700623AF7 /* Embed App Extensions */,
 			);
 			buildRules = (
+				5DE880BE1C74698900EDE4B4 /* PBXBuildRule */,
 			);
 			dependencies = (
 				5D9D80531C2D405700623AF7 /* PBXTargetDependency */,
@@ -427,9 +454,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D1E8AAC1C2F30FE0032CCC2 /* .gitignore in Resources */,
-				5D5196E51C6DD8820047DD2D /* View.xib in Resources */,
 				5D9D80261C2CB02400623AF7 /* LaunchScreen.storyboard in Resources */,
 				5D9D80231C2CB02400623AF7 /* Assets.xcassets in Resources */,
+				5DE880B91C73280500EDE4B4 /* iTunesArtwork.png in Resources */,
 				5D9D80211C2CB02400623AF7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,8 +490,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DE880BC1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift in Sources */,
 				5D9D801E1C2CB02400623AF7 /* ViewController.swift in Sources */,
 				5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */,
+				5DE880C01C7469E300EDE4B4 /* MRYTutorialContentViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
