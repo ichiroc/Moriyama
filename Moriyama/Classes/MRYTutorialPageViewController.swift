@@ -13,11 +13,11 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
 
     var controllers : [UIViewController] = []
     var pageIndex = 0
-    let descriptionTexts = [ "「設定」アプリを開き、「一般」> 「キーボード」を開きます",
-    "「キーボード」 > 「新しいキーボードを追加...」を開きます",
-    "「ApptBoard」を選択",
-    "「ApptBoard」をもう一度選択",
-    "「フルアクセスを許可」をオンにして許可を選択"]
+    let descriptionTexts = [ "「設定」アプリを開き、「一般」> 「キーボード」を開きます。",
+    "「キーボード」 > 「新しいキーボードを追加...」を開きます。",
+    "「ApptBoard」を選択します。",
+    "「ApptBoard」をもう一度選択します。",
+    "「フルアクセスを許可」をオンにして許可を選択します。"]
     var maxPageIndex = 5
     override func viewDidLoad() {
         super.viewDidLoad()
