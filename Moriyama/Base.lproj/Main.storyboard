@@ -21,7 +21,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
                                 <rect key="frame" x="0.0" y="401" width="600" height="30"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                <state key="normal" title="はじめに">
+                                <state key="normal" title="はじめに（キーボードを有効にするには）">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -35,13 +35,22 @@
                                     <constraint firstAttribute="width" constant="240" id="emc-sI-sXa"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
+                                <rect key="frame" x="0.0" y="458" width="600" height="30"/>
+                                <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
+                                <state key="normal" title="サポート">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2vD-E6-r6Y" firstAttribute="top" secondItem="saz-F2-Kkx" secondAttribute="bottom" constant="108" id="Nz8-Fm-gD9"/>
+                            <constraint firstItem="JBG-PU-hn1" firstAttribute="centerX" secondItem="2vD-E6-r6Y" secondAttribute="centerX" id="ZrT-sw-NAX"/>
                             <constraint firstItem="2vD-E6-r6Y" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="dWe-gp-T3S"/>
                             <constraint firstItem="saz-F2-Kkx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="g5m-JG-Caj"/>
                             <constraint firstItem="saz-F2-Kkx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="33" id="ld3-93-jqy"/>
+                            <constraint firstItem="JBG-PU-hn1" firstAttribute="top" secondItem="2vD-E6-r6Y" secondAttribute="bottom" constant="27" id="n0k-W5-2y3"/>
                             <constraint firstItem="saz-F2-Kkx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oqT-wp-Q3A"/>
                             <constraint firstItem="2vD-E6-r6Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uwm-6V-uSZ"/>
                         </constraints>
@@ -79,9 +88,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGv-E4-VU7">
-                                <rect key="frame" x="20" y="400" width="560" height="150"/>
+                                <rect key="frame" x="20" y="400" width="560" height="109"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="WgJ-M3-mUf"/>
+                                    <constraint firstAttribute="height" constant="109" id="WgJ-M3-mUf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -95,28 +104,36 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NL-3T-0lD">
-                                <rect key="frame" x="550" y="28" width="30" height="48"/>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
-                                <state key="normal" title="✕"/>
+                                <rect key="frame" x="278" y="531" width="45" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="101-jz-KYR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                                <state key="normal" title="閉じる"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3NL-3T-0lD" firstAttribute="top" secondItem="pYi-MW-XYk" secondAttribute="bottom" constant="8" id="0WM-Oh-ENx"/>
+                            <constraint firstItem="pjk-3c-XZ7" firstAttribute="top" secondItem="3NL-3T-0lD" secondAttribute="bottom" constant="-211" id="2bd-fW-pKH"/>
                             <constraint firstItem="yrE-Gj-D4I" firstAttribute="leading" secondItem="u0H-rN-efy" secondAttribute="leadingMargin" id="3P5-Du-4or"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yrE-Gj-D4I" secondAttribute="trailing" id="EBi-gQ-quZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="oGv-E4-VU7" secondAttribute="trailing" id="Oda-1k-ek2"/>
+                            <constraint firstItem="pjk-3c-XZ7" firstAttribute="top" secondItem="3NL-3T-0lD" secondAttribute="bottom" constant="20" id="Oec-cT-gpQ"/>
                             <constraint firstItem="oGv-E4-VU7" firstAttribute="centerX" secondItem="u0H-rN-efy" secondAttribute="centerX" id="SYH-rB-JxI"/>
+                            <constraint firstItem="3NL-3T-0lD" firstAttribute="top" secondItem="oGv-E4-VU7" secondAttribute="bottom" constant="22" id="W6y-Ol-azj"/>
                             <constraint firstItem="oGv-E4-VU7" firstAttribute="leading" secondItem="u0H-rN-efy" secondAttribute="leadingMargin" id="aNX-7D-Pcs"/>
-                            <constraint firstItem="pjk-3c-XZ7" firstAttribute="top" secondItem="oGv-E4-VU7" secondAttribute="bottom" constant="50" id="auI-ED-cDC"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3NL-3T-0lD" secondAttribute="trailing" id="faG-xB-vUd"/>
+                            <constraint firstItem="3NL-3T-0lD" firstAttribute="centerX" secondItem="oGv-E4-VU7" secondAttribute="centerX" constant="7" id="bbO-pe-wru"/>
                             <constraint firstItem="yrE-Gj-D4I" firstAttribute="centerX" secondItem="u0H-rN-efy" secondAttribute="centerX" id="isJ-ZP-e19"/>
+                            <constraint firstItem="3NL-3T-0lD" firstAttribute="centerX" secondItem="u0H-rN-efy" secondAttribute="centerX" id="lMQ-FK-6Jq"/>
+                            <constraint firstItem="pjk-3c-XZ7" firstAttribute="top" secondItem="3NL-3T-0lD" secondAttribute="bottom" constant="20" id="zIr-zK-9WE"/>
                             <constraint firstItem="oGv-E4-VU7" firstAttribute="top" secondItem="yrE-Gj-D4I" secondAttribute="bottom" constant="34" id="zfL-uV-kZh"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="3P5-Du-4or"/>
                                 <exclude reference="EBi-gQ-quZ"/>
+                                <exclude reference="bbO-pe-wru"/>
+                                <exclude reference="2bd-fW-pKH"/>
                             </mask>
                         </variation>
                     </view>
