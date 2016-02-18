@@ -21,14 +21,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
                                 <rect key="frame" x="0.0" y="401" width="600" height="30"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                <state key="normal" title="このキーボードを有効にするには">
+                                <state key="normal" title="はじめに">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="XIA-KD-ZpH" kind="presentation" id="gqn-ja-hVW"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesArtwork.png" translatesAutoresizingMaskIntoConstraints="NO" id="saz-F2-Kkx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="saz-F2-Kkx">
                                 <rect key="frame" x="180" y="53" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="Wuo-aQ-E4O"/>
@@ -79,30 +79,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGv-E4-VU7">
-                                <rect key="frame" x="50" y="435" width="500" height="21"/>
+                                <rect key="frame" x="20" y="400" width="560" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="WgJ-M3-mUf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yrE-Gj-D4I">
+                                <rect key="frame" x="175" y="116" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="U5r-lV-m7b"/>
+                                    <constraint firstAttribute="height" constant="250" id="YyP-UB-PUs"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NL-3T-0lD">
+                                <rect key="frame" x="550" y="28" width="30" height="48"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="30"/>
+                                <state key="normal" title="✕"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="oGv-E4-VU7" secondAttribute="trailing" constant="30" id="Oda-1k-ek2"/>
+                            <constraint firstItem="3NL-3T-0lD" firstAttribute="top" secondItem="pYi-MW-XYk" secondAttribute="bottom" constant="8" id="0WM-Oh-ENx"/>
+                            <constraint firstItem="yrE-Gj-D4I" firstAttribute="leading" secondItem="u0H-rN-efy" secondAttribute="leadingMargin" id="3P5-Du-4or"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yrE-Gj-D4I" secondAttribute="trailing" id="EBi-gQ-quZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oGv-E4-VU7" secondAttribute="trailing" id="Oda-1k-ek2"/>
                             <constraint firstItem="oGv-E4-VU7" firstAttribute="centerX" secondItem="u0H-rN-efy" secondAttribute="centerX" id="SYH-rB-JxI"/>
-                            <constraint firstItem="oGv-E4-VU7" firstAttribute="leading" secondItem="u0H-rN-efy" secondAttribute="leadingMargin" constant="30" id="aNX-7D-Pcs"/>
-                            <constraint firstItem="pjk-3c-XZ7" firstAttribute="top" secondItem="oGv-E4-VU7" secondAttribute="bottom" constant="144" id="auI-ED-cDC"/>
+                            <constraint firstItem="oGv-E4-VU7" firstAttribute="leading" secondItem="u0H-rN-efy" secondAttribute="leadingMargin" id="aNX-7D-Pcs"/>
+                            <constraint firstItem="pjk-3c-XZ7" firstAttribute="top" secondItem="oGv-E4-VU7" secondAttribute="bottom" constant="50" id="auI-ED-cDC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3NL-3T-0lD" secondAttribute="trailing" id="faG-xB-vUd"/>
+                            <constraint firstItem="yrE-Gj-D4I" firstAttribute="centerX" secondItem="u0H-rN-efy" secondAttribute="centerX" id="isJ-ZP-e19"/>
+                            <constraint firstItem="oGv-E4-VU7" firstAttribute="top" secondItem="yrE-Gj-D4I" secondAttribute="bottom" constant="34" id="zfL-uV-kZh"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3P5-Du-4or"/>
+                                <exclude reference="EBi-gQ-quZ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="closeButton" destination="3NL-3T-0lD" id="sBb-Hd-0Qu"/>
+                        <outlet property="descriptionImage" destination="yrE-Gj-D4I" id="Nzo-RT-sRI"/>
                         <outlet property="descriptionLabel" destination="oGv-E4-VU7" id="G3X-KX-tCa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDi-o5-axT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1682" y="182"/>
+            <point key="canvasLocation" x="1682" y="184"/>
         </scene>
     </scenes>
     <resources>
-        <image name="iTunesArtwork.png" width="512" height="512"/>
+        <image name="AppImage.png" width="1200" height="1200"/>
     </resources>
 </document>

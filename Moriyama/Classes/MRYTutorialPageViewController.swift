@@ -13,11 +13,16 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
 
     var controllers : [UIViewController] = []
     var pageIndex = 0
-    let descriptionTexts = [ "「設定」アプリを開き、「一般」> 「キーボード」を開きます。",
-    "「キーボード」 > 「新しいキーボードを追加...」を開きます。",
-    "「ApptBoard」を選択します。",
-    "「ApptBoard」をもう一度選択します。",
-    "「フルアクセスを許可」をオンにして許可を選択します。"]
+    let descriptionTexts =
+    [ "「設定」アプリを開き、「一般」> 「キーボード」を選択します。", //0
+        "さらに「キーボード」を選択します", //1
+        "「新しいキーボードを追加...」を選択します。", // 2
+        "「ApptBoard」を選択します。", // 3
+        "「ApptBoard」をもう一度選択します。", //4
+        "「フルアクセスを許可」をオンにします。", // 5
+        "警告が表示されますので「許可」を選択します。フルアクセスを許可しても入力内容を収集したりサーバーへ送信することはありません。", // 6
+        "「フルアクセスを許可」がオンになっていれば設定は完了です。" // 7
+    ]
     var maxPageIndex = 5
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +30,9 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         // Do any additional setup after loading the view.
         let content = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
         if let content0 = content! as? MRYTutorialContentViewController{
-            let v = content0.view
+            _ = content0.view
             content0.pageIndex = 0
+            content0.descriptionImage.image = UIImage(named: "TutorialImage0.png")
             content0.descriptionLabel?.text = descriptionTexts[0]
         }
         
@@ -60,8 +66,9 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
             }
             let content = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
             if let content0 = content! as? MRYTutorialContentViewController{
-                let v = content0.view
+                _ = content0.view
                 content0.pageIndex = current.pageIndex + 1
+                content0.descriptionImage.image = UIImage(named: "TutorialImage\(content0.pageIndex).png")
                 content0.descriptionLabel.text = descriptionTexts[content0.pageIndex]
             }
             return content!
@@ -75,8 +82,9 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         }
         let content = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
         if let content0 = content! as? MRYTutorialContentViewController{
-            let v = content0.view
+            _ = content0.view
             content0.pageIndex = current.pageIndex - 1
+            content0.descriptionImage.image = UIImage(named: "TutorialImage\(content0.pageIndex).png")
             content0.descriptionLabel.text = descriptionTexts[content0.pageIndex]
         }
         return content!

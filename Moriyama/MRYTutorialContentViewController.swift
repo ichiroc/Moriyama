@@ -12,11 +12,14 @@ class MRYTutorialContentViewController: UIViewController {
 
     var pageIndex : Int = 0
    
+    @IBOutlet var closeButton: UIButton!
+    @IBOutlet var descriptionImage: UIImageView!
     @IBOutlet var descriptionLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        closeButton.addTarget(self, action: "tappedCloseButton", forControlEvents: .TouchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +27,9 @@ class MRYTutorialContentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tappedCloseButton(){
+        self.dismissViewControllerAnimated(true, completion: nil  )
+    }
 
     /*
     // MARK: - Navigation
