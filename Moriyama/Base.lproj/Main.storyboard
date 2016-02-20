@@ -18,6 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ld-ur-QzD">
+                                <rect key="frame" x="0.0" y="381" width="600" height="121"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWith" value="1"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
                                 <rect key="frame" x="0.0" y="401" width="600" height="30"/>
                                 <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
@@ -43,7 +53,7 @@
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2vD-E6-r6Y" firstAttribute="top" secondItem="saz-F2-Kkx" secondAttribute="bottom" constant="108" id="Nz8-Fm-gD9"/>
                             <constraint firstItem="JBG-PU-hn1" firstAttribute="centerX" secondItem="2vD-E6-r6Y" secondAttribute="centerX" id="ZrT-sw-NAX"/>
@@ -60,6 +70,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="supportButton" destination="JBG-PU-hn1" id="PnL-zi-ey5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -87,6 +100,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sfy-LU-KS8">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="392"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NL-3T-0lD">
+                                <rect key="frame" x="278" y="531" width="45" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="101-jz-KYR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
+                                <state key="normal" title="閉じる"/>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGv-E4-VU7">
                                 <rect key="frame" x="20" y="400" width="560" height="109"/>
                                 <constraints>
@@ -103,14 +128,6 @@
                                     <constraint firstAttribute="height" constant="250" id="YyP-UB-PUs"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NL-3T-0lD">
-                                <rect key="frame" x="278" y="531" width="45" height="49"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="101-jz-KYR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
-                                <state key="normal" title="閉じる"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

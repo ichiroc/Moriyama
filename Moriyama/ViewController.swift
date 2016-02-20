@@ -10,10 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var supportButton: UIButton!
+    private let supportURL : NSURL! = NSURL(string: "https://twitter.com/apptboard")
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        supportButton.addTarget(self, action: "tappedSupportButton", forControlEvents: .TouchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +23,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func tappedSupportButton(){
+        let url = NSURL(string: "https://twitter.com/apptboard")
+        let app = UIApplication.sharedApplication()
+        if(app.canOpenURL(supportURL)){
+            app.openURL(url!)
+        }
+    }
 
 }
 
