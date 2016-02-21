@@ -18,9 +18,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ld-ur-QzD">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ld-ur-QzD" userLabel="backgroundView">
                                 <rect key="frame" x="0.0" y="381" width="600" height="121"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
+                                        <rect key="frame" x="270" y="76" width="60" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="fNY-wr-Nmg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
+                                        <state key="normal" title="サポート">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
+                                        <rect key="frame" x="270" y="16" width="60" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8m9-el-04y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
+                                        <state key="normal" title="はじめに">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="XIA-KD-ZpH" kind="presentation" id="gqn-ja-hVW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="2vD-E6-r6Y" firstAttribute="top" secondItem="2Ld-ur-QzD" secondAttribute="top" constant="16" id="HMV-Ws-LAf"/>
+                                    <constraint firstItem="JBG-PU-hn1" firstAttribute="top" secondItem="2vD-E6-r6Y" secondAttribute="bottom" constant="30" id="bHP-4Q-1M0"/>
+                                    <constraint firstItem="2vD-E6-r6Y" firstAttribute="centerX" secondItem="2Ld-ur-QzD" secondAttribute="centerX" id="wzo-aS-QeV"/>
+                                    <constraint firstAttribute="height" constant="121" id="xmh-jE-N7O"/>
+                                    <constraint firstItem="JBG-PU-hn1" firstAttribute="centerX" secondItem="2Ld-ur-QzD" secondAttribute="centerX" id="zLD-s8-Y7S"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWith" value="1"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
@@ -28,16 +60,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
-                                <rect key="frame" x="0.0" y="401" width="600" height="30"/>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                <state key="normal" title="はじめに（キーボードを有効にするには）">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="XIA-KD-ZpH" kind="presentation" id="gqn-ja-hVW"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="saz-F2-Kkx">
                                 <rect key="frame" x="180" y="53" width="240" height="240"/>
                                 <constraints>
@@ -45,24 +67,15 @@
                                     <constraint firstAttribute="width" constant="240" id="emc-sI-sXa"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
-                                <rect key="frame" x="0.0" y="458" width="600" height="30"/>
-                                <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                <state key="normal" title="サポート">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96653444615959694" green="0.96517317086703092" blue="0.98895125949790574" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="2vD-E6-r6Y" firstAttribute="top" secondItem="saz-F2-Kkx" secondAttribute="bottom" constant="108" id="Nz8-Fm-gD9"/>
-                            <constraint firstItem="JBG-PU-hn1" firstAttribute="centerX" secondItem="2vD-E6-r6Y" secondAttribute="centerX" id="ZrT-sw-NAX"/>
-                            <constraint firstItem="2vD-E6-r6Y" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="dWe-gp-T3S"/>
+                            <constraint firstItem="2Ld-ur-QzD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="Nfg-6C-Z8y"/>
                             <constraint firstItem="saz-F2-Kkx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="g5m-JG-Caj"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Ld-ur-QzD" secondAttribute="trailing" constant="-20" id="hnC-AD-fls"/>
+                            <constraint firstItem="2Ld-ur-QzD" firstAttribute="top" secondItem="saz-F2-Kkx" secondAttribute="bottom" constant="88" id="jOq-K0-ZTu"/>
                             <constraint firstItem="saz-F2-Kkx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="33" id="ld3-93-jqy"/>
-                            <constraint firstItem="JBG-PU-hn1" firstAttribute="top" secondItem="2vD-E6-r6Y" secondAttribute="bottom" constant="27" id="n0k-W5-2y3"/>
                             <constraint firstItem="saz-F2-Kkx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oqT-wp-Q3A"/>
-                            <constraint firstItem="2vD-E6-r6Y" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uwm-6V-uSZ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
