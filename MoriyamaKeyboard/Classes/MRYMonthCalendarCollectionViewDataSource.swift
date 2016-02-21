@@ -29,7 +29,7 @@ class MRYMonthCalendarCollectionViewDataSource: NSObject,
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 90
+        return 75
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -44,7 +44,7 @@ class MRYMonthCalendarCollectionViewDataSource: NSObject,
             currentDateComp.hour = 0 // 時間はリセット
             currentDateComp.minute = 0
             currentDateComp.second = 0
-            currentDateComp.day = currentDateComp.day - 30 // TODO: Use calendarCollectionView.todayIndexPath.
+            currentDateComp.day = currentDateComp.day - 14 // TODO: Use calendarCollectionView.todayIndexPath.
             
             currentDateComp = cal.components([.Day, .Month ,.Year, .Weekday], fromDate: cal.dateFromComponents(currentDateComp)!)
             while(currentDateComp.weekday != 1) {
