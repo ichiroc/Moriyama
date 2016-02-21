@@ -15,8 +15,9 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     var controllers : [UIViewController] = []
     var pageIndex = 0
     let descriptionTexts = [
-        "キーボードを使えるようにする設定をします。まず「設定」アプリを開いてください。", //0
-        "「一般」> 「キーボード」を選択します。", //1
+        "最初にキーボードを使う設定をします。「設定」アプリを開いてください。", //0
+        "「一般」を選択します。", //1
+        "「キーボード」を選択します。", //1
         "さらに「キーボード」を選択します", //2
         "「新しいキーボードを追加...」を選択します。", // 3
         "「ApptBoard」を選択します。", // 4
