@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ld-ur-QzD" userLabel="backgroundView">
-                                <rect key="frame" x="0.0" y="353" width="600" height="121"/>
+                                <rect key="frame" x="0.0" y="238" width="600" height="121"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
                                         <rect key="frame" x="270" y="76" width="60" height="30"/>
@@ -61,10 +61,10 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="saz-F2-Kkx">
-                                <rect key="frame" x="180" y="53" width="240" height="240"/>
+                                <rect key="frame" x="238" y="53" width="125" height="125"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="Wuo-aQ-E4O"/>
-                                    <constraint firstAttribute="width" constant="240" id="emc-sI-sXa"/>
+                                    <constraint firstAttribute="height" constant="125" id="Wuo-aQ-E4O"/>
+                                    <constraint firstAttribute="width" constant="125" id="emc-sI-sXa"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -116,8 +116,8 @@
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfy-LU-KS8" userLabel="backgroundView">
                                 <rect key="frame" x="0.0" y="20" width="600" height="416"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yrE-Gj-D4I">
-                                        <rect key="frame" x="175" y="83" width="250" height="250"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yrE-Gj-D4I">
+                                        <rect key="frame" x="175" y="84" width="250" height="250"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="U5r-lV-m7b"/>
                                             <constraint firstAttribute="height" constant="250" id="YyP-UB-PUs"/>

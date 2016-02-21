@@ -18,16 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ApptBoard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Dz-74-8mO">
-                                <rect key="frame" x="236" y="313" width="128" height="33"/>
+                                <rect key="frame" x="236" y="198" width="128" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" red="0.36066344895287961" green="0.36066344895287961" blue="0.36066344895287961" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="IFc-Gl-5xB">
-                                <rect key="frame" x="180" y="53" width="240" height="240"/>
+                                <rect key="frame" x="238" y="53" width="125" height="125"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="GwK-Ab-IBp"/>
-                                    <constraint firstAttribute="width" constant="240" id="OBp-yp-m7J"/>
+                                    <constraint firstAttribute="height" constant="125" id="GwK-Ab-IBp"/>
+                                    <constraint firstAttribute="width" constant="125" id="OBp-yp-m7J"/>
                                 </constraints>
                             </imageView>
                         </subviews>
