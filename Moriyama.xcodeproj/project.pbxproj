@@ -37,6 +37,7 @@
 		5DD05EB21C45A78B00938176 /* MRYEventContentsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD05EB11C45A78B00938176 /* MRYEventContentsTableView.swift */; };
 		5DD259841C41BDAC007C61F6 /* MRYEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259831C41BDAC007C61F6 /* MRYEvent.swift */; };
 		5DD259861C421C04007C61F6 /* MRYEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD259851C421C04007C61F6 /* MRYEventView.swift */; };
+		5DD365741C7A799400F6BC47 /* AppImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DD365731C7A799400F6BC47 /* AppImage.png */; };
 		5DE8805E1C6EE0B000EDE4B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880601C6EE0B000EDE4B4 /* Localizable.strings */; };
 		5DE880BC1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */; };
 		5DE880C01C7469E300EDE4B4 /* MRYTutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */; };
@@ -48,7 +49,6 @@
 		5DE880DC1C75CF1200EDE4B4 /* TutorialImage7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D51C75CF1200EDE4B4 /* TutorialImage7.png */; };
 		5DE880DD1C75CF1200EDE4B4 /* TutorialImage8.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D61C75CF1200EDE4B4 /* TutorialImage8.png */; };
 		5DE880DF1C75D19500EDE4B4 /* TutorialImage9.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880DE1C75D19500EDE4B4 /* TutorialImage9.png */; };
-		5DE880E11C7667B100EDE4B4 /* AppImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880E01C7667B100EDE4B4 /* AppImage.png */; };
 		5DE880E31C79195600EDE4B4 /* TutorialImage0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880E21C79195500EDE4B4 /* TutorialImage0.png */; };
 		5DE880E51C79220D00EDE4B4 /* TutorialImage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880E41C79220D00EDE4B4 /* TutorialImage1.png */; };
 /* End PBXBuildFile section */
@@ -141,6 +141,7 @@
 		5DD05EB11C45A78B00938176 /* MRYEventContentsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventContentsTableView.swift; path = Classes/MRYEventContentsTableView.swift; sourceTree = "<group>"; };
 		5DD259831C41BDAC007C61F6 /* MRYEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = MRYEvent.swift; path = Classes/MRYEvent.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5DD259851C421C04007C61F6 /* MRYEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventView.swift; path = Classes/MRYEventView.swift; sourceTree = "<group>"; };
+		5DD365731C7A799400F6BC47 /* AppImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppImage.png; sourceTree = "<group>"; };
 		5DE8805C1C6EE0A500EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		5DE8805D1C6EE0A500EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5DE8805F1C6EE0B000EDE4B4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
@@ -156,7 +157,6 @@
 		5DE880D51C75CF1200EDE4B4 /* TutorialImage7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage7.png; sourceTree = "<group>"; };
 		5DE880D61C75CF1200EDE4B4 /* TutorialImage8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage8.png; sourceTree = "<group>"; };
 		5DE880DE1C75D19500EDE4B4 /* TutorialImage9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage9.png; sourceTree = "<group>"; };
-		5DE880E01C7667B100EDE4B4 /* AppImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppImage.png; sourceTree = "<group>"; };
 		5DE880E21C79195500EDE4B4 /* TutorialImage0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage0.png; sourceTree = "<group>"; };
 		5DE880E41C79220D00EDE4B4 /* TutorialImage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -339,7 +339,7 @@
 		5DE880B71C7327EF00EDE4B4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				5DE880E01C7667B100EDE4B4 /* AppImage.png */,
+				5DD365731C7A799400F6BC47 /* AppImage.png */,
 				5DE880C11C75340D00EDE4B4 /* TutorialImages */,
 			);
 			name = Assets;
@@ -492,7 +492,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D1E8AAC1C2F30FE0032CCC2 /* .gitignore in Resources */,
-				5DE880E11C7667B100EDE4B4 /* AppImage.png in Resources */,
 				5D9D80261C2CB02400623AF7 /* LaunchScreen.storyboard in Resources */,
 				5DE880E51C79220D00EDE4B4 /* TutorialImage1.png in Resources */,
 				5DE880D81C75CF1200EDE4B4 /* TutorialImage3.png in Resources */,
@@ -506,6 +505,7 @@
 				5DE880E31C79195600EDE4B4 /* TutorialImage0.png in Resources */,
 				5D9D80211C2CB02400623AF7 /* Main.storyboard in Resources */,
 				5DE880D91C75CF1200EDE4B4 /* TutorialImage4.png in Resources */,
+				5DD365741C7A799400F6BC47 /* AppImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,7 +734,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Moriyama/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Moriyama/Desktop/dev/mecab/mecab-0.996/src/.libs",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama;
 				PRODUCT_NAME = ApptBoard;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -750,7 +755,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Moriyama/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Moriyama/Desktop/dev/mecab/mecab-0.996/src/.libs",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama;
 				PRODUCT_NAME = ApptBoard;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -812,6 +822,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MoriyamaKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama.MoriyamaKeyboard;
 				PRODUCT_NAME = ApptBoard;
@@ -826,6 +837,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MoriyamaKeyboard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama.MoriyamaKeyboard;
 				PRODUCT_NAME = ApptBoard;

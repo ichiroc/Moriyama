@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5D9D80171C2CB02400623AF7"
-               BuildableName = "Moriyama.app"
+               BuildableName = "ApptBoard.app"
                BlueprintName = "Moriyama"
                ReferencedContainer = "container:Moriyama.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5D9D80171C2CB02400623AF7"
-            BuildableName = "Moriyama.app"
+            BuildableName = "ApptBoard.app"
             BlueprintName = "Moriyama"
             ReferencedContainer = "container:Moriyama.xcodeproj">
          </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5D9D80171C2CB02400623AF7"
-            BuildableName = "Moriyama.app"
+            BuildableName = "ApptBoard.app"
             BlueprintName = "Moriyama"
             ReferencedContainer = "container:Moriyama.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5D9D80171C2CB02400623AF7"
-            BuildableName = "Moriyama.app"
+            BuildableName = "ApptBoard.app"
             BlueprintName = "Moriyama"
             ReferencedContainer = "container:Moriyama.xcodeproj">
          </BuildableReference>
