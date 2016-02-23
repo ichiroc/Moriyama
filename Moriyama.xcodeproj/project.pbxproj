@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1547D21C7B0863000C6636 /* TutorialImage9.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D11C7B0863000C6636 /* TutorialImage9.png */; };
+		5D1547D41C7C6BBD000C6636 /* TutorialIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D31C7C6BBD000C6636 /* TutorialIcon.png */; };
+		5D1547D61C7C6BC8000C6636 /* SupportIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D51C7C6BC8000C6636 /* SupportIcon.png */; };
 		5D1E8AAC1C2F30FE0032CCC2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5D1E8AAB1C2F30FE0032CCC2 /* .gitignore */; };
 		5D1E8AAE1C2F3B1E0032CCC2 /* MRYMonthCalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E8AAD1C2F3B1E0032CCC2 /* MRYMonthCalendarCollectionView.swift */; };
 		5D1E8AB01C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */; };
@@ -41,16 +44,16 @@
 		5DE8805E1C6EE0B000EDE4B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880601C6EE0B000EDE4B4 /* Localizable.strings */; };
 		5DE880BC1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */; };
 		5DE880C01C7469E300EDE4B4 /* MRYTutorialContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */; };
-		5DE880D71C75CF1200EDE4B4 /* TutorialImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D01C75CF1200EDE4B4 /* TutorialImage2.png */; };
-		5DE880D81C75CF1200EDE4B4 /* TutorialImage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D11C75CF1200EDE4B4 /* TutorialImage3.png */; };
-		5DE880D91C75CF1200EDE4B4 /* TutorialImage4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D21C75CF1200EDE4B4 /* TutorialImage4.png */; };
-		5DE880DA1C75CF1200EDE4B4 /* TutorialImage5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D31C75CF1200EDE4B4 /* TutorialImage5.png */; };
-		5DE880DB1C75CF1200EDE4B4 /* TutorialImage6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D41C75CF1200EDE4B4 /* TutorialImage6.png */; };
-		5DE880DC1C75CF1200EDE4B4 /* TutorialImage7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D51C75CF1200EDE4B4 /* TutorialImage7.png */; };
-		5DE880DD1C75CF1200EDE4B4 /* TutorialImage8.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D61C75CF1200EDE4B4 /* TutorialImage8.png */; };
-		5DE880DF1C75D19500EDE4B4 /* TutorialImage9.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880DE1C75D19500EDE4B4 /* TutorialImage9.png */; };
-		5DE880E31C79195600EDE4B4 /* TutorialImage0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880E21C79195500EDE4B4 /* TutorialImage0.png */; };
-		5DE880E51C79220D00EDE4B4 /* TutorialImage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880E41C79220D00EDE4B4 /* TutorialImage1.png */; };
+		5DE880D71C75CF1200EDE4B4 /* TutorialImage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D01C75CF1200EDE4B4 /* TutorialImage1.png */; };
+		5DE880D81C75CF1200EDE4B4 /* TutorialImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D11C75CF1200EDE4B4 /* TutorialImage2.png */; };
+		5DE880D91C75CF1200EDE4B4 /* TutorialImage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D21C75CF1200EDE4B4 /* TutorialImage3.png */; };
+		5DE880DA1C75CF1200EDE4B4 /* TutorialImage4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D31C75CF1200EDE4B4 /* TutorialImage4.png */; };
+		5DE880DB1C75CF1200EDE4B4 /* TutorialImage5.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D41C75CF1200EDE4B4 /* TutorialImage5.png */; };
+		5DE880DC1C75CF1200EDE4B4 /* TutorialImage6.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D51C75CF1200EDE4B4 /* TutorialImage6.png */; };
+		5DE880DD1C75CF1200EDE4B4 /* TutorialImage7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880D61C75CF1200EDE4B4 /* TutorialImage7.png */; };
+		5DE880DF1C75D19500EDE4B4 /* TutorialImage8.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880DE1C75D19500EDE4B4 /* TutorialImage8.png */; };
+		5DE880E31C79195600EDE4B4 /* TutorialImage10.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880E21C79195500EDE4B4 /* TutorialImage10.png */; };
+		5DE880E51C79220D00EDE4B4 /* TutorialImage0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880E41C79220D00EDE4B4 /* TutorialImage0.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -104,6 +107,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D1547D11C7B0863000C6636 /* TutorialImage9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage9.png; sourceTree = "<group>"; };
+		5D1547D31C7C6BBD000C6636 /* TutorialIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialIcon.png; sourceTree = "<group>"; };
+		5D1547D51C7C6BC8000C6636 /* SupportIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SupportIcon.png; sourceTree = "<group>"; };
 		5D1E8AAB1C2F30FE0032CCC2 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		5D1E8AAD1C2F3B1E0032CCC2 /* MRYMonthCalendarCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYMonthCalendarCollectionView.swift; path = Classes/MRYMonthCalendarCollectionView.swift; sourceTree = "<group>"; };
 		5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYMonthCalendarCollectionViewCell.swift; path = Classes/MRYMonthCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -149,16 +155,16 @@
 		5DE880621C71147C00EDE4B4 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTutorialPageViewController.swift; path = Classes/MRYTutorialPageViewController.swift; sourceTree = "<group>"; };
 		5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRYTutorialContentViewController.swift; sourceTree = "<group>"; };
-		5DE880D01C75CF1200EDE4B4 /* TutorialImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage2.png; sourceTree = "<group>"; };
-		5DE880D11C75CF1200EDE4B4 /* TutorialImage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage3.png; sourceTree = "<group>"; };
-		5DE880D21C75CF1200EDE4B4 /* TutorialImage4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage4.png; sourceTree = "<group>"; };
-		5DE880D31C75CF1200EDE4B4 /* TutorialImage5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage5.png; sourceTree = "<group>"; };
-		5DE880D41C75CF1200EDE4B4 /* TutorialImage6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage6.png; sourceTree = "<group>"; };
-		5DE880D51C75CF1200EDE4B4 /* TutorialImage7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage7.png; sourceTree = "<group>"; };
-		5DE880D61C75CF1200EDE4B4 /* TutorialImage8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage8.png; sourceTree = "<group>"; };
-		5DE880DE1C75D19500EDE4B4 /* TutorialImage9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage9.png; sourceTree = "<group>"; };
-		5DE880E21C79195500EDE4B4 /* TutorialImage0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage0.png; sourceTree = "<group>"; };
-		5DE880E41C79220D00EDE4B4 /* TutorialImage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage1.png; sourceTree = "<group>"; };
+		5DE880D01C75CF1200EDE4B4 /* TutorialImage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage1.png; sourceTree = "<group>"; };
+		5DE880D11C75CF1200EDE4B4 /* TutorialImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage2.png; sourceTree = "<group>"; };
+		5DE880D21C75CF1200EDE4B4 /* TutorialImage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage3.png; sourceTree = "<group>"; };
+		5DE880D31C75CF1200EDE4B4 /* TutorialImage4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage4.png; sourceTree = "<group>"; };
+		5DE880D41C75CF1200EDE4B4 /* TutorialImage5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage5.png; sourceTree = "<group>"; };
+		5DE880D51C75CF1200EDE4B4 /* TutorialImage6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage6.png; sourceTree = "<group>"; };
+		5DE880D61C75CF1200EDE4B4 /* TutorialImage7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage7.png; sourceTree = "<group>"; };
+		5DE880DE1C75D19500EDE4B4 /* TutorialImage8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage8.png; sourceTree = "<group>"; };
+		5DE880E21C79195500EDE4B4 /* TutorialImage10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage10.png; sourceTree = "<group>"; };
+		5DE880E41C79220D00EDE4B4 /* TutorialImage0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage0.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -339,6 +345,8 @@
 		5DE880B71C7327EF00EDE4B4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				5D1547D31C7C6BBD000C6636 /* TutorialIcon.png */,
+				5D1547D51C7C6BC8000C6636 /* SupportIcon.png */,
 				5DD365731C7A799400F6BC47 /* AppImage.png */,
 				5DE880C11C75340D00EDE4B4 /* TutorialImages */,
 			);
@@ -348,16 +356,17 @@
 		5DE880C11C75340D00EDE4B4 /* TutorialImages */ = {
 			isa = PBXGroup;
 			children = (
-				5DE880E41C79220D00EDE4B4 /* TutorialImage1.png */,
-				5DE880E21C79195500EDE4B4 /* TutorialImage0.png */,
-				5DE880D01C75CF1200EDE4B4 /* TutorialImage2.png */,
-				5DE880D11C75CF1200EDE4B4 /* TutorialImage3.png */,
-				5DE880D21C75CF1200EDE4B4 /* TutorialImage4.png */,
-				5DE880D31C75CF1200EDE4B4 /* TutorialImage5.png */,
-				5DE880D41C75CF1200EDE4B4 /* TutorialImage6.png */,
-				5DE880D51C75CF1200EDE4B4 /* TutorialImage7.png */,
-				5DE880D61C75CF1200EDE4B4 /* TutorialImage8.png */,
-				5DE880DE1C75D19500EDE4B4 /* TutorialImage9.png */,
+				5DE880E41C79220D00EDE4B4 /* TutorialImage0.png */,
+				5DE880D01C75CF1200EDE4B4 /* TutorialImage1.png */,
+				5DE880D11C75CF1200EDE4B4 /* TutorialImage2.png */,
+				5DE880D21C75CF1200EDE4B4 /* TutorialImage3.png */,
+				5DE880D31C75CF1200EDE4B4 /* TutorialImage4.png */,
+				5DE880D41C75CF1200EDE4B4 /* TutorialImage5.png */,
+				5DE880D51C75CF1200EDE4B4 /* TutorialImage6.png */,
+				5DE880D61C75CF1200EDE4B4 /* TutorialImage7.png */,
+				5DE880DE1C75D19500EDE4B4 /* TutorialImage8.png */,
+				5D1547D11C7B0863000C6636 /* TutorialImage9.png */,
+				5DE880E21C79195500EDE4B4 /* TutorialImage10.png */,
 			);
 			path = TutorialImages;
 			sourceTree = "<group>";
@@ -493,18 +502,21 @@
 			files = (
 				5D1E8AAC1C2F30FE0032CCC2 /* .gitignore in Resources */,
 				5D9D80261C2CB02400623AF7 /* LaunchScreen.storyboard in Resources */,
-				5DE880E51C79220D00EDE4B4 /* TutorialImage1.png in Resources */,
-				5DE880D81C75CF1200EDE4B4 /* TutorialImage3.png in Resources */,
-				5DE880DF1C75D19500EDE4B4 /* TutorialImage9.png in Resources */,
-				5DE880DD1C75CF1200EDE4B4 /* TutorialImage8.png in Resources */,
-				5DE880DA1C75CF1200EDE4B4 /* TutorialImage5.png in Resources */,
-				5DE880DC1C75CF1200EDE4B4 /* TutorialImage7.png in Resources */,
+				5DE880E51C79220D00EDE4B4 /* TutorialImage0.png in Resources */,
+				5DE880D81C75CF1200EDE4B4 /* TutorialImage2.png in Resources */,
+				5DE880DF1C75D19500EDE4B4 /* TutorialImage8.png in Resources */,
+				5DE880DD1C75CF1200EDE4B4 /* TutorialImage7.png in Resources */,
+				5DE880DA1C75CF1200EDE4B4 /* TutorialImage4.png in Resources */,
+				5DE880DC1C75CF1200EDE4B4 /* TutorialImage6.png in Resources */,
+				5D1547D41C7C6BBD000C6636 /* TutorialIcon.png in Resources */,
 				5D9D80231C2CB02400623AF7 /* Assets.xcassets in Resources */,
-				5DE880DB1C75CF1200EDE4B4 /* TutorialImage6.png in Resources */,
-				5DE880D71C75CF1200EDE4B4 /* TutorialImage2.png in Resources */,
-				5DE880E31C79195600EDE4B4 /* TutorialImage0.png in Resources */,
+				5DE880DB1C75CF1200EDE4B4 /* TutorialImage5.png in Resources */,
+				5DE880D71C75CF1200EDE4B4 /* TutorialImage1.png in Resources */,
+				5D1547D61C7C6BC8000C6636 /* SupportIcon.png in Resources */,
+				5DE880E31C79195600EDE4B4 /* TutorialImage10.png in Resources */,
 				5D9D80211C2CB02400623AF7 /* Main.storyboard in Resources */,
-				5DE880D91C75CF1200EDE4B4 /* TutorialImage4.png in Resources */,
+				5DE880D91C75CF1200EDE4B4 /* TutorialImage3.png in Resources */,
+				5D1547D21C7B0863000C6636 /* TutorialImage9.png in Resources */,
 				5DD365741C7A799400F6BC47 /* AppImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

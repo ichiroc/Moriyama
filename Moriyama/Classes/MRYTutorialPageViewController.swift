@@ -15,7 +15,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     var controllers : [UIViewController] = []
     var pageIndex = 0
     let descriptionTexts = [
-        "最初にキーボードを使う設定をします。「設定」アプリを開いてください。", //0
+        "ApptBoard キーボードを追加して使えるようにするには、ホーム画面から「設定」アプリを開きます。", //0
         "「一般」を選択します。", //1
         "「キーボード」を選択します。", //1
         "さらに「キーボード」を選択します", //2
@@ -24,7 +24,8 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         "「ApptBoard」をもう一度選択します。", //5
         "キーボードからスケジュールを参照するために「フルアクセスを許可」をオンにします。", // 6
         "警告が表示されますので「許可」を選択します。フルアクセスを許可しても入力内容を収集したりサーバーへ送信することはありません。", // 7
-        "「フルアクセスを許可」がオンになっていれば設定は完了です。" // 8
+        "「フルアクセスを許可」がオンになっていれば設定は完了です。キーボードの🌐をタップしてご利用ください。", // 8
+        "ApptBoard から予定を表示するには、予定が iPhone の標準カレンダーで表示されていなくてはいけません。ご注意ください。"
     ]
     var maxPageIndex = 5
     override func viewDidLoad() {
@@ -33,7 +34,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         // Do any additional setup after loading the view.
         let content = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
         if let content0 = content! as? MRYTutorialContentViewController{
-            _ = content0.view
+            _ = content0.view // for load views.
             content0.pageIndex = 0
             content0.descriptionImage.image = UIImage(named: "TutorialImage0.png")
             content0.descriptionLabel?.text = descriptionTexts[0]
