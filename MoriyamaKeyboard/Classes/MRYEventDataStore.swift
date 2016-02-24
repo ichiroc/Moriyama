@@ -76,9 +76,11 @@ class MRYEventDataStore : NSObject{
     func eventsWithDate(date: NSDate) -> [MRYEvent]{
         let startDate = date.dateByAddingTimeInterval(-1)
         let endDate = startDate.dateByAddingTimeInterval(86401)
+        
         return events.filter({
             return (startDate.compare($0.startDate) == .OrderedAscending && endDate.compare($0.startDate) == .OrderedDescending) ||
-            (startDate.compare($0.endDate) == .OrderedAscending && endDate.compare($0.endDate) == .OrderedDescending)
+            (startDate.compare($0.endDate) == .OrderedAscending && endDate.compare($0.endDate) == .OrderedDescending) ||
+            ($0.startDate.compare(startDate) == .OrderedAscending && $0.endDate.compare(endDate) == .OrderedDescending)
         })
     }
 
