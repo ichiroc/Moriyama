@@ -34,6 +34,11 @@ class MRYTimelineContainerView : UIScrollView {
     var eventViews: [MRYEventView] = []
     let dayViewController: MRYDayViewController
   
+    var currentDate : NSDate {
+        get{
+            return dayViewController.currentDate
+        }
+    }
     init( events _events : [MRYEvent], viewController: MRYDayViewController){
         dayViewController = viewController
         super.init(frame: CGRectZero)
@@ -82,9 +87,19 @@ class MRYTimelineContainerView : UIScrollView {
     private func layoutEventViews(){
         // set default frame
         events.filter({ return !$0.allDay }).forEach({
+            var duration = $0.duration
             let dateComp = $0.componentsOnStartDate([.Hour, .Minute])
+            if $0.startDate.compare(currentDate) == .OrderedAscending {
+                let s = $0.startDate
+                let c = currentDate
+                let interval = $0.startDate.timeIntervalSinceDate(currentDate)
+                let debug = $0.startDate.dateByAddingTimeInterval(interval)
+                duration += interval
+                dateComp.hour = 0
+                dateComp.minute = 0
+            }
             let top = ((CGFloat(dateComp.hour) * hourlyHeight) + (CGFloat(dateComp.minute) / 60 ) * hourlyHeight)
-            var height = (CGFloat($0.duration) / 60 / 60 ) * hourlyHeight
+            var height = (CGFloat(duration) / 60 / 60 ) * hourlyHeight
             if height < (hourlyHeight / 2){
                 height = hourlyHeight / 2
             }
@@ -121,7 +136,7 @@ class MRYTimelineContainerView : UIScrollView {
             })
         })
     }
-    
+   
     
     func moveToInitialPointOnTimeline(){
         var date = NSDate()

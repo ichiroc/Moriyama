@@ -38,23 +38,24 @@ class MRYDayViewController: MRYAbstractMainViewController {
     private var timelineContainerView : MRYTimelineContainerView!
     
     private override init(fromViewController: MRYAbstractMainViewController?) {
-        currentDate = NSDate()
+        currentDate = Util.removeHms(NSDate())
         let _events = MRYEventDataStore.instance.eventsWithDate(currentDate)
         super.init(fromViewController: fromViewController)
         timelineContainerView = MRYTimelineContainerView(events: _events, viewController: self)
     }
     
     init(date: NSDate, fromViewController: MRYAbstractMainViewController?) {
-        currentDate = date
+        currentDate = Util.removeHms(date)
         super.init(fromViewController: fromViewController)
         timelineContainerView = MRYTimelineContainerView(events: events, viewController: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        currentDate = NSDate()
+        currentDate = Util.removeHms(NSDate())
         timelineContainerView = MRYTimelineContainerView(coder: aDecoder)!
         super.init(coder: aDecoder)
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -23,4 +23,11 @@ class Util: NSObject {
         }
         return ""
     }
+    
+    class func removeHms( date : NSDate ) -> NSDate {
+        let cal = NSCalendar.currentCalendar()
+        let comp = cal.components([ .Year, .Month, .Day ], fromDate: date)
+        return cal.dateFromComponents(comp)!
+    }
+    
 }
