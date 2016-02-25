@@ -141,7 +141,10 @@ class MRYTimelineContainerView : UIScrollView {
         if let firstEvent =  events.filter({ return !$0.allDay }).first{
             date = firstEvent.startDate
         }
-        let hour = NSCalendar.currentCalendar().component(.Hour, fromDate: date )
+        var hour = NSCalendar.currentCalendar().component(.Hour, fromDate: date )
+        if date.compare(currentDate) == .OrderedAscending {
+            hour = 0
+        }
         let initialPoint = CGPointMake(0.0, CGFloat(hour) * hourlyHeight )
         self.setContentOffset(initialPoint, animated: false)
     }
