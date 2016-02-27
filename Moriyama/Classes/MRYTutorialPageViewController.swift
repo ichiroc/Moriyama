@@ -15,7 +15,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     var controllers : [UIViewController] = []
     var pageIndex = 0
     let descriptionTexts = [
-        "ApptBoard キーボードを追加して使えるようにするには、ホーム画面から「設定」アプリを開きます。", //0
+        "ApptBoard キーボードを追加して使えるようにする方法を説明します。まずホーム画面から「設定」アプリを開きます。", //0
         "「一般」を選択します。", //1
         "「キーボード」を選択します。", //1
         "さらに「キーボード」を選択します", //2
@@ -25,7 +25,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         "キーボードからスケジュールを参照するために「フルアクセスを許可」をオンにします。", // 6
         "警告が表示されますので「許可」を選択します。フルアクセスを許可しても入力内容を収集したりサーバーへ送信することはありません。", // 7
         "「フルアクセスを許可」がオンになっていれば設定は完了です。キーボードの🌐をタップしてご利用ください。", // 8
-        "ApptBoard から予定を表示するには、予定が iPhone の標準カレンダーで表示されていなくてはいけません。ご注意ください。"
+        "[注意]ApptBoard から予定を表示するには、予定が iPhone の標準カレンダーで表示できている状態である必要があります。"
     ]
     var maxPageIndex = 5
     override func viewDidLoad() {

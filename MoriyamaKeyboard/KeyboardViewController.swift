@@ -21,6 +21,7 @@ class KeyboardViewController: UIInputViewController ,
     private var constraintsInitialized = false
     private var deleteKeyButton : MRYKeyboardButton!
     var currentOrientation = Orientation.Portrait
+    private var timer : NSTimer?
  
     enum Orientation{
         case Landscape
@@ -77,7 +78,6 @@ class KeyboardViewController: UIInputViewController ,
             currentOrientation = Orientation.Landscape
         }
         if currentOrientation != previousOrientation{
-            // TODO: Add orientation changing.
             if constraintsInitialized {
                 rebuildMainView()
             }
@@ -97,21 +97,22 @@ class KeyboardViewController: UIInputViewController ,
         }
         self.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
     }
-
-    func longPressDeleteButton( recgnizer: UILongPressGestureRecognizer){
-        switch(recgnizer.state){
+    
+    func longPressDeleteButton( recognizer: UILongPressGestureRecognizer){
+        switch(recognizer.state){
         case .Began:
-            let charCount = MRYTextDocumentProxy.proxy.documentContextBeforeInput?.characters.count
-            for(var i = 0 ; i < charCount ; i++){
-                MRYTextDocumentProxy.proxy.deleteBackward()
-            }
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "deleteText", userInfo: nil, repeats: true)
         case .Ended:
             deleteKeyButton.resetColor()
+            timer?.invalidate()
         default:
             break
         }
     }
 
+    func deleteText(){
+       MRYTextDocumentProxy.proxy.deleteBackward()
+    }
     private func initUIParts(){
         
         self.nextKeyboardButton = MRYKeyboardButton(
@@ -171,7 +172,6 @@ class KeyboardViewController: UIInputViewController ,
         currentVC.willMoveToParentViewController(nil)
         self.addChildViewController(newMainVC)
         self.inputView?.addSubview(newMainVC.view)
-        // TODO: set initial layout constraints here
         
         let width = currentVC.view.bounds.size.width
         let height = currentVC.view.bounds.size.height
@@ -182,7 +182,6 @@ class KeyboardViewController: UIInputViewController ,
             delay: 0,
             options: UIViewAnimationOptions.TransitionNone ,
             animations: {() -> Void in
-                // TODO: set final layout constraints here
                 self.views["main"] = newMainVC.view
                 self.mainViewController = newMainVC
                 self.rebuildMainView()
