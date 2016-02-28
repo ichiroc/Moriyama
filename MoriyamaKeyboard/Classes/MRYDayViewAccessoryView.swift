@@ -20,7 +20,7 @@ class MRYDayViewAccessoryView: UIView {
         super.init(frame: CGRectZero)
         self.translatesAutoresizingMaskIntoConstraints = false
         
-        let dateFormats = ["MMMdE", "MMM","d","EEEE", "YYYYMMdd"]
+        let dateFormats = ["MMMdE", "MMM","d","EEEE", "Md"]
         dateFormats.forEach({
             let text = Util.string(date, format: $0 )
             let button = MRYKeyboardButton(title: text, round: 0)
