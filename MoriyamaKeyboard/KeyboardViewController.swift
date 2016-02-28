@@ -32,7 +32,6 @@ class KeyboardViewController: UIInputViewController ,
         mainViewController  = MRYMonthCalendarViewController()
         super.init(nibName: nil, bundle: nil)
         KeyboardViewController.instance = self
-        var lang : String = NSLocale.preferredLanguages()[0] as! String
     }
     required init?(coder aDecoder: NSCoder) {
         mainViewController  = MRYMonthCalendarViewController()

@@ -91,7 +91,6 @@ class MRYTimelineContainerView : UIScrollView {
             let dateComp = $0.componentsOnStartDate([.Hour, .Minute])
             if $0.startDate.compare(currentDate) == .OrderedAscending {
                 let interval = $0.startDate.timeIntervalSinceDate(currentDate)
-                let debug = $0.startDate.dateByAddingTimeInterval(interval)
                 duration += interval
                 dateComp.hour = 0
                 dateComp.minute = 0
