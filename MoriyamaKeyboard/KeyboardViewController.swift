@@ -123,7 +123,7 @@ class KeyboardViewController: UIInputViewController ,
             titleColor: UIColor.whiteColor())
         deleteKeyButton = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
-            action: {() -> Void in MRYTextDocumentProxy.proxy.deleteBackward()} )
+            action: {() -> Void in self.deleteText() } )
         deleteKeyButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressDeleteButton:"))
 
         if let mainVC = mainViewController as? MRYMonthCalendarViewController{
