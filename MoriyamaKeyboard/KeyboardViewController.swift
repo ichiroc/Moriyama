@@ -127,7 +127,7 @@ class KeyboardViewController: UIInputViewController ,
         deleteKeyButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressDeleteButton:"))
 
         if let mainVC = mainViewController as? MRYMonthCalendarViewController{
-            MRYEventDataStore.instance.loadAllEvents()
+            MRYEventDataStore.sharedStore.loadAllEvents()
             mainVC.calendarCollectionView.reloadData()
         }
         let spaceKeyButton = MRYKeyboardButton(title: NSLocalizedString("space", comment: "space key on keyboard"), text: " ")

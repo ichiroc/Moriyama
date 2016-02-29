@@ -30,7 +30,7 @@ class MRYEventDataStore : NSObject{
             self.loadAllEvents()
         }
     }
-    class var instance : MRYEventDataStore{
+    class var sharedStore : MRYEventDataStore{
         get{ return this }
     }
     

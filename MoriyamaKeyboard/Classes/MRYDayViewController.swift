@@ -18,7 +18,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
             if _events != nil {
                 return _events!
             }
-            _events = MRYEventDataStore.instance.eventsWithDate(currentDate)
+            _events = MRYEventDataStore.sharedStore.eventsWithDate(currentDate)
             return _events!
         }
     }
@@ -28,7 +28,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
             if _allDayEvents != nil {
                 return _allDayEvents!
             }
-            _allDayEvents = MRYEventDataStore.instance.allDayEvents(currentDate)
+            _allDayEvents = MRYEventDataStore.sharedStore.allDayEvents(currentDate)
             return _allDayEvents!
         }
     }
@@ -39,7 +39,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
     
     private override init(fromViewController: MRYAbstractMainViewController?) {
         currentDate = Util.removeHms(NSDate())
-        let _events = MRYEventDataStore.instance.eventsWithDate(currentDate)
+        let _events = MRYEventDataStore.sharedStore.eventsWithDate(currentDate)
         super.init(fromViewController: fromViewController)
         timelineContainerView = MRYTimelineContainerView(events: _events, viewController: self)
     }
