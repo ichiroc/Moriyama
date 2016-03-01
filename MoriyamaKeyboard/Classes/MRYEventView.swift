@@ -19,7 +19,11 @@ class MRYEventView: UIView {
     */
     private let mainViewController : MRYDayViewController
     var _event : MRYEvent?
-    private var hourlyHeight : CGFloat = 40.0
+    var sourceEvent: MRYEvent{
+        get{
+            return _event!
+        }
+    }
     
     var eventIdentifier : String {
         get{
@@ -38,9 +42,8 @@ class MRYEventView: UIView {
         super.init(coder: aDecoder)
     }
     
-    init(frame: CGRect, event: MRYEvent, hourlyHeight height : CGFloat, viewController: MRYDayViewController){
+    init(frame: CGRect, event: MRYEvent, viewController: MRYDayViewController){
         _event = event
-        hourlyHeight = height
         mainViewController = viewController
         super.init(frame: frame)
         

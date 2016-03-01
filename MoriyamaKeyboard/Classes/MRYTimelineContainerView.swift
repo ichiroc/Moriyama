@@ -101,7 +101,7 @@ class MRYTimelineContainerView : UIScrollView {
                 height = hourlyHeight / 2
             }
             let timelineWidth = self.frame.width
-            let eventView = MRYEventView(frame: CGRectMake(0, top, timelineWidth, height), event: $0, hourlyHeight: hourlyHeight, viewController: dayViewController)
+            let eventView = MRYEventView(frame: CGRectMake(0, top, timelineWidth, height), event: $0, viewController: dayViewController)
             eventViews.append(eventView)
             
         })

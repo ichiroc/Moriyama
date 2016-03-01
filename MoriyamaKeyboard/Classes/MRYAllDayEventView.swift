@@ -45,7 +45,7 @@ class MRYAllDayEventView: UIView {
         var vfl = "|"
         var i = 0
         allDayEvents.filter({ $0.allDay }).forEach({
-            let eventView = MRYEventView(frame: CGRectZero, event: $0, hourlyHeight: 0.0, viewController: viewController)
+            let eventView = MRYEventView(frame: CGRectZero, event: $0, viewController: viewController)
             eventView.translatesAutoresizingMaskIntoConstraints = false
             allDayEventContainerView.addSubview(eventView)
             allDayEventViews["e\(i)"] = eventView
