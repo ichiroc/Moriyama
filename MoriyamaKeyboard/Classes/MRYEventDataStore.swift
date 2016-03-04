@@ -12,21 +12,21 @@ import EventKit
 class MRYEventDataStore : NSObject{
     let store = EKEventStore()
     static var this = MRYEventDataStore()
-    var granted = false
+    private var accessGranted = false
     var events : [MRYEvent] = []
     override private init(){
         super.init()
         if EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized {
-            // 許可されてないので許可を要求
+            // Not authorized. So request the permition.
             store.requestAccessToEntityType(.Event,
                 completion: {(granted: Bool, error: NSError?) -> Void in
                     if granted{
-                        self.granted = true
+                        self.accessGranted = true
                         self.loadAllEvents()
                     }
             })
         }else{
-            granted = true
+            accessGranted = true
             self.loadAllEvents()
         }
     }
@@ -35,7 +35,7 @@ class MRYEventDataStore : NSObject{
     }
     
     func loadAllEvents() {
-        if granted {
+        if accessGranted {
             let startDate = NSDate().dateByAddingTimeInterval(-86400 * 30)
             let endDate = startDate.dateByAddingTimeInterval(86400 * 90)
             let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
@@ -51,7 +51,7 @@ class MRYEventDataStore : NSObject{
      Return conflicted events exclude all day events.
      */
     func conflictedEventsWith( event: MRYEvent) -> [MRYEvent]{
-        if granted {
+        if accessGranted {
             let startDate = event.startDate.dateByAddingTimeInterval(1)
             let endDate = event.endDate.dateByAddingTimeInterval(-1)
             let predicate = store.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
