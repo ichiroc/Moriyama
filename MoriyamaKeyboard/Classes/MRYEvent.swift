@@ -20,9 +20,11 @@ class MRYEvent: NSObject {
     }
     var startDate : NSDate  {
         get{ return _event.startDate }
+        set{ _event.startDate = newValue }
     }
     var endDate : NSDate  {
         get{ return _event.endDate }
+        set{ _event.endDate = newValue }
     }
     var title : String  {
         get{ return _event.title }
@@ -63,7 +65,11 @@ class MRYEvent: NSObject {
     init( event: EKEvent){
         _event = event
         super.init()
-       
+        updateDataSource()
+    }
+    
+    func updateDataSource(){
+        datasource = []
         var generalData = TextData(title: NSLocalizedString("General", comment : "General informations of event."), data: [])
         generalData.data.append(SubText( title: NSLocalizedString("Title",comment: "Event title"), text: _event.title))
         if let location = _event.location{
@@ -87,6 +93,7 @@ class MRYEvent: NSObject {
         datasource.append(generalData)
         datasource.append(startData)
         datasource.append(endData)
+        
     }
     
     private func subTextsWithDate(date: NSDate) -> [SubText]{

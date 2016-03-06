@@ -23,6 +23,9 @@ class MRYEventView: UIView {
         get{
             return _event!
         }
+        set{
+            _event = newValue
+        }
     }
     
     var eventIdentifier : String {

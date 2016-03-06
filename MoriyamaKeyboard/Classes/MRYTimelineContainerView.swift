@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import EventKit
 class MRYTimelineContainerView : UIScrollView {
 
     /*
@@ -42,6 +42,7 @@ class MRYTimelineContainerView : UIScrollView {
     init( events _events : [MRYEvent], viewController: MRYDayViewController){
         dayViewController = viewController
         super.init(frame: CGRectZero)
+        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressed:") )
         events = _events
         self.addSubview(timelineView)
         
@@ -146,6 +147,55 @@ class MRYTimelineContainerView : UIScrollView {
         }
         let initialPoint = CGPointMake(0.0, CGFloat(hour) * hourlyHeight )
         self.setContentOffset(initialPoint, animated: false)
+    }
+    
+    var newEventView : MRYEventView?
+    
+    func longPressed( recognizer: UILongPressGestureRecognizer){
+        let point = recognizer.locationInView(self)
+        let rawEvent = EKEvent(eventStore: MRYEventDataStore.sharedStore.rawStore)
+        
+        switch recognizer.state{
+        case .Began:
+            rawEvent.startDate = dateByPointY(point.y)
+            rawEvent.endDate = rawEvent.startDate.dateByAddingTimeInterval(60 * 60 )
+            rawEvent.title = "Temporary"
+            let event = MRYEvent(event: rawEvent)
+            let frame = CGRectMake(0, point.y , self.timelineView.frame.width, heightByEventDuration(event.duration))
+            newEventView = MRYEventView(frame: frame, event: event, viewController: dayViewController)
+            newEventView?.backgroundColor = UIColor(CGColor: MRYEventDataStore.sharedStore.defaultCalendar.CGColor).colorWithAlphaComponent(0.5)
+            self.timelineView.addSubview(newEventView!)
+        case .Changed:
+            newEventView!.frame.origin = CGPointMake(0, point.y)
+        case .Ended:
+            let startDate = dateByPointY( point.y)
+            let event = newEventView!.sourceEvent
+            event.startDate = startDate
+            event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
+            event.updateDataSource()
+            dayViewController.tappedEventView(newEventView!.sourceEvent)
+            newEventView?.removeFromSuperview()
+        default:
+            break
+        }
+    }
+    
+    private func heightByEventDuration(duration : NSTimeInterval) -> CGFloat{
+        var height = (CGFloat(duration) / 60 / 60 ) * hourlyHeight
+        if height < (hourlyHeight / 2){
+            height = hourlyHeight / 2
+        }
+        return height
+    }
+    
+    private func dateByPointY(Y : CGFloat) -> NSDate{
+        let time = Y / hourlyHeight
+        let hour = floor(time)
+        let minutes = (time - hour) * 100 * 0.6
+        let comp = NSCalendar.currentCalendar().components([.Year, .Month, .Day], fromDate: currentDate)
+        comp.hour = Int(hour)
+        comp.minute = Int(minutes)
+        return NSCalendar.currentCalendar().dateFromComponents(comp)!
     }
     
 }
