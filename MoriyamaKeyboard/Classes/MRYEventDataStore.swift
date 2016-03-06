@@ -10,15 +10,20 @@ import UIKit
 import EventKit
 
 class MRYEventDataStore : NSObject{
-    let store = EKEventStore()
+    let rawStore = EKEventStore()
     static var this = MRYEventDataStore()
     private var accessGranted = false
+    var defaultCalendar : EKCalendar {
+        get{
+            return rawStore.defaultCalendarForNewEvents
+        }
+    }
     var events : [MRYEvent] = []
     override private init(){
         super.init()
         if EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized {
             // Not authorized. So request the permition.
-            store.requestAccessToEntityType(.Event,
+            rawStore.requestAccessToEntityType(.Event,
                 completion: {(granted: Bool, error: NSError?) -> Void in
                     if granted{
                         self.accessGranted = true
@@ -38,8 +43,8 @@ class MRYEventDataStore : NSObject{
         if accessGranted {
             let startDate = NSDate().dateByAddingTimeInterval(-86400 * 30)
             let endDate = startDate.dateByAddingTimeInterval(86400 * 90)
-            let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-            let events = store.eventsMatchingPredicate(predicate)
+            let predicate = rawStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
+            let events = rawStore.eventsMatchingPredicate(predicate)
             let _events = events.map{ MRYEvent( event: $0) }
             self.events = _events.sort({ x , y in
                 return x.startDate.compare(y.startDate) == NSComparisonResult.OrderedAscending
@@ -54,8 +59,8 @@ class MRYEventDataStore : NSObject{
         if accessGranted {
             let startDate = event.startDate.dateByAddingTimeInterval(1)
             let endDate = event.endDate.dateByAddingTimeInterval(-1)
-            let predicate = store.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
-            let events = store.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
+            let predicate = rawStore.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
+            let events = rawStore.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
             return events.filter{ return !$0.allDay }
         }
         return []
