@@ -97,7 +97,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
             }
             let margins = calendarCollectionView.layoutMargins
             let screenRect = UIScreen.mainScreen().bounds //calendarCollectionView.bounds
-            let screenWidth = screenRect.size.width - (margins.left + margins.right) - (MARGIN_LEFT + MARGIN_RIGHT) // - (1 * 6)
+            let screenWidth = screenRect.size.width - (margins.left + margins.right)
             let cellWidth = floor((screenWidth / 7.0))
             cellSize = CGSizeMake(cellWidth, 50)
             return cellSize!
