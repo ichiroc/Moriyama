@@ -37,10 +37,6 @@ class MRYEvent: NSObject {
     var allDay: Bool{
         get { return _event.allDay }
     }
-    struct TextInfo {
-        var title : String
-        var data: [String]
-    }
     struct TextData {
         var title : String
         var data: [SubText]
@@ -50,7 +46,6 @@ class MRYEvent: NSObject {
         var text : String
     }
     var datasource : [TextData] = []
-//    var datasource : [TextInfo] = []
     
     
     func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
