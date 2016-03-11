@@ -78,8 +78,4 @@ class MRYEvent: NSObject {
         datasource = factory.eventContentDatasource([.General,.StartDate, .EndDate])
     }
     
-    func conflicts( other: MRYEvent ) -> Bool{
-       return !(self.endDate.compare(other.startDate) != NSComparisonResult.OrderedDescending ||
-        self.startDate.compare(other.endDate)  != NSComparisonResult.OrderedAscending )
-    }
 }
