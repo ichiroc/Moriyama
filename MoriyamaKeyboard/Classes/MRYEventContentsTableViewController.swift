@@ -63,7 +63,7 @@ class MRYEventContentsTableViewController:
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MRYTextDocumentProxy.proxy.insertText(event.datasource[indexPath.section].eventContents[indexPath.row].description)
+        MRYTextDocumentProxy.proxy.insertText(event.datasource[indexPath.section].eventContents[indexPath.row].Content)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
