@@ -74,50 +74,8 @@ class MRYEvent: NSObject {
     
     func updateDataSource(){
         datasource = []
-        var generalData = MRYEventContentGroup(description: NSLocalizedString("General", comment : "General informations of event."), eventContents: [])
-        generalData.eventContents.append(MRYEventContent( description: NSLocalizedString("Title",comment: "Event title"), Content: _event.title))
-        if let location = _event.location{
-            if location != ""{
-                generalData.eventContents.append(MRYEventContent( description: NSLocalizedString("Location",comment:"Location of event occured."), Content: location))
-            }
-        }
-        if let notes = _event.notes {
-            generalData.eventContents.append(MRYEventContent( description: NSLocalizedString("Notes", comment : "Event notes"), Content: notes))
-        }
-        if let url = _event.URL{
-            generalData.eventContents.append(MRYEventContent( description: NSLocalizedString("URL", comment: "URL"), Content: url.absoluteString))
-        }
-        
-        // Start date
-        var startData = MRYEventContentGroup(description: NSLocalizedString( "Start date", comment: "Start date of event."), eventContents: [])
-        startData.eventContents = subTextsWithDate(_event.startDate)
-        var endData = MRYEventContentGroup(description:  NSLocalizedString("End date",comment: "End date of event."), eventContents: [])
-        endData.eventContents = subTextsWithDate(_event.endDate)
-        
-        datasource.append(generalData)
-        datasource.append(startData)
-        datasource.append(endData)
-        
-    }
-    
-    private func subTextsWithDate(date: NSDate) -> [MRYEventContent]{
-        var subTexts : [MRYEventContent] = []
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), Content: Util.string(date, format: "MMMdEHHmm")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Date time", comment: ""), Content: Util.string(date, format: "MMMdEhm")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Date time",comment: ""), Content: Util.string(date, format: "MMMd")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Day of week (short)", comment: ""), Content: "(\(Util.string(date, format: "E")))"))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Day of week (long)", comment: ""), Content: Util.string(date, format: "EEEE")))
-        if self.allDay{
-            subTexts.append(MRYEventContent(description: "", Content: NSLocalizedString("all day", comment: "")))
-        }
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Time", comment: ""), Content: Util.string(date, format: "HHmm")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Hours(12H)", comment: ""), Content: Util.string(date, format: "h")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Hours(24H)", comment: ""), Content: Util.string(date, format: "H")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Minutes", comment: ""), Content: Util.string(date, format: "m")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Month", comment: ""), Content: Util.string(date, format: "M")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Day", comment: ""), Content: Util.string(date, format: "d")))
-        subTexts.append(MRYEventContent(description: NSLocalizedString("Year", comment: ""), Content: Util.string(date, format: "Y")))
-        return subTexts
+        let factory = MRYEventContentFactory(event: self)
+        datasource = factory.eventContentDatasource([.General,.StartDate, .EndDate])
     }
     
     func conflicts( other: MRYEvent ) -> Bool{
