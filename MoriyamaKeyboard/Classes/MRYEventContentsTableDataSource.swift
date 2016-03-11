@@ -23,11 +23,11 @@ class MRYEventContentsTableDataSource:
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return event.datasource[section].data.count
+        return event.datasource[section].eventContents.count
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return event.datasource[section].title
+        return event.datasource[section].description
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCellWithIdentifier("textCell")
@@ -35,8 +35,8 @@ class MRYEventContentsTableDataSource:
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "textCell")
         }
         
-        cell!.textLabel!.text = event.datasource[indexPath.section].data[indexPath.row].text.stringByReplacingOccurrencesOfString("\n", withString: " ")
-        cell!.detailTextLabel?.text = event.datasource[indexPath.section].data[indexPath.row].title
+        cell!.textLabel!.text = event.datasource[indexPath.section].eventContents[indexPath.row].Content.stringByReplacingOccurrencesOfString("\n", withString: " ")
+        cell!.detailTextLabel?.text = event.datasource[indexPath.section].eventContents[indexPath.row].description
         return cell!
     }
 
