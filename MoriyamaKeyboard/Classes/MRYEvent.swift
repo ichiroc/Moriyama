@@ -46,14 +46,6 @@ class MRYEvent: NSObject {
     var allDay: Bool{
         get { return _event.allDay }
     }
-//    struct MRYEventContentGroup {
-//        var title : String
-//        var data: [MRYEventContent]
-//    }
-//    struct MRYEventContent {
-//        var description: String
-//        var text : String
-//    }
     var datasource : [MRYEventContentGroup] = []
     
     

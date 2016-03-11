@@ -47,7 +47,9 @@ class MRYEventContentFactory {
             generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Notes", comment : "Event notes"), Content: notes))
         }
         if let url = event.URL{
-            generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("URL", comment: "URL"), Content: url.absoluteString))
+            if url != ""{
+                generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("URL", comment: "URL"), Content: url.absoluteString))
+            }
         }
         return generalGroup
     }
