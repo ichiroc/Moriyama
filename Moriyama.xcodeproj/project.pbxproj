@@ -211,6 +211,7 @@
 				5D2DB6AC1C2DE0FC00604C0F /* MRYKeyboardButton.swift */,
 				5D5196DF1C6C2F550047DD2D /* Calendar */,
 				5D5196E01C6C2F6C0047DD2D /* DayView */,
+				5D6C61151C94C09700AC88AD /* EventView */,
 				5D5196E31C6C685C0047DD2D /* EventContents */,
 			);
 			name = View;
@@ -244,8 +245,6 @@
 			children = (
 				5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */,
 				5D5196D51C69522D0047DD2D /* MRYTimelineContainerView.swift */,
-				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
-				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
 			);
 			name = DayView;
 			sourceTree = "<group>";
@@ -256,6 +255,15 @@
 				5DD05EB11C45A78B00938176 /* MRYEventContentsTableView.swift */,
 			);
 			name = EventContents;
+			sourceTree = "<group>";
+		};
+		5D6C61151C94C09700AC88AD /* EventView */ = {
+			isa = PBXGroup;
+			children = (
+				5D5196D71C6955190047DD2D /* MRYAllDayEventView.swift */,
+				5DD259851C421C04007C61F6 /* MRYEventView.swift */,
+			);
+			name = EventView;
 			sourceTree = "<group>";
 		};
 		5D9D800F1C2CB02400623AF7 = {

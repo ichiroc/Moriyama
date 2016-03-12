@@ -174,9 +174,10 @@ class MRYTimelineContainerView : UIScrollView {
             event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
             // event.updateDataSource()
             let contentFactory = MRYEventContentFactory(event: event)
-            let s = MRYEventContentFactory.ContentType.StartDate
-            event.datasource = contentFactory.eventContentDatasource([s])
-            let a = event.datasource
+            event.datasource = contentFactory.eventContentDatasource([
+                MRYEventContentFactory.ContentType.StartDate ,
+                MRYEventContentFactory.ContentType.EndDate
+                ])
             dayViewController.tappedEventView(newEventView!.sourceEvent)
             newEventView?.removeFromSuperview()
         default:
