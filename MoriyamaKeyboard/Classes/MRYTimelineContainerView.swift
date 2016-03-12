@@ -153,22 +153,23 @@ class MRYTimelineContainerView : UIScrollView {
     
     func longPressed( recognizer: UILongPressGestureRecognizer){
         let point = recognizer.locationInView(self)
+        let oddsTime = point.y % (hourlyHeight / 2 )
+        let posY = point.y - oddsTime
         let rawEvent = EKEvent(eventStore: MRYEventDataStore.sharedStore.rawStore)
         
         switch recognizer.state{
         case .Began:
-            rawEvent.startDate = dateByPointY(point.y)
+            rawEvent.startDate = dateByPointY(posY)
             rawEvent.endDate = rawEvent.startDate.dateByAddingTimeInterval(60 * 60 )
-            rawEvent.title = "Temporary"
             let event = MRYEvent(event: rawEvent)
-            let frame = CGRectMake(0, point.y , self.timelineView.frame.width, heightByEventDuration(event.duration))
+            let frame = CGRectMake(0, posY , self.timelineView.frame.width, heightByEventDuration(event.duration))
             newEventView = MRYEventView(frame: frame, event: event, viewController: dayViewController)
             newEventView?.backgroundColor = UIColor(CGColor: MRYEventDataStore.sharedStore.defaultCalendar.CGColor).colorWithAlphaComponent(0.5)
             self.timelineView.addSubview(newEventView!)
         case .Changed:
-            newEventView!.frame.origin = CGPointMake(0, point.y)
+            newEventView!.frame.origin = CGPointMake(0, posY)
         case .Ended:
-            let startDate = dateByPointY( point.y)
+            let startDate = dateByPointY(posY)
             let event = newEventView!.sourceEvent
             event.startDate = startDate
             event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
