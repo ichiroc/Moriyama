@@ -46,7 +46,8 @@ class MRYEvent: NSObject {
     var allDay: Bool{
         get { return _event.allDay }
     }
-    var datasource : [MRYEventContentGroup] = []
+    
+    var datasource : [MRYEventContentGroup] = [] // for content table view.
     
     
     func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
@@ -70,4 +71,10 @@ class MRYEvent: NSObject {
         datasource = factory.eventContentDatasource([.General,.StartDate, .EndDate])
     }
     
+    func endDateGroupWithMinutesInterval( minutes : Int ) -> MRYEventContentGroup{
+        let contentFactory = MRYEventContentFactory(event: self)
+        var endDateGroup = MRYEventContentGroup(description:  NSLocalizedString("End date ( \(minutes) minutes )",comment: "End date of event ( \(minutes) minutes )."), eventContents: [])
+        endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(self.endDate.dateByAddingTimeInterval(Double(60 * minutes )))
+        return endDateGroup
+    }
 }

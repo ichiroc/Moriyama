@@ -177,8 +177,13 @@ class MRYTimelineContainerView : UIScrollView {
             let contentFactory = MRYEventContentFactory(event: event)
             event.datasource = contentFactory.eventContentDatasource([
                 MRYEventContentFactory.ContentType.StartDate ,
-                MRYEventContentFactory.ContentType.EndDate
                 ])
+            event.datasource.append(event.endDateGroupWithMinutesInterval(30))
+            event.datasource.append(event.endDateGroupWithMinutesInterval(60))
+            event.datasource.append(event.endDateGroupWithMinutesInterval(90))
+            event.datasource.append(event.endDateGroupWithMinutesInterval(120))
+            event.datasource.append(event.endDateGroupWithMinutesInterval(150))
+            event.datasource.append(event.endDateGroupWithMinutesInterval(180))
             dayViewController.tappedEventView(newEventView!.sourceEvent)
             newEventView?.removeFromSuperview()
         default:
@@ -186,6 +191,7 @@ class MRYTimelineContainerView : UIScrollView {
         }
     }
     
+
     private func heightByEventDuration(duration : NSTimeInterval) -> CGFloat{
         var height = (CGFloat(duration) / 60 / 60 ) * hourlyHeight
         if height < (hourlyHeight / 2){

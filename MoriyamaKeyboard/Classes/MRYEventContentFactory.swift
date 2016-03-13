@@ -66,7 +66,7 @@ class MRYEventContentFactory {
     }
     
     
-    private func eventContentsAtDateTime(date: NSDate) -> [MRYEventContent]{
+    func eventContentsAtDateTime(date: NSDate) -> [MRYEventContent]{
         var eventContents : [MRYEventContent] = []
         eventContents.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), Content: Util.string(date, format: "MMMdEHHmm")))
         eventContents.append(MRYEventContent(description: NSLocalizedString("Date time", comment: ""), Content: Util.string(date, format: "MMMdEhm")))
