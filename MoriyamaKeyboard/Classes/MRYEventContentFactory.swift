@@ -48,7 +48,6 @@ class MRYEventContentFactory {
         }
         if let url = event.URL{
             if url.description != ""{
-                print(url)
                 generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("URL", comment: "URL"), Content: url.absoluteString))
             }
         }
