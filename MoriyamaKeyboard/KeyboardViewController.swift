@@ -76,7 +76,7 @@ class KeyboardViewController: UIInputViewController ,
         }
         if currentOrientation != previousOrientation{
             if constraintsInitialized {
-                rebuildMainView()
+                rebuildMainViewLayout()
             }
             mainViewController.viewDidChangeOrientation(currentOrientation)
         }
@@ -112,8 +112,7 @@ class KeyboardViewController: UIInputViewController ,
     }
     private func initUIParts(){
         
-        self.nextKeyboardButton = MRYKeyboardButton(
-            title: "🌐",
+        self.nextKeyboardButton = MRYKeyboardButton(imageFileName: "globe",
             backgroundColor: UIColor.lightGrayColor(),
             action: { self.advanceToNextInputMode() })
         let returnKeyButton = MRYKeyboardButton(
@@ -181,7 +180,7 @@ class KeyboardViewController: UIInputViewController ,
             animations: {() -> Void in
                 self.views["main"] = newMainVC.view
                 self.mainViewController = newMainVC
-                self.rebuildMainView()
+                self.rebuildMainViewLayout()
                 self.inputView?.layoutIfNeeded()
             }, completion: {(finished: Bool) -> Void in
                 newMainVC.didMoveToParentViewController(self)
@@ -204,7 +203,7 @@ class KeyboardViewController: UIInputViewController ,
         
         mainViewController = newMainVC
         
-        self.rebuildMainView()
+        self.rebuildMainViewLayout()
         self.inputView?.layoutIfNeeded()
         newMainVC.didMoveToParentViewController(self)
 //        prevViewController = currentVC
@@ -217,18 +216,18 @@ class KeyboardViewController: UIInputViewController ,
         
         allConstraints.appendContentsOf(
             NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-m_left-[next(30)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
+                "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
                 options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
                 metrics: METRICS,
                 views: views)
         )
         self.inputView?.addConstraints( allConstraints )
 
-        rebuildMainView()
+        rebuildMainViewLayout()
         constraintsInitialized = true
     }
     
-    private func rebuildMainView(){
+    private func rebuildMainViewLayout(){
         
         NSLayoutConstraint.deactivateConstraints(mainViewConstraints)
         mainViewConstraints = []
@@ -255,7 +254,7 @@ class KeyboardViewController: UIInputViewController ,
             attribute: NSLayoutAttribute.NotAnAttribute,
             multiplier: 1.0,
             constant: height)
-        heightConstraint.priority = 999.0
+        heightConstraint.priority = 1000//999.0
         mainViewConstraints.append(heightConstraint)
         self.inputView?.addConstraints( mainViewConstraints )
         
