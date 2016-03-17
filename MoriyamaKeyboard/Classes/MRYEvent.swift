@@ -87,7 +87,7 @@ class MRYEvent: NSObject {
         var endDateGroup = MRYEventContentGroup(description:
             NSLocalizedString("End date" , comment:"") + "( \(minutes) " +
                 NSLocalizedString("minutes", comment: "") + " )", eventContents: [])
-        endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(self.endDate.dateByAddingTimeInterval(Double(60 * minutes )))
+        endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(self.startDate.dateByAddingTimeInterval(Double(60 * minutes )))
         return endDateGroup
     }
 }
