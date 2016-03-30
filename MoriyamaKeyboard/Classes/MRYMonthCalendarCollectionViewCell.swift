@@ -186,7 +186,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             vflArray.append("[e\(i)(4)]")
             eventIndicatorViewsMap["e\(i)"] = eventIndicationPartView
             eventIndicator.addSubview(eventIndicationPartView)
-            i++
+            i += 1
         })
         
         eventIndicator.addConstraints(

@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        supportButton.addTarget(self, action: "tappedSupportButton", forControlEvents: .TouchUpInside)
+        supportButton.addTarget(self, action: #selector(ViewController.tappedSupportButton), forControlEvents: .TouchUpInside)
     }
 
     override func didReceiveMemoryWarning() {

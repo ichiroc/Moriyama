@@ -42,7 +42,7 @@ class MRYTimelineContainerView : UIScrollView {
     init( events _events : [MRYEvent], viewController: MRYDayViewController){
         dayViewController = viewController
         super.init(frame: CGRectZero)
-        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressed:") )
+        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(MRYTimelineContainerView.longPressed(_:))) )
         events = _events
         self.addSubview(timelineView)
         
@@ -64,7 +64,7 @@ class MRYTimelineContainerView : UIScrollView {
             
             let tlSideBar = UIView(frame: CGRectMake(0,0,sidebarWidth,timelineHeight))
             tlSideBar.backgroundColor = UIColor.whiteColor()
-            for (var i = 1 ; i < 24 ; i++) { // 0時の描画はしない
+            for i in 1  ..< 24 { // 0時の描画はしない
                 let hourLine = UIView(frame: CGRectMake(0, CGFloat(i) * hourlyHeight , timelineView.frame.width, 1 ))
                 hourLine.backgroundColor = UIColor.lightGrayColor()
                 timelineView.addSubview(hourLine)

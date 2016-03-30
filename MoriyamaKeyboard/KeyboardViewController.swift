@@ -98,7 +98,7 @@ class KeyboardViewController: UIInputViewController ,
     func longPressDeleteButton( recognizer: UILongPressGestureRecognizer){
         switch(recognizer.state){
         case .Began:
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: "deleteText", userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: #selector(KeyboardViewController.deleteText), userInfo: nil, repeats: true)
         case .Ended:
             deleteKeyButton.resetColor()
             timer?.invalidate()
@@ -123,7 +123,7 @@ class KeyboardViewController: UIInputViewController ,
         deleteKeyButton = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
             action: {() -> Void in self.deleteText() } )
-        deleteKeyButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressDeleteButton:"))
+        deleteKeyButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.longPressDeleteButton(_:))))
 
         if let mainVC = mainViewController as? MRYMonthCalendarViewController{
             MRYEventDataStore.sharedStore.loadAllEvents()

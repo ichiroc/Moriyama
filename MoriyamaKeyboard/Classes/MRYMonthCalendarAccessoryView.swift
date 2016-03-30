@@ -27,7 +27,7 @@ class MRYMonthCalendarAccessoryView : UIView {
         self.backgroundColor = UIColor.lightGrayColor()
         self.layoutMargins = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         self.translatesAutoresizingMaskIntoConstraints = false
-        for(var i = 0 ; i < 10; i++){
+        for i in 0  ..< 10 {
             let button = MRYKeyboardButton(title: "\(i)", round: 0)
             self.addSubview(button)
             subViews["b\(i)"] = button

@@ -54,7 +54,7 @@ class MRYAllDayEventView: UIView {
             }else{
                 vfl += "[e\(i)(==e0)]"
             }
-            i++
+            i += 1
         })
         vfl += "|"
        

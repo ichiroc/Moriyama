@@ -31,9 +31,9 @@ class MRYKeyboardButton : UIButton{
             backgroundColor.map{ normalBackgroundColor = $0 }
             self.backgroundColor = normalBackgroundColor
             self.layer.cornerRadius = round
-            self.addTarget(self, action: "touchUpInside", forControlEvents: .TouchUpInside)
-            self.addTarget(self, action: "touchDown", forControlEvents: .TouchDown)
-            self.addTarget(self, action: "touchUpOutside", forControlEvents: .TouchUpOutside)
+            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
+            self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
+            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
     }
     
     /**
@@ -60,9 +60,9 @@ class MRYKeyboardButton : UIButton{
             backgroundColor.map{ normalBackgroundColor = $0 }
             self.backgroundColor = normalBackgroundColor
             self.layer.cornerRadius = round
-            self.addTarget(self, action: "touchUpInside", forControlEvents: .TouchUpInside)
-            self.addTarget(self, action: "touchDown", forControlEvents: .TouchDown)
-            self.addTarget(self, action: "touchUpOutside", forControlEvents: .TouchUpOutside)
+            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
+            self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
+            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
     }
     
     override init(frame: CGRect) {
