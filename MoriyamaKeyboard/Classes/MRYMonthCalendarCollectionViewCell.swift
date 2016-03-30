@@ -123,6 +123,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         }
         buildEventIndicatorView(cellColor)
         
+        dateLabel.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
         if(isToday()){
             
             circle.translatesAutoresizingMaskIntoConstraints = false
@@ -145,9 +146,6 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             )
             circle.layer.cornerRadius = 11
             dateLabel.textColor = UIColor.whiteColor()
-            dateLabel.opaque = false
-            dateLabel.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
-            
             self.contentView.sendSubviewToBack(circle)
         }
     }

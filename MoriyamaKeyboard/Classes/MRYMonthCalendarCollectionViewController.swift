@@ -76,7 +76,20 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    var defaultCellColor: UIColor?
+    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
+
+        defaultCellColor = cell.contentView.backgroundColor
+        cell.contentView.backgroundColor = UIColor.lightGrayColor()
+
+    }
     
+    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
+        cell.contentView.backgroundColor = defaultCellColor
+    }
 
     // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView,
