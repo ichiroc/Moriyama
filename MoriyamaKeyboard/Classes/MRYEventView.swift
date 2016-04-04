@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MRYEventView: UIView {
+class MRYEventView: UIControl {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -66,9 +66,19 @@ class MRYEventView: UIView {
         titleLabel.sizeToFit()
         self.layer.borderColor = UIColor.whiteColor().CGColor
         self.layer.borderWidth = 0.5
-        
-        let gesture = UITapGestureRecognizer(target: self, action: "tapped:")
-        self.addGestureRecognizer(gesture)
+
+        // Highlight if tapped.
+        let tappedGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapped(_:)))
+        self.addGestureRecognizer(tappedGesture)
+
+        self.addTarget(self, action: #selector(self.doHighlight), forControlEvents: .TouchDown)
+        self.addTarget(self, action: #selector(self.doUnhighlight), forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(self.doUnhighlight), forControlEvents: .TouchUpOutside)
+
+    }
+    
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        self.doUnhighlight()
     }
     
     private func titleColorFromBackgroundColor( backgroundColor: UIColor) -> UIColor {
@@ -83,7 +93,18 @@ class MRYEventView: UIView {
         }
     }
     
+    var defaultColor : UIColor?
+    func doHighlight(){
+        defaultColor = self.backgroundColor
+        self.backgroundColor = UIColor.lightGrayColor()
+    }
+    
+    func doUnhighlight(){
+        self.backgroundColor = defaultColor
+    }
+    
     func tapped(sender: UITapGestureRecognizer){
+        self.doUnhighlight()
         mainViewController.tappedEventView(_event!)
     }
 

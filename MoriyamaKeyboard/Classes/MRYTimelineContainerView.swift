@@ -8,7 +8,7 @@
 
 import UIKit
 import EventKit
-class MRYTimelineContainerView : UIScrollView {
+class MRYTimelineContainerView : UIScrollView{
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -41,12 +41,27 @@ class MRYTimelineContainerView : UIScrollView {
     }
     init( events _events : [MRYEvent], viewController: MRYDayViewController){
         dayViewController = viewController
+
         super.init(frame: CGRectZero)
         self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(MRYTimelineContainerView.longPressed(_:))) )
         events = _events
         self.addSubview(timelineView)
-        
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    /**
+     Return true if gestureRecognizer point is in eventViews frame.
+     */
+    private func isLocationInEventView(gestureRecognizer: UIGestureRecognizer) -> Bool {
+        var result = false
+        eventViews.forEach({
+            let point = gestureRecognizer.locationInView(self)
+            let frame = $0.frame
+            if CGRectContainsPoint($0.frame, point){
+                result = true
+            }
+        })
+        return result
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -152,6 +167,7 @@ class MRYTimelineContainerView : UIScrollView {
     var newEventView : MRYEventView?
     
     func longPressed( recognizer: UILongPressGestureRecognizer){
+    
         let point = recognizer.locationInView(self)
         let oddsTime = point.y % (hourlyHeight / 2 )
         let posY = point.y - oddsTime
@@ -159,6 +175,9 @@ class MRYTimelineContainerView : UIScrollView {
         
         switch recognizer.state{
         case .Began:
+            if isLocationInEventView(recognizer) {
+                return
+            }
             rawEvent.startDate = dateByPointY(posY)
             rawEvent.endDate = rawEvent.startDate.dateByAddingTimeInterval(60 * 60 )
             let event = MRYEvent(event: rawEvent)
@@ -167,25 +186,29 @@ class MRYTimelineContainerView : UIScrollView {
             newEventView?.backgroundColor = UIColor(CGColor: MRYEventDataStore.sharedStore.defaultCalendar.CGColor).colorWithAlphaComponent(0.5)
             self.timelineView.addSubview(newEventView!)
         case .Changed:
-            newEventView!.frame.origin = CGPointMake(0, posY)
+            if let nev = newEventView {
+                nev.frame.origin = CGPointMake(0, posY)
+            }
         case .Ended:
-            let startDate = dateByPointY(posY)
-            let event = newEventView!.sourceEvent
-            event.startDate = startDate
-            event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
-            // event.updateDataSource()
-            let contentFactory = MRYEventContentFactory(event: event)
-            event.datasource = contentFactory.eventContentDatasource([
-                MRYEventContentFactory.ContentType.StartDate ,
-                ])
-            event.datasource.append(event.endDateGroupWithMinutesInterval(30))
-            event.datasource.append(event.endDateGroupWithMinutesInterval(60))
-            event.datasource.append(event.endDateGroupWithMinutesInterval(90))
-            event.datasource.append(event.endDateGroupWithMinutesInterval(120))
-            event.datasource.append(event.endDateGroupWithMinutesInterval(150))
-            event.datasource.append(event.endDateGroupWithMinutesInterval(180))
-            dayViewController.tappedEventView(newEventView!.sourceEvent)
-            newEventView?.removeFromSuperview()
+            if let nev = newEventView{
+                let startDate = dateByPointY(posY)
+                let event = nev.sourceEvent
+                event.startDate = startDate
+                event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
+                // event.updateDataSource()
+                let contentFactory = MRYEventContentFactory(event: event)
+                event.datasource = contentFactory.eventContentDatasource([
+                    MRYEventContentFactory.ContentType.StartDate ,
+                    ])
+                event.datasource.append(event.endDateGroupWithMinutesInterval(30))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(60))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(90))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(120))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(150))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(180))
+                dayViewController.tappedEventView(newEventView!.sourceEvent)
+                nev.removeFromSuperview()
+            }
         default:
             break
         }
