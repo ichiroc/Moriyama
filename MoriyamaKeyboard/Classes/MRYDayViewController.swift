@@ -112,6 +112,58 @@ class MRYDayViewController: MRYAbstractMainViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    var newEventView : MRYEventView?
+    func longPressTimelineContainerView( recognizer: UILongPressGestureRecognizer){
+
+        let point = recognizer.locationInView(timelineContainerView)
+        let oddsTime = point.y % (timelineContainerView.hourlyHeight / 2 )
+        let posY = point.y - oddsTime
+        let rawEvent = EKEvent(eventStore: MRYEventDataStore.sharedStore.rawStore)
+        
+        switch recognizer.state{
+        case .Began:
+            if timelineContainerView.isLocationInEventView(recognizer) {
+                return
+            }
+            rawEvent.startDate = timelineContainerView.dateByPointY(posY)
+            rawEvent.endDate = rawEvent.startDate.dateByAddingTimeInterval(60 * 60 )
+            let event = MRYEvent(event: rawEvent)
+            let frame = CGRectMake(0, posY , timelineContainerView.timelineView.frame.width, timelineContainerView.heightByEventDuration(event.duration))
+            newEventView = MRYEventView(frame: frame, event: event, viewController: self)
+            newEventView?.backgroundColor = UIColor(CGColor: MRYEventDataStore.sharedStore.defaultCalendar.CGColor).colorWithAlphaComponent(0.5)
+            timelineContainerView.timelineView.addSubview(newEventView!)
+        case .Changed:
+            if let nev = newEventView {
+                nev.frame.origin = CGPointMake(0, posY)
+            }
+        case .Ended:
+            if let nev = newEventView{
+                let startDate = timelineContainerView.dateByPointY(posY)
+                let event = nev.sourceEvent
+                event.startDate = startDate
+                event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
+                // event.updateDataSource()
+                let contentFactory = MRYEventContentFactory(event: event)
+                event.datasource = contentFactory.eventContentDatasource([
+                    MRYEventContentFactory.ContentType.StartDate ,
+                    ])
+                event.datasource.append(event.endDateGroupWithMinutesInterval(30))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(60))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(90))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(120))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(150))
+                event.datasource.append(event.endDateGroupWithMinutesInterval(180))
+                self.tappedEventView(newEventView!.sourceEvent)
+                nev.removeFromSuperview()
+            }
+        default:
+            break
+        }
+    }
+    
+
+
     
     /*
     // MARK: - Navigation

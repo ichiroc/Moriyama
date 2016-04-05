@@ -27,7 +27,7 @@ class MRYTimelineContainerView : UIScrollView{
     let timelineView : UIView = UIView()
    
     var layouted : Bool = false
-    private let hourlyHeight : CGFloat = 40.0
+    let hourlyHeight : CGFloat = 40.0
     private let sidebarWidth : CGFloat = 45.0
     
     var events: [MRYEvent] = []
@@ -43,7 +43,7 @@ class MRYTimelineContainerView : UIScrollView{
         dayViewController = viewController
 
         super.init(frame: CGRectZero)
-        self.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(MRYTimelineContainerView.longPressed(_:))) )
+        self.addGestureRecognizer(UILongPressGestureRecognizer(target: dayViewController, action: #selector(MRYDayViewController.longPressTimelineContainerView(_:))) )
         events = _events
         self.addSubview(timelineView)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -52,11 +52,10 @@ class MRYTimelineContainerView : UIScrollView{
     /**
      Return true if gestureRecognizer point is in eventViews frame.
      */
-    private func isLocationInEventView(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func isLocationInEventView(gestureRecognizer: UIGestureRecognizer) -> Bool {
         var result = false
         eventViews.forEach({
             let point = gestureRecognizer.locationInView(self)
-            let frame = $0.frame
             if CGRectContainsPoint($0.frame, point){
                 result = true
             }
@@ -164,58 +163,7 @@ class MRYTimelineContainerView : UIScrollView{
         self.setContentOffset(initialPoint, animated: false)
     }
     
-    var newEventView : MRYEventView?
-    
-    func longPressed( recognizer: UILongPressGestureRecognizer){
-    
-        let point = recognizer.locationInView(self)
-        let oddsTime = point.y % (hourlyHeight / 2 )
-        let posY = point.y - oddsTime
-        let rawEvent = EKEvent(eventStore: MRYEventDataStore.sharedStore.rawStore)
-        
-        switch recognizer.state{
-        case .Began:
-            if isLocationInEventView(recognizer) {
-                return
-            }
-            rawEvent.startDate = dateByPointY(posY)
-            rawEvent.endDate = rawEvent.startDate.dateByAddingTimeInterval(60 * 60 )
-            let event = MRYEvent(event: rawEvent)
-            let frame = CGRectMake(0, posY , self.timelineView.frame.width, heightByEventDuration(event.duration))
-            newEventView = MRYEventView(frame: frame, event: event, viewController: dayViewController)
-            newEventView?.backgroundColor = UIColor(CGColor: MRYEventDataStore.sharedStore.defaultCalendar.CGColor).colorWithAlphaComponent(0.5)
-            self.timelineView.addSubview(newEventView!)
-        case .Changed:
-            if let nev = newEventView {
-                nev.frame.origin = CGPointMake(0, posY)
-            }
-        case .Ended:
-            if let nev = newEventView{
-                let startDate = dateByPointY(posY)
-                let event = nev.sourceEvent
-                event.startDate = startDate
-                event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
-                // event.updateDataSource()
-                let contentFactory = MRYEventContentFactory(event: event)
-                event.datasource = contentFactory.eventContentDatasource([
-                    MRYEventContentFactory.ContentType.StartDate ,
-                    ])
-                event.datasource.append(event.endDateGroupWithMinutesInterval(30))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(60))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(90))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(120))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(150))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(180))
-                dayViewController.tappedEventView(newEventView!.sourceEvent)
-                nev.removeFromSuperview()
-            }
-        default:
-            break
-        }
-    }
-    
-
-    private func heightByEventDuration(duration : NSTimeInterval) -> CGFloat{
+    func heightByEventDuration(duration : NSTimeInterval) -> CGFloat{
         var height = (CGFloat(duration) / 60 / 60 ) * hourlyHeight
         if height < (hourlyHeight / 2){
             height = hourlyHeight / 2
@@ -223,7 +171,7 @@ class MRYTimelineContainerView : UIScrollView{
         return height
     }
     
-    private func dateByPointY(Y : CGFloat) -> NSDate{
+     func dateByPointY(Y : CGFloat) -> NSDate{
         let time = Y / hourlyHeight
         let hour = floor(time)
         let minutes = (time - hour) * 100 * 0.6
