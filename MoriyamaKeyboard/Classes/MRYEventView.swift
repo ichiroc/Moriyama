@@ -18,6 +18,8 @@ class MRYEventView: UIControl {
     }
     */
     private let mainViewController : MRYDayViewController
+    var defaultColor : UIColor?
+
     var _event : MRYEvent?
     var sourceEvent: MRYEvent{
         get{
@@ -68,6 +70,7 @@ class MRYEventView: UIControl {
         self.layer.borderWidth = 0.5
 
         // Highlight if tapped.
+        defaultColor = self.backgroundColor
         let tappedGesture = UITapGestureRecognizer(target: self, action:  #selector(self.tapped(_:)))
         self.addGestureRecognizer(tappedGesture)
 
@@ -93,9 +96,7 @@ class MRYEventView: UIControl {
         }
     }
     
-    var defaultColor : UIColor?
     func doHighlight(){
-        defaultColor = self.backgroundColor
         self.backgroundColor = UIColor.lightGrayColor()
     }
     
