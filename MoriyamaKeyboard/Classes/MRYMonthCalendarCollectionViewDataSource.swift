@@ -29,7 +29,7 @@ class MRYMonthCalendarCollectionViewDataSource: NSObject,
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 75
+        return 120
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

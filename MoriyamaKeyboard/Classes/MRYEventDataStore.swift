@@ -41,8 +41,8 @@ class MRYEventDataStore : NSObject{
     
     func loadAllEvents() {
         if accessGranted {
-            let startDate = NSDate().dateByAddingTimeInterval(-86400 * 30)
-            let endDate = startDate.dateByAddingTimeInterval(86400 * 90)
+            let startDate = NSDate().dateByAddingTimeInterval(-86400 * 14)
+            let endDate = startDate.dateByAddingTimeInterval(86400 * 120)
             let predicate = rawStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
             let events = rawStore.eventsMatchingPredicate(predicate)
             let _events = events.map{ MRYEvent( event: $0) }
