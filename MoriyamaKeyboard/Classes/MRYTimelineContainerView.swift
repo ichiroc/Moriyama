@@ -151,13 +151,14 @@ class MRYTimelineContainerView : UIScrollView{
    
     
     func moveToInitialPointOnTimeline(){
-        var date = NSDate()
-        if let firstEvent =  events.filter({ return !$0.allDay }).first{
-            date = firstEvent.startDate
-        }
-        var hour = NSCalendar.currentCalendar().component(.Hour, fromDate: date )
-        if date.compare(currentDate) == .OrderedAscending {
-            hour = 0
+        var firstEventStartDate = NSDate()
+        var hour = 7.5
+        if let firstEvent =  events.filter({ return !$0.allDay }).first {
+            firstEventStartDate = firstEvent.startDate
+            hour = Double(NSCalendar.currentCalendar().component(.Hour, fromDate: firstEventStartDate ))
+            if firstEventStartDate.compare(currentDate) == .OrderedAscending {
+                hour = 0
+            }
         }
         let initialPoint = CGPointMake(0.0, CGFloat(hour) * hourlyHeight )
         self.setContentOffset(initialPoint, animated: false)
