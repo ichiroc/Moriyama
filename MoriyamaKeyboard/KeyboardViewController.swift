@@ -98,7 +98,7 @@ class KeyboardViewController: UIInputViewController ,
     func longPressDeleteButton( recognizer: UILongPressGestureRecognizer){
         switch(recognizer.state){
         case .Began:
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: #selector(KeyboardViewController.deleteText), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(KeyboardViewController.deleteText), userInfo: nil, repeats: true)
         case .Ended:
             deleteKeyButton.resetColor()
             timer?.invalidate()
