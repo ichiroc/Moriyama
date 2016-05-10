@@ -43,7 +43,7 @@ class MRYEventDataStore : NSObject{
         if accessGranted {
             // 曜日により最大3週間前のデータが必要になる
             let startDate = NSDate().dateByAddingTimeInterval(-86400 * 21)
-            let endDate = startDate.dateByAddingTimeInterval(86400 * 120)
+            let endDate = startDate.dateByAddingTimeInterval(86400 * 140)
             let predicate = rawStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
             let events = rawStore.eventsMatchingPredicate(predicate)
             let _events = events.map{ MRYEvent( event: $0) }
