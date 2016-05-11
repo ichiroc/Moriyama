@@ -162,35 +162,8 @@ class KeyboardViewController: UIInputViewController ,
         self.rebuildConstraints()
         mainViewController.didMoveToParentViewController(self)
     }
-    
-    func transientToViewController(newMainVC : MRYAbstractMainViewController){
-        let currentVC = mainViewController
-        currentVC.willMoveToParentViewController(nil)
-        self.addChildViewController(newMainVC)
-        self.inputView?.addSubview(newMainVC.view)
-        
-        let width = currentVC.view.bounds.size.width
-        let height = currentVC.view.bounds.size.height
-        newMainVC.view.frame = CGRectMake(MARGIN_LEFT,-height,width,height)
-        
-        self.inputView?.layoutIfNeeded()
-        UIView.animateWithDuration(0.25,
-            delay: 0,
-            options: UIViewAnimationOptions.TransitionNone ,
-            animations: {() -> Void in
-                self.views["main"] = newMainVC.view
-                self.mainViewController = newMainVC
-                self.rebuildMainViewLayout()
-                self.inputView?.layoutIfNeeded()
-            }, completion: {(finished: Bool) -> Void in
-                newMainVC.didMoveToParentViewController(self)
-                currentVC.view.removeFromSuperview()
-                currentVC.removeFromParentViewController()
-        })
-    }
-    
 
-    func transientToViewControllerWithNoAnimation(newMainVC : MRYAbstractMainViewController){
+    func transientToViewController(newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
         currentVC.willMoveToParentViewController(nil)
         currentVC.view.removeFromSuperview()
