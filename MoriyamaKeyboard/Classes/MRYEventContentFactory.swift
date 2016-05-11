@@ -69,20 +69,12 @@ class MRYEventContentFactory {
     func eventContentsAtDateTime(date: NSDate) -> [MRYEventContent]{
         var eventContents : [MRYEventContent] = []
         eventContents.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), Content: Util.string(date, format: "MMMdEHHmm")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time", comment: ""), Content: Util.string(date, format: "MMMdEhm")))
         eventContents.append(MRYEventContent(description: NSLocalizedString("Date time",comment: ""), Content: Util.string(date, format: "MMMd")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Day of week (short)", comment: ""), Content: "(\(Util.string(date, format: "E")))"))
         eventContents.append(MRYEventContent(description: NSLocalizedString("Day of week (long)", comment: ""), Content: Util.string(date, format: "EEEE")))
         if event.allDay{
             eventContents.append(MRYEventContent(description: "", Content: NSLocalizedString("all day", comment: "")))
         }
         eventContents.append(MRYEventContent(description: NSLocalizedString("Time", comment: ""), Content: Util.string(date, format: "HHmm")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Hours(12H)", comment: ""), Content: Util.string(date, format: "h")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Hours(24H)", comment: ""), Content: Util.string(date, format: "H")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Minutes", comment: ""), Content: Util.string(date, format: "m")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Month", comment: ""), Content: Util.string(date, format: "M")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Day", comment: ""), Content: Util.string(date, format: "d")))
-//        eventContents.append(MRYEventContent(description: NSLocalizedString("Year", comment: ""), Content: Util.string(date, format: "Y")))
         return eventContents
     }
 }
