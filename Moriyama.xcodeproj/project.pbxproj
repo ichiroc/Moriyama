@@ -10,6 +10,7 @@
 		5D1547D21C7B0863000C6636 /* TutorialImage9.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D11C7B0863000C6636 /* TutorialImage9.png */; };
 		5D1547D41C7C6BBD000C6636 /* TutorialIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D31C7C6BBD000C6636 /* TutorialIcon.png */; };
 		5D1547D61C7C6BC8000C6636 /* SupportIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D51C7C6BC8000C6636 /* SupportIcon.png */; };
+		5D166CAA1CEE7EA600B60EAE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880601C6EE0B000EDE4B4 /* Localizable.strings */; };
 		5D1E8AAC1C2F30FE0032CCC2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 5D1E8AAB1C2F30FE0032CCC2 /* .gitignore */; };
 		5D1E8AAE1C2F3B1E0032CCC2 /* MRYMonthCalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E8AAD1C2F3B1E0032CCC2 /* MRYMonthCalendarCollectionView.swift */; };
 		5D1E8AB01C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1E8AAF1C2F3C270032CCC2 /* MRYMonthCalendarCollectionViewCell.swift */; };
@@ -276,6 +277,7 @@
 				5D9D802F1C2CB02400623AF7 /* MoriyamaTests */,
 				5D9D803A1C2CB02400623AF7 /* MoriyamaUITests */,
 				5D9D804E1C2D405700623AF7 /* MoriyamaKeyboard */,
+				5DE880601C6EE0B000EDE4B4 /* Localizable.strings */,
 				5D9D80191C2CB02400623AF7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -336,7 +338,6 @@
 				5DD259821C40B56D007C61F6 /* Controller */,
 				5D33D1A61C3DBC7300576CFA /* View */,
 				5D9D80511C2D405700623AF7 /* Info.plist */,
-				5DE880601C6EE0B000EDE4B4 /* Localizable.strings */,
 			);
 			path = MoriyamaKeyboard;
 			sourceTree = "<group>";
@@ -543,6 +544,7 @@
 				5DE880E31C79195600EDE4B4 /* TutorialImage10.png in Resources */,
 				5D9D80211C2CB02400623AF7 /* Main.storyboard in Resources */,
 				5DE880D91C75CF1200EDE4B4 /* TutorialImage3.png in Resources */,
+				5D166CAA1CEE7EA600B60EAE /* Localizable.strings in Resources */,
 				5D1547D21C7B0863000C6636 /* TutorialImage9.png in Resources */,
 				5DD365741C7A799400F6BC47 /* AppImage.png in Resources */,
 			);
@@ -679,6 +681,7 @@
 				5DE880621C71147C00EDE4B4 /* Base */,
 			);
 			name = Localizable.strings;
+			path = MoriyamaKeyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

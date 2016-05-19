@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -21,13 +21,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ld-ur-QzD" userLabel="backgroundView">
                                 <rect key="frame" x="0.0" y="238" width="600" height="121"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
                                         <rect key="frame" x="70" y="16" width="242" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="8m9-el-04y"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                        <state key="normal" title="ApptBoard を使えるようにするには">
+                                        <state key="normal" title="The way to use ApptBoard">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -41,13 +41,13 @@
                                             <constraint firstAttribute="height" constant="35" id="R3h-ES-XFh"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
                                         <rect key="frame" x="70" y="66" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="fNY-wr-Nmg"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                        <state key="normal" title="サポート">
+                                        <state key="normal" title="Support">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -58,14 +58,19 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="65G-n9-itV" firstAttribute="leading" secondItem="2Ld-ur-QzD" secondAttribute="leading" constant="20" id="0Ay-m2-Jf7"/>
+                                    <constraint firstItem="JBG-PU-hn1" firstAttribute="width" secondItem="2vD-E6-r6Y" secondAttribute="width" id="21S-xb-3iK"/>
                                     <constraint firstItem="rtK-zA-Qbs" firstAttribute="width" secondItem="65G-n9-itV" secondAttribute="width" id="9Of-4V-WSJ"/>
                                     <constraint firstItem="JBG-PU-hn1" firstAttribute="leading" secondItem="2vD-E6-r6Y" secondAttribute="leading" id="Gzt-gs-RjK"/>
                                     <constraint firstItem="2vD-E6-r6Y" firstAttribute="top" secondItem="2Ld-ur-QzD" secondAttribute="top" constant="16" id="HMV-Ws-LAf"/>
                                     <constraint firstItem="rtK-zA-Qbs" firstAttribute="height" secondItem="65G-n9-itV" secondAttribute="height" id="QSs-2u-6yA"/>
                                     <constraint firstItem="2vD-E6-r6Y" firstAttribute="leading" secondItem="65G-n9-itV" secondAttribute="trailing" constant="15" id="TKR-gP-De1"/>
+                                    <constraint firstAttribute="trailing" secondItem="2vD-E6-r6Y" secondAttribute="trailing" constant="246" id="Ylb-CW-P6w">
+                                        <variation key="widthClass=compact" constant="20"/>
+                                    </constraint>
                                     <constraint firstItem="rtK-zA-Qbs" firstAttribute="centerY" secondItem="JBG-PU-hn1" secondAttribute="centerY" id="YyO-hf-04e"/>
                                     <constraint firstItem="rtK-zA-Qbs" firstAttribute="centerX" secondItem="65G-n9-itV" secondAttribute="centerX" id="a1u-8c-W4P"/>
                                     <constraint firstItem="2vD-E6-r6Y" firstAttribute="centerY" secondItem="65G-n9-itV" secondAttribute="centerY" id="eyY-dm-PLj"/>
+                                    <constraint firstItem="2vD-E6-r6Y" firstAttribute="leading" secondItem="65G-n9-itV" secondAttribute="trailing" constant="15" id="nnl-LG-OLn"/>
                                     <constraint firstAttribute="height" constant="121" id="xmh-jE-N7O"/>
                                     <constraint firstItem="rtK-zA-Qbs" firstAttribute="top" secondItem="65G-n9-itV" secondAttribute="bottom" constant="15" id="z4P-31-hbt"/>
                                 </constraints>
@@ -75,6 +80,20 @@
                                         <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Ylb-CW-P6w"/>
+                                        <exclude reference="nnl-LG-OLn"/>
+                                        <exclude reference="21S-xb-3iK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Ylb-CW-P6w"/>
+                                        <include reference="nnl-LG-OLn"/>
+                                        <include reference="21S-xb-3iK"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="saz-F2-Kkx">
                                 <rect key="frame" x="238" y="53" width="125" height="125"/>
@@ -135,7 +154,10 @@
                                     <constraint firstAttribute="height" constant="30" id="101-jz-KYR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="15"/>
-                                <state key="normal" title="閉じる"/>
+                                <state key="normal" title="Close"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="178" y="550" width="45" height="30"/>
+                                </variation>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGv-E4-VU7">
                                 <rect key="frame" x="20" y="453" width="560" height="75"/>

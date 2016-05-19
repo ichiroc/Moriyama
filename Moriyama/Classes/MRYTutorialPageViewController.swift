@@ -15,17 +15,17 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     var controllers : [UIViewController] = []
     var pageIndex = 0
     let descriptionTexts = [
-        "ApptBoard キーボードを追加して使えるようにする方法を説明します。まずホーム画面から「設定」アプリを開きます。", //0
-        "「一般」を選択します。", //1
-        "「キーボード」を選択します。", //1
-        "さらに「キーボード」を選択します", //2
-        "「新しいキーボードを追加...」を選択します。", // 3
-        "「ApptBoard」を選択します。", // 4
-        "「ApptBoard」をもう一度選択します。", //5
-        "キーボードからスケジュールを参照するために「フルアクセスを許可」をオンにします。", // 6
-        "警告が表示されますので「許可」を選択します。フルアクセスを許可しても入力内容を収集したりサーバーへ送信することはありません。", // 7
-        "「フルアクセスを許可」がオンになっていれば設定は完了です。キーボードの🌐をタップして切り替えてご利用ください。", // 8
-        "[注意]ApptBoard から予定を表示するには、予定が iPhone の標準カレンダーで表示できている状態である必要があります。"
+        NSLocalizedString("This is instruction which how to add ApptBoard keyboard. First, open 'Setting' from home." , comment: "") , // 0
+        NSLocalizedString("Choose 'Keyboard'" , comment: ""), // 2
+        NSLocalizedString("Choose 'Keyboards'" , comment: ""), // 3
+        NSLocalizedString("Choose 'Add New Keyboard..'" , comment: ""), // 4
+        NSLocalizedString("Choose 'ApptBoard'" , comment: ""), // 5
+        NSLocalizedString("Choose 'ApptBoard' again." , comment: ""),  // 6
+        NSLocalizedString("Enable 'Allow Full Access' to check appointments with a keyboard." , comment: ""), // 9
+        NSLocalizedString("Warning will be shown. Choose 'Allow'. We don't send your input data if you allowed.", comment: "") , // 10
+        NSLocalizedString("If 'Allow Full Access' is enabled, It's done. Use it by tap 🌐 button." , comment: ""), // 11
+        NSLocalizedString("[NOTICE] To check appointments with a keyboard, You must confirm that appointments is shown on default Calendar app.", comment: "") // 12
+
     ]
     var maxPageIndex = 5
     override func viewDidLoad() {

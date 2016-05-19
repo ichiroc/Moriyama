@@ -79,3 +79,14 @@
 "Back" = "戻る";
 
 
+"This is instruction which how to add ApptBoard keyboard. First, open 'Setting' from home." = "ApptBoard キーボードを追加して使えるようにする方法を説明します。まずホーム画面から「設定」アプリを開きます。";
+"Choose 'General'" = "「一般」を選択します。";
+"Choose 'Keyboard'" = "「キーボード」を選択します。";
+"Choose 'Keyboards'" = "さらに「キーボード」を選択します";
+"Choose 'Add New Keyboard..'" = "「新しいキーボードを追加...」を選択します。";
+"Choose 'ApptBoard'" = "「ApptBoard」を選択します。";
+"Choose 'ApptBoard' again." = "「ApptBoard」をもう一度選択します。";
+"Enable 'Allow Full Access' to check appointments with a keyboard." = "キーボードからスケジュールを参照するために「フルアクセスを許可」をオンにします。";
+"Warning will be shown. Choose 'Allow'. We don't send your input data if you allowed." = "警告が表示されますので「許可」を選択します。フルアクセスを許可しても入力内容を収集したりサーバーへ送信することはありません。";
+"If 'Allow Full Access' is enabled, It's done. Use it by tap 🌐 button." = "「フルアクセスを許可」がオンになっていれば設定は完了です。キーボードの🌐をタップして切り替えてご利用ください。";
+"[NOTICE] To check appointments with a keyboard, You must confirm that appointments is shown on default Calendar app."= "[注意]ApptBoard から予定を表示するには、予定が iPhone の標準カレンダーで表示できている状態である必要があります";
