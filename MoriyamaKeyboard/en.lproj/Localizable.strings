@@ -16,7 +16,7 @@
 "space" = "space";
 
 /* Splitter symbol between start date and end date.*/
-"-" = "〜";
+"-" = "-";
 
 /* Punctuation symbol */
 "," = ",";
