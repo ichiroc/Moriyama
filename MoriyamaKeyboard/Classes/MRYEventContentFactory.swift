@@ -56,18 +56,24 @@ class MRYEventContentFactory {
             var openEventRow = MRYEventContent(description: "Edit this event in ApptBoard app. You can back manually.", content: "[Edit]")
             let url = NSURL(string: "moriyama-board://?eventId=\(self.event.eventIdentifier)")
             openEventRow.openEvent = { (vc :UIViewController) -> Void in
-                var responder: UIResponder = vc
-                while responder.nextResponder() != nil {
-                    responder = responder.nextResponder()!
-                    if responder.respondsToSelector("openURL:") == true {
-                        responder.performSelector("openURL:", withObject: url!)
-                    }
-                }
+                self.openEvent(vc)
             }
             generalGroup.eventContents.append(openEventRow)
         }
         return generalGroup
     }
+    
+    private func openEvent(vc: UIViewController){
+        var responder: UIResponder = vc
+        let url = NSURL(string: "moriyama-board://?eventId=\(self.event.eventIdentifier)")
+        while responder.nextResponder() != nil {
+            responder = responder.nextResponder()!
+            if responder.respondsToSelector("openURL:") == true {
+                responder.performSelector("openURL:", withObject: url!)
+            }
+        }
+    }
+    
     private func startDateContentGroup() -> MRYEventContentGroup{
         var startDateGroup = MRYEventContentGroup(description: NSLocalizedString( "Start date", comment: "Start date of event."), eventContents: [])
         startDateGroup.eventContents = eventContentsAtDateTime(event.startDate)
