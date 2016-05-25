@@ -51,6 +51,23 @@ class MRYEventContentFactory {
                 generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("URL", comment: "URL"), Content: url.absoluteString))
             }
         }
+        var editEvent = MRYEventContent(description: "Edit", Content: "[Edit this event]")
+
+        editEvent.openEvent = { (vc :UIViewController) -> Void in
+            var responder: UIResponder = vc
+            self.event
+            while responder.nextResponder() != nil {
+                responder = responder.nextResponder()!
+                let url = NSURL(string: "moriyama-board://?eventId=\(self.event.eventIdentifier)")
+                if responder.respondsToSelector("openURL:") == true {
+                    responder.performSelector("openURL:", withObject: url!)
+//                    responder.performSelector(#selector(UIApplication.openURL(_:)), withObject: url!)
+                }
+            }
+
+//            vc.extensionContext?.openURL(url!, completionHandler: nil)
+        }
+        generalGroup.eventContents.append(editEvent)
         return generalGroup
     }
     private func startDateContentGroup() -> MRYEventContentGroup{

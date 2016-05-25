@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1492D01CF4F4D0003B8BFB /* MRYEventEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1492CF1CF4F4D0003B8BFB /* MRYEventEditViewController.swift */; };
 		5D1547D41C7C6BBD000C6636 /* TutorialIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D31C7C6BBD000C6636 /* TutorialIcon.png */; };
 		5D1547D61C7C6BC8000C6636 /* SupportIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D1547D51C7C6BC8000C6636 /* SupportIcon.png */; };
 		5D166CAA1CEE7EA600B60EAE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DE880601C6EE0B000EDE4B4 /* Localizable.strings */; };
@@ -112,6 +113,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D1492CF1CF4F4D0003B8BFB /* MRYEventEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventEditViewController.swift; path = Classes/MRYEventEditViewController.swift; sourceTree = "<group>"; };
 		5D1547D31C7C6BBD000C6636 /* TutorialIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialIcon.png; sourceTree = "<group>"; };
 		5D1547D51C7C6BC8000C6636 /* SupportIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SupportIcon.png; sourceTree = "<group>"; };
 		5D166CAC1CEF5D6000B60EAE /* ja */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ja; path = ja.lproj/TutorialImage1.png; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 			children = (
 				5DE880B71C7327EF00EDE4B4 /* Assets */,
 				5D9D801B1C2CB02400623AF7 /* AppDelegate.swift */,
+				5D1492CF1CF4F4D0003B8BFB /* MRYEventEditViewController.swift */,
 				5D9D801D1C2CB02400623AF7 /* ViewController.swift */,
 				5D9D801F1C2CB02400623AF7 /* Main.storyboard */,
 				5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */,
@@ -591,6 +594,7 @@
 			files = (
 				5DE880BC1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift in Sources */,
 				5D9D801E1C2CB02400623AF7 /* ViewController.swift in Sources */,
+				5D1492D01CF4F4D0003B8BFB /* MRYEventEditViewController.swift in Sources */,
 				5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */,
 				5DE880C01C7469E300EDE4B4 /* MRYTutorialContentViewController.swift in Sources */,
 			);

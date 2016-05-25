@@ -210,8 +210,7 @@ class KeyboardViewController: UIInputViewController ,
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: METRICS,
             views: views)
-        mainViewConstraints.appendContentsOf(c)
-        
+        mainViewConstraints.appendContentsOf(c)        
         let c2 = NSLayoutConstraint.constraintsWithVisualFormat(
                 "V:|-m_top-[main]-3-[space(40)]-m_bottom-|",
                 options: NSLayoutFormatOptions(rawValue: 0),

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class MRYEventContentsTableViewController:
     MRYAbstractMainViewController, UITableViewDelegate{
     var eventContentsDataStore : MRYEventContentsTableDataSource!
@@ -54,7 +55,7 @@ class MRYEventContentsTableViewController:
         self.view.addSubview(tableView)
         views = [ "back": backButton,
             "table": tableView]
-        
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,7 +64,12 @@ class MRYEventContentsTableViewController:
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        MRYTextDocumentProxy.proxy.insertText(event.datasource[indexPath.section].eventContents[indexPath.row].Content)
+        let content = event.datasource[indexPath.section].eventContents[indexPath.row]
+        if let openEvent = content.openEvent {
+            openEvent(vc:self)
+        }else{
+            MRYTextDocumentProxy.proxy.insertText(content.Content)
+        }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
