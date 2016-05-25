@@ -11,10 +11,10 @@ import UIKit
 
 struct MRYEventContent{
     var description: String
-    var Content: String
+    var content: String
     var openEvent : (( vc: UIViewController ) -> Void)? = nil
-    init(description: String, Content: String){
+    init(description: String, content: String){
         self.description = description
-        self.Content = Content
+        self.content = content
     }
 }

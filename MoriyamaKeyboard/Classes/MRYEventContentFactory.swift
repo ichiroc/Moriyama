@@ -37,23 +37,23 @@ class MRYEventContentFactory {
     
     private func generalContentGroup() -> MRYEventContentGroup{
         var generalGroup = MRYEventContentGroup(description: NSLocalizedString("General", comment : "General informations of event."), eventContents: [])
-        generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Title",comment: "Event title"), Content: event.title))
+        generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Title",comment: "Event title"), content: event.title))
         if let location = event.location{
             if location != ""{
-                generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Location",comment:"Location of event occured."), Content: location))
+                generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Location",comment:"Location of event occured."), content: location))
             }
         }
         if let notes = event.notes {
-            generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Notes", comment : "Event notes"), Content: notes))
+            generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Notes", comment : "Event notes"), content: notes))
         }
         if let url = event.URL{
             if url.description != ""{
-                generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("URL", comment: "URL"), Content: url.absoluteString))
+                generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("URL", comment: "URL"), content: url.absoluteString))
             }
         }
 
         if event.calendar.allowsContentModifications {
-            var openEventRow = MRYEventContent(description: "Edit this event in ApptBoard app. You can back manually.", Content: "[Edit]")
+            var openEventRow = MRYEventContent(description: "Edit this event in ApptBoard app. You can back manually.", content: "[Edit]")
             let url = NSURL(string: "moriyama-board://?eventId=\(self.event.eventIdentifier)")
             openEventRow.openEvent = { (vc :UIViewController) -> Void in
                 var responder: UIResponder = vc
@@ -83,13 +83,13 @@ class MRYEventContentFactory {
     
     func eventContentsAtDateTime(date: NSDate) -> [MRYEventContent]{
         var eventContents : [MRYEventContent] = []
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), Content: Util.string(date, format: "MMMdEHHmm")))
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time",comment: ""), Content: Util.string(date, format: "MMMd")))
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Day of week (long)", comment: ""), Content: Util.string(date, format: "EEEE")))
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), content: Util.string(date, format: "MMMdEHHmm")))
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time",comment: ""), content: Util.string(date, format: "MMMd")))
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Day of week (long)", comment: ""), content: Util.string(date, format: "EEEE")))
         if event.allDay{
-            eventContents.append(MRYEventContent(description: "", Content: NSLocalizedString("all day", comment: "")))
+            eventContents.append(MRYEventContent(description: "", content: NSLocalizedString("all day", comment: "")))
         }
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Time", comment: ""), Content: Util.string(date, format: "HHmm")))
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Time", comment: ""), content: Util.string(date, format: "HHmm")))
         return eventContents
     }
 }

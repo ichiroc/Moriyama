@@ -35,7 +35,7 @@ class MRYEventContentsTableDataSource:
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "textCell")
         }
         
-        cell!.textLabel!.text = event.datasource[indexPath.section].eventContents[indexPath.row].Content.stringByReplacingOccurrencesOfString("\n", withString: " ")
+        cell!.textLabel!.text = event.datasource[indexPath.section].eventContents[indexPath.row].content.stringByReplacingOccurrencesOfString("\n", withString: " ")
         cell!.detailTextLabel?.text = event.datasource[indexPath.section].eventContents[indexPath.row].description
         return cell!
     }

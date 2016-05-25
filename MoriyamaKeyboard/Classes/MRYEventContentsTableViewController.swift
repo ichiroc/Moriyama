@@ -68,7 +68,7 @@ class MRYEventContentsTableViewController:
         if let openEvent = content.openEvent {
             openEvent(vc:self)
         }else{
-            MRYTextDocumentProxy.proxy.insertText(content.Content)
+            MRYTextDocumentProxy.proxy.insertText(content.content)
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
