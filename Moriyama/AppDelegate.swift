@@ -31,18 +31,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        let eventVC = MRYEventEditViewController()
+        eventVC.eventStore = eventStore
+        eventVC.editViewDelegate = eventVC
+        
         // extract event id and open event.
         if let eventId = query["eventId"]{
-            let eventVC = MRYEventEditViewController()
-            eventVC.eventStore = eventStore
-            eventVC.editViewDelegate = eventVC
             if let event = eventStore.eventWithIdentifier(eventId){
                 eventVC.event = event
             }else{
                 eventVC.event = EKEvent(eventStore: eventStore)
             }
-            self.window?.rootViewController!.presentViewController(eventVC, animated: true, completion: nil)
         }
+        
+        if let startDateString = query["startDate"], endDateString = query["endDate"] {
+            let startDate = Util.sharedFormatter().dateFromString(startDateString)
+            let endDate = Util.sharedFormatter().dateFromString(endDateString)
+            eventVC.event = EKEvent(eventStore: eventStore)
+            eventVC.event!.startDate = startDate!
+            eventVC.event!.endDate = endDate!
+        }
+        
+        self.window?.rootViewController!.presentViewController(eventVC, animated: true, completion: nil)
         return true
     }
     

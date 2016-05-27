@@ -29,5 +29,10 @@ class Util: NSObject {
         let comp = cal.components([ .Year, .Month, .Day ], fromDate: date)
         return cal.dateFromComponents(comp)!
     }
-    
+ 
+    class func sharedFormatter() -> NSDateFormatter{
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd-HH-mm"
+        return formatter
+    }
 }

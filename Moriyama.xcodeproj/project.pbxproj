@@ -47,6 +47,7 @@
 		5D9D80501C2D405700623AF7 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */; };
 		5D9D80541C2D405700623AF7 /* ApptBoard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D9D804D1C2D405700623AF7 /* ApptBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5DA7D5CF1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift */; };
+		5DB1F9AC1CF7B7280047394F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD05EAD1C459F0C00938176 /* Util.swift */; };
 		5DC19C511C485F250030B282 /* MRYMonthCalendarCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC19C501C485F250030B282 /* MRYMonthCalendarCollectionViewDataSource.swift */; };
 		5DC19C8F1C4C35710030B282 /* MRYMonthCalendarCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC19C8E1C4C35710030B282 /* MRYMonthCalendarCollectionViewController.swift */; };
 		5DD05EAE1C459F0C00938176 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD05EAD1C459F0C00938176 /* Util.swift */; };
@@ -592,6 +593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DB1F9AC1CF7B7280047394F /* Util.swift in Sources */,
 				5DE880BC1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift in Sources */,
 				5D9D801E1C2CB02400623AF7 /* ViewController.swift in Sources */,
 				5D1492D01CF4F4D0003B8BFB /* MRYEventEditViewController.swift in Sources */,

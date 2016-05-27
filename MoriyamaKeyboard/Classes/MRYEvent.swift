@@ -83,11 +83,16 @@ class MRYEvent: NSObject {
     
     func endDateGroupWithMinutesInterval( minutes : Int ) -> MRYEventContentGroup{
         let contentFactory = MRYEventContentFactory(event: self)
-//        var endDateGroup = MRYEventContentGroup(description:  NSLocalizedString("End date ( \(minutes) minutes )",comment: "End date of event ( \(minutes) minutes )."), eventContents: [])
         var endDateGroup = MRYEventContentGroup(description:
             NSLocalizedString("End date" , comment:"") + "( \(minutes) " +
                 NSLocalizedString("minutes", comment: "") + " )", eventContents: [])
-        endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(self.startDate.dateByAddingTimeInterval(Double(60 * minutes )))
+        let endDate = self.startDate.dateByAddingTimeInterval(Double(60 * minutes ))
+        endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(endDate)
+        var createContent = MRYEventContent(description: "Create a event with this time in ApptBoard app. You can back to current app manually.", content: "📝 [Create]" )
+        createContent.openEvent = { ( vc: UIViewController) -> Void in
+            contentFactory.openEvent(vc,startDate: self.startDate, endDate: endDate)
+        }
+        endDateGroup.eventContents.append(createContent)
         return endDateGroup
     }
 }

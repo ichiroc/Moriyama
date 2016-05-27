@@ -53,8 +53,8 @@ class MRYEventContentFactory {
         }
 
         if event.calendar.allowsContentModifications {
-            var openEventRow = MRYEventContent(description: "Edit this event in ApptBoard app. You can back manually.", content: "[Edit]")
-            let url = NSURL(string: "moriyama-board://?eventId=\(self.event.eventIdentifier)")
+            var openEventRow = MRYEventContent(description: "Edit this event in ApptBoard app. You can back to current app manually.",
+                                               content: "📝 [Edit]")
             openEventRow.openEvent = { (vc :UIViewController) -> Void in
                 self.openEvent(vc)
             }
@@ -63,13 +63,21 @@ class MRYEventContentFactory {
         return generalGroup
     }
     
-    private func openEvent(vc: UIViewController){
+    func openEvent(vc: UIViewController,startDate: NSDate? = nil, endDate : NSDate? = nil){
         var responder: UIResponder = vc
-        let url = NSURL(string: "moriyama-board://?eventId=\(self.event.eventIdentifier)")
+        var urlString = "moriyama-board://?"
+        if let sd = startDate, ed = endDate {
+            let sdtxt = Util.sharedFormatter().stringFromDate( sd )
+            let edtxt = Util.sharedFormatter().stringFromDate( ed )
+            urlString += "startDate=\(sdtxt)&endDate=\(edtxt)"
+        }else{
+            urlString += "eventId=\(self.event.eventIdentifier)"
+        }        
+        let url = NSURL(string: urlString)!
         while responder.nextResponder() != nil {
             responder = responder.nextResponder()!
             if responder.respondsToSelector("openURL:") == true {
-                responder.performSelector("openURL:", withObject: url!)
+                responder.performSelector("openURL:", withObject: url)
             }
         }
     }
