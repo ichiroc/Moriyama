@@ -90,3 +90,8 @@
 "Warning will be shown. Choose 'Allow'. We don't send your input data if you allowed." = "警告が表示されますので「許可」を選択します。フルアクセスを許可しても入力内容を収集したりサーバーへ送信することはありません。";
 "If 'Allow Full Access' is enabled, It's done. Use it by tap 🌐 button." = "「フルアクセスを許可」がオンになっていれば設定は完了です。キーボードの🌐をタップして切り替えてご利用ください。";
 "[NOTICE] To check appointments with a keyboard, You must confirm that appointments is shown on default Calendar app."= "[注意]ApptBoard から予定を表示するには、予定が iPhone の標準カレンダーで表示できている状態である必要があります";
+
+"Edit this event" = "このイベントを編集";
+"Edit this event in ApptBoard app. You can go back to current app manually." = "ApptBoardアプリ上で編集します。現在のアプリには手動で戻ります。";
+"Create with this time" = "この時間で作成";
+"Create a event with this time in ApptBoard app. You can back to current app manually." = "ApptBoardアプリへ移動してこの時間で作成します。現在のアプリには手動で戻ります。";

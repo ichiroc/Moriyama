@@ -53,8 +53,9 @@ class MRYEventContentFactory {
         }
 
         if event.calendar.allowsContentModifications {
-            var openEventRow = MRYEventContent(description: "Edit this event in ApptBoard app. You can back to current app manually.",
-                                               content: "📝 [Edit]")
+            let title = NSLocalizedString("Edit this event", comment: "")
+            let description =  NSLocalizedString("Edit this event in ApptBoard app. You can go back to current app manually.",comment: "")
+            var openEventRow = MRYEventContent( description: description, content: "📝 \(title)")
             openEventRow.openEvent = { (vc :UIViewController) -> Void in
                 self.openEvent(vc)
             }
