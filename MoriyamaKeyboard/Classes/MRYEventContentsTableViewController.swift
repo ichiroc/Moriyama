@@ -24,7 +24,7 @@ class MRYEventContentsTableViewController:
         accessoryView?.backButton.customAction = { [unowned self] in self.popViewController() }
         
         if event.calendar.allowsContentModifications {
-            let openEventButton = MRYKeyboardButton(title: "Create an event")
+            let openEventButton = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""))
             let appIcon = UIImage.init(named: "AppImageSmall.png")
             openEventButton.setImage(appIcon, forState: .Normal)
             openEventButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
@@ -37,7 +37,7 @@ class MRYEventContentsTableViewController:
                     accessoryView?.buttons.append(openEventButton)
                 })
             }else{
-                openEventButton.setTitle("Edit this event", forState: .Normal)
+                openEventButton.setTitle(NSLocalizedString("Edit this event", comment: ""), forState: .Normal)
                 openEventButton.customAction =  {[unowned self] in self.openEvent() }
                 accessoryView?.buttons.append(openEventButton)
             }

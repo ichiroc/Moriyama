@@ -19,7 +19,7 @@ class MRYEventContentsAccessoryView: UIView {
     }
     */
     let event : MRYEvent
-    let backButton = MRYKeyboardButton(title: "Back", text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
+    let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
 
 //    var buttons : [MRYKeyboardButton] = []
     var buttons : [UIButton] = []

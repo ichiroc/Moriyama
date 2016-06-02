@@ -11,11 +11,11 @@ import EventKit
 import EventKitUI
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, EKEventEditViewDelegate {
     
     var window: UIWindow?
-    var eventEditVC : MRYEventEditViewController?
     let eventStore = EKEventStore()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -31,32 +31,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        self.eventEditVC = MRYEventEditViewController()
-        if let vc = self.eventEditVC {
-        vc.eventStore = eventStore
-        vc.editViewDelegate = vc
+        let eventEditVC = MRYEventEditViewController()
+        eventEditVC.eventStore = eventStore
+        eventEditVC.editViewDelegate = self
         
         // extract event id and open event.
         if let eventId = query["eventId"]{
             if let event = eventStore.eventWithIdentifier(eventId){
-                vc.event = event
+                eventEditVC.event = event
             }else{
-                vc.event = EKEvent(eventStore: eventStore)
+                eventEditVC.event = EKEvent(eventStore: eventStore)
             }
         }
         
         if let startDateString = query["startDate"], endDateString = query["endDate"] {
             let startDate = Util.sharedFormatter().dateFromString(startDateString)
             let endDate = Util.sharedFormatter().dateFromString(endDateString)
-            vc.event = EKEvent(eventStore: eventStore)
-            vc.event!.startDate = startDate!
-            vc.event!.endDate = endDate!
+            eventEditVC.event = EKEvent(eventStore: eventStore)
+            eventEditVC.event!.startDate = startDate!
+            eventEditVC.event!.endDate = endDate!
         }
         
-        self.window?.rootViewController!.presentViewController(vc, animated: true, completion: nil)
-        }
+        self.window?.rootViewController!.presentViewController(eventEditVC, animated: true, completion: nil)
+
         return true
     }
+    
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -66,10 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        if let vc = self.eventEditVC{
-            vc.dismissViewControllerAnimated(false, completion: nil)
-            self.eventEditVC = nil
-        }
+        self.window?.rootViewController?.dismissViewControllerAnimated(false, completion: nil)
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -84,6 +81,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func eventEditViewController(controller: EKEventEditViewController, didCompleteWithAction action: EKEventEditViewAction) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        let alert = UIAlertController(title: "ApptBoard", message: NSLocalizedString("You can go back to original App manually", comment: "") , preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK",
+                                   style: .Default,
+                                   handler: { [unowned alert] (action: UIAlertAction) in
+            alert.dismissViewControllerAnimated(true, completion: nil)
+            })
+        alert.addAction(action)
+        self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    }
 
 }
 

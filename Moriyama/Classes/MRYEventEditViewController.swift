@@ -8,7 +8,7 @@
 
 import UIKit
 import EventKitUI
-class MRYEventEditViewController: EKEventEditViewController,EKEventEditViewDelegate {
+class MRYEventEditViewController: EKEventEditViewController {
 
     var evnetStore : EKEventStore?
     override func viewDidLoad() {
@@ -22,9 +22,6 @@ class MRYEventEditViewController: EKEventEditViewController,EKEventEditViewDeleg
         // Dispose of any resources that can be recreated.
     }
     
-    func eventEditViewController(controller: EKEventEditViewController, didCompleteWithAction action: EKEventEditViewAction) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
 
 
     /*
