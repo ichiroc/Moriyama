@@ -10,7 +10,6 @@ import UIKit
 import EventKit
 
 class MRYDayViewController: MRYAbstractMainViewController {
-//    var monthlyView : MRYMonthCalendarCollectionView?
     let currentDate: NSDate
     private var _events : [MRYEvent]?
     private var events : [MRYEvent] {
@@ -119,8 +118,9 @@ class MRYDayViewController: MRYAbstractMainViewController {
         let point = recognizer.locationInView(timelineContainerView)
         let oddsTime = point.y % (timelineContainerView.hourlyHeight / 2 )
         let posY = point.y - oddsTime
+
         let rawEvent = EKEvent(eventStore: MRYEventDataStore.sharedStore.rawStore)
-        
+        rawEvent.calendar = MRYEventDataStore.sharedStore.defaultCalendar
         switch recognizer.state{
         case .Began:
             if timelineContainerView.isLocationInEventView(recognizer) {

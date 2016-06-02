@@ -9,32 +9,33 @@
 import UIKit
 
 class MRYKeyboardButton : UIButton{
-    var _text: String?
+    private var _text: String?
     var customAction : (() -> Void)?
-    let normalBackgroundColor: UIColor = UIColor.whiteColor()
-    let normalTitleColor : UIColor = UIColor.blackColor()
+    private let normalBackgroundColor: UIColor = UIColor.whiteColor()
+    private let normalTitleColor : UIColor = UIColor.blackColor()
     
    /** 
      Image Button
      */
     init(imageFileName: String,
-        backgroundColor: UIColor? = nil,
-        action: (() -> Void)? = nil,
-        round : CGFloat = 3.0 ){
-            super.init(frame: CGRectZero)
-            self.translatesAutoresizingMaskIntoConstraints = false
+         backgroundColor: UIColor? = nil,
+         action: (() -> Void)? = nil,
+         round : CGFloat = 3.0 ){
+        super.init(frame: CGRectZero)
+        self.translatesAutoresizingMaskIntoConstraints = false
             
-            self.setImage(UIImage.init(named: imageFileName), forState: .Normal)
-            self.imageView?.contentMode = .ScaleAspectFit
-            self.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-            customAction = action
-            backgroundColor.map{ normalBackgroundColor = $0 }
-            self.backgroundColor = normalBackgroundColor
-            self.layer.cornerRadius = round
-            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
-            self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
-            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
+        self.setImage(UIImage.init(named: imageFileName), forState: .Normal)
+        self.imageView?.contentMode = .ScaleAspectFit
+        self.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        self.customAction = action
+        backgroundColor.map{ normalBackgroundColor = $0 }
+        self.backgroundColor = normalBackgroundColor
+        self.layer.cornerRadius = round
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
     }
+    
     
     /**
      Text Button

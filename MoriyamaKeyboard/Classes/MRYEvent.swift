@@ -88,15 +88,7 @@ class MRYEvent: NSObject {
                 NSLocalizedString("minutes", comment: "") + " )", eventContents: [])
         let endDate = self.startDate.dateByAddingTimeInterval(Double(60 * minutes ))
         endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(endDate)
-        let startAndEnd = "\(Util.string(self.startDate, format: "HH:mm")) - \(Util.string(endDate, format: "HH:mm"))"
-        let title = NSLocalizedString("Create with this time", comment: "")
-        let description = NSLocalizedString("Create a event with this time in ApptBoard app. You can back to current app manually.", comment: "")
-        var createContent = MRYEventContent(description: description , content: "📝 \(title) (\(startAndEnd))" )
-        
-        createContent.openEvent = { ( vc: UIViewController) -> Void in
-            contentFactory.openEvent(vc,startDate: self.startDate, endDate: endDate)
-        }
-        endDateGroup.eventContents.append(createContent)
+
         return endDateGroup
     }
 }

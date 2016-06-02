@@ -14,11 +14,35 @@ class MRYEventContentsTableViewController:
     var eventContentsDataStore : MRYEventContentsTableDataSource!
     private var event: MRYEvent!
     var views : [String: UIView] = [:]
+    private  var accessoryView : MRYEventContentsAccessoryView?
     
     init(event _event: MRYEvent, fromViewController: MRYAbstractMainViewController){
         event = _event
         eventContentsDataStore = MRYEventContentsTableDataSource(event: event)
         super.init(fromViewController: fromViewController)
+        accessoryView = MRYEventContentsAccessoryView(event: event, viewController: self)
+        accessoryView?.backButton.customAction = { [unowned self] in self.popViewController() }
+        
+        if event.calendar.allowsContentModifications {
+            let openEventButton = MRYKeyboardButton(title: "Create an event")
+            let appIcon = UIImage.init(named: "AppImageSmall.png")
+            openEventButton.setImage(appIcon, forState: .Normal)
+            openEventButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+            if event.eventIdentifier == "" {
+                [120].forEach({ (min) in
+                    openEventButton.customAction = {[unowned self] in
+                        self.event.endDate = NSDate(timeInterval: Double(min * 60) , sinceDate: self.event.startDate)
+                        self.openEvent(self.event.startDate, endDate: self.event.endDate)
+                    }
+                    accessoryView?.buttons.append(openEventButton)
+                })
+            }else{
+                openEventButton.setTitle("Edit this event", forState: .Normal)
+                openEventButton.customAction =  {[unowned self] in self.openEvent() }
+                accessoryView?.buttons.append(openEventButton)
+            }
+        }
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,10 +58,11 @@ class MRYEventContentsTableViewController:
         self.view.addConstraints(tableHorizonalConstraints)
         
         let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[back(35)]-1-[table]|",
+            "V:|[accessory(35)]-1-[table]|",
             options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllTrailing] ,
             metrics: METRICS,
             views: views)
+
         self.view.addConstraints(verticalConstraints)
         super.viewWillAppear(animated)
     }
@@ -47,14 +72,14 @@ class MRYEventContentsTableViewController:
         self.view.translatesAutoresizingMaskIntoConstraints = false
 
         // Do any additional setup after loading the view.
-        let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: "Back"),titleColor: UIColor.blueColor() , action:  { self.popViewController() },round: 0 )
-        self.view.addSubview(backButton)
+
         let tableView = MRYEventContentsTableView(event: event! )
         tableView.delegate = self
         tableView.dataSource = eventContentsDataStore
         self.view.addSubview(tableView)
-        views = [ "back": backButton,
-            "table": tableView]
+        self.view.addSubview(accessoryView!)
+        views = [ "accessory": accessoryView!,
+                  "table": tableView]
 
     }
     
@@ -63,13 +88,30 @@ class MRYEventContentsTableViewController:
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func openEvent(startDate: NSDate? = nil, endDate : NSDate? = nil){
+        var responder: UIResponder = self
+        var urlString = "moriyama-board://?"
+        if let sd = startDate, ed = endDate {
+            let sdtxt = Util.sharedFormatter().stringFromDate( sd )
+            let edtxt = Util.sharedFormatter().stringFromDate( ed )
+            urlString += "startDate=\(sdtxt)&endDate=\(edtxt)"
+        }else{
+            urlString += "eventId=\(self.event.eventIdentifier)"
+        }
+        let url = NSURL(string: urlString)!
+        while responder.nextResponder() != nil {
+            responder = responder.nextResponder()!
+            if responder.respondsToSelector("openURL:") == true {
+                responder.performSelector("openURL:", withObject: url)
+            }
+        }
+    }
+
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let content = event.datasource[indexPath.section].eventContents[indexPath.row]
-        if let openEvent = content.openEvent {
-            openEvent(vc:self)
-        }else{
-            MRYTextDocumentProxy.proxy.insertText(content.content)
-        }
+        MRYTextDocumentProxy.proxy.insertText(content.content)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
