@@ -18,15 +18,12 @@ class MRYEventContentsAccessoryView: UIView {
         // Drawing code
     }
     */
-    let event : MRYEvent
-    let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
 
-//    var buttons : [MRYKeyboardButton] = []
-    var buttons : [UIButton] = []
-    let viewController: UIViewController
+    let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
+    var buttons : [MRYKeyboardButton] = []
+
+
     init(event :MRYEvent, viewController: UIViewController){
-        self.event = event
-        self.viewController = viewController
         super.init(frame: CGRectZero)
         self.addSubview(backButton)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -35,9 +32,6 @@ class MRYEventContentsAccessoryView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not implemented")
-        self.event = MRYEvent(event: EKEvent())
-        self.viewController = UIViewController()
-        super.init(frame: CGRectZero)
     }
     
     override func layoutSubviews() {

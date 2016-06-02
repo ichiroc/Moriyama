@@ -32,7 +32,7 @@ class MRYTimelineContainerView : UIScrollView{
     
     var events: [MRYEvent] = []
     var eventViews: [MRYEventView] = []
-    let dayViewController: MRYDayViewController
+    unowned let dayViewController: MRYDayViewController
   
     var currentDate : NSDate {
         get{
