@@ -9,61 +9,39 @@
 import UIKit
 
 class MRYKeyboardButton : UIButton{
-    private var _text: String?
+    private var content: String?
     var customAction : (() -> Void)?
-    private let normalBackgroundColor: UIColor = UIColor.whiteColor()
-    private let normalTitleColor : UIColor = UIColor.blackColor()
+    private var normalBackgroundColor: UIColor = UIColor.whiteColor()
+    private var normalTitleColor : UIColor = UIColor.blackColor()
     
-   /** 
-     Image Button
-     */
-    init(imageFileName: String,
-         backgroundColor: UIColor? = nil,
-         action: (() -> Void)? = nil,
-         round : CGFloat = 3.0 ){
+    init( title: String? = nil, imageFileName : String? = nil, text: String? = nil, backgroundColor : UIColor? = nil, titleColor: UIColor? = nil,  action: (() -> Void)? = nil, round: CGFloat = 3.0){
+        
+        self.customAction = action
+        self.content = text == nil ? title  : text
         super.init(frame: CGRectZero)
         self.translatesAutoresizingMaskIntoConstraints = false
-            
-        self.setImage(UIImage.init(named: imageFileName), forState: .Normal)
-        self.imageView?.contentMode = .ScaleAspectFit
-        self.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        self.customAction = action
-        backgroundColor.map{ normalBackgroundColor = $0 }
+        if let t = title{
+            self.setTitle(t, forState: .Normal)
+            self.titleLabel?.font = UIFont.systemFontOfSize(16)
+            normalTitleColor = titleColor == nil ? normalTitleColor : titleColor!
+            self.setTitleColor(normalTitleColor, forState: .Normal)
+        }
+        if let img = imageFileName {
+            self.setImage(UIImage.init(named: img), forState: .Normal)
+            self.imageView?.contentMode = .ScaleAspectFit
+            self.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        }
+
+        normalBackgroundColor = backgroundColor == nil ? normalBackgroundColor : backgroundColor!
         self.backgroundColor = normalBackgroundColor
         self.layer.cornerRadius = round
+        addGeneralEvents()
+    }
+    
+    private func addGeneralEvents(){
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
-    }
-    
-    
-    /**
-     Text Button
-     */
-    init( title: String,
-        text: String? = nil,
-        backgroundColor : UIColor? = nil,
-        titleColor: UIColor? = nil,
-        action: (() -> Void)? = nil,
-        round: CGFloat = 3.0){
-            customAction = action
-            if let txt = text {
-                _text = txt
-            }else{
-                _text = title
-            }
-            super.init(frame: CGRectZero)
-            self.translatesAutoresizingMaskIntoConstraints = false
-            titleColor.map{ normalTitleColor = $0 }
-            self.setTitle(title, forState: .Normal)
-            self.titleLabel?.font = UIFont.systemFontOfSize(16)
-            self.setTitleColor(normalTitleColor, forState: .Normal)
-            backgroundColor.map{ normalBackgroundColor = $0 }
-            self.backgroundColor = normalBackgroundColor
-            self.layer.cornerRadius = round
-            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
-            self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
-            self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
     }
     
     override init(frame: CGRect) {
@@ -94,7 +72,7 @@ class MRYKeyboardButton : UIButton{
             action()
             return
         }
-        if let text = _text{
+        if let text = content{
             MRYTextDocumentProxy.proxy.insertText(text)
         }
     }

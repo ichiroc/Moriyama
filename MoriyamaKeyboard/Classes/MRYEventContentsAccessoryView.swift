@@ -22,7 +22,6 @@ class MRYEventContentsAccessoryView: UIView {
     let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
     var buttons : [MRYKeyboardButton] = []
 
-
     init(event :MRYEvent, viewController: UIViewController){
         super.init(frame: CGRectZero)
         self.addSubview(backButton)
