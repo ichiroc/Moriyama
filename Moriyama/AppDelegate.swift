@@ -14,7 +14,7 @@ import EventKitUI
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-
+    var eventEditVC : MRYEventEditViewController?
     let eventStore = EKEventStore()
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,28 +31,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        let eventVC = MRYEventEditViewController()
-        eventVC.eventStore = eventStore
-        eventVC.editViewDelegate = eventVC
+        self.eventEditVC = MRYEventEditViewController()
+        if let vc = self.eventEditVC {
+        vc.eventStore = eventStore
+        vc.editViewDelegate = vc
         
         // extract event id and open event.
         if let eventId = query["eventId"]{
             if let event = eventStore.eventWithIdentifier(eventId){
-                eventVC.event = event
+                vc.event = event
             }else{
-                eventVC.event = EKEvent(eventStore: eventStore)
+                vc.event = EKEvent(eventStore: eventStore)
             }
         }
         
         if let startDateString = query["startDate"], endDateString = query["endDate"] {
             let startDate = Util.sharedFormatter().dateFromString(startDateString)
             let endDate = Util.sharedFormatter().dateFromString(endDateString)
-            eventVC.event = EKEvent(eventStore: eventStore)
-            eventVC.event!.startDate = startDate!
-            eventVC.event!.endDate = endDate!
+            vc.event = EKEvent(eventStore: eventStore)
+            vc.event!.startDate = startDate!
+            vc.event!.endDate = endDate!
         }
         
-        self.window?.rootViewController!.presentViewController(eventVC, animated: true, completion: nil)
+        self.window?.rootViewController!.presentViewController(vc, animated: true, completion: nil)
+        }
         return true
     }
     
@@ -64,6 +66,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        if let vc = self.eventEditVC{
+            vc.dismissViewControllerAnimated(false, completion: nil)
+            self.eventEditVC = nil
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
