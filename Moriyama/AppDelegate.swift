@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EKEventEditViewDelegate {
 
     func eventEditViewController(controller: EKEventEditViewController, didCompleteWithAction action: EKEventEditViewAction) {
         controller.dismissViewControllerAnimated(true, completion: nil)
-        let alert = UIAlertController(title: "ApptBoard", message: NSLocalizedString("You can go back to original App manually", comment: "") , preferredStyle: .Alert)
+        let alert = UIAlertController(title: "ApptBoard", message: NSLocalizedString("You can go back to original App manually.", comment: "") , preferredStyle: .Alert)
         let action = UIAlertAction(title: "OK",
                                    style: .Default,
                                    handler: { [unowned alert] (action: UIAlertAction) in
