@@ -114,16 +114,18 @@ class KeyboardViewController: UIInputViewController ,
         
         self.nextKeyboardButton = MRYKeyboardButton(imageFileName: "globe",
             backgroundColor: UIColor.lightGrayColor(),
-            action: { self.advanceToNextInputMode() })
+            action: { [unowned self] in self.advanceToNextInputMode() })
         let returnKeyButton = MRYKeyboardButton(
             title: "↩︎",
             text: "\n",
             backgroundColor: UIColor.blueColor(),
             titleColor: UIColor.whiteColor())
-        deleteKeyButton = MRYKeyboardButton( title: "⌫",
+        self.deleteKeyButton = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
-            action: {() -> Void in self.deleteText() } )
-        deleteKeyButton.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(KeyboardViewController.longPressDeleteButton(_:))))
+            action: {[unowned self] in self.deleteText() } )
+        let longPressGesture = UILongPressGestureRecognizer(target: self,
+                                                            action: #selector(KeyboardViewController.longPressDeleteButton(_:)))
+        self.deleteKeyButton.addGestureRecognizer(longPressGesture)
 
         if let mainVC = mainViewController as? MRYMonthCalendarViewController{
             MRYEventDataStore.sharedStore.loadAllEvents()

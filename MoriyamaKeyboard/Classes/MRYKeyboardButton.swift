@@ -38,6 +38,7 @@ class MRYKeyboardButton : UIButton{
         addGeneralEvents()
     }
     
+
     private func addGeneralEvents(){
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
@@ -45,10 +46,10 @@ class MRYKeyboardButton : UIButton{
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
+        fatalError("init(frame:) is not implemented")
     }
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
     func touchDown(){
