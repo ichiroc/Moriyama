@@ -34,22 +34,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EKEventEditViewDelegate {
         let eventEditVC = MRYEventEditViewController()
         eventEditVC.eventStore = eventStore
         eventEditVC.editViewDelegate = self
-        
-        // extract event id and open event.
-        if let eventId = query["eventId"]{
-            if let event = eventStore.eventWithIdentifier(eventId){
-                eventEditVC.event = event
-            }else{
-                eventEditVC.event = EKEvent(eventStore: eventStore)
-            }
-        }
-        
+
+
         if let startDateString = query["startDate"], endDateString = query["endDate"] {
             let startDate = Util.sharedFormatter().dateFromString(startDateString)
             let endDate = Util.sharedFormatter().dateFromString(endDateString)
-            eventEditVC.event = EKEvent(eventStore: eventStore)
-            eventEditVC.event!.startDate = startDate!
-            eventEditVC.event!.endDate = endDate!
+            if let eventId = query["eventId"] {
+                let predicate = eventStore.predicateForEventsWithStartDate(startDate!, endDate: endDate!, calendars: nil )
+                let events = eventStore.eventsMatchingPredicate(predicate)
+                eventEditVC.event = events.filter({ $0.eventIdentifier == eventId }).first
+            }else{
+                eventEditVC.event = EKEvent(eventStore: eventStore)
+                eventEditVC.event!.startDate = startDate!
+                eventEditVC.event!.endDate = endDate!
+            }
+
         }
         
         self.window?.rootViewController!.presentViewController(eventEditVC, animated: true, completion: nil)

@@ -38,7 +38,9 @@ class MRYEventContentsTableViewController:
                 })
             }else{
                 openEventButton.setTitle(NSLocalizedString("Edit this event", comment: ""), forState: .Normal)
-                openEventButton.customAction =  {[unowned self] in self.openEvent() }
+                openEventButton.customAction =  {[unowned self] in
+                    self.openEvent(self.event.startDate,endDate:self.event.endDate)
+                }
                 accessoryView?.buttons.append(openEventButton)
             }
         }
@@ -89,16 +91,18 @@ class MRYEventContentsTableViewController:
     }
     
     
-    func openEvent(startDate: NSDate? = nil, endDate : NSDate? = nil){
+    func openEvent(startDate: NSDate, endDate : NSDate){
         var responder: UIResponder = self
         var urlString = "moriyama-board://?"
-        if let sd = startDate, ed = endDate {
-            let sdtxt = Util.sharedFormatter().stringFromDate( sd )
-            let edtxt = Util.sharedFormatter().stringFromDate( ed )
-            urlString += "startDate=\(sdtxt)&endDate=\(edtxt)"
-        }else{
+
+        if self.event.eventIdentifier != "" {
             urlString += "eventId=\(self.event.eventIdentifier)"
         }
+        
+        let sdtxt = Util.sharedFormatter().stringFromDate( startDate )
+        let edtxt = Util.sharedFormatter().stringFromDate( endDate )
+        urlString += "&startDate=\(sdtxt)&endDate=\(edtxt)"
+
         let url = NSURL(string: urlString)!
         while responder.nextResponder() != nil {
             responder = responder.nextResponder()!
