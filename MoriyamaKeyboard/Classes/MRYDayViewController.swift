@@ -21,16 +21,11 @@ class MRYDayViewController: MRYAbstractMainViewController {
             return _events!
         }
     }
-    private var _allDayEvents : [MRYEvent]?
-    private var allDayEvents: [MRYEvent] {
-        get {
-            if _allDayEvents != nil {
-                return _allDayEvents!
-            }
-            _allDayEvents = MRYEventDataStore.sharedStore.allDayEvents(currentDate)
-            return _allDayEvents!
-        }
-    }
+
+    private lazy var allDayEvents: [MRYEvent] = { [unowned self ] in
+        MRYEventDataStore.sharedStore.allDayEvents(self.currentDate)
+    }()
+
     private var allDayEventView : UIView!
     private var managedSubViews : [String: UIView] = [:]
     private var accessoryKeyView : UIView!
