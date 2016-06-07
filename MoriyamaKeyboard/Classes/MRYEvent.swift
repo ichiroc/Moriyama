@@ -67,7 +67,7 @@ class MRYEvent: NSObject {
     }
     
     private func defaultDataSource() -> [MRYEventContentGroup]{
-        datasource = []
+        self.datasource = [] // refresh
         let factory = MRYEventContentFactory(event: self)
         return factory.eventContentDatasource([.General,.StartDate, .EndDate])
     }
