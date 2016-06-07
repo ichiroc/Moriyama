@@ -66,7 +66,9 @@ class KeyboardViewController: UIInputViewController ,
         }
         super.viewDidAppear(animated)
     }
+    
     override func viewDidLayoutSubviews() {
+        // Keyboard app detect orientation only in viewDidLayoutSubviews.
         let bounds = UIScreen.mainScreen().bounds
         let previousOrientation = currentOrientation
         if bounds.height > bounds.width {
@@ -74,12 +76,15 @@ class KeyboardViewController: UIInputViewController ,
         }else{
             currentOrientation = Orientation.Landscape
         }
-        if currentOrientation != previousOrientation{
-            if constraintsInitialized {
-                rebuildMainViewLayout()
-            }
-            mainViewController.viewDidChangeOrientation(currentOrientation)
+        
+        if currentOrientation == previousOrientation{
+            return
         }
+
+        if constraintsInitialized {
+            rebuildMainViewLayout()
+        }
+        mainViewController.viewDidChangeOrientation(currentOrientation)
     }
     
     func longPressDeleteButton( recognizer: UILongPressGestureRecognizer){
