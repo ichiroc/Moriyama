@@ -47,18 +47,9 @@ class MRYEvent: NSObject {
         get { return _event.allDay }
     }
     
-    var _datasource : [MRYEventContentGroup]?
-    var datasource : [MRYEventContentGroup] {
-        get {
-            if _datasource == nil{
-                _datasource = defaultDataSource()
-            }
-            return _datasource!
-        }
-        set{
-            _datasource = newValue
-        }
-    }
+    lazy var datasource : [MRYEventContentGroup] =  { [unowned self] in
+        self.defaultDataSource()
+    }()
     
     
     func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
@@ -75,7 +66,7 @@ class MRYEvent: NSObject {
         super.init()
     }
     
-    func defaultDataSource() -> [MRYEventContentGroup]{
+    private func defaultDataSource() -> [MRYEventContentGroup]{
         datasource = []
         let factory = MRYEventContentFactory(event: self)
         return factory.eventContentDatasource([.General,.StartDate, .EndDate])

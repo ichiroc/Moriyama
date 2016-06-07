@@ -11,17 +11,11 @@ import EventKit
 
 class MRYDayViewController: MRYAbstractMainViewController {
     let currentDate: NSDate
-    private var _events : [MRYEvent]?
-    private var events : [MRYEvent] {
-        get {
-            if _events != nil {
-                return _events!
-            }
-            _events = MRYEventDataStore.sharedStore.eventsWithDate(currentDate)
-            return _events!
-        }
-    }
 
+    private lazy var events : [MRYEvent] = { [unowned self] in
+            MRYEventDataStore.sharedStore.eventsWithDate(self.currentDate)
+    }()
+    
     private lazy var allDayEvents: [MRYEvent] = { [unowned self ] in
         MRYEventDataStore.sharedStore.allDayEvents(self.currentDate)
     }()
@@ -39,15 +33,13 @@ class MRYDayViewController: MRYAbstractMainViewController {
     }
     
     init(date: NSDate, fromViewController: MRYAbstractMainViewController?) {
-        currentDate = Util.removeHms(date)
+        self.currentDate = Util.removeHms(date)
         super.init(fromViewController: fromViewController)
-        timelineContainerView = MRYTimelineContainerView(events: events, viewController: self)
+        self.timelineContainerView = MRYTimelineContainerView(events: events, viewController: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        currentDate = Util.removeHms(NSDate())
-        timelineContainerView = MRYTimelineContainerView(coder: aDecoder)!
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
 
