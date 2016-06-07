@@ -11,9 +11,9 @@ import UIKit
 
 class MRYEventContentsTableViewController:
     MRYAbstractMainViewController, UITableViewDelegate{
-    var eventContentsDataStore : MRYEventContentsTableDataSource!
+    private var eventContentsDataStore : MRYEventContentsTableDataSource!
     private var event: MRYEvent!
-    var views : [String: UIView] = [:]
+    private var views : [String: UIView] = [:]
     private  var accessoryView : MRYEventContentsAccessoryView?
     
     init(event _event: MRYEvent, fromViewController: MRYAbstractMainViewController){

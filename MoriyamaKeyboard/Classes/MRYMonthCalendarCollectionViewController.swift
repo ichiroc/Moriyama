@@ -11,10 +11,11 @@ import UIKit
 class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     UICollectionViewDelegate{
     let calendarCollectionView :MRYMonthCalendarCollectionView
-    let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
-    var constraints : [NSLayoutConstraint]!
-    var cellSize : CGSize?
-    var views : [String:UIView] = [:]
+    private let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
+    private var constraints : [NSLayoutConstraint]!
+    private var cellSize : CGSize?
+    private var views : [String:UIView] = [:]
+    private var defaultCellColor: UIColor?
     
     override init(fromViewController: MRYAbstractMainViewController?){
         calendarCollectionView = MRYMonthCalendarCollectionView()
@@ -77,7 +78,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         // Dispose of any resources that can be recreated.
     }
 
-    var defaultCellColor: UIColor?
+    // - MARK: UICollectionViewDelegate
     func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
 
@@ -91,7 +92,6 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         cell.contentView.backgroundColor = defaultCellColor
     }
 
-    // MARK: - UICollectionVieDelegate
     func collectionView(collectionView: UICollectionView,
         shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell

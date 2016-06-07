@@ -10,7 +10,7 @@ import UIKit
 
 class MRYAbstractMainViewController: UIViewController {
 
-    var previousViewController : MRYAbstractMainViewController?
+    private var previousViewController : MRYAbstractMainViewController?
     
     convenience init(){
         self.init(fromViewController: nil)
@@ -21,7 +21,7 @@ class MRYAbstractMainViewController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented.")
     }
     func pushViewController(toViewController: MRYAbstractMainViewController){
         KeyboardViewController.sharedInstance.transientToViewController(toViewController)
@@ -34,7 +34,7 @@ class MRYAbstractMainViewController: UIViewController {
     }
     
     func viewDidChangeOrientation( orientation: KeyboardViewController.Orientation ){
-       // Default behavior is nothign, implement in subclass.
+       // Default behavior is nothing, implement in subclass.
     }
     
     
