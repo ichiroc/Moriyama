@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MRYEventContentsTableViewController:
+class MRYEventDetailViewController:
     MRYAbstractMainViewController, UITableViewDelegate{
     private var eventContentsDataStore : MRYEventContentsTableDataSource!
     private var event: MRYEvent!

@@ -90,7 +90,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
     }
     
     func tappedEventView( event: MRYEvent){
-        let detailViewController = MRYEventContentsTableViewController(event: event, fromViewController: self)
+        let detailViewController = MRYEventDetailViewController(event: event, fromViewController: self)
         self.pushViewController(detailViewController)
     }
     
