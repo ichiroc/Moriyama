@@ -81,19 +81,6 @@ class KeyboardViewController: UIInputViewController ,
             mainViewController.viewDidChangeOrientation(currentOrientation)
         }
     }
-
-    override func textDidChange(textInput: UITextInput?) {
-        // The app has just changed the document's contents, the document context has been updated.
-    
-        var textColor: UIColor
-        let proxy = self.textDocumentProxy
-        if proxy.keyboardAppearance == UIKeyboardAppearance.Dark {
-            textColor = UIColor.whiteColor()
-        } else {
-            textColor = UIColor.blackColor()
-        }
-        self.nextKeyboardButton.setTitleColor(textColor, forState: .Normal)
-    }
     
     func longPressDeleteButton( recognizer: UILongPressGestureRecognizer){
         switch(recognizer.state){
@@ -114,14 +101,17 @@ class KeyboardViewController: UIInputViewController ,
         
         self.nextKeyboardButton = MRYKeyboardButton(imageFileName: "globe",
             backgroundColor: UIColor.lightGrayColor(),
+            highlightedColor: UIColor.whiteColor(),
             action: { [unowned self] in self.advanceToNextInputMode() })
         let returnKeyButton = MRYKeyboardButton(
             title: "↩︎",
             text: "\n",
-            backgroundColor: UIColor.blueColor(),
-            titleColor: UIColor.whiteColor())
+            highlightedColor: UIColor.whiteColor(),
+            backgroundColor: UIColor.lightGrayColor()
+            )
         self.deleteKeyButton = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGrayColor(),
+            highlightedColor: UIColor.whiteColor(),
             action: {[unowned self] in self.deleteText() } )
         let longPressGesture = UILongPressGestureRecognizer(target: self,
                                                             action: #selector(KeyboardViewController.longPressDeleteButton(_:)))

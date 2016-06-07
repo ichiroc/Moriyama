@@ -13,8 +13,9 @@ class MRYKeyboardButton : UIButton{
     var customAction : (() -> Void)?
     private var normalBackgroundColor: UIColor = UIColor.whiteColor()
     private var normalTitleColor : UIColor = UIColor.blackColor()
+    private var normalHighlightedColor : UIColor = UIColor.lightGrayColor()
     
-    init( title: String? = nil, imageFileName : String? = nil, text: String? = nil, backgroundColor : UIColor? = nil, titleColor: UIColor? = nil,  action: (() -> Void)? = nil, round: CGFloat = 3.0){
+    init( title: String? = nil, imageFileName : String? = nil, text: String? = nil, backgroundColor : UIColor? = nil, titleColor: UIColor? = nil, highlightedColor: UIColor? = nil,  action: (() -> Void)? = nil, round: CGFloat = 3.0){
         
         self.customAction = action
         self.content = text == nil ? title  : text
@@ -32,19 +33,19 @@ class MRYKeyboardButton : UIButton{
             self.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         }
 
+        if let hghtCl = highlightedColor{
+            normalHighlightedColor = hghtCl
+        }
+        
         normalBackgroundColor = backgroundColor == nil ? normalBackgroundColor : backgroundColor!
         self.backgroundColor = normalBackgroundColor
         self.layer.cornerRadius = round
-        addGeneralEvents()
-    }
-    
-
-    private func addGeneralEvents(){
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
     }
     
+
     override init(frame: CGRect) {
         fatalError("init(frame:) is not implemented")
     }
@@ -53,8 +54,7 @@ class MRYKeyboardButton : UIButton{
     }
     
     func touchDown(){
-        self.setTitleColor(normalBackgroundColor, forState: .Normal)
-        self.backgroundColor = normalTitleColor
+        self.backgroundColor = normalHighlightedColor
     }
     
     func touchUpOutside(){
