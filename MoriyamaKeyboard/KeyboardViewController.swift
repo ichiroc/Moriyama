@@ -12,7 +12,7 @@ class KeyboardViewController: UIInputViewController ,
     UICollectionViewDelegate{
 
     private var nextKeyboardButton: UIButton!
-    static var instance : KeyboardViewController!
+    static var sharedInstance : KeyboardViewController!
     var mainViewController : MRYAbstractMainViewController
     let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     private var views : Dictionary<String,UIView> = [:]
@@ -31,12 +31,12 @@ class KeyboardViewController: UIInputViewController ,
     init(){
         mainViewController  = MRYMonthCalendarViewController()
         super.init(nibName: nil, bundle: nil)
-        KeyboardViewController.instance = self
+        KeyboardViewController.sharedInstance = self
     }
     required init?(coder aDecoder: NSCoder) {
         mainViewController  = MRYMonthCalendarViewController()
         super.init(coder : aDecoder)
-        KeyboardViewController.instance = self
+        KeyboardViewController.sharedInstance = self
     }
     override func updateViewConstraints() {
         super.updateViewConstraints()
@@ -181,7 +181,6 @@ class KeyboardViewController: UIInputViewController ,
         self.rebuildMainViewLayout()
         self.inputView?.layoutIfNeeded()
         newMainVC.didMoveToParentViewController(self)
-//        prevViewController = currentVC
     }
     
     private var allConstraints : [NSLayoutConstraint] = []

@@ -24,12 +24,12 @@ class MRYAbstractMainViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     func pushViewController(toViewController: MRYAbstractMainViewController){
-        KeyboardViewController.instance.transientToViewController(toViewController)
+        KeyboardViewController.sharedInstance.transientToViewController(toViewController)
     }
     
     func popViewController(){
         if let prev = previousViewController{
-            KeyboardViewController.instance.transientToViewController(prev)
+            KeyboardViewController.sharedInstance.transientToViewController(prev)
         }
     }
     
