@@ -22,29 +22,9 @@ class MRYEventDetailViewController:
         super.init(fromViewController: fromViewController)
         accessoryView = MRYEventContentsAccessoryView(event: event, viewController: self)
         accessoryView?.backButton.customAction = { [unowned self] in self.popViewController() }
-        
-        if event.calendar.allowsContentModifications {
-            let openEventButton = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""))
-            let appIcon = UIImage.init(named: "AppImageSmall.png")
-            openEventButton.setImage(appIcon, forState: .Normal)
-            openEventButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-            if event.eventIdentifier == "" {
-                [120].forEach({ (min) in
-                    openEventButton.customAction = {[unowned self] in
-                        self.event.endDate = NSDate(timeInterval: Double(min * 60) , sinceDate: self.event.startDate)
-                        self.openEvent(self.event.startDate, endDate: self.event.endDate)
-                    }
-                    accessoryView?.buttons.append(openEventButton)
-                })
-            }else{
-                openEventButton.setTitle(NSLocalizedString("Edit this event", comment: ""), forState: .Normal)
-                openEventButton.customAction =  {[unowned self] in
-                    self.openEvent(self.event.startDate,endDate:self.event.endDate)
-                }
-                accessoryView?.buttons.append(openEventButton)
-            }
+        accessoryView?.openEventButton.customAction = { [unowned self] in
+            self.openEvent(self.event.startDate,endDate:self.event.endDate)
         }
-
     }
     
     required init?(coder aDecoder: NSCoder) {

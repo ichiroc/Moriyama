@@ -20,9 +20,24 @@ class MRYEventContentsAccessoryView: UIView {
     */
 
     let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
+
+    lazy var openEventButton :MRYKeyboardButton = { [unowned self]  in
+        let b = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""))
+        let appIcon = UIImage.init(named: "AppImageSmall.png")
+        b.setImage(appIcon, forState: .Normal)
+        b.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
+        if self.event.eventIdentifier != ""{
+            b.setTitle("Edit this event", forState: .Normal)
+        }
+        self.addSubview(b)
+        return b
+    }()
+    
+    private let event: MRYEvent
     var buttons : [MRYKeyboardButton] = []
 
     init(event :MRYEvent, viewController: UIViewController){
+        self.event = event
         super.init(frame: CGRectZero)
         self.addSubview(backButton)
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -37,20 +52,13 @@ class MRYEventContentsAccessoryView: UIView {
         var constraints : [NSLayoutConstraint] = []
         var views : [String:UIView] = ["back":backButton]
         var vvfl = "H:|"
-        if buttons.count == 0 {
-            vvfl += "[back]"
+        if self.event.calendar.allowsContentModifications{
+            views["openEvent"] = self.openEventButton
+            vvfl += "[back(45)]-1-[openEvent]|"
         }else{
-            vvfl += "[back(45)]"
+            vvfl += "[back]|"
         }
 
-        var i = 0
-        buttons.forEach({
-            self.addSubview($0)
-            views["b\(i)"] = $0
-            vvfl += "-1-[b\(i)\( i != 0 ? "(==b0)" : "" )]"
-            i += 1
-        })
-        vvfl+="|"
         let h = NSLayoutConstraint.constraintsWithVisualFormat(vvfl,
                                                        options: [.AlignAllTop,.AlignAllBottom],
                                                        metrics: METRICS,
