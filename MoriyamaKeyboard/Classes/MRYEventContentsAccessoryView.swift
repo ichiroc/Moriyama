@@ -19,7 +19,7 @@ class MRYEventContentsAccessoryView: UIView {
     }
     */
 
-    let backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
+    lazy var backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
 
     lazy var openEventButton :MRYKeyboardButton = { [unowned self]  in
         let b = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""))
