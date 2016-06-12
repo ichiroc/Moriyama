@@ -29,7 +29,6 @@ class MRYEventContentsAccessoryView: UIView {
         if self.event.eventIdentifier != ""{
             b.setTitle("Edit this event", forState: .Normal)
         }
-        self.addSubview(b)
         return b
     }()
     
@@ -39,9 +38,8 @@ class MRYEventContentsAccessoryView: UIView {
     init(event :MRYEvent, viewController: UIViewController){
         self.event = event
         super.init(frame: CGRectZero)
-        self.addSubview(backButton)
         self.translatesAutoresizingMaskIntoConstraints = false
-        
+        self.addSubview(backButton)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -53,6 +51,7 @@ class MRYEventContentsAccessoryView: UIView {
         var views : [String:UIView] = ["back":backButton]
         var vvfl = "H:|"
         if self.event.calendar.allowsContentModifications{
+            self.addSubview(self.openEventButton)
             views["openEvent"] = self.openEventButton
             vvfl += "[back(45)]-1-[openEvent]|"
         }else{
