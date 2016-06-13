@@ -27,14 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EKEventEditViewDelegate {
         url.query?.componentsSeparatedByString("&").forEach{
             let items = $0.componentsSeparatedByString("=")
             if let key = items.first, let val = items.last{
-                query[key] = val
+                query[key] = val.stringByRemovingPercentEncoding!
             }
         }
         
         let eventEditVC = MRYEventEditViewController()
         eventEditVC.eventStore = eventStore
         eventEditVC.editViewDelegate = self
-
 
         if let startDateString = query["startDate"], endDateString = query["endDate"] {
             let startDate = Util.sharedFormatter().dateFromString(startDateString)

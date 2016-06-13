@@ -76,7 +76,8 @@ class MRYEventDetailViewController:
         var urlString = "moriyama-board://?"
 
         if self.event.eventIdentifier != "" {
-            urlString += "eventId=\(self.event.eventIdentifier)"
+            let escapedEventId = self.event.eventIdentifier.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
+            urlString += "eventId=\(escapedEventId!)"
         }
         
         let sdtxt = Util.sharedFormatter().stringFromDate( startDate )
