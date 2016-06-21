@@ -35,6 +35,7 @@
 		5D5196DC1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */; };
 		5D5196E21C6C53450047DD2D /* MRYEventContentsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */; };
 		5D5975021CF921AB00D28DA5 /* MRYEventContentsAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5975011CF921AB00D28DA5 /* MRYEventContentsAccessoryView.swift */; };
+		5D6299131D18ADA4006C4B78 /* AppStore.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6299121D18ADA4006C4B78 /* AppStore.png */; };
 		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6C61171C96C20700AC88AD /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6C61161C96C20700AC88AD /* globe.png */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
@@ -154,6 +155,7 @@
 		5D5196DB1C6A8BCD0047DD2D /* MRYDayViewAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYDayViewAccessoryView.swift; path = Classes/MRYDayViewAccessoryView.swift; sourceTree = "<group>"; };
 		5D5196E11C6C53450047DD2D /* MRYEventContentsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventContentsTableDataSource.swift; path = Classes/MRYEventContentsTableDataSource.swift; sourceTree = "<group>"; };
 		5D5975011CF921AB00D28DA5 /* MRYEventContentsAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventContentsAccessoryView.swift; path = Classes/MRYEventContentsAccessoryView.swift; sourceTree = "<group>"; };
+		5D6299121D18ADA4006C4B78 /* AppStore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppStore.png; sourceTree = "<group>"; };
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6C61161C96C20700AC88AD /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = globe.png; path = MoriyamaKeyboard/globe.png; sourceTree = SOURCE_ROOT; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		5DE880B71C7327EF00EDE4B4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				5D6299121D18ADA4006C4B78 /* AppStore.png */,
 				5D1547D31C7C6BBD000C6636 /* TutorialIcon.png */,
 				5D1547D51C7C6BC8000C6636 /* SupportIcon.png */,
 				5D6C61161C96C20700AC88AD /* globe.png */,
@@ -553,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D1E8AAC1C2F30FE0032CCC2 /* .gitignore in Resources */,
+				5D6299131D18ADA4006C4B78 /* AppStore.png in Resources */,
 				5D9D80261C2CB02400623AF7 /* LaunchScreen.storyboard in Resources */,
 				5DE880E51C79220D00EDE4B4 /* TutorialImage0.png in Resources */,
 				5D166CB01CEF5D9400B60EAE /* TutorialImage2.png in Resources */,
