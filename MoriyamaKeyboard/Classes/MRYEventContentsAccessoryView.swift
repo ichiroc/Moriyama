@@ -22,7 +22,7 @@ class MRYEventContentsAccessoryView: UIView {
     lazy var backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
 
     lazy var openEventButton :MRYKeyboardButton = { [unowned self]  in
-        let b = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""))
+        let b = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""),round: 0)
         let appIcon = UIImage.init(named: "AppImageSmall.png")
         b.setImage(appIcon, forState: .Normal)
         b.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
