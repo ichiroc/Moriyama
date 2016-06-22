@@ -27,14 +27,20 @@
                                             <constraint firstAttribute="width" constant="35" id="PXG-2a-GXI"/>
                                             <constraint firstAttribute="height" constant="35" id="R3h-ES-XFh"/>
                                         </constraints>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="20" y="13" width="35" height="35"/>
+                                        </variation>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SupportIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="rtK-zA-Qbs">
                                         <rect key="frame" x="20" y="64" width="35" height="35"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="20" y="63" width="35" height="35"/>
+                                        </variation>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppStore.png" translatesAutoresizingMaskIntoConstraints="NO" id="HVD-zJ-hF1">
                                         <rect key="frame" x="20" y="64" width="35" height="35"/>
                                         <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="20" y="118" width="35" height="35"/>
+                                            <rect key="frame" x="20" y="117" width="35" height="35"/>
                                         </variation>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
@@ -50,17 +56,17 @@
                                             <rect key="frame" x="70" y="66" width="310" height="30"/>
                                         </variation>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVr-ui-PLl">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVr-ui-PLl">
                                         <rect key="frame" x="70" y="66" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="3TI-GD-ex3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="12"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="11"/>
                                         <state key="normal" title="Like it? please write a review!">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="70" y="118" width="310" height="30"/>
+                                            <rect key="frame" x="70" y="117" width="310" height="30"/>
                                         </variation>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
@@ -121,9 +127,6 @@
                                         <exclude reference="qVr-ui-PLl"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="Ylb-CW-P6w"/>
-                                        <exclude reference="nnl-LG-OLn"/>
-                                        <exclude reference="21S-xb-3iK"/>
                                         <exclude reference="DIl-ez-iCl"/>
                                         <exclude reference="UER-2a-Wzl"/>
                                         <exclude reference="Yug-TQ-S2d"/>
@@ -132,6 +135,9 @@
                                         <exclude reference="IsL-30-SFs"/>
                                         <exclude reference="KyG-TT-NDW"/>
                                         <exclude reference="XU7-oW-pz7"/>
+                                        <exclude reference="Ylb-CW-P6w"/>
+                                        <exclude reference="nnl-LG-OLn"/>
+                                        <exclude reference="21S-xb-3iK"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -140,9 +146,6 @@
                                         <include reference="qVr-ui-PLl"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="Ylb-CW-P6w"/>
-                                        <include reference="nnl-LG-OLn"/>
-                                        <include reference="21S-xb-3iK"/>
                                         <include reference="DIl-ez-iCl"/>
                                         <include reference="UER-2a-Wzl"/>
                                         <include reference="Yug-TQ-S2d"/>
@@ -151,6 +154,9 @@
                                         <include reference="IsL-30-SFs"/>
                                         <include reference="KyG-TT-NDW"/>
                                         <include reference="XU7-oW-pz7"/>
+                                        <include reference="Ylb-CW-P6w"/>
+                                        <include reference="nnl-LG-OLn"/>
+                                        <include reference="21S-xb-3iK"/>
                                     </mask>
                                 </variation>
                             </view>
