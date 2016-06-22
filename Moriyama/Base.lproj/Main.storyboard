@@ -21,19 +21,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ld-ur-QzD" userLabel="backgroundView">
                                 <rect key="frame" x="0.0" y="238" width="600" height="121"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
-                                        <rect key="frame" x="70" y="16" width="242" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="8m9-el-04y"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                        <state key="normal" title="The way to enable ApptBoard">
-                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="XIA-KD-ZpH" kind="presentation" id="gqn-ja-hVW"/>
-                                        </connections>
-                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TutorialIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="65G-n9-itV">
                                         <rect key="frame" x="20" y="14" width="35" height="35"/>
                                         <constraints>
@@ -46,26 +33,51 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppStore.png" translatesAutoresizingMaskIntoConstraints="NO" id="HVD-zJ-hF1">
                                         <rect key="frame" x="20" y="64" width="35" height="35"/>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="20" y="118" width="35" height="35"/>
+                                        </variation>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
                                         <rect key="frame" x="70" y="66" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="fNY-wr-Nmg"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                        <state key="normal" title="Support">
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="13"/>
+                                        <state key="normal" title="Support &amp; Request">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="70" y="66" width="310" height="30"/>
+                                        </variation>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVr-ui-PLl">
                                         <rect key="frame" x="70" y="66" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="3TI-GD-ex3"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="15"/>
-                                        <state key="normal" title="How about a rating on App Store?">
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="12"/>
+                                        <state key="normal" title="Like it? please write a review!">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="70" y="118" width="310" height="30"/>
+                                        </variation>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
+                                        <rect key="frame" x="70" y="16" width="242" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8m9-el-04y"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W8" family="Hiragino Sans" pointSize="13"/>
+                                        <state key="normal" title="The way to enable ApptBoard">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" misplaced="YES">
+                                            <rect key="frame" x="70" y="17" width="310" height="30"/>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="XIA-KD-ZpH" kind="presentation" id="gqn-ja-hVW"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
