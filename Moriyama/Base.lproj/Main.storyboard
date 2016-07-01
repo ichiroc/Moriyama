@@ -39,9 +39,6 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppStore.png" translatesAutoresizingMaskIntoConstraints="NO" id="HVD-zJ-hF1">
                                         <rect key="frame" x="20" y="64" width="35" height="35"/>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="20" y="117" width="35" height="35"/>
-                                        </variation>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-PU-hn1">
                                         <rect key="frame" x="70" y="66" width="60" height="30"/>
@@ -65,9 +62,6 @@
                                         <state key="normal" title="Like it? please write a review!">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="70" y="117" width="310" height="30"/>
-                                        </variation>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vD-E6-r6Y">
                                         <rect key="frame" x="70" y="16" width="242" height="30"/>

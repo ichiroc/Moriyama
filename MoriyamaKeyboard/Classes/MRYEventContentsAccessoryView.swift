@@ -27,7 +27,7 @@ class MRYEventContentsAccessoryView: UIView {
         b.setImage(appIcon, forState: .Normal)
         b.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         if self.event.eventIdentifier != ""{
-            b.setTitle("Edit this event", forState: .Normal)
+            b.setTitle(NSLocalizedString("Edit this event", comment: ""), forState: .Normal)
         }
         return b
     }()
