@@ -43,6 +43,7 @@ class MRYKeyboardButton : UIButton{
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
         self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchDragOutSide), forControlEvents: .TouchDragOutside)
     }
     
 
@@ -58,6 +59,10 @@ class MRYKeyboardButton : UIButton{
     }
     
     func touchUpOutside(){
+        resetColor()
+    }
+    
+    func touchDragOutSide(){
         resetColor()
     }
     
