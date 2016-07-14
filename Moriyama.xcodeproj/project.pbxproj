@@ -39,6 +39,7 @@
 		5D6A28F31C55899B003A522F /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6A28F21C55899B003A522F /* Globals.swift */; };
 		5D6C61171C96C20700AC88AD /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6C61161C96C20700AC88AD /* globe.png */; };
 		5D6F41951C3DB61800392586 /* MRYEventDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */; };
+		5D9326181D384E2A003A0881 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 5D9326171D384E2A003A0881 /* README.md */; };
 		5D93F2741CFE4A9D00CAE63F /* AppImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DD365731C7A799400F6BC47 /* AppImage.png */; };
 		5D93F27F1D003F5F00CAE63F /* AppImageSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D93F27D1D003F5F00CAE63F /* AppImageSmall.png */; };
 		5D93F2801D003F5F00CAE63F /* AppImageSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D93F27E1D003F5F00CAE63F /* AppImageSmall@2x.png */; };
@@ -159,6 +160,7 @@
 		5D6A28F21C55899B003A522F /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Globals.swift; path = Classes/Globals.swift; sourceTree = "<group>"; };
 		5D6C61161C96C20700AC88AD /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = globe.png; path = MoriyamaKeyboard/globe.png; sourceTree = SOURCE_ROOT; };
 		5D6F41941C3DB61800392586 /* MRYEventDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYEventDataStore.swift; path = Classes/MRYEventDataStore.swift; sourceTree = "<group>"; };
+		5D9326171D384E2A003A0881 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5D93F27D1D003F5F00CAE63F /* AppImageSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppImageSmall.png; path = MoriyamaTests/AppImageSmall.png; sourceTree = SOURCE_ROOT; };
 		5D93F27E1D003F5F00CAE63F /* AppImageSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppImageSmall@2x.png"; path = "MoriyamaTests/AppImageSmall@2x.png"; sourceTree = SOURCE_ROOT; };
 		5D9D80181C2CB02400623AF7 /* ApptBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApptBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,6 +296,7 @@
 		5D9D800F1C2CB02400623AF7 = {
 			isa = PBXGroup;
 			children = (
+				5D9326171D384E2A003A0881 /* README.md */,
 				5D1E8AAB1C2F30FE0032CCC2 /* .gitignore */,
 				5DE880B71C7327EF00EDE4B4 /* Assets */,
 				5D9D801A1C2CB02400623AF7 /* Moriyama */,
@@ -614,6 +617,7 @@
 				5DB1F9AC1CF7B7280047394F /* Util.swift in Sources */,
 				5DE880BC1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift in Sources */,
 				5D9D801E1C2CB02400623AF7 /* ViewController.swift in Sources */,
+				5D9326181D384E2A003A0881 /* README.md in Sources */,
 				5D1492D01CF4F4D0003B8BFB /* MRYEventEditViewController.swift in Sources */,
 				5D9D801C1C2CB02400623AF7 /* AppDelegate.swift in Sources */,
 				5DE880C01C7469E300EDE4B4 /* MRYTutorialContentViewController.swift in Sources */,
