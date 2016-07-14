@@ -192,7 +192,7 @@
 		5DE880611C6EE0B400EDE4B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		5DE880621C71147C00EDE4B4 /* Base */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.simpleColoring; };
 		5DE880BA1C732FB600EDE4B4 /* MRYTutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTutorialPageViewController.swift; path = Classes/MRYTutorialPageViewController.swift; sourceTree = "<group>"; };
-		5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MRYTutorialContentViewController.swift; sourceTree = "<group>"; };
+		5DE880BF1C7469E300EDE4B4 /* MRYTutorialContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MRYTutorialContentViewController.swift; path = Classes/MRYTutorialContentViewController.swift; sourceTree = "<group>"; };
 		5DE880E21C79195500EDE4B4 /* TutorialImage10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage10.png; sourceTree = "<group>"; };
 		5DE880E41C79220D00EDE4B4 /* TutorialImage0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TutorialImage0.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
