@@ -41,7 +41,7 @@ class MRYEventDataStore : NSObject{
     
     func loadAllEvents() {
         if accessGranted {
-            // 曜日により最大3週間前のデータが必要になる
+            // 本日の曜日により最大3週間前のデータが必要になる
             let startDate = NSDate().dateByAddingTimeInterval(-86400 * 21)
             let endDate = startDate.dateByAddingTimeInterval(86400 * 140)
             let predicate = rawStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
@@ -53,31 +53,6 @@ class MRYEventDataStore : NSObject{
         }
     }
     
-    /**
-     Return conflicted events but exclude all day events.
-     */
-    func conflictedEventsWith( event: MRYEvent) -> [MRYEvent]{
-        if accessGranted {
-            let startDate = event.startDate.dateByAddingTimeInterval(1)
-            let endDate = event.endDate.dateByAddingTimeInterval(-1)
-            let predicate = rawStore.predicateForEventsWithStartDate(startDate, endDate:endDate, calendars: nil)
-            let events = rawStore.eventsMatchingPredicate(predicate).map{ MRYEvent( event: $0) }
-            return events.filter{ return !$0.allDay }
-        }
-        return []
-    }
-    
-    func bunchOfConflictedEventsWith(event: MRYEvent) -> [MRYEvent] {
-        var allEvents = self.conflictedEventsWith(event)
-        allEvents.forEach({
-            let _events = self.conflictedEventsWith($0)
-            let _eventsNotContained = _events.filter({ e in
-                !allEvents.map{ $0.eventIdentifier }.contains( e.eventIdentifier )
-            })
-            allEvents.appendContentsOf(_eventsNotContained)
-        })
-        return allEvents
-    }
     
     func eventsWithDate(date: NSDate) -> [MRYEvent]{
         let startDate = date.dateByAddingTimeInterval(-1)
@@ -90,16 +65,6 @@ class MRYEventDataStore : NSObject{
         })
     }
 
-//    func eventWithDate(date: NSDate) -> [MRYEvent]{
-//        let startDate = date
-//        let endDate = startDate.dateByAddingTimeInterval(86400) // 当日
-//        let predicate = store.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-//        let events = store.eventsMatchingPredicate(predicate)
-//        let _events = events.map{ MRYEvent( event: $0) }
-//        return _events.sort({ x , y in
-//            return x.startDate.compare(y.startDate) == NSComparisonResult.OrderedAscending
-//        })
-//    }
     
     func events(date :NSDate, includeAllDay : Bool) -> [MRYEvent]{
         let events = self.eventsWithDate(date)
