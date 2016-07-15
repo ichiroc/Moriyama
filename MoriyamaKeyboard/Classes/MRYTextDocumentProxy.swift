@@ -1,5 +1,5 @@
 //
-//  MRYTextDocumentPRoxy.swift
+//  MRYTextDocumentProxy.swift
 //  Moriyama
 //
 //  Created by Ichiro on 2015/12/26.
