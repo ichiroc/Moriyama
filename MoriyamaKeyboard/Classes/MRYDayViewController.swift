@@ -13,7 +13,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
     let currentDate: NSDate
 
     private lazy var events : [MRYEvent] = { [unowned self] in
-            MRYEventDataStore.sharedStore.eventsWithDate(self.currentDate)
+            MRYEventDataStore.sharedStore.eventsOnDate(self.currentDate)
     }()
     
     private lazy var allDayEvents: [MRYEvent] = { [unowned self ] in
@@ -27,7 +27,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
     
     private override init(fromViewController: MRYAbstractMainViewController?) {
         currentDate = Util.removeHms(NSDate())
-        let _events = MRYEventDataStore.sharedStore.eventsWithDate(currentDate)
+        let _events = MRYEventDataStore.sharedStore.eventsOnDate(currentDate)
         super.init(fromViewController: fromViewController)
         timelineContainerView = MRYTimelineContainerView(events: _events, viewController: self)
     }

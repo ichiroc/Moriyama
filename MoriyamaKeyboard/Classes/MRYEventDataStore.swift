@@ -54,7 +54,7 @@ class MRYEventDataStore : NSObject{
     }
     
     
-    func eventsWithDate(date: NSDate) -> [MRYEvent]{
+    func eventsOnDate(date: NSDate) -> [MRYEvent]{
         let startDate = date.dateByAddingTimeInterval(-1)
         let endDate = startDate.dateByAddingTimeInterval(86401)
         
@@ -67,7 +67,7 @@ class MRYEventDataStore : NSObject{
 
     
     func events(date :NSDate, includeAllDay : Bool) -> [MRYEvent]{
-        let events = self.eventsWithDate(date)
+        let events = self.eventsOnDate(date)
         if( !includeAllDay ){
             return events.filter({ return !$0.allDay })
         }
@@ -75,11 +75,11 @@ class MRYEventDataStore : NSObject{
     }
     
     func notAllDayEvents(date : NSDate) -> [MRYEvent]{
-        return self.eventsWithDate(date).filter({ return !$0.allDay })
+        return self.eventsOnDate(date).filter({ return !$0.allDay })
     }
 
     func allDayEvents(date: NSDate) -> [MRYEvent]{
-        let events = self.eventsWithDate(date)
+        let events = self.eventsOnDate(date)
         return events.filter{ return $0.allDay }
     }
 
