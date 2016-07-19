@@ -13,7 +13,7 @@ class MRYDayViewAccessoryView: UIView {
     var subViews : [String: UIView] = [:]
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
     init(date: NSDate, viewController: MRYAbstractMainViewController){

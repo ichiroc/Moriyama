@@ -27,8 +27,7 @@ class MRYEventContentsTableView: UITableView,
     }
 
     required init?(coder aDecoder: NSCoder) {
-        event = nil
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

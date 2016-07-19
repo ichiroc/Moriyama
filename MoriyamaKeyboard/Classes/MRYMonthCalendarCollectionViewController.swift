@@ -23,8 +23,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     }
    
     required init?(coder aDecoder: NSCoder) {
-        calendarCollectionView = MRYMonthCalendarCollectionView()
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
     

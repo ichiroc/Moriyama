@@ -64,8 +64,7 @@ class MRYTimelineContainerView : UIScrollView{
     }
 
     required init?(coder aDecoder: NSCoder) {
-        dayViewController = MRYDayViewController(coder: aDecoder)!
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
     override func layoutSubviews() {

@@ -39,12 +39,10 @@ class MRYEventView: UIControl {
         }
     }
     private override init(frame: CGRect) {
-        mainViewController = MRYDayViewController()
-        super.init(frame: frame)
+        fatalError("init(frame:) is not implemented")
     }
     required init?(coder aDecoder: NSCoder) {
-        mainViewController = MRYDayViewController()
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
     init(frame: CGRect, event: MRYEvent, viewController: MRYDayViewController){

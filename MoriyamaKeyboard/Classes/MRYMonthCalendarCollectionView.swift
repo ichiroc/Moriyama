@@ -14,7 +14,7 @@ class MRYMonthCalendarCollectionView: UICollectionView,
     var todayIndexPath : NSIndexPath = NSIndexPath(forRow: 60, inSection: 0)
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) is not implemented")
     }
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
