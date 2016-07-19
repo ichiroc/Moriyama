@@ -125,31 +125,31 @@ class MRYDayViewController: MRYAbstractMainViewController {
                 nev.frame.origin = CGPointMake(0, posY)
             }
         case .Ended:
-            if let nev = newEventView{
-                let startDate = timelineContainerView.dateByPointY(posY)
-                let event = nev.sourceEvent
-                event.startDate = startDate
-                event.endDate = startDate.dateByAddingTimeInterval(60 * 60)
-                // event.updateDataSource()
-                let contentFactory = MRYEventContentFactory(event: event)
-                event.datasource = contentFactory.eventContentDatasource([
-                    MRYEventContentFactory.ContentType.StartDate ,
-                    ])
-                event.datasource.append(event.endDateGroupWithMinutesInterval(30))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(60))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(90))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(120))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(150))
-                event.datasource.append(event.endDateGroupWithMinutesInterval(180))
-                self.tappedEventView(newEventView!.sourceEvent)
-                nev.removeFromSuperview()
+            if let nEV = newEventView{
+                nEV.sourceEvent.startDate = timelineContainerView.dateByPointY(posY)
+                nEV.sourceEvent.endDate = nEV.sourceEvent.startDate.dateByAddingTimeInterval(60 * 60)
+                showEventView(nEV.sourceEvent)
+                nEV.removeFromSuperview()
             }
         default:
             break
         }
     }
     
-
+    private func showEventView(sourceEvent: MRYEvent){
+            // event.updateDataSource()
+            let contentFactory = MRYEventContentFactory(event: sourceEvent)
+            sourceEvent.datasource = contentFactory.eventContentDatasource([
+                MRYEventContentFactory.ContentType.StartDate ,
+                ])
+            sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(30))
+            sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(60))
+            sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(90))
+            sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(120))
+            sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(150))
+            sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(180))
+            self.tappedEventView(sourceEvent)
+    }
 
     
     /*
