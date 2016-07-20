@@ -125,13 +125,13 @@ class MRYDayViewController: MRYAbstractMainViewController {
         }
     }
     
-    private func eventViewWith(pointY posY : CGFloat) -> MRYEventView{
+    private func eventViewWith( pointY pointY : CGFloat) -> MRYEventView{
         let rawEvent = EKEvent(eventStore: MRYEventDataStore.sharedStore.rawStore)
         rawEvent.calendar = MRYEventDataStore.sharedStore.defaultCalendar
-        rawEvent.startDate = timelineContainerView.dateByPointY(posY)
+        rawEvent.startDate = timelineContainerView.dateByPointY(pointY)
         rawEvent.endDate = rawEvent.startDate.dateByAddingTimeInterval(60 * 60 )
         let event = MRYEvent(event: rawEvent)
-        let frame = CGRectMake(0, posY , timelineContainerView.timelineView.frame.width,
+        let frame = CGRectMake(0, pointY , timelineContainerView.timelineView.frame.width,
                                timelineContainerView.heightByEventDuration(event.duration))
         let newEventView = MRYEventView(frame: frame,
                                     event: event,
@@ -139,6 +139,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         newEventView.backgroundColor = UIColor(CGColor: MRYEventDataStore.sharedStore.defaultCalendar.CGColor).colorWithAlphaComponent(0.5)
         return newEventView
     }
+    
     private func showEventView(eventView: MRYEventView, pointY: CGFloat){
         // event.updateDataSource()
         eventView.sourceEvent.startDate = timelineContainerView.dateByPointY(pointY)
