@@ -36,7 +36,6 @@ class MRYDayViewAccessoryView: UIView {
             round: 0)
         self.addSubview(backButton)
         subViews["back"] = backButton
-        
         var vfl = "|[back(45)]"
         dateFormats.forEach({
             vfl += "-1-[\($0)(>=40)]"

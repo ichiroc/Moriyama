@@ -71,11 +71,7 @@ class KeyboardViewController: UIInputViewController ,
         // Keyboard app detect orientation only in viewDidLayoutSubviews.
         let bounds = UIScreen.mainScreen().bounds
         let previousOrientation = currentOrientation
-        if bounds.height > bounds.width {
-            currentOrientation = Orientation.Portrait
-        }else{
-            currentOrientation = Orientation.Landscape
-        }
+        currentOrientation = bounds.height > bounds.width  ? .Portrait : .Landscape
         
         if currentOrientation == previousOrientation{
             return
