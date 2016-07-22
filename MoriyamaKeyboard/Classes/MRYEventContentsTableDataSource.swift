@@ -12,7 +12,9 @@ class MRYEventContentsTableDataSource:
     NSObject ,
     UITableViewDataSource{
     
-    let event : MRYEvent
+    private let event : MRYEvent
+    
+    
     init(event _event: MRYEvent){
         event = _event
     }

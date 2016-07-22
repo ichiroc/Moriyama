@@ -10,17 +10,6 @@ import UIKit
 
 class MRYEventView: UIControl {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-    private let mainViewController : MRYDayViewController
-    var defaultColor : UIColor?
-
-    var _event : MRYEvent?
     var sourceEvent: MRYEvent{
         get{
             return _event!
@@ -38,9 +27,15 @@ class MRYEventView: UIControl {
             return ""
         }
     }
+    
+    private let mainViewController : MRYDayViewController
+    private var defaultColor : UIColor?
+    private var _event : MRYEvent?
     private override init(frame: CGRect) {
         fatalError("init(frame:) is not implemented")
     }
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not implemented")
     }

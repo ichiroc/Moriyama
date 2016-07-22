@@ -12,9 +12,9 @@ import UIKit
 class MRYTutorialPageViewController: UIPageViewController,
 UIPageViewControllerDataSource,UIPageViewControllerDelegate{
 
-    var controllers : [UIViewController] = []
-    var pageIndex = 0
-    let descriptionTexts = [
+    private var controllers : [UIViewController] = []
+    private var pageIndex = 0
+    private let descriptionTexts = [
         NSLocalizedString("This is instruction which how to add ApptBoard keyboard. First, open 'Setting' from home." , comment: "") , // 0
         NSLocalizedString("Choose 'Keyboard'" , comment: ""), // 2
         NSLocalizedString("Choose 'Keyboards'" , comment: ""), // 3
@@ -27,7 +27,9 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         NSLocalizedString("[NOTICE] To check appointments with a keyboard, You must confirm that appointments is shown on default Calendar app.", comment: "") // 12
 
     ]
-    var maxPageIndex = 5
+    private var maxPageIndex = 5
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
@@ -51,6 +53,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return descriptionTexts.count
     }
@@ -59,8 +62,6 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         let content = pageViewController.viewControllers?.first as! MRYTutorialContentViewController
         return content.pageIndex
     }
-    
-    
     
     func pageViewController(pageViewController: UIPageViewController,
         viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {

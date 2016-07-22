@@ -15,9 +15,22 @@ class MRYEventContentFactory {
         case EndDate
     }
     
-    let event : MRYEvent
+    private let event : MRYEvent
+    
     init(event e: MRYEvent){
         event = e
+    }
+    
+    func eventContentsAtDateTime(date: NSDate) -> [MRYEventContent]{
+        var eventContents : [MRYEventContent] = []
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), content: Util.string(date, format: "MMMdEHHmm")))
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time",comment: ""), content: Util.string(date, format: "MMMd")))
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Day of week (long)", comment: ""), content: Util.string(date, format: "EEEE")))
+        if event.allDay{
+            eventContents.append(MRYEventContent(description: "", content: NSLocalizedString("all day", comment: "")))
+        }
+        eventContents.append(MRYEventContent(description: NSLocalizedString("Time", comment: ""), content: Util.string(date, format: "HHmm")))
+        return eventContents
     }
    
     func eventContentDatasource( types : [ContentType]) -> [MRYEventContentGroup]{
@@ -65,18 +78,5 @@ class MRYEventContentFactory {
         var endDateGroup = MRYEventContentGroup(description:  NSLocalizedString("End date",comment: "End date of event."), eventContents: [])
         endDateGroup.eventContents = eventContentsAtDateTime(event.endDate)
         return endDateGroup
-    }
-    
-    
-    func eventContentsAtDateTime(date: NSDate) -> [MRYEventContent]{
-        var eventContents : [MRYEventContent] = []
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), content: Util.string(date, format: "MMMdEHHmm")))
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Date time",comment: ""), content: Util.string(date, format: "MMMd")))
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Day of week (long)", comment: ""), content: Util.string(date, format: "EEEE")))
-        if event.allDay{
-            eventContents.append(MRYEventContent(description: "", content: NSLocalizedString("all day", comment: "")))
-        }
-        eventContents.append(MRYEventContent(description: NSLocalizedString("Time", comment: ""), content: Util.string(date, format: "HHmm")))
-        return eventContents
     }
 }

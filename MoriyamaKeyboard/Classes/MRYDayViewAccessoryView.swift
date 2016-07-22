@@ -10,12 +10,13 @@ import UIKit
 
 class MRYDayViewAccessoryView: UIView {
     
-    var subViews : [String: UIView] = [:]
+    private var subViews : [String: UIView] = [:]
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not implemented")
     }
     
+    // TODO: Refactoring
     init(date: NSDate, viewController: MRYAbstractMainViewController){
         super.init(frame: CGRectZero)
         self.translatesAutoresizingMaskIntoConstraints = false

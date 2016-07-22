@@ -11,7 +11,9 @@ import UIKit
 class MRYMonthCalendarCollectionViewDataSource: NSObject,
     UICollectionViewDataSource{
     private var cal  = NSCalendar.currentCalendar()
+    // TODO: make firstCellDate to computed property.
     private var _firstCellDate : NSDate?
+    
     
     // MARK: - UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView,

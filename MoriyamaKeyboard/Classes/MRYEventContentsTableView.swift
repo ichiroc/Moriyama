@@ -18,7 +18,9 @@ class MRYEventContentsTableView: UITableView,
         // Drawing code
     }
     */
-    let event : MRYEvent!
+    private let event : MRYEvent!
+    
+    
     init(event _event: MRYEvent){
         self.event = _event
         super.init(frame: CGRectZero, style: .Plain)

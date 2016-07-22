@@ -10,11 +10,17 @@ import UIKit
 import EventKit
 
 class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
+
+    var date : NSDate?
+    
     private var dateLabel:UILabel
     private let calendar  = NSCalendar.currentCalendar()
     private var eventIndicatorViewsMap : [String: UIView] = [:]
     private var views : [String:UIView] = [:]
-    var date : NSDate?
+    private let eventIndicator = UIView()
+    private let circle = UIView()
+    private let fontSize : CGFloat = 13.0
+
     private var events : [MRYEvent] {
         get {
             if let _date = date {
@@ -23,9 +29,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             return []
         }
     }
-    private let eventIndicator = UIView()
-    private let circle = UIView()
-    private let fontSize : CGFloat = 13.0
+    
     
     override func prepareForReuse() {
         self.dateLabel.textColor = UIColor.blackColor()

@@ -10,15 +10,18 @@ import UIKit
 import EventKit
 
 class MRYEventDataStore : NSObject{
-    let rawStore = EKEventStore()
     static var this = MRYEventDataStore()
-    private var accessGranted = false
+    let rawStore = EKEventStore()
     var defaultCalendar : EKCalendar {
         get{
             return rawStore.defaultCalendarForNewEvents
         }
     }
-    var events : [MRYEvent] = []
+    
+    private var events : [MRYEvent] = []
+    private var accessGranted = false
+
+    
     override private init(){
         super.init()
         if EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized {

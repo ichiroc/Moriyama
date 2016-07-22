@@ -70,11 +70,16 @@ class MRYEventDetailViewController:
         // Dispose of any resources that can be recreated.
     }
     
-    
-    func openEvent(startDate: NSDate, endDate : NSDate){
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let content = event.datasource[indexPath.section].eventContents[indexPath.row]
+        MRYTextDocumentProxy.proxy.insertText(content.content)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+
+    private func openEvent(startDate: NSDate, endDate : NSDate){
         var responder: UIResponder = self
         var urlString = "moriyama-board://?"
-
+        
         if self.event.eventIdentifier != "" {
             let escapedEventId = self.event.eventIdentifier.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
             urlString += "eventId=\(escapedEventId!)"
@@ -83,7 +88,7 @@ class MRYEventDetailViewController:
         let sdtxt = Util.sharedFormatter().stringFromDate( startDate )
         let edtxt = Util.sharedFormatter().stringFromDate( endDate )
         urlString += "&startDate=\(sdtxt)&endDate=\(edtxt)"
-
+        
         let url = NSURL(string: urlString)!
         while responder.nextResponder() != nil {
             responder = responder.nextResponder()!
@@ -91,13 +96,6 @@ class MRYEventDetailViewController:
                 responder.performSelector("openURL:", withObject: url)
             }
         }
-    }
-
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let content = event.datasource[indexPath.section].eventContents[indexPath.row]
-        MRYTextDocumentProxy.proxy.insertText(content.content)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     /*

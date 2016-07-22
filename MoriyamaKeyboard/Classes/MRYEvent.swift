@@ -10,8 +10,6 @@ import UIKit
 import EventKit
 
 class MRYEvent: NSObject {
-    private let _event : EKEvent
-    private let cal = NSCalendar.currentCalendar()
     var eventIdentifier : String{
         get {return _event.eventIdentifier }
     }
@@ -51,6 +49,9 @@ class MRYEvent: NSObject {
         self.defaultDataSource()
     }()
     
+    private let _event : EKEvent
+    private let cal = NSCalendar.currentCalendar()
+    
     
     func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
         return cal.components(unitFlags, fromDate: endDate )
@@ -66,12 +67,6 @@ class MRYEvent: NSObject {
         super.init()
     }
     
-    private func defaultDataSource() -> [MRYEventContentGroup]{
-        self.datasource = [] // refresh
-        let factory = MRYEventContentFactory(event: self)
-        return factory.eventContentDatasource([.General,.StartDate, .EndDate])
-    }
-    
     func endDateGroupWithMinutesInterval( minutes : Int ) -> MRYEventContentGroup{
         let contentFactory = MRYEventContentFactory(event: self)
         var endDateGroup = MRYEventContentGroup(description:
@@ -81,5 +76,11 @@ class MRYEvent: NSObject {
         endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(endDate)
 
         return endDateGroup
+    }
+    
+    private func defaultDataSource() -> [MRYEventContentGroup]{
+        self.datasource = [] // refresh
+        let factory = MRYEventContentFactory(event: self)
+        return factory.eventContentDatasource([.General,.StartDate, .EndDate])
     }
 }

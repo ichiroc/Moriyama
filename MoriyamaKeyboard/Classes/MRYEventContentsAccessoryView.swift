@@ -11,14 +11,6 @@ import EventKit
 
 class MRYEventContentsAccessoryView: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
     lazy var backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
 
     lazy var openEventButton :MRYKeyboardButton = { [unowned self]  in
@@ -33,8 +25,9 @@ class MRYEventContentsAccessoryView: UIView {
     }()
     
     private let event: MRYEvent
-    var buttons : [MRYKeyboardButton] = []
+    private var buttons : [MRYKeyboardButton] = []
 
+    
     init(event :MRYEvent, viewController: UIViewController){
         self.event = event
         super.init(frame: CGRectZero)

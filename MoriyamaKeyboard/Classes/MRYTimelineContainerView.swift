@@ -9,36 +9,27 @@
 import UIKit
 import EventKit
 class MRYTimelineContainerView : UIScrollView{
+    
+    let timelineView : UIView = UIView()
+    let hourlyHeight : CGFloat = 40.0
+    
+    private var layouted : Bool = false
+    private var events: [MRYEvent] = []
+    private var eventViews: [MRYEventView] = []
+    private unowned let dayViewController: MRYDayViewController
+    private let sidebarWidth : CGFloat = 45.0
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
-    var contentView : UIView {
+    private var contentView : UIView {
         get{
             return timelineView
         }
     }
-    
-    let timelineView : UIView = UIView()
-   
-    var layouted : Bool = false
-    let hourlyHeight : CGFloat = 40.0
-    private let sidebarWidth : CGFloat = 45.0
-    
-    var events: [MRYEvent] = []
-    var eventViews: [MRYEventView] = []
-    unowned let dayViewController: MRYDayViewController
-  
-    var currentDate : NSDate {
+    private var currentDate : NSDate {
         get{
             return dayViewController.currentDate
         }
     }
+    
     init( events _events : [MRYEvent], viewController: MRYDayViewController){
         dayViewController = viewController
 

@@ -10,17 +10,18 @@ import UIKit
 
 class KeyboardViewController: UIInputViewController ,
     UICollectionViewDelegate{
-
-    private var nextKeyboardButton: UIButton!
+    
     static var sharedInstance : KeyboardViewController!
     var mainViewController : MRYAbstractMainViewController
-    let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
+    
+    private let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
+    private var nextKeyboardButton: UIButton!
     private var views : Dictionary<String,UIView> = [:]
     private var initialized : Bool = false
     private var mainViewConstraints :[NSLayoutConstraint] = []
     private var constraintsInitialized = false
     private var deleteKeyButton : MRYKeyboardButton!
-    var currentOrientation = Orientation.Portrait
+    private var currentOrientation = Orientation.Portrait
     private var timer : NSTimer?
  
     enum Orientation{

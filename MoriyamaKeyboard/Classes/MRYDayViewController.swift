@@ -10,20 +10,23 @@ import UIKit
 import EventKit
 
 class MRYDayViewController: MRYAbstractMainViewController {
+
     let currentDate: NSDate
-
-    private lazy var events : [MRYEvent] = { [unowned self] in
-            MRYEventDataStore.sharedStore.eventsOnDate(self.currentDate)
-    }()
     
-    private lazy var allDayEvents: [MRYEvent] = { [unowned self ] in
-        MRYEventDataStore.sharedStore.allDayEvents(self.currentDate)
-    }()
-
+    private var newEventView : MRYEventView?
     private var allDayEventView : UIView!
     private var managedSubViews : [String: UIView] = [:]
     private var accessoryKeyView : UIView!
     private var timelineContainerView : MRYTimelineContainerView!
+    
+    private lazy var events : [MRYEvent] = { [unowned self] in
+        MRYEventDataStore.sharedStore.eventsOnDate(self.currentDate)
+        }()
+    
+    private lazy var allDayEvents: [MRYEvent] = { [unowned self ] in
+        MRYEventDataStore.sharedStore.allDayEvents(self.currentDate)
+        }()
+    
     
     private override init(fromViewController: MRYAbstractMainViewController?) {
         currentDate = Util.removeHms(NSDate())
@@ -99,7 +102,6 @@ class MRYDayViewController: MRYAbstractMainViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    var newEventView : MRYEventView?
     func longPressTimelineContainerView( recognizer: UILongPressGestureRecognizer){
 
         let point = recognizer.locationInView(timelineContainerView)

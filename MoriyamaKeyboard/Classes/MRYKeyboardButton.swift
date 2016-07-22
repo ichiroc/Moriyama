@@ -9,8 +9,10 @@
 import UIKit
 
 class MRYKeyboardButton : UIButton{
-    private var content: String?
+
     var customAction : (() -> Void)?
+    
+    private var content: String?
     private var normalBackgroundColor: UIColor = UIColor.whiteColor()
     private var normalTitleColor : UIColor = UIColor.blackColor()
     private var normalHighlightedColor : UIColor = UIColor.lightGrayColor()

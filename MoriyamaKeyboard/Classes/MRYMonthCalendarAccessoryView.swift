@@ -17,11 +17,13 @@ class MRYMonthCalendarAccessoryView : UIView {
         // Drawing code
     }
     */
-    var subViews : [String : UIView] = [:]
+    private var subViews : [String : UIView] = [:]
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not implemented")
     }
+    
     init(){
         super.init(frame: CGRectZero)
         self.backgroundColor = UIColor.lightGrayColor()

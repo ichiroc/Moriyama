@@ -11,7 +11,8 @@ import UIKit
 class MRYAllDayEventView: UIView {
 
     private let sidebarWidth : CGFloat = 45.0
-    var allDayEventViews : [String: MRYEventView] = [:]
+    private var allDayEventViews : [String: MRYEventView] = [:]
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
@@ -19,6 +20,8 @@ class MRYAllDayEventView: UIView {
         // Drawing code
     }
     */
+    
+    // TODO: Refactoring
     init(allDayEvents:[MRYEvent], viewController: MRYDayViewController){
         super.init(frame: CGRectZero)
         self.translatesAutoresizingMaskIntoConstraints = false
