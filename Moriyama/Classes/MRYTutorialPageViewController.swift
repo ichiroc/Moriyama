@@ -27,7 +27,6 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         NSLocalizedString("[NOTICE] To check appointments with a keyboard, You must confirm that appointments is shown on default Calendar app.", comment: "") // 12
 
     ]
-    private var maxPageIndex = 5
     
     
     override func viewDidLoad() {
