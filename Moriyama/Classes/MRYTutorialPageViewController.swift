@@ -64,36 +64,36 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     }
     
     func pageViewController(pageViewController: UIPageViewController,
-        viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+                            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
             let current = viewController as! MRYTutorialContentViewController
             if current.pageIndex >= descriptionTexts.count - 1 {
                 return nil
             }
-            let content = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
-            if let content0 = content! as? MRYTutorialContentViewController{
-                _ = content0.view
-                content0.pageIndex = current.pageIndex + 1
-                content0.descriptionImage.image = UIImage(named: "TutorialImage\(content0.pageIndex).png")
-                content0.descriptionLabel.text = descriptionTexts[content0.pageIndex]
-            }
-            return content!
+            return tutorialContentViewControllerAtPageIndex(current.pageIndex + 1)
     }
 
     
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(pageViewController: UIPageViewController,
+                            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let current = viewController as! MRYTutorialContentViewController
         if current.pageIndex <= 0{
             return nil
         }
-        let content = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
-        if let content0 = content! as? MRYTutorialContentViewController{
-            _ = content0.view
-            content0.pageIndex = current.pageIndex - 1
-            content0.descriptionImage.image = UIImage(named: "TutorialImage\(content0.pageIndex).png")
-            content0.descriptionLabel.text = descriptionTexts[content0.pageIndex]
-        }
-        return content!
+        return tutorialContentViewControllerAtPageIndex(current.pageIndex - 1)
     }
+    
+    private func tutorialContentViewControllerAtPageIndex(pageIndex :Int ) -> MRYTutorialContentViewController{
+        let contentVC = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
+        if let contentVC0 = contentVC as? MRYTutorialContentViewController{
+            _ = contentVC0.view
+            contentVC0.pageIndex = pageIndex
+            contentVC0.descriptionImage.image = UIImage(named: "TutorialImage\(contentVC0.pageIndex).png")
+            contentVC0.descriptionLabel.text = descriptionTexts[contentVC0.pageIndex]
+            return contentVC0
+        }
+        fatalError("Stroyboard coludn't instantiate TutorialContentViewController.")
+    }
+    
     /*
     // MARK: - Navigation
 
