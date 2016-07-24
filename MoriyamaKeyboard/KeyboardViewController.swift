@@ -198,18 +198,21 @@ class KeyboardViewController: UIInputViewController ,
         NSLayoutConstraint.deactivateConstraints(mainViewConstraints)
         mainViewConstraints = []
         
-        let c = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-m_left-[main]-m_right-|",
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: METRICS,
-            views: views)
-        mainViewConstraints.appendContentsOf(c)        
-        let c2 = NSLayoutConstraint.constraintsWithVisualFormat(
+        mainViewConstraints.appendContentsOf(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "H:|-m_left-[main]-m_right-|",
+                options: NSLayoutFormatOptions(rawValue: 0),
+                metrics: METRICS,
+                views: views)
+        )
+
+        mainViewConstraints.appendContentsOf(
+            NSLayoutConstraint.constraintsWithVisualFormat(
                 "V:|-m_top-[main]-3-[space(40)]-m_bottom-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: METRICS,
                 views: views)
-        mainViewConstraints.appendContentsOf(c2)
+        )
         
         let height = UIScreen.mainScreen().bounds.height * 0.45
         let heightConstraint = NSLayoutConstraint(item: self.inputView!,
@@ -219,10 +222,10 @@ class KeyboardViewController: UIInputViewController ,
             attribute: NSLayoutAttribute.NotAnAttribute,
             multiplier: 1.0,
             constant: height)
+        
         heightConstraint.priority = 999.0
         mainViewConstraints.append(heightConstraint)
         self.inputView?.addConstraints( mainViewConstraints )
-        
         self.inputView?.layoutIfNeeded()
     }
 
