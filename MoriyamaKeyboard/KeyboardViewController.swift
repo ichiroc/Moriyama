@@ -16,6 +16,7 @@ class KeyboardViewController: UIInputViewController ,
     
     private let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
     private var nextKeyboardButton: UIButton!
+    private var keyButtonConstraints : [NSLayoutConstraint] = []
     private var views : Dictionary<String,UIView> = [:]
     private var initialized : Bool = false
     private var mainViewConstraints :[NSLayoutConstraint] = []
@@ -175,19 +176,19 @@ class KeyboardViewController: UIInputViewController ,
         newMainVC.didMoveToParentViewController(self)
     }
     
-    private var allConstraints : [NSLayoutConstraint] = []
+
     private func rebuildConstraints(){
-        NSLayoutConstraint.deactivateConstraints(allConstraints)
-        allConstraints = []
+        NSLayoutConstraint.deactivateConstraints(keyButtonConstraints)
+        keyButtonConstraints = []
         
-        allConstraints.appendContentsOf(
+        keyButtonConstraints.appendContentsOf(
             NSLayoutConstraint.constraintsWithVisualFormat(
                 "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
                 options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
                 metrics: METRICS,
                 views: views)
         )
-        self.inputView?.addConstraints( allConstraints )
+        self.inputView?.addConstraints( keyButtonConstraints )
 
         rebuildMainViewLayout()
         constraintsInitialized = true
