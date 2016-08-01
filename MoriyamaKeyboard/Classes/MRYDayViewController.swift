@@ -75,19 +75,21 @@ class MRYDayViewController: MRYAbstractMainViewController {
         self.view.addSubview(accessoryKeyView)
         self.view.addSubview(timelineContainerView)
         
-        let vertical = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[accessory(36)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
-            options: [.AlignAllLeading, .AlignAllTrailing],
-            metrics: METRICS,
-            views: managedSubViews)
-        constraints.appendContentsOf(vertical)
+        constraints.appendContentsOf(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "V:|[accessory(36)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
+                options: [.AlignAllLeading, .AlignAllTrailing],
+                metrics: METRICS,
+                views: managedSubViews)
+        )
         
-        let horizonalTimelineBase =  NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[timelineScroll]|",
-            options: [.AlignAllCenterX ] ,
-            metrics: METRICS,
-            views: managedSubViews)
-        constraints.appendContentsOf(horizonalTimelineBase)
+        constraints.appendContentsOf(
+            NSLayoutConstraint.constraintsWithVisualFormat(
+                "H:|[timelineScroll]|",
+                options: [.AlignAllCenterX ] ,
+                metrics: METRICS,
+                views: managedSubViews)
+        )
         
         return constraints
     }
@@ -105,8 +107,8 @@ class MRYDayViewController: MRYAbstractMainViewController {
     func longPressTimelineContainerView( recognizer: UILongPressGestureRecognizer){
 
         let point = recognizer.locationInView(timelineContainerView)
-        let oddsTime = point.y % (timelineContainerView.hourlyHeight / 2 )
-        let posY = point.y - oddsTime
+        let oddHour = point.y % (timelineContainerView.hourlyHeight / 2 )
+        let posY = point.y - oddHour
         switch recognizer.state{
         case .Began:
             if timelineContainerView.isLocationInEventView(recognizer) {
