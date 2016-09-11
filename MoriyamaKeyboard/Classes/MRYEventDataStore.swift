@@ -18,21 +18,21 @@ class MRYEventDataStore : NSObject{
         }
     }
     
-    private var events : [MRYEvent] = []
-    private var accessGranted = false
+    fileprivate var events : [MRYEvent] = []
+    fileprivate var accessGranted = false
 
     
-    override private init(){
+    override fileprivate init(){
         super.init()
-        if EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized {
+        if EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized {
             // Not authorized. So request the permition.
-            rawStore.requestAccessToEntityType(.Event,
+            rawStore.requestAccess(to: .event,
                 completion: {(granted: Bool, error: NSError?) -> Void in
                     if granted{
                         self.accessGranted = true
                         self.loadAllEvents()
                     }
-            })
+            } as! EKEventStoreRequestAccessCompletionHandler)
         }else{
             accessGranted = true
             self.loadAllEvents()
@@ -45,31 +45,31 @@ class MRYEventDataStore : NSObject{
     func loadAllEvents() {
         if accessGranted {
             // 本日の曜日により最大3週間前のデータが必要になる
-            let startDate = NSDate().dateByAddingTimeInterval(-86400 * 21)
-            let endDate = startDate.dateByAddingTimeInterval(86400 * 140)
-            let predicate = rawStore.predicateForEventsWithStartDate(startDate, endDate: endDate, calendars: nil)
-            let events = rawStore.eventsMatchingPredicate(predicate)
+            let startDate = Date().addingTimeInterval(-86400 * 21)
+            let endDate = startDate.addingTimeInterval(86400 * 140)
+            let predicate = rawStore.predicateForEvents(withStart: startDate, end: endDate, calendars: nil)
+            let events = rawStore.events(matching: predicate)
             let _events = events.map{ MRYEvent( event: $0) }
-            self.events = _events.sort({ x , y in
-                return x.startDate.compare(y.startDate) == NSComparisonResult.OrderedAscending
+            self.events = _events.sorted(by: { x , y in
+                return x.startDate.compare(y.startDate as Date) == ComparisonResult.orderedAscending
             })
         }
     }
     
     
-    func eventsOnDate(date: NSDate) -> [MRYEvent]{
-        let startDate = date.dateByAddingTimeInterval(-1)
-        let endDate = startDate.dateByAddingTimeInterval(86401)
+    func eventsOnDate(_ date: Date) -> [MRYEvent]{
+        let startDate = date.addingTimeInterval(-1)
+        let endDate = startDate.addingTimeInterval(86401)
         
         return events.filter({
-            return (startDate.compare($0.startDate) == .OrderedAscending && endDate.compare($0.startDate) == .OrderedDescending) ||
-            (startDate.compare($0.endDate) == .OrderedAscending && endDate.compare($0.endDate) == .OrderedDescending) ||
-            ($0.startDate.compare(startDate) == .OrderedAscending && $0.endDate.compare(endDate) == .OrderedDescending)
+            return (startDate.compare($0.startDate as Date) == .orderedAscending && endDate.compare($0.startDate as Date) == .orderedDescending) ||
+            (startDate.compare($0.endDate as Date) == .orderedAscending && endDate.compare($0.endDate as Date) == .orderedDescending) ||
+            ($0.startDate.compare(startDate) == .orderedAscending && $0.endDate.compare(endDate) == .orderedDescending)
         })
     }
 
     
-    func events(date :NSDate, includeAllDay : Bool) -> [MRYEvent]{
+    func events(_ date :Date, includeAllDay : Bool) -> [MRYEvent]{
         let events = self.eventsOnDate(date)
         if( !includeAllDay ){
             return events.filter({ return !$0.allDay })
@@ -77,11 +77,11 @@ class MRYEventDataStore : NSObject{
         return events
     }
     
-    func notAllDayEvents(date : NSDate) -> [MRYEvent]{
+    func notAllDayEvents(_ date : Date) -> [MRYEvent]{
         return self.eventsOnDate(date).filter({ return !$0.allDay })
     }
 
-    func allDayEvents(date: NSDate) -> [MRYEvent]{
+    func allDayEvents(_ date: Date) -> [MRYEvent]{
         let events = self.eventsOnDate(date)
         return events.filter{ return $0.allDay }
     }

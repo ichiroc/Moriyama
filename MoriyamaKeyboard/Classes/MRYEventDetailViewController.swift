@@ -11,10 +11,10 @@ import UIKit
 
 class MRYEventDetailViewController:
     MRYAbstractMainViewController, UITableViewDelegate{
-    private var eventContentsDataStore : MRYEventContentsTableDataSource!
-    private var event: MRYEvent!
-    private var views : [String: UIView] = [:]
-    private  var accessoryView : MRYEventContentsAccessoryView?
+    fileprivate var eventContentsDataStore : MRYEventContentsTableDataSource!
+    fileprivate var event: MRYEvent!
+    fileprivate var views : [String: UIView] = [:]
+    fileprivate  var accessoryView : MRYEventContentsAccessoryView?
     
     init(event _event: MRYEvent, fromViewController: MRYAbstractMainViewController){
         event = _event
@@ -23,7 +23,7 @@ class MRYEventDetailViewController:
         accessoryView = MRYEventContentsAccessoryView(event: event, viewController: self)
         accessoryView?.backButton.customAction = { [unowned self] in self.popViewController() }
         accessoryView?.openEventButton.customAction = { [unowned self] in
-            self.openEvent(self.event.startDate,endDate:self.event.endDate)
+            self.openEvent(self.event.startDate as Date,endDate:self.event.endDate as Date)
         }
     }
     
@@ -31,17 +31,17 @@ class MRYEventDetailViewController:
         super.init(coder: aDecoder)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        let tableHorizonalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|[table]|",
+    override func viewWillAppear(_ animated: Bool) {
+        let tableHorizonalConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|[table]|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: METRICS,
             views: views )
         self.view.addConstraints(tableHorizonalConstraints)
         
-        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[accessory(35)]-1-[table]|",
-            options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllTrailing] ,
+        let verticalConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[accessory(35)]-1-[table]|",
+            options: [.alignAllCenterX, .alignAllLeading, .alignAllTrailing] ,
             metrics: METRICS,
             views: views)
 
@@ -70,31 +70,31 @@ class MRYEventDetailViewController:
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let content = event.datasource[indexPath.section].eventContents[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let content = event.datasource[(indexPath as NSIndexPath).section].eventContents[(indexPath as NSIndexPath).row]
         MRYTextDocumentProxy.proxy.insertText(content.content)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    private func openEvent(startDate: NSDate, endDate : NSDate){
+    fileprivate func openEvent(_ startDate: Date, endDate : Date){
         var responder: UIResponder = self
         var urlString = "moriyama-board://?"
         
         if self.event.eventIdentifier != "" {
-            let escapedEventId = self.event.eventIdentifier.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
+            let escapedEventId = self.event.eventIdentifier.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)
             urlString += "eventId=\(escapedEventId!)"
         }
         
-        let sdtxt = Util.sharedFormatter().stringFromDate( startDate )
-        let edtxt = Util.sharedFormatter().stringFromDate( endDate )
+        let sdtxt = Util.sharedFormatter().string( from: startDate )
+        let edtxt = Util.sharedFormatter().string( from: endDate )
         urlString += "&startDate=\(sdtxt)&endDate=\(edtxt)"
         
-        let url = NSURL(string: urlString)!
-        while responder.nextResponder() != nil {
-            responder = responder.nextResponder()!
-            if responder.respondsToSelector("openURL:") == true {
-                responder.performSelector("openURL:", withObject: url)
-            }
+        let url = URL(string: urlString)!
+        while responder.next != nil {
+            responder = responder.next!
+//            if responder.responds(to: #selector(UIApplication.openURL(_:))) == true {
+//                responder.perform(#selector(UIApplication.openURL(_:)), with: url)
+//            }
         }
     }
 

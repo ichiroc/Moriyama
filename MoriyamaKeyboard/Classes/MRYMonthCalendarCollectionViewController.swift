@@ -11,11 +11,11 @@ import UIKit
 class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     UICollectionViewDelegate{
     let calendarCollectionView :MRYMonthCalendarCollectionView
-    private let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
-    private var constraints : [NSLayoutConstraint]!
-    private var cellSize : CGSize?
-    private var views : [String:UIView] = [:]
-    private var defaultCellColor: UIColor?
+    fileprivate let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
+    fileprivate var constraints : [NSLayoutConstraint]!
+    fileprivate var cellSize : CGSize?
+    fileprivate var views : [String:UIView] = [:]
+    fileprivate var defaultCellColor: UIColor?
     
     override init(fromViewController: MRYAbstractMainViewController?){
         calendarCollectionView = MRYMonthCalendarCollectionView()
@@ -31,7 +31,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         super.viewDidLoad()
         self.view.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = UIColor.lightGray
         self.view.addSubview(calendarCollectionView)
         self.view.translatesAutoresizingMaskIntoConstraints = false
         let _numberPad = MRYMonthCalendarAccessoryView()
@@ -40,15 +40,15 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
             "numberPad" : _numberPad]
         
         let noOption = NSLayoutFormatOptions(rawValue: 0)
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "H:|-1-[col]-1-|",
+        let hConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-1-[col]-1-|",
             options: noOption,
             metrics: nil,
             views: views)
         self.view.addConstraints(hConstraints)
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-[numberPad(36)][col]-|",
-            options: [.AlignAllCenterX, .AlignAllLeading, .AlignAllLeading],
+        let vConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-[numberPad(36)][col]-|",
+            options: [.alignAllCenterX, .alignAllLeading, .alignAllLeading],
             metrics: nil,
             views: views)
         self.view.addConstraints(vConstraints)
@@ -58,18 +58,18 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         calendarCollectionView.delegate = self
     }
     
-    override func viewDidChangeOrientation(orientation: KeyboardViewController.Orientation) {
+    override func viewDidChangeOrientation(_ orientation: KeyboardViewController.Orientation) {
         cellSize = nil
         calendarCollectionView.performBatchUpdates(nil, completion: nil)
         calendarCollectionView.reloadData()
     }
     
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    func moveToAtIndexPath( indexPath : NSIndexPath  ){
-        calendarCollectionView.scrollToItemAtIndexPath( indexPath, atScrollPosition: .Top , animated: false)
+    func moveToAtIndexPath( _ indexPath : IndexPath  ){
+        calendarCollectionView.scrollToItem( at: indexPath, at: .top , animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,47 +78,47 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     }
 
     // - MARK: UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! MRYMonthCalendarCollectionViewCell
 
         defaultCellColor = cell.contentView.backgroundColor
-        cell.contentView.backgroundColor = UIColor.lightGrayColor()
+        cell.contentView.backgroundColor = UIColor.lightGray
 
     }
     
-    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! MRYMonthCalendarCollectionViewCell
         cell.contentView.backgroundColor = defaultCellColor
     }
 
-    func collectionView(collectionView: UICollectionView,
-        shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-            let cell = collectionView.cellForItemAtIndexPath(indexPath) as! MRYMonthCalendarCollectionViewCell
+    func collectionView(_ collectionView: UICollectionView,
+        shouldSelectItemAt indexPath: IndexPath) -> Bool {
+            let cell = collectionView.cellForItem(at: indexPath) as! MRYMonthCalendarCollectionViewCell
             let dayViewController = MRYDayViewController(date: cell.date!, fromViewController: self)
             self.pushViewController(dayViewController)
             return true
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout methods
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
             if cellSize != nil {
                 return cellSize!
             }
             let margins = calendarCollectionView.layoutMargins
-            let screenRect = UIScreen.mainScreen().bounds //calendarCollectionView.bounds
+            let screenRect = UIScreen.main.bounds //calendarCollectionView.bounds
             let screenWidth = screenRect.size.width - (margins.left + margins.right)
             let cellWidth = floor((screenWidth / 7.0))
-            cellSize = CGSizeMake(cellWidth, 50)
+            cellSize = CGSize(width: cellWidth, height: 50)
             return cellSize!
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1
     }
     

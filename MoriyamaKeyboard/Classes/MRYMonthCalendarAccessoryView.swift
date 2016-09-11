@@ -17,7 +17,7 @@ class MRYMonthCalendarAccessoryView : UIView {
         // Drawing code
     }
     */
-    private var subViews : [String : UIView] = [:]
+    fileprivate var subViews : [String : UIView] = [:]
     
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,8 +25,8 @@ class MRYMonthCalendarAccessoryView : UIView {
     }
     
     init(){
-        super.init(frame: CGRectZero)
-        self.backgroundColor = UIColor.lightGrayColor()
+        super.init(frame: CGRect.zero)
+        self.backgroundColor = UIColor.lightGray
         self.layoutMargins = UIEdgeInsets(top: 1, left: 1, bottom: 1, right: 1)
         self.translatesAutoresizingMaskIntoConstraints = false
         for i in 0  ..< 10 {
@@ -43,14 +43,14 @@ class MRYMonthCalendarAccessoryView : UIView {
         self.addSubview(slashButton)
         subViews["slash"] = slashButton
         
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|-1-[b0]-1-|",
+        self.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-1-[b0]-1-|",
             options: NSLayoutFormatOptions(rawValue: 0),
             metrics: nil,
             views: subViews ))
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat(
-            "|[b1(==b0)]-1-[b2(==b0)]-1-[b3(==b0)]-1-[b4(==b0)]-1-[b5(==b0)]-1-[b6(==b0)]-1-[b7(==b0)]-1-[b8(==b0)]-1-[b9(==b0)]-1-[b0]-1-[colon(==b0)]-1-[slash(==b0)]|",
-            options: [ NSLayoutFormatOptions.AlignAllCenterY, .AlignAllTop, .AlignAllBottom],
+        self.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "|[b1(==b0)]-1-[b2(==b0)]-1-[b3(==b0)]-1-[b4(==b0)]-1-[b5(==b0)]-1-[b6(==b0)]-1-[b7(==b0)]-1-[b8(==b0)]-1-[b9(==b0)]-1-[b0]-1-[colon(==b0)]-1-[slash(==b0)]|",
+            options: [ NSLayoutFormatOptions.alignAllCenterY, .alignAllTop, .alignAllBottom],
             metrics: nil,
             views: subViews ))
     }

@@ -10,7 +10,7 @@ import UIKit
 import EventKitUI
 class MRYEventEditViewController: EKEventEditViewController {
 
-    private var evnetStore : EKEventStore?
+    fileprivate var evnetStore : EKEventStore?
     override func viewDidLoad() {
         super.viewDidLoad()
 

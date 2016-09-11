@@ -11,31 +11,31 @@ import EventKit
 
 class MRYDayViewController: MRYAbstractMainViewController {
 
-    let currentDate: NSDate
+    let currentDate: Date
     
-    private var newEventView : MRYEventView?
-    private var allDayEventView : UIView!
-    private var managedSubViews : [String: UIView] = [:]
-    private var accessoryKeyView : UIView!
-    private var timelineContainerView : MRYTimelineContainerView!
+    fileprivate var newEventView : MRYEventView?
+    fileprivate var allDayEventView : UIView!
+    fileprivate var managedSubViews : [String: UIView] = [:]
+    fileprivate var accessoryKeyView : UIView!
+    fileprivate var timelineContainerView : MRYTimelineContainerView!
     
-    private lazy var events : [MRYEvent] = { [unowned self] in
+    fileprivate lazy var events : [MRYEvent] = { [unowned self] in
         MRYEventDataStore.sharedStore.eventsOnDate(self.currentDate)
         }()
     
-    private lazy var allDayEvents: [MRYEvent] = { [unowned self ] in
+    fileprivate lazy var allDayEvents: [MRYEvent] = { [unowned self ] in
         MRYEventDataStore.sharedStore.allDayEvents(self.currentDate)
         }()
     
     
-    private override init(fromViewController: MRYAbstractMainViewController?) {
-        currentDate = Util.removeHms(NSDate())
+    fileprivate override init(fromViewController: MRYAbstractMainViewController?) {
+        currentDate = Util.removeHms(Date())
         let _events = MRYEventDataStore.sharedStore.eventsOnDate(currentDate)
         super.init(fromViewController: fromViewController)
         timelineContainerView = MRYTimelineContainerView(events: _events, viewController: self)
     }
     
-    init(date: NSDate, fromViewController: MRYAbstractMainViewController?) {
+    init(date: Date, fromViewController: MRYAbstractMainViewController?) {
         self.currentDate = Util.removeHms(date)
         super.init(fromViewController: fromViewController)
         self.timelineContainerView = MRYTimelineContainerView(events: events, viewController: self)
@@ -51,7 +51,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         
         self.view.translatesAutoresizingMaskIntoConstraints = false
         
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        self.view.backgroundColor = UIColor.lightGray
         
         allDayEventView = MRYAllDayEventView(allDayEvents: events, viewController: self)
         accessoryKeyView = MRYDayViewAccessoryView(date: currentDate, viewController: self)
@@ -69,24 +69,24 @@ class MRYDayViewController: MRYAbstractMainViewController {
         timelineContainerView.moveToInitialPointOnTimeline()
     }
   
-    private func constraintsSubviews() -> [NSLayoutConstraint]{
+    fileprivate func constraintsSubviews() -> [NSLayoutConstraint]{
         var constraints : [NSLayoutConstraint] = []
         
         self.view.addSubview(accessoryKeyView)
         self.view.addSubview(timelineContainerView)
         
-        constraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|[accessory(36)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
-                options: [.AlignAllLeading, .AlignAllTrailing],
+        constraints.append(
+            contentsOf: NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|[accessory(36)]-1-[allDayEvent(40)]-1-[timelineScroll]|",
+                options: [.alignAllLeading, .alignAllTrailing],
                 metrics: METRICS,
                 views: managedSubViews)
         )
         
-        constraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|[timelineScroll]|",
-                options: [.AlignAllCenterX ] ,
+        constraints.append(
+            contentsOf: NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|[timelineScroll]|",
+                options: [.alignAllCenterX ] ,
                 metrics: METRICS,
                 views: managedSubViews)
         )
@@ -94,7 +94,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         return constraints
     }
     
-    func tappedEventView( event: MRYEvent){
+    func tappedEventView( _ event: MRYEvent){
         let detailViewController = MRYEventDetailViewController(event: event, fromViewController: self)
         self.pushViewController(detailViewController)
     }
@@ -104,23 +104,23 @@ class MRYDayViewController: MRYAbstractMainViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func longPressTimelineContainerView( recognizer: UILongPressGestureRecognizer){
+    func longPressTimelineContainerView( _ recognizer: UILongPressGestureRecognizer){
 
-        let point = recognizer.locationInView(timelineContainerView)
-        let oddHour = point.y % (timelineContainerView.hourlyHeight / 2 )
+        let point = recognizer.location(in: timelineContainerView)
+        let oddHour = point.y.truncatingRemainder(dividingBy: (timelineContainerView.hourlyHeight / 2 ))
         let posY = point.y - oddHour
         switch recognizer.state{
-        case .Began:
+        case .began:
             if timelineContainerView.isLocationInEventView(recognizer) {
                 return
             }
             newEventView = eventViewWith(pointY: posY)
             timelineContainerView.timelineView.addSubview(newEventView!)
-        case .Changed:
+        case .changed:
             if let nEV = newEventView {
-                nEV.frame.origin = CGPointMake(0, posY)
+                nEV.frame.origin = CGPoint(x: 0, y: posY)
             }
-        case .Ended:
+        case .ended:
             if let nEV = newEventView{
                 showEventView(nEV, pointY: posY)
             }
@@ -129,29 +129,29 @@ class MRYDayViewController: MRYAbstractMainViewController {
         }
     }
     
-    private func eventViewWith( pointY pointY : CGFloat) -> MRYEventView{
+    fileprivate func eventViewWith( pointY : CGFloat) -> MRYEventView{
         let rawEvent = EKEvent(eventStore: MRYEventDataStore.sharedStore.rawStore)
         rawEvent.calendar = MRYEventDataStore.sharedStore.defaultCalendar
         rawEvent.startDate = timelineContainerView.dateByPointY(pointY)
-        rawEvent.endDate = rawEvent.startDate.dateByAddingTimeInterval(60 * 60 )
+        rawEvent.endDate = rawEvent.startDate.addingTimeInterval(60 * 60 )
         let event = MRYEvent(event: rawEvent)
-        let frame = CGRectMake(0, pointY , timelineContainerView.timelineView.frame.width,
-                               timelineContainerView.heightByEventDuration(event.duration))
+        let frame = CGRect(x: 0, y: pointY , width: timelineContainerView.timelineView.frame.width,
+                               height: timelineContainerView.heightByEventDuration(event.duration))
         let newEventView = MRYEventView(frame: frame,
                                     event: event,
                                     viewController: self)
-        newEventView.backgroundColor = UIColor(CGColor: MRYEventDataStore.sharedStore.defaultCalendar.CGColor).colorWithAlphaComponent(0.5)
+        newEventView.backgroundColor = UIColor(cgColor: MRYEventDataStore.sharedStore.defaultCalendar.cgColor).withAlphaComponent(0.5)
         return newEventView
     }
     
-    private func showEventView(eventView: MRYEventView, pointY: CGFloat){
+    fileprivate func showEventView(_ eventView: MRYEventView, pointY: CGFloat){
         // event.updateDataSource()
         eventView.sourceEvent.startDate = timelineContainerView.dateByPointY(pointY)
-        eventView.sourceEvent.endDate = eventView.sourceEvent.startDate.dateByAddingTimeInterval(60 * 60)
+        eventView.sourceEvent.endDate = eventView.sourceEvent.startDate.addingTimeInterval(60 * 60)
         let contentFactory = MRYEventContentFactory(event: eventView.sourceEvent)
         let sourceEvent = eventView.sourceEvent
         sourceEvent.datasource = contentFactory.eventContentDatasource([
-            MRYEventContentFactory.ContentType.StartDate ,
+            MRYEventContentFactory.ContentType.startDate ,
             ])
         sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(30))
         sourceEvent.datasource.append(sourceEvent.endDateGroupWithMinutesInterval(60))

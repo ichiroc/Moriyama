@@ -10,8 +10,8 @@ import UIKit
 
 class MRYAllDayEventView: UIView {
 
-    private let sidebarWidth : CGFloat = 45.0
-    private var allDayEventViews : [String: MRYEventView] = [:]
+    fileprivate let sidebarWidth : CGFloat = 45.0
+    fileprivate var allDayEventViews : [String: MRYEventView] = [:]
     
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -23,23 +23,23 @@ class MRYAllDayEventView: UIView {
     
     // TODO: Refactoring
     init(allDayEvents:[MRYEvent], viewController: MRYDayViewController){
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         let sidebarView = UIView()
         sidebarView.translatesAutoresizingMaskIntoConstraints = false
-        sidebarView.backgroundColor = UIColor.whiteColor()
+        sidebarView.backgroundColor = UIColor.white
         let allDayEventContainerView = UIView()
         allDayEventContainerView.translatesAutoresizingMaskIntoConstraints = false
-        allDayEventContainerView.backgroundColor = UIColor.whiteColor()
+        allDayEventContainerView.backgroundColor = UIColor.white
         self.addSubview(allDayEventContainerView)
         
         let allDayLabel = UILabel()
         allDayLabel.text = NSLocalizedString("All Day", comment: "All day")
-        allDayLabel.textAlignment = .Center
-        allDayLabel.textColor = UIColor.grayColor()
+        allDayLabel.textAlignment = .center
+        allDayLabel.textColor = UIColor.gray
         sidebarView.addSubview(allDayLabel)
         allDayLabel.sizeToFit()
-        allDayLabel.font = allDayLabel.font.fontWithSize(11)
+        allDayLabel.font = allDayLabel.font.withSize(11)
         self.addSubview(sidebarView)
         
         let allDayViews = ["sidebar" : sidebarView,
@@ -48,7 +48,7 @@ class MRYAllDayEventView: UIView {
         var vfl = "|"
         var i = 0
         allDayEvents.filter({ $0.allDay }).forEach({
-            let eventView = MRYEventView(frame: CGRectZero, event: $0, viewController: viewController)
+            let eventView = MRYEventView(frame: CGRect.zero, event: $0, viewController: viewController)
             eventView.translatesAutoresizingMaskIntoConstraints = false
             allDayEventContainerView.addSubview(eventView)
             allDayEventViews["e\(i)"] = eventView
@@ -63,22 +63,22 @@ class MRYAllDayEventView: UIView {
        
         if(allDayEventViews.count > 0){
             allDayEventContainerView.addConstraints(
-                NSLayoutConstraint.constraintsWithVisualFormat(
-                    "V:|[e0]|",
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: "V:|[e0]|",
                     options: NSLayoutFormatOptions(rawValue: 0),
                     metrics: nil,
                     views: allDayEventViews)
             )
             allDayEventContainerView.addConstraints(
-                NSLayoutConstraint.constraintsWithVisualFormat(
-                    vfl,
-                    options: [.AlignAllBottom, .AlignAllTop],
+                NSLayoutConstraint.constraints(
+                    withVisualFormat: vfl,
+                    options: [.alignAllBottom, .alignAllTop],
                     metrics: nil,
                     views: allDayEventViews)
             )
         }
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("H:|[sidebar(\(sidebarWidth))][allDayEventContainer]|", options: [.AlignAllTop, .AlignAllBottom], metrics: nil, views: allDayViews)
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|[sidebar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: allDayViews)
+        let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[sidebar(\(sidebarWidth))][allDayEventContainer]|", options: [.alignAllTop, .alignAllBottom], metrics: nil, views: allDayViews)
+        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[sidebar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: allDayViews)
         self.addConstraints(hConstraints)
         self.addConstraints(vConstraints)
         

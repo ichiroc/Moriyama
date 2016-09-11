@@ -10,18 +10,18 @@ import UIKit
 
 class MRYEventContentFactory {
     enum ContentType{
-        case General
-        case StartDate
-        case EndDate
+        case general
+        case startDate
+        case endDate
     }
     
-    private let event : MRYEvent
+    fileprivate let event : MRYEvent
     
     init(event e: MRYEvent){
         event = e
     }
     
-    func eventContentsAtDateTime(date: NSDate) -> [MRYEventContent]{
+    func eventContentsAtDateTime(_ date: Date) -> [MRYEventContent]{
         var eventContents : [MRYEventContent] = []
         eventContents.append(MRYEventContent(description: NSLocalizedString("Date time" , comment: ""), content: Util.string(date, format: "MMMdEHHmm")))
         eventContents.append(MRYEventContent(description: NSLocalizedString("Date time",comment: ""), content: Util.string(date, format: "MMMd")))
@@ -33,22 +33,22 @@ class MRYEventContentFactory {
         return eventContents
     }
    
-    func eventContentDatasource( types : [ContentType]) -> [MRYEventContentGroup]{
+    func eventContentDatasource( _ types : [ContentType]) -> [MRYEventContentGroup]{
         var datasource : [MRYEventContentGroup] = []
         types.forEach{
             switch $0{
-            case .General:
+            case .general:
                 datasource.append(generalContentGroup())
-            case .StartDate:
+            case .startDate:
                 datasource.append(startDateContentGroup())
-            case .EndDate:
+            case .endDate:
                 datasource.append(endDateContentGroup())
             }
         }
         return datasource
     }
     
-    private func generalContentGroup() -> MRYEventContentGroup{
+    fileprivate func generalContentGroup() -> MRYEventContentGroup{
         var generalGroup = MRYEventContentGroup(description: NSLocalizedString("General", comment : "General informations of event."), eventContents: [])
         generalGroup.eventContents.append(MRYEventContent( description: NSLocalizedString("Title",comment: "Event title"), content: event.title))
         if let location = event.location{
@@ -68,15 +68,15 @@ class MRYEventContentFactory {
         return generalGroup
     }
 
-    private func startDateContentGroup() -> MRYEventContentGroup{
+    fileprivate func startDateContentGroup() -> MRYEventContentGroup{
         var startDateGroup = MRYEventContentGroup(description: NSLocalizedString( "Start date", comment: "Start date of event."), eventContents: [])
-        startDateGroup.eventContents = eventContentsAtDateTime(event.startDate)
+        startDateGroup.eventContents = eventContentsAtDateTime(event.startDate as Date)
         return startDateGroup
     }
     
-    private func endDateContentGroup() -> MRYEventContentGroup{
+    fileprivate func endDateContentGroup() -> MRYEventContentGroup{
         var endDateGroup = MRYEventContentGroup(description:  NSLocalizedString("End date",comment: "End date of event."), eventContents: [])
-        endDateGroup.eventContents = eventContentsAtDateTime(event.endDate)
+        endDateGroup.eventContents = eventContentsAtDateTime(event.endDate as Date)
         return endDateGroup
     }
 }

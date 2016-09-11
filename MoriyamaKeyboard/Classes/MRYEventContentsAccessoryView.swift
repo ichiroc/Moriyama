@@ -11,26 +11,34 @@ import EventKit
 
 class MRYEventContentsAccessoryView: UIView {
 
-    lazy var backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""), text: nil, backgroundColor: nil, titleColor: UIColor.blueColor(), action: nil, round: 0)
-
+    lazy var backButton = MRYKeyboardButton(title: NSLocalizedString("Back", comment: ""),
+                                            imageFileName: nil,
+                                            text: nil,
+                                            backgroundColor: nil,
+                                            titleColor: UIColor.blue,
+                                            highlightedColor: nil,
+                                            action: nil,
+                                            round: 0)
+    
+    
     lazy var openEventButton :MRYKeyboardButton = { [unowned self]  in
         let b = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""),round: 0)
         let appIcon = UIImage.init(named: "AppImageSmall.png")
-        b.setImage(appIcon, forState: .Normal)
+        b.setImage(appIcon, for: UIControlState())
         b.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
         if self.event.eventIdentifier != ""{
-            b.setTitle(NSLocalizedString("Edit this event", comment: ""), forState: .Normal)
+            b.setTitle(NSLocalizedString("Edit this event", comment: ""), for: UIControlState())
         }
         return b
     }()
     
-    private let event: MRYEvent
-    private var buttons : [MRYKeyboardButton] = []
+    fileprivate let event: MRYEvent
+    fileprivate var buttons : [MRYKeyboardButton] = []
 
     
     init(event :MRYEvent, viewController: UIViewController){
         self.event = event
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(backButton)
     }
@@ -51,16 +59,16 @@ class MRYEventContentsAccessoryView: UIView {
             vvfl += "[back]|"
         }
 
-        let h = NSLayoutConstraint.constraintsWithVisualFormat(vvfl,
-                                                       options: [.AlignAllTop,.AlignAllBottom],
+        let h = NSLayoutConstraint.constraints(withVisualFormat: vvfl,
+                                                       options: [.alignAllTop,.alignAllBottom],
                                                        metrics: METRICS,
                                                        views: views)
-        let v = NSLayoutConstraint.constraintsWithVisualFormat("V:|[back]|",
+        let v = NSLayoutConstraint.constraints(withVisualFormat: "V:|[back]|",
                                                               options: [],
                                                               metrics: METRICS,
                                                               views: views)
-        constraints.appendContentsOf(h)
-        constraints.appendContentsOf(v)
+        constraints.append(contentsOf: h)
+        constraints.append(contentsOf: v)
         self.addConstraints(constraints)
     }
     

@@ -11,7 +11,7 @@ import UIKit
 class MRYMonthCalendarCollectionView: UICollectionView,
     UICollectionViewDelegateFlowLayout{
    
-    var todayIndexPath : NSIndexPath = NSIndexPath(forRow: 60, inSection: 0)
+    var todayIndexPath : IndexPath = IndexPath(row: 60, section: 0)
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not implemented")
@@ -22,8 +22,8 @@ class MRYMonthCalendarCollectionView: UICollectionView,
     }
    
     init(){
-        super.init(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
-        self.registerClass(MRYMonthCalendarCollectionViewCell.self, forCellWithReuseIdentifier: "monthlyCell")
+        super.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        self.register(MRYMonthCalendarCollectionViewCell.self, forCellWithReuseIdentifier: "monthlyCell")
         self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = superview?.backgroundColor
         self.layer.cornerRadius = 3

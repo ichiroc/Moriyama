@@ -14,20 +14,20 @@ class KeyboardViewController: UIInputViewController ,
     static var sharedInstance : KeyboardViewController!
     var mainViewController : MRYAbstractMainViewController
     
-    private let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
-    private var nextKeyboardButton: UIButton!
-    private var keyButtonConstraints : [NSLayoutConstraint] = []
-    private var views : Dictionary<String,UIView> = [:]
-    private var initialized : Bool = false
-    private var mainViewConstraints :[NSLayoutConstraint] = []
-    private var constraintsInitialized = false
-    private var deleteKeyButton : MRYKeyboardButton!
-    private var currentOrientation = Orientation.Portrait
-    private var timer : NSTimer?
+    fileprivate let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
+    fileprivate var nextKeyboardButton: UIButton!
+    fileprivate var keyButtonConstraints : [NSLayoutConstraint] = []
+    fileprivate var views : Dictionary<String,UIView> = [:]
+    fileprivate var initialized : Bool = false
+    fileprivate var mainViewConstraints :[NSLayoutConstraint] = []
+    fileprivate var constraintsInitialized = false
+    fileprivate var deleteKeyButton : MRYKeyboardButton!
+    fileprivate var currentOrientation = Orientation.portrait
+    fileprivate var timer : Timer?
  
     enum Orientation{
-        case Landscape
-        case Portrait
+        case landscape
+        case portrait
     }
     
     init(){
@@ -57,12 +57,12 @@ class KeyboardViewController: UIInputViewController ,
         // Dispose of any resources that can be recreated
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.inputView?.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         initLayout()
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if let calendarCollectionViewController = self.mainViewController as? MRYMonthCalendarViewController {
             calendarCollectionViewController.moveToAtIndexPath(calendarCollectionViewController.calendarCollectionView.todayIndexPath)
         }
@@ -71,9 +71,9 @@ class KeyboardViewController: UIInputViewController ,
     
     override func viewDidLayoutSubviews() {
         // Keyboard app detect orientation only in viewDidLayoutSubviews.
-        let bounds = UIScreen.mainScreen().bounds
+        let bounds = UIScreen.main.bounds
         let previousOrientation = currentOrientation
-        currentOrientation = bounds.height > bounds.width  ? .Portrait : .Landscape
+        currentOrientation = bounds.height > bounds.width  ? .portrait : .landscape
         
         if currentOrientation == previousOrientation{
             return
@@ -85,11 +85,11 @@ class KeyboardViewController: UIInputViewController ,
         mainViewController.viewDidChangeOrientation(currentOrientation)
     }
     
-    func longPressDeleteButton( recognizer: UILongPressGestureRecognizer){
+    func longPressDeleteButton( _ recognizer: UILongPressGestureRecognizer){
         switch(recognizer.state){
-        case .Began:
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.05, target: self, selector: #selector(KeyboardViewController.deleteText), userInfo: nil, repeats: true)
-        case .Ended:
+        case .began:
+            timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(KeyboardViewController.deleteText), userInfo: nil, repeats: true)
+        case .ended:
             deleteKeyButton.resetColor()
             timer?.invalidate()
         default:
@@ -100,21 +100,21 @@ class KeyboardViewController: UIInputViewController ,
     func deleteText(){
        MRYTextDocumentProxy.proxy.deleteBackward()
     }
-    private func initUIParts(){
+    fileprivate func initUIParts(){
         
         self.nextKeyboardButton = MRYKeyboardButton(imageFileName: "globe",
-            backgroundColor: UIColor.lightGrayColor(),
-            highlightedColor: UIColor.whiteColor(),
+            backgroundColor: UIColor.lightGray,
+            highlightedColor: UIColor.white,
             action: { [unowned self] in self.advanceToNextInputMode() })
         let returnKeyButton = MRYKeyboardButton(
             title: "↩︎",
             text: "\n",
-            highlightedColor: UIColor.whiteColor(),
-            backgroundColor: UIColor.lightGrayColor()
+            backgroundColor: UIColor.lightGray,
+            highlightedColor: UIColor.white
             )
         self.deleteKeyButton = MRYKeyboardButton( title: "⌫",
-            backgroundColor: UIColor.lightGrayColor(),
-            highlightedColor: UIColor.whiteColor(),
+            backgroundColor: UIColor.lightGray,
+            highlightedColor: UIColor.white,
             action: {[unowned self] in self.deleteText() } )
         let longPressGesture = UILongPressGestureRecognizer(target: self,
                                                             action: #selector(KeyboardViewController.longPressDeleteButton(_:)))
@@ -147,24 +147,24 @@ class KeyboardViewController: UIInputViewController ,
     }
     
     
-    private func initLayout(){
-        mainViewController.willMoveToParentViewController(self)
+    fileprivate func initLayout(){
+        mainViewController.willMove(toParentViewController: self)
         self.addChildViewController(mainViewController)
         self.inputView?.addSubview(mainViewController.view)
         
         views["main"] = mainViewController.view
         // Initial layouting.
         self.rebuildConstraints()
-        mainViewController.didMoveToParentViewController(self)
+        mainViewController.didMove(toParentViewController: self)
     }
 
-    func transientToViewController(newMainVC : MRYAbstractMainViewController){
+    func transientToViewController(_ newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
-        currentVC.willMoveToParentViewController(nil)
+        currentVC.willMove(toParentViewController: nil)
         currentVC.view.removeFromSuperview()
         currentVC.removeFromParentViewController()
-        currentVC.didMoveToParentViewController(nil)
-        newMainVC.willMoveToParentViewController(self)
+        currentVC.didMove(toParentViewController: nil)
+        newMainVC.willMove(toParentViewController: self)
         self.addChildViewController(newMainVC)
         self.inputView?.addSubview(newMainVC.view)
         views["main"] = newMainVC.view
@@ -173,18 +173,18 @@ class KeyboardViewController: UIInputViewController ,
         
         self.rebuildMainViewLayout()
         self.inputView?.layoutIfNeeded()
-        newMainVC.didMoveToParentViewController(self)
+        newMainVC.didMove(toParentViewController: self)
     }
     
 
-    private func rebuildConstraints(){
-        NSLayoutConstraint.deactivateConstraints(keyButtonConstraints)
+    fileprivate func rebuildConstraints(){
+        NSLayoutConstraint.deactivate(keyButtonConstraints)
         keyButtonConstraints = []
         
-        keyButtonConstraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
-                options: [.AlignAllCenterY, .AlignAllTop, .AlignAllBottom] ,
+        keyButtonConstraints.append(
+            contentsOf: NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-m_left-[next(35)]-[space]-[comma(==next)]-[hyphen(==next)]-[delete(==next)]-[return(==next)]-m_right-|",
+                options: [.alignAllCenterY, .alignAllTop, .alignAllBottom] ,
                 metrics: METRICS,
                 views: views)
         )
@@ -194,33 +194,33 @@ class KeyboardViewController: UIInputViewController ,
         constraintsInitialized = true
     }
     
-    private func rebuildMainViewLayout(){
+    fileprivate func rebuildMainViewLayout(){
         
-        NSLayoutConstraint.deactivateConstraints(mainViewConstraints)
+        NSLayoutConstraint.deactivate(mainViewConstraints)
         mainViewConstraints = []
         
-        mainViewConstraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "H:|-m_left-[main]-m_right-|",
+        mainViewConstraints.append(
+            contentsOf: NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|-m_left-[main]-m_right-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: METRICS,
                 views: views)
         )
 
-        mainViewConstraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat(
-                "V:|-m_top-[main]-3-[space(40)]-m_bottom-|",
+        mainViewConstraints.append(
+            contentsOf: NSLayoutConstraint.constraints(
+                withVisualFormat: "V:|-m_top-[main]-3-[space(40)]-m_bottom-|",
                 options: NSLayoutFormatOptions(rawValue: 0),
                 metrics: METRICS,
                 views: views)
         )
         
-        let height = UIScreen.mainScreen().bounds.height * 0.45
+        let height = UIScreen.main.bounds.height * 0.45
         let heightConstraint = NSLayoutConstraint(item: self.inputView!,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: nil,
-            attribute: NSLayoutAttribute.NotAnAttribute,
+            attribute: NSLayoutAttribute.notAnAttribute,
             multiplier: 1.0,
             constant: height)
         

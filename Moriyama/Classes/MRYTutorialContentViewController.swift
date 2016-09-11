@@ -19,7 +19,7 @@ class MRYTutorialContentViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        closeButton.addTarget(self, action: #selector(MRYTutorialContentViewController.tappedCloseButton), forControlEvents: .TouchUpInside)
+        closeButton.addTarget(self, action: #selector(MRYTutorialContentViewController.tappedCloseButton), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +28,7 @@ class MRYTutorialContentViewController: UIViewController {
     }
     
     func tappedCloseButton(){
-        self.dismissViewControllerAnimated(true, completion: nil  )
+        self.dismiss(animated: true, completion: nil  )
     }
 
     /*

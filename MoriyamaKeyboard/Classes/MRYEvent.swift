@@ -16,20 +16,20 @@ class MRYEvent: NSObject {
     var calendar : EKCalendar  {
         get{ return _event.calendar }
     }
-    var startDate : NSDate  {
+    var startDate : Date  {
         get{ return _event.startDate }
         set{ _event.startDate = newValue }
     }
-    var endDate : NSDate  {
+    var endDate : Date  {
         get{ return _event.endDate }
         set{ _event.endDate = newValue }
     }
     var title : String  {
         get{ return _event.title }
     }
-    var duration : NSTimeInterval {
+    var duration : TimeInterval {
         get {
-            return endDate.timeIntervalSinceDate(startDate)
+            return endDate.timeIntervalSince(startDate)
         }
     }
     var location : String?{
@@ -38,27 +38,27 @@ class MRYEvent: NSObject {
     var notes: String?{
         get {return _event.notes }
     }
-    var URL :NSURL?{
-        get {return _event.URL}
+    var URL :Foundation.URL?{
+        get {return _event.url}
     }
     var allDay: Bool{
-        get { return _event.allDay }
+        get { return _event.isAllDay }
     }
     
     lazy var datasource : [MRYEventContentGroup] =  { [unowned self] in
         self.defaultDataSource()
     }()
     
-    private let _event : EKEvent
-    private let cal = NSCalendar.currentCalendar()
+    fileprivate let _event : EKEvent
+    fileprivate let cal = Calendar.current
     
     
-    func componentsOnEndDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
-        return cal.components(unitFlags, fromDate: endDate )
+    func componentsOnEndDate( _ unitFlags: NSCalendar.Unit = [.year, .month, .day, .weekday , .hour, .minute, .second]) -> DateComponents{
+        return (cal as NSCalendar).components(unitFlags, from: endDate )
     }
     
-    func componentsOnStartDate( unitFlags: NSCalendarUnit = [.Year, .Month, .Day, .Weekday , .Hour, .Minute, .Second]) -> NSDateComponents{
-        return cal.components(unitFlags, fromDate: startDate )
+    func componentsOnStartDate( _ unitFlags: NSCalendar.Unit = [.year, .month, .day, .weekday , .hour, .minute, .second]) -> DateComponents{
+        return (cal as NSCalendar).components(unitFlags, from: startDate )
     }
     
     
@@ -67,20 +67,20 @@ class MRYEvent: NSObject {
         super.init()
     }
     
-    func endDateGroupWithMinutesInterval( minutes : Int ) -> MRYEventContentGroup{
+    func endDateGroupWithMinutesInterval( _ minutes : Int ) -> MRYEventContentGroup{
         let contentFactory = MRYEventContentFactory(event: self)
         var endDateGroup = MRYEventContentGroup(description:
             NSLocalizedString("End date" , comment:"") + "( \(minutes) " +
                 NSLocalizedString("minutes", comment: "") + " )", eventContents: [])
-        let endDate = self.startDate.dateByAddingTimeInterval(Double(60 * minutes ))
+        let endDate = self.startDate.addingTimeInterval(Double(60 * minutes ))
         endDateGroup.eventContents = contentFactory.eventContentsAtDateTime(endDate)
 
         return endDateGroup
     }
     
-    private func defaultDataSource() -> [MRYEventContentGroup]{
+    fileprivate func defaultDataSource() -> [MRYEventContentGroup]{
         self.datasource = [] // refresh
         let factory = MRYEventContentFactory(event: self)
-        return factory.eventContentDatasource([.General,.StartDate, .EndDate])
+        return factory.eventContentDatasource([.general,.startDate, .endDate])
     }
 }

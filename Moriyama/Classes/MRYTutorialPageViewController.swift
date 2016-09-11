@@ -12,9 +12,9 @@ import UIKit
 class MRYTutorialPageViewController: UIPageViewController,
 UIPageViewControllerDataSource,UIPageViewControllerDelegate{
 
-    private var controllers : [UIViewController] = []
-    private var pageIndex = 0
-    private let descriptionTexts = [
+    fileprivate var controllers : [UIViewController] = []
+    fileprivate var pageIndex = 0
+    fileprivate let descriptionTexts = [
         NSLocalizedString("This is instruction which how to add ApptBoard keyboard. First, open 'Setting' from home." , comment: "") , // 0
         NSLocalizedString("Choose 'Keyboard'" , comment: ""), // 2
         NSLocalizedString("Choose 'Keyboards'" , comment: ""), // 3
@@ -33,7 +33,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         super.viewDidLoad()
         self.dataSource = self
         // Do any additional setup after loading the view.
-        let content = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
+        let content = storyboard?.instantiateViewController(withIdentifier: "TutorialContent")
         if let content0 = content! as? MRYTutorialContentViewController{
             _ = content0.view // for load views.
             content0.pageIndex = 0
@@ -43,7 +43,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         
         controllers = [content! ]
         self.setViewControllers(controllers,
-            direction: .Forward,
+            direction: .forward,
             animated: true,
             completion: nil  )
     }
@@ -53,17 +53,17 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         // Dispose of any resources that can be recreated.
     }
 
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return descriptionTexts.count
     }
     
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         let content = pageViewController.viewControllers?.first as! MRYTutorialContentViewController
         return content.pageIndex
     }
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
             let current = viewController as! MRYTutorialContentViewController
             if current.pageIndex >= descriptionTexts.count - 1 {
                 return nil
@@ -72,8 +72,8 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     }
 
     
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let current = viewController as! MRYTutorialContentViewController
         if current.pageIndex <= 0{
             return nil
@@ -81,8 +81,8 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         return tutorialContentViewControllerAtPageIndex(current.pageIndex - 1)
     }
     
-    private func tutorialContentViewControllerAtPageIndex(pageIndex :Int ) -> MRYTutorialContentViewController{
-        let contentVC = storyboard?.instantiateViewControllerWithIdentifier("TutorialContent")
+    fileprivate func tutorialContentViewControllerAtPageIndex(_ pageIndex :Int ) -> MRYTutorialContentViewController{
+        let contentVC = storyboard?.instantiateViewController(withIdentifier: "TutorialContent")
         if let contentVC0 = contentVC as? MRYTutorialContentViewController{
             _ = contentVC0.view
             contentVC0.pageIndex = pageIndex

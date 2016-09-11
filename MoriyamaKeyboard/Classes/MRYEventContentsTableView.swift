@@ -18,12 +18,12 @@ class MRYEventContentsTableView: UITableView,
         // Drawing code
     }
     */
-    private let event : MRYEvent!
+    fileprivate let event : MRYEvent!
     
     
     init(event _event: MRYEvent){
         self.event = _event
-        super.init(frame: CGRectZero, style: .Plain)
+        super.init(frame: CGRect.zero, style: .plain)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.dataSource = self
     }
@@ -32,26 +32,26 @@ class MRYEventContentsTableView: UITableView,
         fatalError("init(coder:) is not implemented")
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return event.datasource.count
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return event.datasource[section].eventContents.count
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return event.datasource[section].description
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("textCell")
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "textCell")
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "textCell")
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "textCell")
         }
         
-        cell!.textLabel!.text = event.datasource[indexPath.section].eventContents[indexPath.row].description.stringByReplacingOccurrencesOfString("\n", withString: " ")
-        cell!.detailTextLabel?.text = event.datasource[indexPath.section].eventContents[indexPath.row].description
+        cell!.textLabel!.text = event.datasource[(indexPath as NSIndexPath).section].eventContents[(indexPath as NSIndexPath).row].description.replacingOccurrences(of: "\n", with: " ")
+        cell!.detailTextLabel?.text = event.datasource[(indexPath as NSIndexPath).section].eventContents[(indexPath as NSIndexPath).row].description
         return cell!
     }
 

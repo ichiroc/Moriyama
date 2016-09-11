@@ -512,6 +512,7 @@
 					5D9D80171C2CB02400623AF7 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 5Y76VQZLFN;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -529,6 +530,7 @@
 					5D9D804C1C2D405700623AF7 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 5Y76VQZLFN;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -911,6 +913,7 @@
 				PRODUCT_NAME = ApptBoard;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -932,6 +935,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = in.ichiroc.Moriyama;
 				PRODUCT_NAME = ApptBoard;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -996,6 +1000,7 @@
 				PRODUCT_NAME = ApptBoard;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1012,6 +1017,7 @@
 				PRODUCT_NAME = ApptBoard;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

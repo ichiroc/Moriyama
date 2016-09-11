@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        supportButton.addTarget(self, action: #selector(ViewController.tappedSupportButton), forControlEvents: .TouchUpInside)
-        reviewButton.addTarget(self, action: #selector(ViewController.tappedReviewButton), forControlEvents: .TouchUpInside)
+        supportButton.addTarget(self, action: #selector(ViewController.tappedSupportButton), for: .touchUpInside)
+        reviewButton.addTarget(self, action: #selector(ViewController.tappedReviewButton), for: .touchUpInside)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,16 +26,16 @@ class ViewController: UIViewController {
     }
 
     func tappedReviewButton(){
-        let url : NSURL! = NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1087163548")
-        let app = UIApplication.sharedApplication()
+        let url : URL! = URL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1087163548")
+        let app = UIApplication.shared
         if(app.canOpenURL(url)){
             app.openURL(url)
         }
     }
     
     func tappedSupportButton(){
-        let url : NSURL! = NSURL(string: "https://twitter.com/apptboard")
-        let app = UIApplication.sharedApplication()
+        let url : URL! = URL(string: "https://twitter.com/apptboard")
+        let app = UIApplication.shared
         if(app.canOpenURL(url)){
             app.openURL(url)
         }

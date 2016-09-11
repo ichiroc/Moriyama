@@ -10,28 +10,28 @@ import UIKit
 
 class Util: NSObject {
 
-    class func string(date: NSDate, format: String, locale: NSLocale = NSLocale.currentLocale()) -> String{
-        if let formatString = NSDateFormatter.dateFormatFromTemplate(
-            format,
+    class func string(_ date: Date, format: String, locale: Locale = Locale.current) -> String{
+        if let formatString = DateFormatter.dateFormat(
+            fromTemplate: format,
             options: 0,
             locale: locale    ){
-                let dateFormatter = NSDateFormatter()
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = formatString
                 dateFormatter.locale = locale
-                let formattedDateString = dateFormatter.stringFromDate(date)
+                let formattedDateString = dateFormatter.string(from: date)
                 return formattedDateString
         }
         return ""
     }
     
-    class func removeHms( date : NSDate ) -> NSDate {
-        let cal = NSCalendar.currentCalendar()
-        let comp = cal.components([ .Year, .Month, .Day ], fromDate: date)
-        return cal.dateFromComponents(comp)!
+    class func removeHms( _ date : Date ) -> Date {
+        let cal = Calendar.current
+        let comp = (cal as NSCalendar).components([ .year, .month, .day ], from: date)
+        return cal.date(from: comp)!
     }
  
-    class func sharedFormatter() -> NSDateFormatter{
-        let formatter = NSDateFormatter()
+    class func sharedFormatter() -> DateFormatter{
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd-HH-mm"
         return formatter
     }

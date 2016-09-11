@@ -10,15 +10,15 @@ import UIKit
 
 class MRYDayViewAccessoryView: UIView {
     
-    private var subViews : [String: UIView] = [:]
+    fileprivate var subViews : [String: UIView] = [:]
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) is not implemented")
     }
     
     // TODO: Refactoring
-    init(date: NSDate, viewController: MRYAbstractMainViewController){
-        super.init(frame: CGRectZero)
+    init(date: Date, viewController: MRYAbstractMainViewController){
+        super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         
         let dateFormats = ["MMMdE", "MMM","d","EEEE", "Md"]
@@ -31,8 +31,8 @@ class MRYDayViewAccessoryView: UIView {
         
         
         let backButton = MRYKeyboardButton(title: NSLocalizedString("Back",comment: "Back"),
-            backgroundColor: UIColor.whiteColor(),
-            titleColor: UIColor.blueColor(),
+            backgroundColor: UIColor.white,
+            titleColor: UIColor.blue,
             action: {viewController.popViewController()},
             round: 0)
         self.addSubview(backButton)
@@ -43,15 +43,15 @@ class MRYDayViewAccessoryView: UIView {
         })
         vfl += "-1-|"
         
-        let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            vfl,
-            options: [ .AlignAllTop, .AlignAllBottom ] ,
+        let hConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: vfl,
+            options: [ .alignAllTop, .alignAllBottom ] ,
             metrics: METRICS,
             views: subViews)
         self.addConstraints(hConstraints)
         
-        let vConstraints = NSLayoutConstraint.constraintsWithVisualFormat(
-            "V:|[back]|",
+        let vConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[back]|",
             options: NSLayoutFormatOptions(rawValue: 0) ,
             metrics: METRICS,
             views: subViews)

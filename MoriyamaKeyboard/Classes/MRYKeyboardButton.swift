@@ -12,26 +12,26 @@ class MRYKeyboardButton : UIButton{
 
     var customAction : (() -> Void)?
     
-    private var content: String?
-    private var normalBackgroundColor: UIColor = UIColor.whiteColor()
-    private var normalTitleColor : UIColor = UIColor.blackColor()
-    private var normalHighlightedColor : UIColor = UIColor.lightGrayColor()
+    fileprivate var content: String?
+    fileprivate var normalBackgroundColor: UIColor = UIColor.white
+    fileprivate var normalTitleColor : UIColor = UIColor.black
+    fileprivate var normalHighlightedColor : UIColor = UIColor.lightGray
     
     init( title: String? = nil, imageFileName : String? = nil, text: String? = nil, backgroundColor : UIColor? = nil, titleColor: UIColor? = nil, highlightedColor: UIColor? = nil,  action: (() -> Void)? = nil, round: CGFloat = 3.0){
         
         self.customAction = action
         self.content = text == nil ? title  : text
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         if let t = title{
-            self.setTitle(t, forState: .Normal)
-            self.titleLabel?.font = UIFont.systemFontOfSize(16)
+            self.setTitle(t, for: UIControlState())
+            self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             normalTitleColor = titleColor == nil ? normalTitleColor : titleColor!
-            self.setTitleColor(normalTitleColor, forState: .Normal)
+            self.setTitleColor(normalTitleColor, for: UIControlState())
         }
         if let img = imageFileName {
-            self.setImage(UIImage.init(named: img), forState: .Normal)
-            self.imageView?.contentMode = .ScaleAspectFit
+            self.setImage(UIImage.init(named: img), for: UIControlState())
+            self.imageView?.contentMode = .scaleAspectFit
             self.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         }
 
@@ -42,10 +42,10 @@ class MRYKeyboardButton : UIButton{
         normalBackgroundColor = backgroundColor == nil ? normalBackgroundColor : backgroundColor!
         self.backgroundColor = normalBackgroundColor
         self.layer.cornerRadius = round
-        self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), forControlEvents: .TouchUpInside)
-        self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), forControlEvents: .TouchDown)
-        self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), forControlEvents: .TouchUpOutside)
-        self.addTarget(self, action: #selector(MRYKeyboardButton.touchDragOutSide), forControlEvents: .TouchDragOutside)
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpInside), for: .touchUpInside)
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchDown), for: .touchDown)
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchUpOutside), for: .touchUpOutside)
+        self.addTarget(self, action: #selector(MRYKeyboardButton.touchDragOutSide), for: .touchDragOutside)
     }
     
 
@@ -69,7 +69,7 @@ class MRYKeyboardButton : UIButton{
     }
     
     func resetColor(){
-        self.setTitleColor(normalTitleColor, forState: .Normal)
+        self.setTitleColor(normalTitleColor, for: UIControlState())
         self.backgroundColor = normalBackgroundColor
     }
     
