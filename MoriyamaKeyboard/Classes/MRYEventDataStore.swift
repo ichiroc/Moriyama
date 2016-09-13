@@ -27,12 +27,12 @@ class MRYEventDataStore : NSObject{
         if EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized {
             // Not authorized. So request the permition.
             rawStore.requestAccess(to: .event,
-                completion: {(granted: Bool, error: NSError?) -> Void in
+                completion: {(granted: Bool, error: Error?) in
                     if granted{
                         self.accessGranted = true
                         self.loadAllEvents()
                     }
-            } as! EKEventStoreRequestAccessCompletionHandler)
+            } )
         }else{
             accessGranted = true
             self.loadAllEvents()
