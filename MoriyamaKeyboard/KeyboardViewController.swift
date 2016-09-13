@@ -15,7 +15,7 @@ class KeyboardViewController: UIInputViewController ,
     var mainViewController : MRYAbstractMainViewController
     
     fileprivate let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
-    fileprivate var nextKeyboardButton: UIButton!
+    fileprivate var nextKeyboardButton: MRYKeyboardButton!
     fileprivate var keyButtonConstraints : [NSLayoutConstraint] = []
     fileprivate var views : Dictionary<String,UIView> = [:]
     fileprivate var initialized : Bool = false
@@ -104,8 +104,14 @@ class KeyboardViewController: UIInputViewController ,
         
         self.nextKeyboardButton = MRYKeyboardButton(imageFileName: "globe",
             backgroundColor: UIColor.lightGray,
-            highlightedColor: UIColor.white,
-            action: { [unowned self] in self.advanceToNextInputMode() })
+            highlightedColor: UIColor.white)
+
+        if #available(iOSApplicationExtension 10.0, *) {
+            self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
+        } else {
+            self.nextKeyboardButton.customAction = { () in self.advanceToNextInputMode() }
+        }
+        
         let returnKeyButton = MRYKeyboardButton(
             title: "↩︎",
             text: "\n",
