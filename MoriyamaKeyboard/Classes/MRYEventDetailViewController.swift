@@ -22,9 +22,6 @@ class MRYEventDetailViewController:
         super.init(fromViewController: fromViewController)
         accessoryView = MRYEventContentsAccessoryView(event: event, viewController: self)
         accessoryView?.backButton.customAction = { [unowned self] in self.popViewController() }
-        accessoryView?.openEventButton.customAction = { [unowned self] in
-            self.openEvent(self.event.startDate as Date,endDate:self.event.endDate as Date)
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,27 +73,6 @@ class MRYEventDetailViewController:
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    fileprivate func openEvent(_ startDate: Date, endDate : Date){
-        var responder: UIResponder = self
-        var urlString = "moriyama-board://?"
-        
-        if self.event.eventIdentifier != "" {
-            let escapedEventId = self.event.eventIdentifier.addingPercentEncoding(withAllowedCharacters: CharacterSet.alphanumerics)
-            urlString += "eventId=\(escapedEventId!)"
-        }
-        
-        let sdtxt = Util.sharedFormatter().string( from: startDate )
-        let edtxt = Util.sharedFormatter().string( from: endDate )
-        urlString += "&startDate=\(sdtxt)&endDate=\(edtxt)"
-        
-        let url = URL(string: urlString)!
-        while responder.next != nil {
-            responder = responder.next!
-//            if responder.responds(to: #selector(UIApplication.openURL(_:))) == true {
-//                responder.perform(#selector(UIApplication.openURL(_:)), with: url)
-//            }
-        }
-    }
 
     /*
     // MARK: - Navigation

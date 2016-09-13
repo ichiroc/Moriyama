@@ -21,16 +21,6 @@ class MRYEventContentsAccessoryView: UIView {
                                             round: 0)
     
     
-    lazy var openEventButton :MRYKeyboardButton = { [unowned self]  in
-        let b = MRYKeyboardButton(title: NSLocalizedString("Create an event", comment: ""),round: 0)
-        let appIcon = UIImage.init(named: "AppImageSmall.png")
-        b.setImage(appIcon, for: UIControlState())
-        b.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10)
-        if self.event.eventIdentifier != ""{
-            b.setTitle(NSLocalizedString("Edit this event", comment: ""), for: UIControlState())
-        }
-        return b
-    }()
     
     fileprivate let event: MRYEvent
     fileprivate var buttons : [MRYKeyboardButton] = []
@@ -49,15 +39,8 @@ class MRYEventContentsAccessoryView: UIView {
     
     override func layoutSubviews() {
         var constraints : [NSLayoutConstraint] = []
-        var views : [String:UIView] = ["back":backButton]
-        var vvfl = "H:|"
-        if self.event.calendar.allowsContentModifications{
-            self.addSubview(self.openEventButton)
-            views["openEvent"] = self.openEventButton
-            vvfl += "[back(45)]-1-[openEvent]|"
-        }else{
-            vvfl += "[back]|"
-        }
+        let views : [String:UIView] = ["back":backButton]
+        let vvfl = "H:|[back]|"
 
         let h = NSLayoutConstraint.constraints(withVisualFormat: vvfl,
                                                        options: [.alignAllTop,.alignAllBottom],
