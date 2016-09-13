@@ -20,11 +20,8 @@ class MRYEventContentsAccessoryView: UIView {
                                             action: nil,
                                             round: 0)
     
-    
-    
     fileprivate let event: MRYEvent
     fileprivate var buttons : [MRYKeyboardButton] = []
-
     
     init(event :MRYEvent, viewController: UIViewController){
         self.event = event

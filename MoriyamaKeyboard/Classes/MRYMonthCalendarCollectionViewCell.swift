@@ -154,12 +154,12 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         }
     }
    
-    fileprivate func buildEventIndicatorView(_ cellColor: UIColor) -> UIView{
+    fileprivate func buildEventIndicatorView(_ cellColor: UIColor) {
         eventIndicator.isOpaque = false
         eventIndicator.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
         
         if events.count == 0 {
-            return eventIndicator
+            return 
         }
         
         let leftSpacer = UIView()
@@ -203,8 +203,6 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
                 options: [.alignAllTop, .alignAllBottom, ],
                 metrics: nil,
                 views: eventIndicatorViewsMap ))
-        
-        return eventIndicator
     }
 
     fileprivate func monthlyColor(_ date: Date) -> UIColor{
