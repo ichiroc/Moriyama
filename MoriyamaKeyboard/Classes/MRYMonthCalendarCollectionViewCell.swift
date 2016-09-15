@@ -139,6 +139,8 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
     
     func setCellDate(_ cellDate: Date){
         date = cellDate
+        self.contentView.backgroundColor = monthlyColor(cellDate)
+        
         let formatter = DateFormatter()
         let cellDateComp = (Calendar.current as NSCalendar).components([.year,.month,.day], from: cellDate)
 
@@ -149,8 +151,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             formatter.dateFormat = "d"
             self.dateLabel.text = formatter.string(from: cellDate)
         }
-        
-        self.contentView.backgroundColor = monthlyColor(cellDate)
+
         let comp = (Calendar.current as NSCalendar).components(.weekday, from: self.date!)
         if comp.weekday == 1 {
             // Sunday
@@ -161,24 +162,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         }
         buildEventIndicatorView()
         if(isToday()){
-            self.contentView.addSubview(circle)
-            self.views["circle"] = circle
-            self.contentView.addConstraints(
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "H:[circle(22)]",
-                    options: NSLayoutFormatOptions.alignAllCenterY,
-                    metrics: nil, views: views
-                )
-            )
-            self.contentView.addConstraints(
-                NSLayoutConstraint.constraints(
-                    withVisualFormat: "V:[circle(22)]-[eventIndicator]",
-                    options: NSLayoutFormatOptions.alignAllCenterX,
-                    metrics: nil, views: views
-                )
-            )
-            self.dateLabel.textColor = UIColor.white
-            self.contentView.sendSubview(toBack: circle)
+            stylizeAsTodayCell()
         }
     }
    
@@ -227,10 +211,25 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         return color
     }
     
-    fileprivate func todayStyle(){
-        self.dateLabel.backgroundColor = UIColor.lightGray
-        self.dateLabel.layer.cornerRadius = 13
-        self.dateLabel.layer.masksToBounds = true
+    fileprivate func stylizeAsTodayCell(){
+        self.contentView.addSubview(circle)
+        self.views["circle"] = circle
+        self.contentView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "H:[circle(22)]",
+                options: NSLayoutFormatOptions.alignAllCenterY,
+                metrics: nil, views: views
+            )
+        )
+        self.contentView.addConstraints(
+            NSLayoutConstraint.constraints(
+                withVisualFormat: "V:[circle(22)]-[eventIndicator]",
+                options: NSLayoutFormatOptions.alignAllCenterX,
+                metrics: nil, views: views
+            )
+        )
+        self.dateLabel.textColor = UIColor.white
+        self.contentView.sendSubview(toBack: circle)
     }
     
 }
