@@ -25,6 +25,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         l.translatesAutoresizingMaskIntoConstraints = false
         l.textAlignment = .center
         l.text = "-" // default
+        l.backgroundColor = .clear
         return l
     }()
     
@@ -96,13 +97,11 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         let defaultMargin = self.contentView.layoutMargins
         self.contentView.layoutMargins = UIEdgeInsets(top: defaultMargin.top, left: 0, bottom: defaultMargin.bottom, right: 0)
         self.contentView.addSubview(eventIndicator)
         self.contentView.addSubview(dateLabel)
         self.backgroundColor = UIColor.white
-        
         
         let eventIndicatorWidth = NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-[eventIndicator]-|",
@@ -151,10 +150,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             self.dateLabel.text = formatter.string(from: cellDate)
         }
         
-        let cellColor = monthlyColor(cellDate)
-        self.contentView.backgroundColor = cellColor
-        self.dateLabel.backgroundColor = cellColor
-        
+        self.contentView.backgroundColor = monthlyColor(cellDate)
         let comp = (Calendar.current as NSCalendar).components(.weekday, from: self.date!)
         if comp.weekday == 1 {
             // Sunday
@@ -163,11 +159,8 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
             // Saturday
             self.dateLabel.textColor = UIColor.blue
         }
-        buildEventIndicatorView(cellColor)
-        
-        dateLabel.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+        buildEventIndicatorView()
         if(isToday()){
-            
             self.contentView.addSubview(circle)
             self.views["circle"] = circle
             self.contentView.addConstraints(
@@ -189,14 +182,14 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         }
     }
    
-    fileprivate func buildEventIndicatorView(_ cellColor: UIColor) {
+    fileprivate func buildEventIndicatorView() {
         if events.count == 0 {
             return 
         }
-        let max = events.count < 4 ? events.count : 4
+        let maxEventIndicatorCount = events.count < 4 ? events.count : 4
         var vflArray:[String] = []
         var i : Int = 0
-        events[0...(max - 1)].forEach({
+        events[0...(maxEventIndicatorCount - 1)].forEach({
             let v = UIView()
             v.tag = ViewType.eventIndicator.rawValue
             v.translatesAutoresizingMaskIntoConstraints = false
