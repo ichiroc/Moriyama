@@ -71,6 +71,8 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         var v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
         v.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        v.isOpaque = false
+        v.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
         return v
     }()
     
@@ -188,18 +190,12 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
     }
    
     fileprivate func buildEventIndicatorView(_ cellColor: UIColor) {
-        eventIndicator.isOpaque = false
-        eventIndicator.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
-        
         if events.count == 0 {
             return 
         }
-
         let max = events.count < 4 ? events.count : 4
-
         var vflArray:[String] = []
         var i : Int = 0
-        
         events[0...(max - 1)].forEach({
             let v = UIView()
             v.tag = ViewType.eventIndicator.rawValue
