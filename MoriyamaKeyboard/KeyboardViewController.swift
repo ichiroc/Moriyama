@@ -15,15 +15,44 @@ class KeyboardViewController: UIInputViewController ,
     var mainViewController : MRYAbstractMainViewController
     
     fileprivate let monthCalendarCollectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
-    fileprivate var nextKeyboardButton: MRYKeyboardButton!
     fileprivate var keyButtonConstraints : [NSLayoutConstraint] = []
-    fileprivate var views : Dictionary<String,UIView> = [:]
+    
     fileprivate var initialized : Bool = false
     fileprivate var mainViewConstraints :[NSLayoutConstraint] = []
     fileprivate var constraintsInitialized = false
-    fileprivate var deleteKeyButton : MRYKeyboardButton!
     fileprivate var currentOrientation = Orientation.portrait
     fileprivate var timer : Timer?
+    
+    // Statics
+    fileprivate static let splitterSymbol = NSLocalizedString("-", comment: "Splitter symbol between start date and end date")
+    fileprivate static let punctuationSymbol = NSLocalizedString(",", comment: "Punctuation symbol")
+
+    // Buttons
+    fileprivate var deleteKeyButton : MRYKeyboardButton!
+    fileprivate let spaceKeyButton = MRYKeyboardButton(title: NSLocalizedString("space", comment: "space key on keyboard"), text: " ")
+    fileprivate let hyphenKeyButton = MRYKeyboardButton(title: splitterSymbol, text: splitterSymbol)
+    fileprivate let commaKeyButton = MRYKeyboardButton(title: punctuationSymbol, text: punctuationSymbol)
+    fileprivate let returnKeyButton =  MRYKeyboardButton(
+        title: "↩︎",
+        text: "\n",
+        backgroundColor: UIColor.lightGray,
+        highlightedColor: UIColor.white
+    )
+    fileprivate var nextKeyboardButton: MRYKeyboardButton  = MRYKeyboardButton(
+        imageFileName: "globe",
+        backgroundColor: UIColor.lightGray,
+        highlightedColor: UIColor.white)
+    
+    fileprivate lazy var views : Dictionary<String,UIView> = { [unowned self] in
+        [ "next": self.nextKeyboardButton,
+          "delete": self.deleteKeyButton,
+          "space": self.spaceKeyButton,
+          "return": self.returnKeyButton,
+          "comma": self.commaKeyButton,
+          "hyphen": self.hyphenKeyButton,
+          "main": self.mainViewController.view]
+    }()
+    
  
     enum Orientation{
         case landscape
@@ -100,49 +129,28 @@ class KeyboardViewController: UIInputViewController ,
     func deleteText(){
        MRYTextDocumentProxy.proxy.deleteBackward()
     }
-    fileprivate func initUIParts(){
-        
-        self.nextKeyboardButton = MRYKeyboardButton(imageFileName: "globe",
-            backgroundColor: UIColor.lightGray,
-            highlightedColor: UIColor.white)
 
+    fileprivate func initUIParts(){
         if #available(iOSApplicationExtension 10.0, *) {
             self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .allTouchEvents)
         } else {
             self.nextKeyboardButton.customAction = { () in self.advanceToNextInputMode() }
         }
-        
-        let returnKeyButton = MRYKeyboardButton(
-            title: "↩︎",
-            text: "\n",
-            backgroundColor: UIColor.lightGray,
-            highlightedColor: UIColor.white
-            )
+
         self.deleteKeyButton = MRYKeyboardButton( title: "⌫",
             backgroundColor: UIColor.lightGray,
             highlightedColor: UIColor.white,
             action: {[unowned self] in self.deleteText() } )
-        let longPressGesture = UILongPressGestureRecognizer(target: self,
-                                                            action: #selector(KeyboardViewController.longPressDeleteButton(_:)))
+        let longPressGesture = UILongPressGestureRecognizer(
+            target: self,
+            action: #selector(KeyboardViewController.longPressDeleteButton(_:))
+        )
         self.deleteKeyButton.addGestureRecognizer(longPressGesture)
 
         if let mainVC = mainViewController as? MRYMonthCalendarViewController{
             MRYEventDataStore.sharedStore.loadAllEvents()
             mainVC.calendarCollectionView.reloadData()
         }
-        let spaceKeyButton = MRYKeyboardButton(title: NSLocalizedString("space", comment: "space key on keyboard"), text: " ")
-        let splitterSymbol = NSLocalizedString("-", comment: "Splitter symbol between start date and end date")
-        let hyphenKeyButton = MRYKeyboardButton(title: splitterSymbol, text: splitterSymbol)
-        let punctuationSymbol = NSLocalizedString(",", comment: "Punctuation symbol")
-        let commaKeyButton = MRYKeyboardButton(title: punctuationSymbol, text: punctuationSymbol)
-        
-        views = [ "next": nextKeyboardButton,
-            "delete": deleteKeyButton,
-            "space": spaceKeyButton,
-            "return": returnKeyButton,
-            "comma": commaKeyButton,
-            "hyphen": hyphenKeyButton,
-            "main": mainViewController.view]
         
         self.inputView?.addSubview(nextKeyboardButton)
         self.inputView?.addSubview(deleteKeyButton)
