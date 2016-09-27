@@ -48,14 +48,8 @@ class MRYEventView: UIControl {
         // make color
         let backgroundColor = UIColor(cgColor: event.calendar.cgColor)
         self.backgroundColor = backgroundColor
-        let titleLabel = UILabel()
-        titleLabel.textColor = titleColorFromBackgroundColor(backgroundColor)
-        titleLabel.text = event.title
-        titleLabel.font = UIFont.systemFont(ofSize: 13)
-        titleLabel.adjustsFontSizeToFitWidth = true
-        titleLabel.numberOfLines = 1
-        titleLabel.lineBreakMode = .byClipping
-        titleLabel.minimumScaleFactor = 0.01
+
+        let titleLabel = buildTitleLabel(title: event.title)
         
         self.addSubview(titleLabel)
         titleLabel.sizeToFit()
@@ -75,6 +69,20 @@ class MRYEventView: UIControl {
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.doUnhighlight()
+    }
+    
+    fileprivate func buildTitleLabel(title: String) -> UILabel {
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        if let backgroundColor = self.backgroundColor{
+            titleLabel.textColor = titleColorFromBackgroundColor(backgroundColor)
+        }
+        titleLabel.font = UIFont.systemFont(ofSize: 13)
+        titleLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.numberOfLines = 1
+        titleLabel.lineBreakMode = .byClipping
+        titleLabel.minimumScaleFactor = 0.01
+        return titleLabel
     }
     
     fileprivate func titleColorFromBackgroundColor( _ backgroundColor: UIColor) -> UIColor {
