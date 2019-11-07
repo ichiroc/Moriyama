@@ -47,7 +47,7 @@ class MRYEventContentsTableView: UITableView,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "textCell")
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "textCell")
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "textCell")
         }
         
         cell!.textLabel!.text = event.datasource[(indexPath as NSIndexPath).section].eventContents[(indexPath as NSIndexPath).row].description.replacingOccurrences(of: "\n", with: " ")

@@ -105,12 +105,12 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         
         let eventIndicatorWidth = NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-[eventIndicator]-|",
-            options: NSLayoutFormatOptions(rawValue: 0) ,
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0) ,
             metrics: nil, views: views
         )
         let dateWidth = NSLayoutConstraint.constraints(
             withVisualFormat: "H:[date]",
-            options: NSLayoutFormatOptions(rawValue: 0) ,
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0) ,
             metrics: nil, views: views
         )
         let dateHeight = NSLayoutConstraint.constraints(
@@ -188,7 +188,7 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         self.eventIndicator.addConstraints(
             NSLayoutConstraint.constraints(
                 withVisualFormat: "V:|-[e0]-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: nil,
                 views: eventIndicatorViewsMap ))
         
@@ -217,19 +217,19 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         self.contentView.addConstraints(
             NSLayoutConstraint.constraints(
                 withVisualFormat: "H:[circle(22)]",
-                options: NSLayoutFormatOptions.alignAllCenterY,
+                options: NSLayoutConstraint.FormatOptions.alignAllCenterY,
                 metrics: nil, views: views
             )
         )
         self.contentView.addConstraints(
             NSLayoutConstraint.constraints(
                 withVisualFormat: "V:[circle(22)]-[eventIndicator]",
-                options: NSLayoutFormatOptions.alignAllCenterX,
+                options: NSLayoutConstraint.FormatOptions.alignAllCenterX,
                 metrics: nil, views: views
             )
         )
         self.dateLabel.textColor = UIColor.white
-        self.contentView.sendSubview(toBack: circle)
+        self.contentView.sendSubviewToBack(circle)
     }
     
 }

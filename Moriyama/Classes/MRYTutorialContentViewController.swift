@@ -27,7 +27,7 @@ class MRYTutorialContentViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func tappedCloseButton(){
+    @objc func tappedCloseButton(){
         self.dismiss(animated: true, completion: nil  )
     }
 

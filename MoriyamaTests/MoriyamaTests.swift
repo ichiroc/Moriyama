@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Moriyama
+//@testable import Moriyama
 
 class MoriyamaTests: XCTestCase {
     
@@ -28,7 +28,7 @@ class MoriyamaTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

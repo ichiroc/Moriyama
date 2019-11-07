@@ -39,7 +39,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
         views = ["col": calendarCollectionView,
             "numberPad" : _numberPad]
         
-        let noOption = NSLayoutFormatOptions(rawValue: 0)
+        let noOption = NSLayoutConstraint.FormatOptions(rawValue: 0)
         let hConstraints = NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-1-[col]-1-|",
             options: noOption,

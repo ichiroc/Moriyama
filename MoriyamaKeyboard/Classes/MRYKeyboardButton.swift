@@ -24,13 +24,13 @@ class MRYKeyboardButton : UIButton{
         super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         if let t = title{
-            self.setTitle(t, for: UIControlState())
+            self.setTitle(t, for: UIControl.State())
             self.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             normalTitleColor = titleColor == nil ? normalTitleColor : titleColor!
-            self.setTitleColor(normalTitleColor, for: UIControlState())
+            self.setTitleColor(normalTitleColor, for: UIControl.State())
         }
         if let img = imageFileName {
-            self.setImage(UIImage.init(named: img), for: UIControlState())
+            self.setImage(UIImage.init(named: img), for: UIControl.State())
             self.imageView?.contentMode = .scaleAspectFit
             self.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         }
@@ -56,24 +56,24 @@ class MRYKeyboardButton : UIButton{
         fatalError("init(coder:) is not implemented")
     }
     
-    func touchDown(){
+    @objc func touchDown(){
         self.backgroundColor = normalHighlightedColor
     }
     
-    func touchUpOutside(){
+    @objc func touchUpOutside(){
         resetColor()
     }
     
-    func touchDragOutSide(){
+    @objc func touchDragOutSide(){
         resetColor()
     }
     
     func resetColor(){
-        self.setTitleColor(normalTitleColor, for: UIControlState())
+        self.setTitleColor(normalTitleColor, for: UIControl.State())
         self.backgroundColor = normalBackgroundColor
     }
     
-    func touchUpInside(){
+    @objc func touchUpInside(){
         resetColor()
         
         if let action = customAction {
