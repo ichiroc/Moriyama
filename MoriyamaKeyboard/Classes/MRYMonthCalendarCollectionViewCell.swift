@@ -73,7 +73,8 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         v.translatesAutoresizingMaskIntoConstraints = false
         v.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         v.isOpaque = false
-        v.backgroundColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0)
+        v.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        
         return v
     }()
     
