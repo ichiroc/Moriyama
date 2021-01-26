@@ -229,7 +229,6 @@ class KeyboardViewController: UIInputViewController ,
             attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1.0,
             constant: height)
-        
         heightConstraint.priority = UILayoutPriority(rawValue: 999.0)
         mainViewConstraints.append(heightConstraint)
         self.inputView?.addConstraints( mainViewConstraints )

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
+class MRYMonthCalendarViewController: MRYAbstractMainViewController ,UICollectionViewDelegateFlowLayout,
     UICollectionViewDelegate{
     let calendarCollectionView :MRYMonthCalendarCollectionView
     fileprivate let collectionViewDataSource = MRYMonthCalendarCollectionViewDataSource()
@@ -102,7 +102,7 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
     // MARK: - UICollectionViewDelegateFlowLayout methods
     func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
             if cellSize != nil {
                 return cellSize!
             }
@@ -114,11 +114,11 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,
             return cellSize!
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
     
