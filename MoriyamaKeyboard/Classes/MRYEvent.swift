@@ -25,7 +25,7 @@ class MRYEvent: NSObject {
         set{ _event.endDate = newValue }
     }
     var title : String  {
-        get{ return _event.title }
+        get{ return _event.title ?? "" }
     }
     var duration : TimeInterval {
         get {
