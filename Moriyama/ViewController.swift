@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func tappedReviewButton(){
+    @objc func tappedReviewButton(){
         let url : URL! = URL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1087163548")
         let app = UIApplication.shared
         if(app.canOpenURL(url)){
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func tappedSupportButton(){
+    @objc func tappedSupportButton(){
         let url : URL! = URL(string: "https://twitter.com/apptboard")
         let app = UIApplication.shared
         if(app.canOpenURL(url)){

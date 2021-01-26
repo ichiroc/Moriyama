@@ -45,12 +45,12 @@ class MRYMonthCalendarAccessoryView : UIView {
         
         self.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-1-[b0]-1-|",
-            options: NSLayoutFormatOptions(rawValue: 0),
+                                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
             metrics: nil,
             views: subViews ))
         self.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "|[b1(==b0)]-1-[b2(==b0)]-1-[b3(==b0)]-1-[b4(==b0)]-1-[b5(==b0)]-1-[b6(==b0)]-1-[b7(==b0)]-1-[b8(==b0)]-1-[b9(==b0)]-1-[b0]-1-[colon(==b0)]-1-[slash(==b0)]|",
-            options: [ NSLayoutFormatOptions.alignAllCenterY, .alignAllTop, .alignAllBottom],
+                                options: [ NSLayoutConstraint.FormatOptions.alignAllCenterY, .alignAllTop, .alignAllBottom],
             metrics: nil,
             views: subViews ))
     }

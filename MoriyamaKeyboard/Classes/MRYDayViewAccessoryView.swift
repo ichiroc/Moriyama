@@ -52,7 +52,7 @@ class MRYDayViewAccessoryView: UIView {
         
         let vConstraints = NSLayoutConstraint.constraints(
             withVisualFormat: "V:|[back]|",
-            options: NSLayoutFormatOptions(rawValue: 0) ,
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0) ,
             metrics: METRICS,
             views: subViews)
         self.addConstraints(vConstraints)

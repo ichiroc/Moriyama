@@ -14,7 +14,7 @@ class MRYEventDataStore : NSObject{
     let rawStore = EKEventStore()
     var defaultCalendar : EKCalendar {
         get{
-            return rawStore.defaultCalendarForNewEvents
+            return rawStore.defaultCalendarForNewEvents!
         }
     }
     

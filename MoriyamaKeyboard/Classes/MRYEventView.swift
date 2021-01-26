@@ -89,15 +89,15 @@ class MRYEventView: UIControl {
         }
     }
     
-    func doHighlight(){
+    @objc func doHighlight(){
         self.backgroundColor = UIColor.lightGray
     }
     
-    func doUnhighlight(){
+    @objc func doUnhighlight(){
         self.backgroundColor = defaultColor
     }
     
-    func tapped(_ sender: UITapGestureRecognizer){
+    @objc func tapped(_ sender: UITapGestureRecognizer){
         self.doUnhighlight()
         mainViewController.tappedEventView(_event!)
     }

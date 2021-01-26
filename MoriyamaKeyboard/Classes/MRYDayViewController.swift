@@ -104,7 +104,7 @@ class MRYDayViewController: MRYAbstractMainViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func longPressTimelineContainerView( _ recognizer: UILongPressGestureRecognizer){
+    @objc func longPressTimelineContainerView( _ recognizer: UILongPressGestureRecognizer){
 
         let point = recognizer.location(in: timelineContainerView)
         let oddHour = point.y.truncatingRemainder(dividingBy: (timelineContainerView.hourlyHeight / 2 ))

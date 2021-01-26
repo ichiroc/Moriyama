@@ -65,7 +65,7 @@ class MRYAllDayEventView: UIView {
             allDayEventContainerView.addConstraints(
                 NSLayoutConstraint.constraints(
                     withVisualFormat: "V:|[e0]|",
-                    options: NSLayoutFormatOptions(rawValue: 0),
+                    options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                     metrics: nil,
                     views: allDayEventViews)
             )
@@ -78,7 +78,7 @@ class MRYAllDayEventView: UIView {
             )
         }
         let hConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[sidebar(\(sidebarWidth))][allDayEventContainer]|", options: [.alignAllTop, .alignAllBottom], metrics: nil, views: allDayViews)
-        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[sidebar]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: allDayViews)
+        let vConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[sidebar]|", options: NSLayoutConstraint.FormatOptions(rawValue: 0), metrics: nil, views: allDayViews)
         self.addConstraints(hConstraints)
         self.addConstraints(vConstraints)
         

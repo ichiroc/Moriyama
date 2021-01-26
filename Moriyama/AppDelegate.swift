@@ -16,12 +16,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EKEventEditViewDelegate {
     var window: UIWindow?
     let eventStore = EKEventStore()
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
     }
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
         // make url query dictionary
         var query : [String:String] = [:]
         url.query?.components(separatedBy: "&").forEach{

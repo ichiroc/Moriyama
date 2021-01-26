@@ -31,7 +31,7 @@ class MRYEventDetailViewController:
     override func viewWillAppear(_ animated: Bool) {
         let tableHorizonalConstraints = NSLayoutConstraint.constraints(
             withVisualFormat: "H:|[table]|",
-            options: NSLayoutFormatOptions(rawValue: 0),
+            options: NSLayoutConstraint.FormatOptions(rawValue: 0),
             metrics: METRICS,
             views: views )
         self.view.addConstraints(tableHorizonalConstraints)

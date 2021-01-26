@@ -85,7 +85,7 @@ class KeyboardViewController: UIInputViewController ,
         mainViewController.viewDidChangeOrientation(currentOrientation)
     }
     
-    func longPressDeleteButton( _ recognizer: UILongPressGestureRecognizer){
+    @objc func longPressDeleteButton( _ recognizer: UILongPressGestureRecognizer){
         switch(recognizer.state){
         case .began:
             timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(KeyboardViewController.deleteText), userInfo: nil, repeats: true)
@@ -97,7 +97,7 @@ class KeyboardViewController: UIInputViewController ,
         }
     }
 
-    func deleteText(){
+    @objc func deleteText(){
        MRYTextDocumentProxy.proxy.deleteBackward()
     }
     fileprivate func initUIParts(){
@@ -154,24 +154,24 @@ class KeyboardViewController: UIInputViewController ,
     
     
     fileprivate func initLayout(){
-        mainViewController.willMove(toParentViewController: self)
-        self.addChildViewController(mainViewController)
+        mainViewController.willMove(toParent: self)
+        self.addChild(mainViewController)
         self.inputView?.addSubview(mainViewController.view)
         
         views["main"] = mainViewController.view
         // Initial layouting.
         self.rebuildConstraints()
-        mainViewController.didMove(toParentViewController: self)
+        mainViewController.didMove(toParent: self)
     }
 
     func transientToViewController(_ newMainVC : MRYAbstractMainViewController){
         let currentVC = mainViewController
-        currentVC.willMove(toParentViewController: nil)
+        currentVC.willMove(toParent: nil)
         currentVC.view.removeFromSuperview()
-        currentVC.removeFromParentViewController()
-        currentVC.didMove(toParentViewController: nil)
-        newMainVC.willMove(toParentViewController: self)
-        self.addChildViewController(newMainVC)
+        currentVC.removeFromParent()
+        currentVC.didMove(toParent: nil)
+        newMainVC.willMove(toParent: self)
+        self.addChild(newMainVC)
         self.inputView?.addSubview(newMainVC.view)
         views["main"] = newMainVC.view
         
@@ -179,7 +179,7 @@ class KeyboardViewController: UIInputViewController ,
         
         self.rebuildMainViewLayout()
         self.inputView?.layoutIfNeeded()
-        newMainVC.didMove(toParentViewController: self)
+        newMainVC.didMove(toParent: self)
     }
     
 
@@ -208,7 +208,7 @@ class KeyboardViewController: UIInputViewController ,
         mainViewConstraints.append(
             contentsOf: NSLayoutConstraint.constraints(
                 withVisualFormat: "H:|-m_left-[main]-m_right-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: METRICS,
                 views: views)
         )
@@ -216,21 +216,21 @@ class KeyboardViewController: UIInputViewController ,
         mainViewConstraints.append(
             contentsOf: NSLayoutConstraint.constraints(
                 withVisualFormat: "V:|-m_top-[main]-3-[space(40)]-m_bottom-|",
-                options: NSLayoutFormatOptions(rawValue: 0),
+                options: NSLayoutConstraint.FormatOptions(rawValue: 0),
                 metrics: METRICS,
                 views: views)
         )
         
         let height = UIScreen.main.bounds.height * 0.45
         let heightConstraint = NSLayoutConstraint(item: self.inputView!,
-            attribute: NSLayoutAttribute.height,
-            relatedBy: NSLayoutRelation.equal,
+                                                  attribute: NSLayoutConstraint.Attribute.height,
+                                                  relatedBy: NSLayoutConstraint.Relation.equal,
             toItem: nil,
-            attribute: NSLayoutAttribute.notAnAttribute,
+            attribute: NSLayoutConstraint.Attribute.notAnAttribute,
             multiplier: 1.0,
             constant: height)
         
-        heightConstraint.priority = 999.0
+        heightConstraint.priority = UILayoutPriority(rawValue: 999.0)
         mainViewConstraints.append(heightConstraint)
         self.inputView?.addConstraints( mainViewConstraints )
         self.inputView?.layoutIfNeeded()
