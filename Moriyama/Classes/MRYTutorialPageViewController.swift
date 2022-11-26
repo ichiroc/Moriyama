@@ -24,7 +24,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         NSLocalizedString("Choose 'ApptBoard' again." , comment: ""),  // 6
         NSLocalizedString("Enable 'Allow Full Access' to check appointments with a keyboard." , comment: ""), // 9
         NSLocalizedString("Warning will be shown. Choose 'Allow'. We don't send your input data if you allowed.", comment: "") , // 10
-        NSLocalizedString("If 'Allow Full Access' is enabled, It's done. Use it by tap 🌐 button." , comment: ""), // 11
+        NSLocalizedString("If 'Allow Full Access' is enabled, It's done. Tap 🌐 on the keyboard to switch to ApptBoard when typing text in email, message applications, etc.." , comment: ""), // 11
         NSLocalizedString("[NOTICE] To check appointments with a keyboard, You must confirm that appointments is shown on default Calendar app.", comment: "") // 12
 
     ]
