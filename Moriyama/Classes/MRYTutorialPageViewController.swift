@@ -16,6 +16,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     fileprivate var pageIndex = 0
     fileprivate let descriptionTexts = [
         NSLocalizedString("This is instruction which how to add ApptBoard keyboard. First, open 'Setting' from home." , comment: "") , // 0
+        NSLocalizedString("Choose 'General'" , comment: ""), // 2
         NSLocalizedString("Choose 'Keyboard'" , comment: ""), // 2
         NSLocalizedString("Choose 'Keyboards'" , comment: ""), // 3
         NSLocalizedString("Choose 'Add New Keyboard..'" , comment: ""), // 4
