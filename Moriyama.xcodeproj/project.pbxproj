@@ -48,8 +48,6 @@
 		5D9D80211C2CB02400623AF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D9D801F1C2CB02400623AF7 /* Main.storyboard */; };
 		5D9D80231C2CB02400623AF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D9D80221C2CB02400623AF7 /* Assets.xcassets */; };
 		5D9D80261C2CB02400623AF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D9D80241C2CB02400623AF7 /* LaunchScreen.storyboard */; };
-		5D9D80311C2CB02400623AF7 /* MoriyamaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D80301C2CB02400623AF7 /* MoriyamaTests.swift */; };
-		5D9D803C1C2CB02400623AF7 /* MoriyamaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D803B1C2CB02400623AF7 /* MoriyamaUITests.swift */; };
 		5D9D80501C2D405700623AF7 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */; };
 		5D9D80541C2D405700623AF7 /* ApptBoard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D9D804D1C2D405700623AF7 /* ApptBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5DA7D5CF1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA7D5CE1C2DEA8A0088EF6D /* MRYTextDocumentProxy.swift */; };
@@ -173,11 +171,7 @@
 		5D9D80251C2CB02400623AF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5D9D80271C2CB02400623AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D9D802C1C2CB02400623AF7 /* MoriyamaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoriyamaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D9D80301C2CB02400623AF7 /* MoriyamaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoriyamaTests.swift; sourceTree = "<group>"; };
-		5D9D80321C2CB02400623AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D9D80371C2CB02400623AF7 /* MoriyamaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoriyamaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D9D803B1C2CB02400623AF7 /* MoriyamaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoriyamaUITests.swift; sourceTree = "<group>"; };
-		5D9D803D1C2CB02400623AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D9D804D1C2D405700623AF7 /* ApptBoard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ApptBoard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D9D804F1C2D405700623AF7 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		5D9D80511C2D405700623AF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -302,8 +296,6 @@
 				5D1E8AAB1C2F30FE0032CCC2 /* .gitignore */,
 				5DE880B71C7327EF00EDE4B4 /* Assets */,
 				5D9D801A1C2CB02400623AF7 /* Moriyama */,
-				5D9D802F1C2CB02400623AF7 /* MoriyamaTests */,
-				5D9D803A1C2CB02400623AF7 /* MoriyamaUITests */,
 				5D9D804E1C2D405700623AF7 /* MoriyamaKeyboard */,
 				5DE880601C6EE0B000EDE4B4 /* Localizable.strings */,
 				5D9D80191C2CB02400623AF7 /* Products */,
@@ -335,24 +327,6 @@
 				5D9D80271C2CB02400623AF7 /* Info.plist */,
 			);
 			path = Moriyama;
-			sourceTree = "<group>";
-		};
-		5D9D802F1C2CB02400623AF7 /* MoriyamaTests */ = {
-			isa = PBXGroup;
-			children = (
-				5D9D80301C2CB02400623AF7 /* MoriyamaTests.swift */,
-				5D9D80321C2CB02400623AF7 /* Info.plist */,
-			);
-			path = MoriyamaTests;
-			sourceTree = "<group>";
-		};
-		5D9D803A1C2CB02400623AF7 /* MoriyamaUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5D9D803B1C2CB02400623AF7 /* MoriyamaUITests.swift */,
-				5D9D803D1C2CB02400623AF7 /* Info.plist */,
-			);
-			path = MoriyamaUITests;
 			sourceTree = "<group>";
 		};
 		5D9D804E1C2D405700623AF7 /* MoriyamaKeyboard */ = {
@@ -634,7 +608,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D9D80311C2CB02400623AF7 /* MoriyamaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,7 +615,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D9D803C1C2CB02400623AF7 /* MoriyamaUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
