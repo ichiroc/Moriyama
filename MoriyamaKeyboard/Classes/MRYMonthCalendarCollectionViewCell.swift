@@ -160,6 +160,8 @@ class MRYMonthCalendarCollectionViewCell: UICollectionViewCell {
         }else if comp.weekday == 7{
             // Saturday
             self.dateLabel.textColor = UIColor.blue
+        } else {
+            self.dateLabel.textColor = UIColor.black
         }
         buildEventIndicatorView()
         if(isToday()){

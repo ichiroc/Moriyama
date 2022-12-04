@@ -16,6 +16,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
     fileprivate var pageIndex = 0
     fileprivate let descriptionTexts = [
         NSLocalizedString("This is instruction which how to add ApptBoard keyboard. First, open 'Setting' from home." , comment: "") , // 0
+        NSLocalizedString("Choose 'General'" , comment: ""), // 2
         NSLocalizedString("Choose 'Keyboard'" , comment: ""), // 2
         NSLocalizedString("Choose 'Keyboards'" , comment: ""), // 3
         NSLocalizedString("Choose 'Add New Keyboard..'" , comment: ""), // 4
@@ -23,7 +24,7 @@ UIPageViewControllerDataSource,UIPageViewControllerDelegate{
         NSLocalizedString("Choose 'ApptBoard' again." , comment: ""),  // 6
         NSLocalizedString("Enable 'Allow Full Access' to check appointments with a keyboard." , comment: ""), // 9
         NSLocalizedString("Warning will be shown. Choose 'Allow'. We don't send your input data if you allowed.", comment: "") , // 10
-        NSLocalizedString("If 'Allow Full Access' is enabled, It's done. Use it by tap 🌐 button." , comment: ""), // 11
+        NSLocalizedString("If 'Allow Full Access' is enabled, It's done. Tap 🌐 on the keyboard to switch to ApptBoard when typing text in email, message applications, etc.." , comment: ""), // 11
         NSLocalizedString("[NOTICE] To check appointments with a keyboard, You must confirm that appointments is shown on default Calendar app.", comment: "") // 12
 
     ]
