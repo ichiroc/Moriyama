@@ -8,6 +8,8 @@
 
 ## Build generated
 build/
+buildApp/
+buildKeyboard/
 DerivedData
 
 ## Various settings
