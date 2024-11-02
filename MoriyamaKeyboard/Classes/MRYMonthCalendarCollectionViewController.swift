@@ -109,7 +109,9 @@ class MRYMonthCalendarViewController: MRYAbstractMainViewController ,UICollectio
             let margins = calendarCollectionView.layoutMargins
             let screenRect = UIScreen.main.bounds //calendarCollectionView.bounds
             let screenWidth = screenRect.size.width - (margins.left + margins.right)
-            let cellWidth = floor((screenWidth / 7.0))
+            let targetColumnCount: CGFloat = 7
+            // NOTE: targetColumnCount - 1 でセルの間の線分の幅をマイナスする
+            let cellWidth = ((screenWidth - (targetColumnCount - 1)) / targetColumnCount)
             cellSize = CGSize(width: cellWidth, height: 50)
             return cellSize!
     }
