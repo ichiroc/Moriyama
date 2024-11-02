@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EKEventEditViewDelegate {
         eventEditVC.editViewDelegate = self
 
         if let startDateString = query["startDate"], let endDateString = query["endDate"] {
-            let startDate = Util.sharedFormatter().date(from: startDateString)
-            let endDate = Util.sharedFormatter().date(from: endDateString)
+            let startDate = sharedFormatter().date(from: startDateString)
+            let endDate = sharedFormatter().date(from: endDateString)
             if let eventId = query["eventId"] {
                 let predicate = eventStore.predicateForEvents(withStart: startDate!, end: endDate!, calendars: nil )
                 let events = eventStore.events(matching: predicate)
@@ -90,6 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, EKEventEditViewDelegate {
         alert.addAction(action)
         self.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
-
+    private func sharedFormatter() -> DateFormatter{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd-HH-mm"
+        return formatter
+    }
 }
 
