@@ -885,7 +885,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 32;
 				DEVELOPMENT_TEAM = 5Y76VQZLFN;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				IBSC_MODULE = "$(PRODUCT_MODULE_NAME)";
 				INFOPLIST_FILE = Moriyama/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
